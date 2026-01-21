@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import gallery7 from "@/assets/gallery-7.jpg"; // Using real gallery image as hero
+import heroBg from "@/assets/hero-bg.jpg";
 
 export function HeroSection() {
   return (
@@ -9,7 +9,7 @@ export function HeroSection() {
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${gallery7})` }}
+        style={{ backgroundImage: `url(${heroBg})` }}
       >
         {/* Overlay */}
         <div className="absolute inset-0" style={{ background: "var(--hero-overlay)" }} />
