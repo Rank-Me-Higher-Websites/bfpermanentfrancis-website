@@ -1,0 +1,199 @@
+import { Helmet } from "react-helmet-async";
+import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Layout } from "@/components/layout/Layout";
+import { useState } from "react";
+import { toast } from "sonner";
+
+const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    setTimeout(() => {
+      toast.success("Thank you for your message! We'll get back to you soon.");
+      setIsSubmitting(false);
+      (e.target as HTMLFormElement).reset();
+    }, 1000);
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>Contact BF Permanent Francis | Book Consultation Chicago</title>
+        <meta
+          name="description"
+          content="Contact BF Permanent Francis for permanent makeup consultations in Chicago. Call (708) 737-2333 or email francisbirute@yahoo.com. Located in Lemont, IL."
+        />
+        <link rel="canonical" href="https://bfpermanentfrancis.com/contact" />
+      </Helmet>
+      <Layout>
+        {/* Hero */}
+        <section className="section-padding-sm" style={{ background: "var(--section-gradient)" }}>
+          <div className="section-container">
+            <div className="mx-auto max-w-3xl text-center animate-fade-up">
+              <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
+                Contact
+              </p>
+              <h1 className="heading-xl mb-6">Get in Touch</h1>
+              <p className="text-lg text-muted-foreground">
+                Ready to enhance your natural beauty? Contact us to schedule your consultation 
+                or ask any questions about our services.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section className="section-padding bg-background">
+          <div className="section-container">
+            <div className="grid gap-12 lg:grid-cols-2">
+              {/* Contact Form */}
+              <div className="animate-fade-up">
+                <h2 className="heading-md mb-6">Send Us a Message</h2>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid gap-6 sm:grid-cols-2">
+                    <div className="space-y-2">
+                      <Label htmlFor="firstName">First Name</Label>
+                      <Input id="firstName" name="firstName" required placeholder="Your first name" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="lastName">Last Name</Label>
+                      <Input id="lastName" name="lastName" required placeholder="Your last name" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input id="email" name="email" type="email" required placeholder="your@email.com" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone</Label>
+                    <Input id="phone" name="phone" type="tel" placeholder="(123) 456-7890" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="service">Service of Interest</Label>
+                    <Input id="service" name="service" placeholder="e.g., Eyebrow Micropigmentation, Lip Enhancement" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="message">Message</Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      required
+                      placeholder="Tell us about yourself and what you're looking for..."
+                      className="min-h-[150px]"
+                    />
+                  </div>
+                  <Button type="submit" variant="cta" size="lg" className="w-full glow-button" disabled={isSubmitting}>
+                    {isSubmitting ? (
+                      "Sending..."
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="ml-2 h-5 w-5" />
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </div>
+
+              {/* Contact Info & Map */}
+              <div className="space-y-8 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+                <h2 className="heading-md mb-6">Contact Information</h2>
+
+                {/* Contact Cards */}
+                <div className="space-y-4">
+                  <div className="card-hover rounded-xl bg-card p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                        <Phone className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="mb-2 font-heading font-semibold">Phone</h3>
+                        <p className="text-muted-foreground">
+                          <a href="tel:+17087372333" className="hover:text-primary">(708) 737-2333</a>
+                          <br />
+                          <a href="tel:+13313188113" className="hover:text-primary">(331) 318-8113</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="card-hover rounded-xl bg-card p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                        <Mail className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="mb-2 font-heading font-semibold">Email</h3>
+                        <a
+                          href="mailto:francisbirute@yahoo.com"
+                          className="text-muted-foreground hover:text-primary"
+                        >
+                          francisbirute@yahoo.com
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="card-hover rounded-xl bg-card p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                        <MapPin className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="mb-2 font-heading font-semibold">Address</h3>
+                        <p className="text-muted-foreground">
+                          La Passion Beauty Salon<br />
+                          12420 Archer Ave Unit C<br />
+                          Lemont, IL 60439
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="card-hover rounded-xl bg-card p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                        <Clock className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="mb-2 font-heading font-semibold">Hours</h3>
+                        <p className="text-muted-foreground">
+                          By Appointment Only<br />
+                          <span className="text-sm">Contact us to schedule your consultation</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Map */}
+                <div className="overflow-hidden rounded-xl shadow-lg h-[300px]">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.6456!2d-87.97!3d41.67!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e4b5c5c5c5c5c%3A0x5c5c5c5c5c5c5c5c!2s12420%20Archer%20Ave%20Unit%20C%2C%20Lemont%2C%20IL%2060439!5e0!3m2!1sen!2sus!4v1234567890"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="BF Permanent Francis Location - Lemont IL"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </Layout>
+    </>
+  );
+};
+
+export default Contact;
