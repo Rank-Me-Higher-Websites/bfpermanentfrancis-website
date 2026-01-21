@@ -1,0 +1,114 @@
+import { Link } from "react-router-dom";
+import { Award, Clock, Heart, Shield } from "lucide-react";
+import biruteFrancis from "@/assets/birute-francis.jpg";
+
+const certifications = [
+  "BH Brow Henna Workshop",
+  "Deluxe Brows Nano Master Class",
+  "Brow Sketchnology",
+  "FEEL GOOD Intensive PMU Training",
+  "Purebeau Master Training Seminar",
+  "Long-Time-Liner Conture Make-up GmbH (Munich & Beverly Hills)",
+];
+
+const highlights = [
+  {
+    icon: Award,
+    title: "Certified Trainer",
+    description: "Long-Time-Liner® Regional Trainer with elite certifications",
+  },
+  {
+    icon: Clock,
+    title: "Years of Experience",
+    description: "Track record of achievements in top brand pigments and devices",
+  },
+  {
+    icon: Shield,
+    title: "Premium Products",
+    description: "Using only highest quality LONG-TIME-LINER® equipment and pigments",
+  },
+  {
+    icon: Heart,
+    title: "Natural Results",
+    description: "Enhancing your natural beauty with precise micropigmentation",
+  },
+];
+
+export function AboutSection() {
+  return (
+    <section className="section-padding" style={{ background: "var(--section-gradient)" }}>
+      <div className="section-container">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+          {/* Image */}
+          <div className="relative animate-fade-up">
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+              <img
+                src={biruteFrancis}
+                alt="Birute Francis - Certified Permanent Makeup Artist"
+                className="h-full w-full object-cover"
+              />
+              {/* Decorative Badge */}
+              <div className="absolute bottom-6 left-6 rounded-lg bg-primary px-4 py-3 text-primary-foreground shadow-lg">
+                <p className="text-xs font-medium uppercase tracking-wider">Long-Time-Liner®</p>
+                <p className="font-heading text-lg font-semibold">Regional Trainer</p>
+              </div>
+            </div>
+            {/* Decorative Elements */}
+            <div className="absolute -bottom-6 -right-6 h-48 w-48 rounded-2xl border-4 border-primary/20 -z-10" />
+          </div>
+
+          {/* Content */}
+          <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
+            <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
+              Why Choose Us
+            </p>
+            <h2 className="heading-lg mb-6">Birute Francis</h2>
+            <p className="mb-6 text-lg text-muted-foreground">
+              Birute Francis, a Long-Time-Liner Regional Trainer, boasts a track record of achievements 
+              in top brand pigments and devices. She is a trusted expert in microblading in Chicago and 
+              is highly knowledgeable about permanent makeup.
+            </p>
+
+            {/* Certifications */}
+            <div className="mb-8">
+              <h3 className="mb-4 font-heading text-lg font-semibold">Certifications & Training</h3>
+              <ul className="grid gap-2 sm:grid-cols-2">
+                {certifications.map((cert) => (
+                  <li key={cert} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <Award className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                    <span>{cert}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <Link
+              to="/about"
+              className="inline-flex items-center gap-2 font-medium text-primary hover:text-primary/80 transition-colors"
+            >
+              Learn more about our expertise
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </div>
+
+        {/* Highlights Grid */}
+        <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {highlights.map((item, index) => (
+            <div
+              key={item.title}
+              className="card-hover rounded-xl bg-card p-6 text-center animate-fade-up"
+              style={{ animationDelay: `${0.1 * index}s` }}
+            >
+              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+                <item.icon className="h-7 w-7 text-primary" />
+              </div>
+              <h3 className="mb-2 font-heading text-lg font-semibold">{item.title}</h3>
+              <p className="text-sm text-muted-foreground">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
