@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import logoBf from "@/assets/logo-bf.png";
+import logoBf from "@/assets/logo-bf.webp";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -26,14 +26,8 @@ export function Header() {
       <nav className="section-container flex h-20 items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3">
-          <img src={logoBf} alt="BF Permanent Francis Logo" className="h-14 w-auto" />
-          <div className="hidden sm:block">
-            <span className="font-heading text-lg font-semibold text-foreground">
-              BF Permanent
-            </span>
-            <span className="block text-xs text-muted-foreground">
-              Francis
-            </span>
+          <div className="flex h-14 items-center rounded bg-primary px-3">
+            <img src={logoBf} alt="BF Permanent Francis Logo" className="h-10 w-auto" />
           </div>
         </Link>
 
@@ -75,8 +69,9 @@ export function Header() {
             <SheetContent side="right" className="w-80">
               <div className="flex flex-col gap-6 py-6">
                 <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3">
-                  <img src={logoBf} alt="BF Permanent Francis" className="h-12 w-auto" />
-                  <span className="font-heading text-lg font-semibold">BF Permanent Francis</span>
+                  <div className="flex h-12 items-center rounded bg-primary px-3">
+                    <img src={logoBf} alt="BF Permanent Francis" className="h-8 w-auto" />
+                  </div>
                 </Link>
                 <nav className="flex flex-col gap-4">
                   {navigation.map((item) => (
