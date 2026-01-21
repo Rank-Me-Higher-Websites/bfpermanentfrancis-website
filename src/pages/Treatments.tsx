@@ -4,9 +4,11 @@ import { ArrowRight, Clock, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout/Layout";
 import { CTASection } from "@/components/sections/CTASection";
-import serviceLips from "@/assets/service-lips.jpg";
-import serviceEyebrows from "@/assets/service-eyebrows.jpg";
-import serviceEyeliner from "@/assets/service-eyeliner.jpg";
+// Using real gallery images
+import gallery3 from "@/assets/gallery-3.jpg"; // Lips
+import gallery1 from "@/assets/gallery-1.jpg"; // Eyebrows
+import gallery4 from "@/assets/gallery-4.jpg"; // Eyeliner
+import gallery2 from "@/assets/gallery-2.jpg"; // Brows
 
 const treatments = [
   {
@@ -15,7 +17,7 @@ const treatments = [
     subtitle: "Lip Contours & Ombré Lips",
     description:
       "Enhance your natural lip color and shape with our permanent lip treatments. From subtle lip blush to full lip contours with shading, wake up every day with beautiful, perfectly defined lips.",
-    image: serviceLips,
+    image: gallery3,
     benefits: [
       "Natural-looking color enhancement",
       "Fuller appearance without fillers",
@@ -33,7 +35,7 @@ const treatments = [
     subtitle: "Hair Strokes & Ombré Brows",
     description:
       "Achieve perfectly shaped eyebrows that frame your face beautifully. Our techniques range from natural hair strokes to soft ombré effects, creating brows that look effortlessly perfect.",
-    image: serviceEyebrows,
+    image: gallery1,
     benefits: [
       "Natural hair-like strokes",
       "Soft powder/ombré effect available",
@@ -51,7 +53,7 @@ const treatments = [
     subtitle: "Lash Line & Shaded Eyeliner",
     description:
       "Define your eyes with precision micropigmentation. From subtle lashline enhancement that makes your lashes appear fuller to dramatic shaded eyeliner, achieve a polished look that lasts.",
-    image: serviceEyeliner,
+    image: gallery4,
     benefits: [
       "Subtle lash line enhancement",
       "Classic eyeliner definition",
@@ -69,7 +71,7 @@ const treatments = [
     subtitle: "Brow Henna Coloring",
     description:
       "A semi-permanent brow tinting treatment using natural henna. Perfect for those who want enhanced brows without the commitment of permanent makeup.",
-    image: serviceEyebrows,
+    image: gallery2,
     benefits: [
       "Natural henna formula",
       "No harsh chemicals",

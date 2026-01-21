@@ -1,27 +1,27 @@
 import { Star } from "lucide-react";
-import review1 from "@/assets/review-1.jpg";
-import review2 from "@/assets/review-2.jpg";
-import review3 from "@/assets/review-3.jpg";
+import reviewAmelia from "@/assets/review-amelia.png";
+import reviewKaren from "@/assets/review-karen.png";
+import reviewElizabeth from "@/assets/review-elizabeth.png";
 
 const reviews = [
   {
     id: 1,
     name: "Amelia Klark",
-    image: review1,
+    image: reviewAmelia,
     rating: 5,
     text: "I couldn't be happier with my permanent lip ombre experience. It has simplified my daily routine, enhanced my natural beauty, and boosted my confidence in the most subtle and elegant way possible!",
   },
   {
     id: 2,
     name: "Karen Rooke",
-    image: review2,
+    image: reviewKaren,
     rating: 5,
     text: "Birute is so skilled at what she does. She made the entire process feel easy and comfortable. I couldn't be any happier with the result! Thank you so much xxx",
   },
   {
     id: 3,
     name: "Elizabeth Ardale",
-    image: review3,
+    image: reviewElizabeth,
     rating: 5,
     text: "The results are nothing short of amazing. Birute ensured that the eyeliner was tailored to my unique eye shape and desired look. It's a game-changer that has me feeling and looking my best every day!",
   },
@@ -49,30 +49,28 @@ export function ReviewsSection() {
               className="card-hover flex flex-col rounded-2xl bg-card p-8 animate-fade-up"
               style={{ animationDelay: `${0.1 * index}s` }}
             >
-              {/* Stars */}
-              <div className="mb-4 flex gap-1">
-                {Array.from({ length: review.rating }).map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-primary text-primary" />
-                ))}
-              </div>
-
-              {/* Quote */}
-              <blockquote className="mb-6 flex-1 text-muted-foreground italic">
-                "{review.text}"
-              </blockquote>
-
               {/* Author */}
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 mb-4">
                 <img
                   src={review.image}
                   alt={review.name}
-                  className="h-12 w-12 rounded-full object-cover"
+                  className="h-16 w-16 rounded-full object-cover"
                 />
                 <div>
                   <p className="font-heading font-semibold">{review.name}</p>
-                  <p className="text-sm text-muted-foreground">Verified Customer</p>
+                  {/* Stars */}
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: review.rating }).map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                    ))}
+                  </div>
                 </div>
               </div>
+
+              {/* Quote */}
+              <blockquote className="flex-1 text-muted-foreground">
+                "{review.text}"
+              </blockquote>
             </article>
           ))}
         </div>

@@ -1,21 +1,30 @@
 import { Helmet } from "react-helmet-async";
 import { Layout } from "@/components/layout/Layout";
 import { CTASection } from "@/components/sections/CTASection";
-import serviceLips from "@/assets/service-lips.jpg";
-import serviceEyebrows from "@/assets/service-eyebrows.jpg";
-import serviceEyeliner from "@/assets/service-eyeliner.jpg";
-import heroBg from "@/assets/hero-bg.jpg";
-import biruteFrancis from "@/assets/birute-francis.jpg";
+
+// Import real gallery images from original website
+import gallery1 from "@/assets/gallery-1.jpg";
+import gallery2 from "@/assets/gallery-2.jpg";
+import gallery3 from "@/assets/gallery-3.jpg";
+import gallery4 from "@/assets/gallery-4.jpg";
+import gallery5 from "@/assets/gallery-5.jpg";
+import gallery6 from "@/assets/gallery-6.jpg";
+import gallery7 from "@/assets/gallery-7.jpg";
+import gallery8 from "@/assets/gallery-8.jpg";
+import gallery9 from "@/assets/gallery-9.jpg";
+import gallery10 from "@/assets/gallery-10.jpg";
 
 const galleryImages = [
-  { src: serviceLips, alt: "Permanent Lip Makeup Result - Ombre Lips Chicago" },
-  { src: serviceEyebrows, alt: "Eyebrow Micropigmentation Result - Perfect Brows Chicago" },
-  { src: serviceEyeliner, alt: "Permanent Eyeliner Result - Lash Enhancement Chicago" },
-  { src: heroBg, alt: "Permanent Makeup Treatment in Progress" },
-  { src: biruteFrancis, alt: "Birute Francis - Certified PMU Artist" },
-  { src: serviceLips, alt: "Beautiful Lip Blush Results" },
-  { src: serviceEyebrows, alt: "Ombre Brow Transformation" },
-  { src: serviceEyeliner, alt: "Subtle Eyeliner Enhancement" },
+  { src: gallery1, alt: "Permanent Makeup Result - Before and After" },
+  { src: gallery2, alt: "Eyebrow Micropigmentation - Natural Brows" },
+  { src: gallery3, alt: "Lip Enhancement - Ombre Lips Result" },
+  { src: gallery4, alt: "Permanent Eyeliner - Lash Enhancement" },
+  { src: gallery5, alt: "Microblading Result - Hair Strokes" },
+  { src: gallery6, alt: "Lip Blush - Natural Color Enhancement" },
+  { src: gallery7, alt: "Ombre Brows - Powder Effect" },
+  { src: gallery8, alt: "Permanent Makeup Transformation" },
+  { src: gallery9, alt: "Eyebrow Shaping - Perfect Arch" },
+  { src: gallery10, alt: "Cosmetic Tattooing Result" },
 ];
 
 const Gallery = () => {
