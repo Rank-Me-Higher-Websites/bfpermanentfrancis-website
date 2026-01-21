@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Award, Clock, Heart, Shield } from "lucide-react";
-import gallery5 from "@/assets/gallery-5.jpg"; // Using gallery image for about section
+import biruteFrancis from "@/assets/birute-francis.jpg";
 
 const certifications = [
   "BH Brow Henna Workshop",
@@ -43,7 +43,7 @@ export function AboutSection() {
           <div className="relative animate-fade-up">
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <img
-                src={gallery5}
+                src={biruteFrancis}
                 alt="Birute Francis - Certified Permanent Makeup Artist"
                 className="h-full w-full object-cover"
               />
