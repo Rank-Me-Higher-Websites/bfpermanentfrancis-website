@@ -20,8 +20,8 @@
     --primary: 174 100% 29%;
     --primary-foreground: 0 0% 100%;
 
-    /* Accent: Deep Purple/Aubergine - matching original footer */
-    --accent: 280 25% 23%;
+    /* Accent: Deep Purple/Navy - matching original footer exactly */
+    --accent: 255 20% 18%;
     --accent-foreground: 0 0% 100%;
 
     --secondary: 174 30% 95%;
@@ -39,16 +39,16 @@
 
     --radius: 0.75rem;
 
-    /* Footer background - Deep aubergine purple from original */
-    --footer-bg: 280 25% 23%;
+    /* Footer background - Dark navy purple from original */
+    --footer-bg: 255 20% 18%;
 
     /* Custom tokens */
-    --hero-overlay: hsla(280, 25%, 23%, 0.75);
+    --hero-overlay: hsla(255, 20%, 18%, 0.75);
     --section-gradient: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(174 30% 98%) 100%);
     --card-shadow: 0 4px 20px -4px hsla(174, 100%, 29%, 0.15);
     --card-shadow-hover: 0 8px 30px -4px hsla(174, 100%, 29%, 0.25);
     --glow-primary: 0 0 20px hsla(174, 100%, 40%, 0.5);
-    --glow-accent: 0 0 20px hsla(280, 25%, 30%, 0.5);
+    --glow-accent: 0 0 20px hsla(255, 20%, 25%, 0.5);
 
     /* Typography */
     --font-heading: 'Playfair Display', serif;
@@ -94,7 +94,7 @@
     --input: 220 20% 20%;
     --ring: 174 100% 40%;
 
-    --hero-overlay: hsla(280, 25%, 23%, 0.8);
+    --hero-overlay: hsla(255, 20%, 18%, 0.8);
     --section-gradient: linear-gradient(180deg, hsl(220 20% 8%) 0%, hsl(220 25% 10%) 100%);
   }
 }
