@@ -4,7 +4,7 @@ import { Award, CheckCircle } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { ReviewsSection } from "@/components/sections/ReviewsSection";
 import { CTASection } from "@/components/sections/CTASection";
-import biruteFrancis from "@/assets/birute-francis.jpg";
+import gallery8 from "@/assets/gallery-8.jpg"; // Using gallery image
 
 const certifications = [
   "BH Brow Henna Workshop",
@@ -64,7 +64,7 @@ const About = () => {
               <div className="relative animate-fade-up">
                 <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                   <img
-                    src={biruteFrancis}
+                    src={gallery8}
                     alt="Birute Francis - Certified Permanent Makeup Artist"
                     className="h-full w-full object-cover"
                   />

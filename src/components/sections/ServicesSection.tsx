@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import serviceLips from "@/assets/service-lips.jpg";
-import serviceEyebrows from "@/assets/service-eyebrows.jpg";
-import serviceEyeliner from "@/assets/service-eyeliner.jpg";
+// Using real gallery images for services
+import gallery3 from "@/assets/gallery-3.jpg"; // Lips
+import gallery1 from "@/assets/gallery-1.jpg"; // Eyebrows
+import gallery4 from "@/assets/gallery-4.jpg"; // Eyeliner
 
 const services = [
   {
@@ -11,7 +12,7 @@ const services = [
     title: "Permanent Lips",
     description:
       "Enhance your natural lip color with ombre lips and lip contours with full shading. Wake up every day with beautiful, perfectly defined lips.",
-    image: serviceLips,
+    image: gallery3,
     link: "/treatments#lips",
   },
   {
@@ -19,7 +20,7 @@ const services = [
     title: "Eyebrow Micropigmentation",
     description:
       "From hair strokes to ombré brows, achieve perfectly shaped eyebrows that frame your face beautifully. Natural-looking results that last.",
-    image: serviceEyebrows,
+    image: gallery1,
     link: "/treatments#eyebrows",
   },
   {
@@ -27,7 +28,7 @@ const services = [
     title: "Eyeliner Enhancement",
     description:
       "From subtle lashline enhancement to shaded eyeliner, define your eyes with precision micropigmentation for a polished look every day.",
-    image: serviceEyeliner,
+    image: gallery4,
     link: "/treatments#eyeliner",
   },
 ];
