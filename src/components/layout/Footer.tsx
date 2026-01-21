@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Facebook, Instagram } from "lucide-react";
-import logoBf from "@/assets/logo-bf.png";
+import logoBf from "@/assets/logo-bf.webp";
 
 const quickLinks = [
   { name: "Home", href: "/" },
@@ -21,23 +21,23 @@ const services = [
 
 export function Footer() {
   return (
-    <footer className="bg-foreground text-background">
+    <footer className="bg-accent text-accent-foreground">
       <div className="section-container py-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-6">
-              <img src={logoBf} alt="BF Permanent Francis" className="h-16 w-auto brightness-0 invert" />
+              <img src={logoBf} alt="BF Permanent Francis" className="h-16 w-auto" />
             </Link>
-            <p className="text-sm text-background/70 mb-6">
-              Expert permanent makeup services in Chicago. Certified Long-Time-Liner® Regional Trainer with years of experience in micropigmentation.
+            <p className="text-sm text-accent-foreground/70 mb-6">
+              Long-Lasting Beauty, Effortlessly Yours: Discover the Power of Permanent Makeup by LONG-TIME-LINER®.
             </p>
             <div className="flex gap-4">
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-background/10 transition-colors hover:bg-primary hover:text-primary-foreground"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-foreground/10 transition-colors hover:bg-primary hover:text-primary-foreground"
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
@@ -46,7 +46,7 @@ export function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-background/10 transition-colors hover:bg-primary hover:text-primary-foreground"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-foreground/10 transition-colors hover:bg-primary hover:text-primary-foreground"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
@@ -62,7 +62,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-sm text-background/70 transition-colors hover:text-primary"
+                    className="text-sm text-accent-foreground/70 transition-colors hover:text-primary"
                   >
                     {link.name}
                   </Link>
@@ -79,7 +79,7 @@ export function Footer() {
                 <li key={service.name}>
                   <Link
                     to={service.href}
-                    className="text-sm text-background/70 transition-colors hover:text-primary"
+                    className="text-sm text-accent-foreground/70 transition-colors hover:text-primary"
                   >
                     {service.name}
                   </Link>
@@ -95,7 +95,7 @@ export function Footer() {
               <li>
                 <a
                   href="tel:+17087372333"
-                  className="flex items-start gap-3 text-sm text-background/70 transition-colors hover:text-primary"
+                  className="flex items-start gap-3 text-sm text-accent-foreground/70 transition-colors hover:text-primary"
                 >
                   <Phone className="h-5 w-5 flex-shrink-0 text-primary" />
                   <span>(708) 737-2333</span>
@@ -104,7 +104,7 @@ export function Footer() {
               <li>
                 <a
                   href="tel:+13313188113"
-                  className="flex items-start gap-3 text-sm text-background/70 transition-colors hover:text-primary"
+                  className="flex items-start gap-3 text-sm text-accent-foreground/70 transition-colors hover:text-primary"
                 >
                   <Phone className="h-5 w-5 flex-shrink-0 text-primary" />
                   <span>(331) 318-8113</span>
@@ -113,7 +113,7 @@ export function Footer() {
               <li>
                 <a
                   href="mailto:francisbirute@yahoo.com"
-                  className="flex items-start gap-3 text-sm text-background/70 transition-colors hover:text-primary"
+                  className="flex items-start gap-3 text-sm text-accent-foreground/70 transition-colors hover:text-primary"
                 >
                   <Mail className="h-5 w-5 flex-shrink-0 text-primary" />
                   <span>francisbirute@yahoo.com</span>
@@ -124,7 +124,7 @@ export function Footer() {
                   href="https://maps.google.com/maps?q=12420+Archer+Ave+Unit+C+Lemont+IL+60439"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-3 text-sm text-background/70 transition-colors hover:text-primary"
+                  className="flex items-start gap-3 text-sm text-accent-foreground/70 transition-colors hover:text-primary"
                 >
                   <MapPin className="h-5 w-5 flex-shrink-0 text-primary" />
                   <span>
@@ -140,13 +140,13 @@ export function Footer() {
       </div>
 
       {/* Copyright */}
-      <div className="border-t border-background/10">
+      <div className="border-t border-accent-foreground/10">
         <div className="section-container py-6">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="text-sm text-background/50">
+            <p className="text-sm text-accent-foreground/50">
               © {new Date().getFullYear()} BF Permanent Francis. All rights reserved.
             </p>
-            <p className="text-sm text-background/50">
+            <p className="text-sm text-accent-foreground/50">
               Permanent Makeup Chicago | Long-Time-Liner® Certified
             </p>
           </div>
