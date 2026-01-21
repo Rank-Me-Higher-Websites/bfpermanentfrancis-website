@@ -1,10 +1,11 @@
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
 import { Award, CheckCircle } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
+import { PageHero } from "@/components/sections/PageHero";
 import { ReviewsSection } from "@/components/sections/ReviewsSection";
 import { CTASection } from "@/components/sections/CTASection";
-import gallery8 from "@/assets/gallery-8.jpg"; // Using gallery image
+import gallery8 from "@/assets/gallery-8.jpg";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const certifications = [
   "BH Brow Henna Workshop",
@@ -43,18 +44,11 @@ const About = () => {
         <link rel="canonical" href="https://bfpermanentfrancis.com/about" />
       </Helmet>
       <Layout>
-        {/* Hero */}
-        <section className="section-padding-sm" style={{ background: "var(--section-gradient)" }}>
-          <div className="section-container">
-            <div className="mx-auto max-w-3xl text-center animate-fade-up">
-              <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">About</p>
-              <h1 className="heading-xl mb-6">About Permanent Makeup</h1>
-              <p className="text-lg text-muted-foreground">
-                Why choose BF Permanent Francis for your permanent makeup needs
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          title="About Permanent Makeup"
+          subtitle="About"
+          backgroundImage={heroBg}
+        />
 
         {/* About Birute */}
         <section className="section-padding bg-background">

@@ -5,8 +5,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Layout } from "@/components/layout/Layout";
+import { PageHero } from "@/components/sections/PageHero";
 import { useState } from "react";
 import { toast } from "sonner";
+import gallery9 from "@/assets/gallery-9.jpg";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -15,7 +17,6 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
     setTimeout(() => {
       toast.success("Thank you for your message! We'll get back to you soon.");
       setIsSubmitting(false);
@@ -34,21 +35,11 @@ const Contact = () => {
         <link rel="canonical" href="https://bfpermanentfrancis.com/contact" />
       </Helmet>
       <Layout>
-        {/* Hero */}
-        <section className="section-padding-sm" style={{ background: "var(--section-gradient)" }}>
-          <div className="section-container">
-            <div className="mx-auto max-w-3xl text-center animate-fade-up">
-              <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
-                Contact
-              </p>
-              <h1 className="heading-xl mb-6">Get in Touch</h1>
-              <p className="text-lg text-muted-foreground">
-                Ready to enhance your natural beauty? Contact us to schedule your consultation 
-                or ask any questions about our services.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          title="Get in Touch"
+          subtitle="Contact"
+          backgroundImage={gallery9}
+        />
 
         {/* Contact Section */}
         <section className="section-padding bg-background">

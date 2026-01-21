@@ -2,7 +2,9 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { CheckCircle } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
+import { PageHero } from "@/components/sections/PageHero";
 import { CTASection } from "@/components/sections/CTASection";
+import gallery6 from "@/assets/gallery-6.jpg";
 
 const products = [
   {
@@ -77,21 +79,11 @@ const Products = () => {
         <link rel="canonical" href="https://bfpermanentfrancis.com/products" />
       </Helmet>
       <Layout>
-        {/* Hero */}
-        <section className="section-padding-sm" style={{ background: "var(--section-gradient)" }}>
-          <div className="section-container">
-            <div className="mx-auto max-w-3xl text-center animate-fade-up">
-              <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
-                Products
-              </p>
-              <h1 className="heading-xl mb-6">High-Quality Expert Products</h1>
-              <p className="text-lg text-muted-foreground">
-                Achieve perfect results with our premium Long-Time-Liner® products. 
-                We use only the finest equipment and pigments for exceptional, lasting results.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          title="High-Quality Expert Products"
+          subtitle="Products"
+          backgroundImage={gallery6}
+        />
 
         {/* Products Grid */}
         <section className="section-padding bg-background">

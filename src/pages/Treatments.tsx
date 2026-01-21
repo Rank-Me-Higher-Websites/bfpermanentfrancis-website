@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Clock, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout/Layout";
+import { PageHero } from "@/components/sections/PageHero";
 import { CTASection } from "@/components/sections/CTASection";
-// Using real gallery images
-import gallery3 from "@/assets/gallery-3.jpg"; // Lips
-import gallery1 from "@/assets/gallery-1.jpg"; // Eyebrows
-import gallery4 from "@/assets/gallery-4.jpg"; // Eyeliner
-import gallery2 from "@/assets/gallery-2.jpg"; // Brows
+import gallery3 from "@/assets/gallery-3.jpg";
+import gallery1 from "@/assets/gallery-1.jpg";
+import gallery4 from "@/assets/gallery-4.jpg";
+import gallery2 from "@/assets/gallery-2.jpg";
+import gallery5 from "@/assets/gallery-5.jpg";
 
 const treatments = [
   {
@@ -97,21 +98,11 @@ const Treatments = () => {
         <link rel="canonical" href="https://bfpermanentfrancis.com/treatments" />
       </Helmet>
       <Layout>
-        {/* Hero */}
-        <section className="section-padding-sm" style={{ background: "var(--section-gradient)" }}>
-          <div className="section-container">
-            <div className="mx-auto max-w-3xl text-center animate-fade-up">
-              <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
-                Treatments
-              </p>
-              <h1 className="heading-xl mb-6">Our Services</h1>
-              <p className="text-lg text-muted-foreground">
-                Professional permanent makeup treatments tailored to enhance your natural beauty 
-                with long-lasting, stunning results using premium Long-Time-Liner® products.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          title="Our Services"
+          subtitle="Treatments"
+          backgroundImage={gallery5}
+        />
 
         {/* Treatments */}
         <section className="section-padding bg-background">

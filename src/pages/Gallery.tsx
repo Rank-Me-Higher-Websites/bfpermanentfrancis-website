@@ -1,8 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import { Layout } from "@/components/layout/Layout";
+import { PageHero } from "@/components/sections/PageHero";
 import { CTASection } from "@/components/sections/CTASection";
 
-// Import real gallery images from original website
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
@@ -39,21 +39,11 @@ const Gallery = () => {
         <link rel="canonical" href="https://bfpermanentfrancis.com/gallery" />
       </Helmet>
       <Layout>
-        {/* Hero */}
-        <section className="section-padding-sm" style={{ background: "var(--section-gradient)" }}>
-          <div className="section-container">
-            <div className="mx-auto max-w-3xl text-center animate-fade-up">
-              <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
-                Gallery
-              </p>
-              <h1 className="heading-xl mb-6">Stunning Transformations</h1>
-              <p className="text-lg text-muted-foreground">
-                Browse our portfolio of permanent makeup results. Each treatment is customized 
-                to enhance natural beauty and deliver long-lasting, stunning results.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          title="Stunning Transformations"
+          subtitle="Gallery"
+          backgroundImage={gallery8}
+        />
 
         {/* Gallery Grid */}
         <section className="section-padding bg-background">
