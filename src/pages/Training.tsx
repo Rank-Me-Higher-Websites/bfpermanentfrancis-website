@@ -4,7 +4,9 @@ import { ArrowRight, Award, Clock, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Layout } from "@/components/layout/Layout";
+import { PageHero } from "@/components/sections/PageHero";
 import { CTASection } from "@/components/sections/CTASection";
+import gallery7 from "@/assets/gallery-7.jpg";
 
 const courses = [
   {
@@ -97,21 +99,11 @@ const Training = () => {
         <link rel="canonical" href="https://bfpermanentfrancis.com/training" />
       </Helmet>
       <Layout>
-        {/* Hero */}
-        <section className="section-padding-sm" style={{ background: "var(--section-gradient)" }}>
-          <div className="section-container">
-            <div className="mx-auto max-w-3xl text-center animate-fade-up">
-              <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
-                Training
-              </p>
-              <h1 className="heading-xl mb-6">Permanent Makeup Classes</h1>
-              <p className="text-lg text-muted-foreground">
-                Intensive & Quick – Become a LINERGIST®. Focused permanent make-up training 
-                for aspiring and experienced micropigmentation professionals.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          title="Permanent Makeup Classes"
+          subtitle="Training"
+          backgroundImage={gallery7}
+        />
 
         {/* Courses Grid */}
         <section className="section-padding bg-background">
