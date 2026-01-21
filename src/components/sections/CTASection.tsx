@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
 import { Phone, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ctaBg from "@/assets/cta-bg.jpg";
 
 export function CTASection() {
   return (
     <section className="relative overflow-hidden py-20">
-      {/* Background */}
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${ctaBg})` }}
+      />
+      {/* Overlay */}
       <div className="absolute inset-0" style={{ background: "var(--hero-overlay)" }} />
 
       {/* Content */}
