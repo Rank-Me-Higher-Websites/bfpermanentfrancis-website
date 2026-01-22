@@ -5,7 +5,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { ReviewsSection } from "@/components/sections/ReviewsSection";
 import { CTASection } from "@/components/sections/CTASection";
 import aboutBirute from "@/assets/about-birute.jpg";
-import heroBg from "@/assets/hero-bg.jpg";
+import aboutHeroBg from "@/assets/about-hero.jpg";
 
 const certifications = [
   "BH Brow Henna Workshop",
@@ -47,7 +47,7 @@ const About = () => {
         <PageHero
           title="About Permanent Makeup"
           subtitle="About"
-          backgroundImage={heroBg}
+          backgroundImage={aboutHeroBg}
         />
 
         {/* About Birute */}
