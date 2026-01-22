@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 // Using real gallery images for services
-import serviceLips from "@/assets/service-lips-new.jpg"; // Lips
-import gallery1 from "@/assets/gallery-1.jpg"; // Eyebrows
-import gallery4 from "@/assets/gallery-4.jpg"; // Eyeliner
+import serviceLips from "@/assets/service-lips-new.jpg";
+import serviceEyebrows from "@/assets/service-eyebrows.jpg";
+import gallery4 from "@/assets/gallery-4.jpg";
 
 const services = [
   {
@@ -20,7 +20,7 @@ const services = [
     title: "Eyebrow Micropigmentation",
     description:
       "From hair strokes to ombré brows, achieve perfectly shaped eyebrows that frame your face beautifully. Natural-looking results that last.",
-    image: gallery1,
+    image: serviceEyebrows,
     link: "/treatments#eyebrows",
   },
   {
