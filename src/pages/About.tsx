@@ -4,7 +4,7 @@ import { Layout } from "@/components/layout/Layout";
 import { PageHero } from "@/components/sections/PageHero";
 import { ReviewsSection } from "@/components/sections/ReviewsSection";
 import { CTASection } from "@/components/sections/CTASection";
-import gallery8 from "@/assets/gallery-8.jpg";
+import aboutBirute from "@/assets/about-birute.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const certifications = [
@@ -58,7 +58,7 @@ const About = () => {
               <div className="relative animate-fade-up">
                 <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                   <img
-                    src={gallery8}
+                    src={aboutBirute}
                     alt="Birute Francis - Certified Permanent Makeup Artist"
                     className="h-full w-full object-cover"
                   />
