@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Award, Clock, Heart, Shield } from "lucide-react";
-import biruteFrancis from "@/assets/birute-francis.jpg";
+import aboutLips from "@/assets/about-lips.jpg";
 
 const certifications = [
   "BH Brow Henna Workshop",
@@ -43,8 +43,8 @@ export function AboutSection() {
           <div className="relative animate-fade-up">
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <img
-                src={biruteFrancis}
-                alt="Birute Francis - Certified Permanent Makeup Artist"
+                src={aboutLips}
+                alt="Permanent Lips Before and After"
                 className="h-full w-full object-cover"
               />
               {/* Decorative Badge */}
