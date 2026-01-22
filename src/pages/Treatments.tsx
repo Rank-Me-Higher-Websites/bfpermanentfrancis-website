@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout/Layout";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTASection } from "@/components/sections/CTASection";
-import gallery3 from "@/assets/gallery-3.jpg";
+import treatmentLips from "@/assets/treatment-lips.jpg";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
@@ -18,7 +18,7 @@ const treatments = [
     subtitle: "Lip Contours & Ombré Lips",
     description:
       "Enhance your natural lip color and shape with our permanent lip treatments. From subtle lip blush to full lip contours with shading, wake up every day with beautiful, perfectly defined lips.",
-    image: gallery3,
+    image: treatmentLips,
     benefits: [
       "Natural-looking color enhancement",
       "Fuller appearance without fillers",
