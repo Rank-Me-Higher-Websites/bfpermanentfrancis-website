@@ -3,6 +3,7 @@ import { Layout } from "@/components/layout/Layout";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTASection } from "@/components/sections/CTASection";
 
+import heroImage from "@/IMAGE 2026-01-22 19:22:46.jpg";
 import img1 from "@/IMAGE-2025-03-06-23_09_05.jpg";
 import img2 from "@/IMAGE-2025-03-06-23_09_07.jpg";
 import img3 from "@/IMAGE-2025-03-06-23_09_52.jpg";
@@ -38,7 +39,7 @@ const Gallery = () => {
         <PageHero
           title="Stunning Transformations"
           subtitle="Gallery"
-          backgroundImage={img1}
+          backgroundImage={heroImage}
         />
 
         {/* Gallery Grid */}
