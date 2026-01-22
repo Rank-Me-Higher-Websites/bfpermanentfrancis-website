@@ -8,7 +8,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import treatmentLips from "@/assets/treatment-lips.jpg";
 import treatmentEyebrows from "@/assets/treatment-eyebrows.jpg";
 import treatmentEyeliner from "@/assets/treatment-eyeliner.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
+import treatmentBrowxenna from "@/assets/treatment-browxenna.jpg";
 import treatmentsHeroBg from "@/assets/treatments-hero.jpg";
 
 const treatments = [
@@ -72,7 +72,7 @@ const treatments = [
     subtitle: "Brow Henna Coloring",
     description:
       "A semi-permanent brow tinting treatment using natural henna. Perfect for those who want enhanced brows without the commitment of permanent makeup.",
-    image: gallery2,
+    image: treatmentBrowxenna,
     benefits: [
       "Natural henna formula",
       "No harsh chemicals",
