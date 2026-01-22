@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 // Using real gallery images for services
 import serviceLips from "@/assets/service-lips-new.jpg";
 import serviceEyebrows from "@/assets/service-eyebrows.jpg";
-import serviceEyeliner from "@/assets/service-eyeliner.jpg";
+import serviceEyeliner from "@/IMAGE 2026-01-22 19:24:05.jpg";
 
 const services = [
   {
