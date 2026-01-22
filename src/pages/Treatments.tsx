@@ -7,7 +7,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { CTASection } from "@/components/sections/CTASection";
 import treatmentLips from "@/assets/treatment-lips.jpg";
 import treatmentEyebrows from "@/assets/treatment-eyebrows.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
+import treatmentEyeliner from "@/assets/treatment-eyeliner.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import treatmentsHeroBg from "@/assets/treatments-hero.jpg";
 
@@ -54,7 +54,7 @@ const treatments = [
     subtitle: "Lash Line & Shaded Eyeliner",
     description:
       "Define your eyes with precision micropigmentation. From subtle lashline enhancement that makes your lashes appear fuller to dramatic shaded eyeliner, achieve a polished look that lasts.",
-    image: gallery4,
+    image: treatmentEyeliner,
     benefits: [
       "Subtle lash line enhancement",
       "Classic eyeliner definition",
