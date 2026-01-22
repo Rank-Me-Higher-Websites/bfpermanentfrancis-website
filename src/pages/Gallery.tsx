@@ -3,46 +3,70 @@ import { Layout } from "@/components/layout/Layout";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTASection } from "@/components/sections/CTASection";
 
-import gallery1 from "@/IMAGE-2025-03-06-23_09_11.jpg";
-import gallery2 from "@/IMAGE-2025-03-06-23_09_05.jpg";
-import gallery3 from "@/IMAGE-2025-03-06-23_09_09.jpg";
-import gallery4 from "@/IMAGE-2025-03-06-23_09_07.jpg";
-import gallery5 from "@/IMAGE-2025-03-06-23_09_14.jpg";
-import gallery6 from "@/IMAGE-2025-03-06-23_09_21.jpg";
-import gallery7 from "@/IMAGE-2025-03-06-23_09_47.jpg";
-import gallery8 from "@/IMAGE-2025-03-06-23_09_45.jpg";
-import gallery9 from "@/IMAGE-2025-03-06-23_09_19.jpg";
-import gallery10 from "@/IMAGE-2025-03-06-23_09_17.jpg";
-import gallery11 from "@/assets/gallery-11.jpg";
-import gallery12 from "@/assets/gallery-12.jpg";
-import gallery13 from "@/assets/gallery-13.jpg";
-import gallery14 from "@/assets/gallery-14.jpg";
-import gallery15 from "@/assets/gallery-15.jpg";
-import gallery16 from "@/assets/gallery-16.jpg";
-import gallery17 from "@/assets/gallery-17.jpg";
-import gallery18 from "@/assets/gallery-18.jpg";
-import gallery19 from "@/assets/gallery-19.jpg";
+import img1 from "@/IMAGE 2026-01-22 19:22:40.jpg";
+import img2 from "@/IMAGE 2026-01-22 19:22:42.jpg";
+import img3 from "@/IMAGE 2026-01-22 19:22:44.jpg";
+import img4 from "@/IMAGE 2026-01-22 19:22:46.jpg";
+import img5 from "@/IMAGE 2026-01-22 19:22:48.jpg";
+import img6 from "@/IMAGE 2026-01-22 19:22:49.jpg";
+import img7 from "@/IMAGE 2026-01-22 19:22:52.jpg";
+import img8 from "@/IMAGE 2026-01-22 19:22:54.jpg";
+import img9 from "@/IMAGE 2026-01-22 19:22:57.jpg";
+import img10 from "@/IMAGE 2026-01-22 19:23:01.jpg";
+import img11 from "@/IMAGE 2026-01-22 19:23:04.jpg";
+import img12 from "@/IMAGE 2026-01-22 19:23:06.jpg";
+import img13 from "@/IMAGE 2026-01-22 19:23:25.jpg";
+import img14 from "@/IMAGE 2026-01-22 19:23:46.jpg";
+import img15 from "@/IMAGE 2026-01-22 19:23:55.jpg";
+import img16 from "@/IMAGE 2026-01-22 19:24:03.jpg";
+import img17 from "@/IMAGE 2026-01-22 19:24:05.jpg";
+import img18 from "@/IMAGE 2026-01-22 19:24:06.jpg";
+import img19 from "@/IMAGE 2026-01-22 19:24:08.jpg";
+import img20 from "@/IMAGE 2026-01-22 19:24:11.jpg";
+import img21 from "@/IMAGE 2026-01-22 19:24:36.jpg";
+import img22 from "@/IMAGE-2025-03-06-23_09_05.jpg";
+import img23 from "@/IMAGE-2025-03-06-23_09_07.jpg";
+import img24 from "@/IMAGE-2025-03-06-23_09_09.jpg";
+import img25 from "@/IMAGE-2025-03-06-23_09_11.jpg";
+import img26 from "@/IMAGE-2025-03-06-23_09_14.jpg";
+import img27 from "@/IMAGE-2025-03-06-23_09_17.jpg";
+import img28 from "@/IMAGE-2025-03-06-23_09_19.jpg";
+import img29 from "@/IMAGE-2025-03-06-23_09_21.jpg";
+import img30 from "@/IMAGE-2025-03-06-23_09_45.jpg";
+import img31 from "@/IMAGE-2025-03-06-23_09_47.jpg";
 
 const galleryImages = [
-  { src: gallery1, alt: "Eyebrow Micropigmentation - Before and After" },
-  { src: gallery2, alt: "Permanent Lips - Red Lips Enhancement" },
-  { src: gallery3, alt: "Lip Enhancement - Ombre Lips Result" },
-  { src: gallery4, alt: "Permanent Lips - Natural Color" },
-  { src: gallery5, alt: "Lip Blush - Subtle Enhancement" },
-  { src: gallery6, alt: "Eyebrow Micropigmentation - Natural Brows" },
-  { src: gallery7, alt: "Permanent Lips - Bold Color" },
-  { src: gallery8, alt: "Ombre Brows - Powder Effect" },
-  { src: gallery9, alt: "Lip Enhancement - Pink Tones" },
-  { src: gallery10, alt: "Eyebrow Shaping - Perfect Arch" },
-  { src: gallery11, alt: "Permanent Makeup Transformation" },
-  { src: gallery12, alt: "Lip Blush - Natural Color Enhancement" },
-  { src: gallery13, alt: "Eyebrow Micropigmentation Result" },
-  { src: gallery14, alt: "Permanent Lips - Stunning Results" },
-  { src: gallery15, alt: "Brow Enhancement - Hair Strokes" },
-  { src: gallery16, alt: "Lip Color Correction" },
-  { src: gallery17, alt: "Eyebrow Transformation" },
-  { src: gallery18, alt: "Permanent Makeup - Before and After" },
-  { src: gallery19, alt: "Cosmetic Tattooing Result" },
+  { src: img1, alt: "Permanent Makeup Result" },
+  { src: img2, alt: "Eyebrow Micropigmentation" },
+  { src: img3, alt: "Lip Enhancement Result" },
+  { src: img4, alt: "Permanent Makeup Transformation" },
+  { src: img5, alt: "Eyebrow Styling" },
+  { src: img6, alt: "Lip Blush Result" },
+  { src: img7, alt: "Micropigmentation Work" },
+  { src: img8, alt: "Permanent Makeup Before and After" },
+  { src: img9, alt: "Eyebrow Enhancement" },
+  { src: img10, alt: "Lip Color Enhancement" },
+  { src: img11, alt: "Brow Transformation" },
+  { src: img12, alt: "Permanent Lips Result" },
+  { src: img13, alt: "Eyebrow Micropigmentation Result" },
+  { src: img14, alt: "Lip Enhancement" },
+  { src: img15, alt: "Permanent Makeup Work" },
+  { src: img16, alt: "Eyebrow Shaping" },
+  { src: img17, alt: "Lip Blush Enhancement" },
+  { src: img18, alt: "Micropigmentation Result" },
+  { src: img19, alt: "Permanent Makeup Transformation" },
+  { src: img20, alt: "Eyebrow Styling Result" },
+  { src: img21, alt: "Lip Color Result" },
+  { src: img22, alt: "Eyebrow Micropigmentation - Before and After" },
+  { src: img23, alt: "Permanent Lips - Red Lips Enhancement" },
+  { src: img24, alt: "Lip Enhancement - Ombre Lips Result" },
+  { src: img25, alt: "Permanent Lips - Natural Color" },
+  { src: img26, alt: "Lip Blush - Subtle Enhancement" },
+  { src: img27, alt: "Eyebrow Micropigmentation - Natural Brows" },
+  { src: img28, alt: "Permanent Lips - Bold Color" },
+  { src: img29, alt: "Ombre Brows - Powder Effect" },
+  { src: img30, alt: "Lip Enhancement - Pink Tones" },
+  { src: img31, alt: "Eyebrow Shaping - Perfect Arch" },
 ];
 
 const Gallery = () => {
@@ -60,7 +84,7 @@ const Gallery = () => {
         <PageHero
           title="Stunning Transformations"
           subtitle="Gallery"
-          backgroundImage={gallery8}
+          backgroundImage={img8}
         />
 
         {/* Gallery Grid */}
