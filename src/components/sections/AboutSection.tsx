@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Award, Clock, Heart, Shield } from "lucide-react";
 import biruteFrancis from "@/assets/birute-francis.jpg";
-import aboutTop from "@/assets/about-top.jpg";
 
 const certifications = [
   "BH Brow Henna Workshop",
@@ -42,27 +41,16 @@ export function AboutSection() {
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Image */}
           <div className="relative animate-fade-up">
-            <div className="flex flex-col gap-4">
-              {/* Top Image */}
-              <div className="relative overflow-hidden rounded-2xl shadow-xl">
-                <img
-                  src={aboutTop}
-                  alt="Permanent Lips Before and After"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              {/* Bottom Image */}
-              <div className="relative overflow-hidden rounded-2xl shadow-xl">
-                <img
-                  src={biruteFrancis}
-                  alt="Birute Francis - Certified Permanent Makeup Artist"
-                  className="h-full w-full object-cover"
-                />
-                {/* Decorative Badge */}
-                <div className="absolute bottom-6 left-6 rounded-lg bg-primary px-4 py-3 text-primary-foreground shadow-lg">
-                  <p className="text-xs font-medium uppercase tracking-wider">Long-Time-Liner®</p>
-                  <p className="font-heading text-lg font-semibold">Regional Trainer</p>
-                </div>
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+              <img
+                src={biruteFrancis}
+                alt="Birute Francis - Certified Permanent Makeup Artist"
+                className="h-full w-full object-cover"
+              />
+              {/* Decorative Badge */}
+              <div className="absolute bottom-6 left-6 rounded-lg bg-primary px-4 py-3 text-primary-foreground shadow-lg">
+                <p className="text-xs font-medium uppercase tracking-wider">Long-Time-Liner®</p>
+                <p className="font-heading text-lg font-semibold">Regional Trainer</p>
               </div>
             </div>
             {/* Decorative Elements */}
