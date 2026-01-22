@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Layout } from "@/components/layout/Layout";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTASection } from "@/components/sections/CTASection";
-import gallery7 from "@/assets/gallery-7.jpg";
+import gallery7 from "@/IMAGE-2025-03-06-23_09_47.jpg";
 
 const courses = [
   {
