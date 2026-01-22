@@ -6,7 +6,7 @@ import { Layout } from "@/components/layout/Layout";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTASection } from "@/components/sections/CTASection";
 import treatmentLips from "@/assets/treatment-lips.jpg";
-import gallery1 from "@/assets/gallery-1.jpg";
+import treatmentEyebrows from "@/assets/treatment-eyebrows.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import treatmentsHeroBg from "@/assets/treatments-hero.jpg";
@@ -36,7 +36,7 @@ const treatments = [
     subtitle: "Hair Strokes & Ombré Brows",
     description:
       "Achieve perfectly shaped eyebrows that frame your face beautifully. Our techniques range from natural hair strokes to soft ombré effects, creating brows that look effortlessly perfect.",
-    image: gallery1,
+    image: treatmentEyebrows,
     benefits: [
       "Natural hair-like strokes",
       "Soft powder/ombré effect available",
