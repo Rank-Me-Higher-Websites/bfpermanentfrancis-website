@@ -8,7 +8,7 @@ import { Layout } from "@/components/layout/Layout";
 import { PageHero } from "@/components/sections/PageHero";
 import { useState } from "react";
 import { toast } from "sonner";
-import gallery9 from "@/IMAGE-2025-03-06-23_09_19.jpg";
+import heroImage from "@/IMAGE 2026-01-22 19:24:08.jpg";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,7 +38,7 @@ const Contact = () => {
         <PageHero
           title="Get in Touch"
           subtitle="Contact"
-          backgroundImage={gallery9}
+          backgroundImage={heroImage}
         />
 
         {/* Contact Section */}
