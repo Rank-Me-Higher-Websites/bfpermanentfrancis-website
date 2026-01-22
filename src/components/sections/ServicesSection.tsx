@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 // Using real gallery images for services
 import serviceLips from "@/assets/service-lips-new.jpg";
 import serviceEyebrows from "@/assets/service-eyebrows.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
+import serviceEyeliner from "@/assets/service-eyeliner.jpg";
 
 const services = [
   {
@@ -28,7 +28,7 @@ const services = [
     title: "Eyeliner Enhancement",
     description:
       "From subtle lashline enhancement to shaded eyeliner, define your eyes with precision micropigmentation for a polished look every day.",
-    image: gallery4,
+    image: serviceEyeliner,
     link: "/treatments#eyeliner",
   },
 ];
