@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 // Using real gallery images for services
-import gallery3 from "@/assets/gallery-3.jpg"; // Lips
+import serviceLips from "@/assets/service-lips-new.jpg"; // Lips
 import gallery1 from "@/assets/gallery-1.jpg"; // Eyebrows
 import gallery4 from "@/assets/gallery-4.jpg"; // Eyeliner
 
@@ -12,7 +12,7 @@ const services = [
     title: "Permanent Lips",
     description:
       "Enhance your natural lip color with ombre lips and lip contours with full shading. Wake up every day with beautiful, perfectly defined lips.",
-    image: gallery3,
+    image: serviceLips,
     link: "/treatments#lips",
   },
   {
