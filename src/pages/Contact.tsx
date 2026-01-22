@@ -8,7 +8,7 @@ import { Layout } from "@/components/layout/Layout";
 import { PageHero } from "@/components/sections/PageHero";
 import { useState } from "react";
 import { toast } from "sonner";
-import gallery9 from "@/assets/gallery-9.jpg";
+import gallery9 from "@/IMAGE-2025-03-06-23_09_19.jpg";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
