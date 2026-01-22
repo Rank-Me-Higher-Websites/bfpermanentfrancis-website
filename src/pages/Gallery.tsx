@@ -5,22 +5,24 @@ import { CTASection } from "@/components/sections/CTASection";
 
 import img1 from "@/IMAGE-2025-03-06-23_09_05.jpg";
 import img2 from "@/IMAGE-2025-03-06-23_09_07.jpg";
-import img3 from "@/IMAGE-2025-03-06-23_09_09.jpg";
-import img4 from "@/IMAGE-2025-03-06-23_09_11.jpg";
-import img5 from "@/IMAGE-2025-03-06-23_09_14.jpg";
-import img6 from "@/IMAGE-2025-03-06-23_09_17.jpg";
-import img7 from "@/IMAGE-2025-03-06-23_09_19.jpg";
-import img8 from "@/IMAGE-2025-03-06-23_09_21.jpg";
+import img3 from "@/IMAGE-2025-03-06-23_09_52.jpg";
+import img4 from "@/IMAGE-2025-03-06-23_09_09.jpg";
+import img5 from "@/IMAGE-2025-03-06-23_09_11.jpg";
+import img6 from "@/IMAGE-2025-03-06-23_09_14.jpg";
+import img7 from "@/IMAGE-2025-03-06-23_09_17.jpg";
+import img8 from "@/IMAGE-2025-03-06-23_09_19.jpg";
+import img9 from "@/IMAGE-2025-03-06-23_09_21.jpg";
 
 const galleryImages = [
   { src: img1, alt: "Eyebrow Micropigmentation - Before and After" },
   { src: img2, alt: "Permanent Lips - Red Lips Enhancement" },
-  { src: img3, alt: "Lip Enhancement - Ombre Lips Result" },
-  { src: img4, alt: "Permanent Lips - Natural Color" },
-  { src: img5, alt: "Lip Blush - Subtle Enhancement" },
-  { src: img6, alt: "Eyebrow Micropigmentation - Natural Brows" },
-  { src: img7, alt: "Permanent Lips - Bold Color" },
-  { src: img8, alt: "Ombre Brows - Powder Effect" },
+  { src: img3, alt: "Permanent Makeup - Beautiful Result" },
+  { src: img4, alt: "Lip Enhancement - Ombre Lips Result" },
+  { src: img5, alt: "Permanent Lips - Natural Color" },
+  { src: img6, alt: "Lip Blush - Subtle Enhancement" },
+  { src: img7, alt: "Eyebrow Micropigmentation - Natural Brows" },
+  { src: img8, alt: "Permanent Lips - Bold Color" },
+  { src: img9, alt: "Ombre Brows - Powder Effect" },
 ];
 
 const Gallery = () => {
