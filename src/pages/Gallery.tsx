@@ -11,7 +11,6 @@ import img5 from "@/IMAGE-2025-03-06-23_09_14.jpg";
 import img6 from "@/IMAGE-2025-03-06-23_09_17.jpg";
 import img7 from "@/IMAGE-2025-03-06-23_09_19.jpg";
 import img8 from "@/IMAGE-2025-03-06-23_09_21.jpg";
-import img9 from "@/IMAGE-2025-03-06-23_09_45.jpg";
 
 const galleryImages = [
   { src: img1, alt: "Eyebrow Micropigmentation - Before and After" },
@@ -22,7 +21,6 @@ const galleryImages = [
   { src: img6, alt: "Eyebrow Micropigmentation - Natural Brows" },
   { src: img7, alt: "Permanent Lips - Bold Color" },
   { src: img8, alt: "Ombre Brows - Powder Effect" },
-  { src: img9, alt: "Lip Enhancement - Pink Tones" },
 ];
 
 const Gallery = () => {
