@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Layout } from "@/components/layout/Layout";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTASection } from "@/components/sections/CTASection";
-import gallery7 from "@/IMAGE-2025-03-06-23_09_21.jpg";
+import heroImage from "@/IMAGE 2026-01-22 19:23:46.jpg";
 
 const courses = [
   {
@@ -102,7 +102,7 @@ const Training = () => {
         <PageHero
           title="Permanent Makeup Classes"
           subtitle="Training"
-          backgroundImage={gallery7}
+          backgroundImage={heroImage}
         />
 
         {/* Courses Grid */}
