@@ -4,7 +4,7 @@ import { CheckCircle } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { PageHero } from "@/components/sections/PageHero";
 import { CTASection } from "@/components/sections/CTASection";
-import gallery6 from "@/assets/gallery-6.jpg";
+import gallery6 from "@/IMAGE-2025-03-06-23_09_21.jpg";
 
 const products = [
   {
