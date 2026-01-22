@@ -13,18 +13,36 @@ import gallery7 from "@/assets/gallery-7.jpg";
 import gallery8 from "@/assets/gallery-8.jpg";
 import gallery9 from "@/assets/gallery-9.jpg";
 import gallery10 from "@/assets/gallery-10.jpg";
+import gallery11 from "@/assets/gallery-11.jpg";
+import gallery12 from "@/assets/gallery-12.jpg";
+import gallery13 from "@/assets/gallery-13.jpg";
+import gallery14 from "@/assets/gallery-14.jpg";
+import gallery15 from "@/assets/gallery-15.jpg";
+import gallery16 from "@/assets/gallery-16.jpg";
+import gallery17 from "@/assets/gallery-17.jpg";
+import gallery18 from "@/assets/gallery-18.jpg";
+import gallery19 from "@/assets/gallery-19.jpg";
 
 const galleryImages = [
-  { src: gallery1, alt: "Permanent Makeup Result - Before and After" },
-  { src: gallery2, alt: "Eyebrow Micropigmentation - Natural Brows" },
+  { src: gallery1, alt: "Eyebrow Micropigmentation - Before and After" },
+  { src: gallery2, alt: "Permanent Lips - Red Lips Enhancement" },
   { src: gallery3, alt: "Lip Enhancement - Ombre Lips Result" },
-  { src: gallery4, alt: "Permanent Eyeliner - Lash Enhancement" },
-  { src: gallery5, alt: "Microblading Result - Hair Strokes" },
-  { src: gallery6, alt: "Lip Blush - Natural Color Enhancement" },
-  { src: gallery7, alt: "Ombre Brows - Powder Effect" },
-  { src: gallery8, alt: "Permanent Makeup Transformation" },
-  { src: gallery9, alt: "Eyebrow Shaping - Perfect Arch" },
-  { src: gallery10, alt: "Cosmetic Tattooing Result" },
+  { src: gallery4, alt: "Permanent Lips - Natural Color" },
+  { src: gallery5, alt: "Lip Blush - Subtle Enhancement" },
+  { src: gallery6, alt: "Eyebrow Micropigmentation - Natural Brows" },
+  { src: gallery7, alt: "Permanent Lips - Bold Color" },
+  { src: gallery8, alt: "Ombre Brows - Powder Effect" },
+  { src: gallery9, alt: "Lip Enhancement - Pink Tones" },
+  { src: gallery10, alt: "Eyebrow Shaping - Perfect Arch" },
+  { src: gallery11, alt: "Permanent Makeup Transformation" },
+  { src: gallery12, alt: "Lip Blush - Natural Color Enhancement" },
+  { src: gallery13, alt: "Eyebrow Micropigmentation Result" },
+  { src: gallery14, alt: "Permanent Lips - Stunning Results" },
+  { src: gallery15, alt: "Brow Enhancement - Hair Strokes" },
+  { src: gallery16, alt: "Lip Color Correction" },
+  { src: gallery17, alt: "Eyebrow Transformation" },
+  { src: gallery18, alt: "Permanent Makeup - Before and After" },
+  { src: gallery19, alt: "Cosmetic Tattooing Result" },
 ];
 
 const Gallery = () => {
