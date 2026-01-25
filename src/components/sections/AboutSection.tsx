@@ -65,8 +65,11 @@ export function AboutSection() {
             <h2 className="heading-lg mb-6">Birute Francis</h2>
             <p className="mb-6 text-lg text-muted-foreground">
               Birute Francis, a Long-Time-Liner Regional Trainer, boasts a track record of achievements 
-              in top brand pigments and devices. She is a trusted expert in microblading in Chicago and 
-              is highly knowledgeable about permanent makeup.
+              in top brand pigments and devices. She holds certifications from renowned courses including 
+              BH Brow Henna Workshop, Deluxe Brows Nano Master Class, Brow Sketchnology, and "FEEL GOOD" 
+              Intensive Permanent Make-up Training. Birute has also excelled in Purebeau Master Training 
+              Seminar and completed training at Long-Time-Liner Conture Make-up GmbH centers in Munich 
+              and Beverly Hills.
             </p>
 
             {/* Certifications */}
