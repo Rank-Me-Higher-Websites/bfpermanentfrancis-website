@@ -87,19 +87,6 @@ export function AboutSection() {
               and Beverly Hills.
             </p>
 
-            {/* Certifications & Training */}
-            <div className="mb-8">
-              <h3 className="mb-4 font-heading text-lg font-semibold">Certifications & Training</h3>
-              <ul className="grid gap-2 sm:grid-cols-2">
-                {certifications.map((cert) => (
-                  <li key={cert} className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <Award className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-                    <span>{cert}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
             <Link
               to="/about"
               className="inline-flex items-center gap-2 font-medium text-primary hover:text-primary/80 transition-colors"
