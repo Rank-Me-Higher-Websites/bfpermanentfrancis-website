@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 // Using real gallery images for services
 import serviceLips from "@/assets/service-lips-new.jpg";
@@ -86,12 +86,18 @@ export function ServicesSection() {
         </div>
 
         {/* CTA */}
-        <div className="mt-12 text-center animate-fade-up" style={{ animationDelay: "0.3s" }}>
-          <Button variant="default" size="lg" asChild>
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+          <Button variant="cta" size="lg" asChild>
             <Link to="/treatments">
-              View All Treatments
+              View Treatments
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
+          </Button>
+          <Button variant="hero-outline" size="lg" asChild>
+            <a href="tel:+17087372333">
+              <Phone className="mr-2 h-5 w-5" />
+              (708) 737-2333
+            </a>
           </Button>
         </div>
       </div>
