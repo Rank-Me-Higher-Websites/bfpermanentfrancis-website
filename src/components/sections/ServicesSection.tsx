@@ -93,7 +93,7 @@ export function ServicesSection() {
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
-          <Button variant="hero-outline" size="lg" asChild>
+          <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground" asChild>
             <a href="tel:+17087372333">
               <Phone className="mr-2 h-5 w-5" />
               (708) 737-2333
