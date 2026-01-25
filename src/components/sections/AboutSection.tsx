@@ -11,6 +11,21 @@ const certifications = [
   "Long-Time-Liner Conture Make-up GmbH (Munich & Beverly Hills)",
 ];
 
+const trainingTopics = [
+  "Perfect pre-drawing and pigmentation technique",
+  "Device overview",
+  "Hygiene and legal regulations",
+  "Colour theory",
+  "Quality control",
+  "Eyebrow pigmentation",
+  "Ombré brows",
+  "Lashline enhancement and eyeliners",
+  "Lip contours with full shading",
+  "Ombré lips",
+  "Individual consultation",
+  "Fundamentals of retouching semi-permanent make-up",
+];
+
 const highlights = [
   {
     icon: Award,
@@ -72,7 +87,7 @@ export function AboutSection() {
               and Beverly Hills.
             </p>
 
-            {/* Certifications */}
+            {/* Certifications & Training */}
             <div className="mb-8">
               <h3 className="mb-4 font-heading text-lg font-semibold">Certifications & Training</h3>
               <ul className="grid gap-2 sm:grid-cols-2">
@@ -92,6 +107,39 @@ export function AboutSection() {
               Learn more about our expertise
               <span aria-hidden="true">→</span>
             </Link>
+          </div>
+        </div>
+
+        {/* Two Column Section: Certifications & Elite Training */}
+        <div className="mt-16 grid gap-8 lg:grid-cols-2 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+          {/* Certifications Column */}
+          <div className="rounded-2xl bg-card p-8 shadow-sm">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
+                <Award className="h-5 w-5 text-primary" />
+              </div>
+              <h3 className="font-heading text-xl font-semibold text-primary">Certifications</h3>
+            </div>
+            <p className="text-muted-foreground">
+              Certified to lead specialized courses in line with the Long-Time-Liner Conture Make-up approach
+            </p>
+          </div>
+
+          {/* Elite Training Seminars Column */}
+          <div className="rounded-2xl bg-card p-8 shadow-sm">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
+                <Award className="h-5 w-5 text-primary" />
+              </div>
+              <h3 className="font-heading text-xl font-semibold text-primary">Elite Training Seminars</h3>
+            </div>
+            <ul className="grid gap-2 sm:grid-cols-2">
+              {trainingTopics.map((topic) => (
+                <li key={topic} className="text-sm text-muted-foreground">
+                  {topic}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
