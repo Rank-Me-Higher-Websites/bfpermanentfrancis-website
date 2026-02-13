@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { BookingSection } from "./BookingSection";
 import heroBg from "@/assets/hero-bg.jpg";
 
 export function HeroSection() {
@@ -43,6 +44,11 @@ export function HeroSection() {
               </a>
             </Button>
           </div>
+        </div>
+
+        {/* Booking Form inside Hero */}
+        <div className="mx-auto mt-12 max-w-5xl">
+          <BookingSection variant="hero" />
         </div>
       </div>
 
