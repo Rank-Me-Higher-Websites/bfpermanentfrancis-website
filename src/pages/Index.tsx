@@ -8,7 +8,7 @@ import { LocationSection } from "@/components/sections/LocationSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { SEOContentSection } from "@/components/sections/SEOContentSection";
 import { CTASection } from "@/components/sections/CTASection";
-import { BookingSection } from "@/components/sections/BookingSection";
+
 
 const Index = () => {
   return (
@@ -24,7 +24,7 @@ const Index = () => {
       </Helmet>
       <Layout>
         <HeroSection />
-        <BookingSection variant="banner" />
+        
         <AboutSection />
         <ServicesSection />
         <ReviewsSection />
