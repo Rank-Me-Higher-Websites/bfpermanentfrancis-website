@@ -1,15 +1,23 @@
 import { useState, useEffect, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
-import { Lock, CalendarDays, Clock, CheckCircle2, XCircle, BarChart3, RefreshCw } from "lucide-react";
-import { format, isToday, isFuture, parseISO } from "date-fns";
+import { Lock, RefreshCw, Search, Users, Clock, CheckCircle2, XCircle, CalendarDays } from "lucide-react";
+import { isToday, isFuture, parseISO } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { BookingTable, type Booking } from "@/components/admin/BookingTable";
 import { type BookingStatus } from "@/components/admin/BookingStatusBadge";
 
-const ADMIN_PASSWORD = "admin123"; // Replace with env var on Replit
+const ADMIN_PASSWORD = "admin123";
 
 type FilterStatus = "all" | BookingStatus;
+
+const FILTER_CONFIG: { value: FilterStatus; label: string; icon: React.ReactNode; color: string }[] = [
+  { value: "all", label: "All", icon: <Users className="h-5 w-5" />, color: "text-foreground" },
+  { value: "new", label: "New", icon: <Clock className="h-5 w-5" />, color: "text-primary" },
+  { value: "confirmed", label: "Confirmed", icon: <CheckCircle2 className="h-5 w-5" />, color: "text-emerald-600" },
+  { value: "completed", label: "Done", icon: <CalendarDays className="h-5 w-5" />, color: "text-muted-foreground" },
+  { value: "cancelled", label: "Cancelled", icon: <XCircle className="h-5 w-5" />, color: "text-destructive" },
+];
 
 export default function Admin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -17,6 +25,7 @@ export default function Admin() {
   const [error, setError] = useState("");
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [filter, setFilter] = useState<FilterStatus>("all");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     if (isAuthenticated) loadBookings();
@@ -24,7 +33,6 @@ export default function Admin() {
 
   const loadBookings = () => {
     const data = JSON.parse(localStorage.getItem("bookings") || "[]") as Booking[];
-    // Sort newest first
     data.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
     setBookings(data);
   };
@@ -35,7 +43,7 @@ export default function Admin() {
       setIsAuthenticated(true);
       setError("");
     } else {
-      setError("Incorrect password");
+      setError("Wrong password. Please try again.");
     }
   };
 
@@ -47,23 +55,39 @@ export default function Admin() {
     localStorage.setItem("bookings", JSON.stringify(updated));
   };
 
-  const filteredBookings = useMemo(
-    () => filter === "all" ? bookings : bookings.filter((b) => b.status === filter),
-    [bookings, filter]
-  );
+  const filteredBookings = useMemo(() => {
+    let result = filter === "all" ? bookings : bookings.filter((b) => b.status === filter);
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(
+        (b) =>
+          b.full_name.toLowerCase().includes(q) ||
+          b.phone.includes(q) ||
+          b.email.toLowerCase().includes(q) ||
+          b.service_type.toLowerCase().includes(q)
+      );
+    }
+    return result;
+  }, [bookings, filter, searchQuery]);
 
   const stats = useMemo(() => {
-    const today = bookings.filter(
-      (b) => b.preferred_date && isToday(parseISO(b.preferred_date))
-    ).length;
-    const upcoming = bookings.filter(
-      (b) => b.status === "confirmed" && b.preferred_date && isFuture(parseISO(b.preferred_date))
-    ).length;
     const newCount = bookings.filter((b) => b.status === "new").length;
-    return { today, upcoming, newCount, total: bookings.length };
+    const confirmed = bookings.filter((b) => b.status === "confirmed").length;
+    const completed = bookings.filter((b) => b.status === "completed").length;
+    const cancelled = bookings.filter((b) => b.status === "cancelled").length;
+    return { total: bookings.length, newCount, confirmed, completed, cancelled };
   }, [bookings]);
 
-  // Login screen
+  const getCount = (status: FilterStatus) => {
+    if (status === "all") return stats.total;
+    if (status === "new") return stats.newCount;
+    if (status === "confirmed") return stats.confirmed;
+    if (status === "completed") return stats.completed;
+    if (status === "cancelled") return stats.cancelled;
+    return 0;
+  };
+
+  // Login screen — big, simple, friendly
   if (!isAuthenticated) {
     return (
       <>
@@ -71,19 +95,21 @@ export default function Admin() {
           <title>Admin Login | BF Permanent Francis</title>
           <meta name="robots" content="noindex, nofollow" />
         </Helmet>
-        <div className="flex min-h-screen items-center justify-center bg-muted p-4">
-          <div className="w-full max-w-sm">
+        <div className="flex min-h-screen items-center justify-center bg-muted p-6">
+          <div className="w-full max-w-md">
             <form
               onSubmit={handleLogin}
-              className="rounded-2xl border border-border bg-card p-8 shadow-lg space-y-6"
+              className="rounded-2xl border border-border bg-card p-8 sm:p-10 shadow-lg space-y-8"
             >
-              <div className="flex flex-col items-center gap-3">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-                  <Lock className="h-7 w-7 text-primary" />
+              <div className="flex flex-col items-center gap-4">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                  <Lock className="h-8 w-8 text-primary" />
                 </div>
-                <h1 className="font-heading text-xl font-semibold">Admin Portal</h1>
-                <p className="text-sm text-muted-foreground text-center">
-                  Enter your password to manage bookings
+                <h1 className="font-heading text-2xl sm:text-3xl font-bold text-center">
+                  Admin Login
+                </h1>
+                <p className="text-base text-muted-foreground text-center">
+                  Enter your password to see your bookings
                 </p>
               </div>
 
@@ -91,16 +117,16 @@ export default function Admin() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                className="h-12"
+                placeholder="Type your password here"
+                className="h-14 text-lg px-5"
                 autoFocus
               />
 
               {error && (
-                <p className="text-sm text-destructive text-center">{error}</p>
+                <p className="text-base text-destructive text-center font-medium">{error}</p>
               )}
 
-              <Button type="submit" variant="cta" className="w-full h-12 glow-button">
+              <Button type="submit" variant="cta" className="w-full h-14 text-lg glow-button">
                 Sign In
               </Button>
             </form>
@@ -110,26 +136,33 @@ export default function Admin() {
     );
   }
 
-  // Dashboard
+  // Dashboard — clean, large text, obvious actions
   return (
     <>
       <Helmet>
-        <title>Admin Dashboard | BF Permanent Francis</title>
+        <title>My Bookings | BF Permanent Francis</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <div className="min-h-screen bg-muted">
         {/* Top Bar */}
-        <header className="sticky top-0 z-40 border-b border-border bg-card/80 backdrop-blur-md">
-          <div className="flex items-center justify-between px-4 py-3 max-w-5xl mx-auto">
-            <h1 className="font-heading text-lg font-semibold">Bookings</h1>
-            <div className="flex items-center gap-2">
-              <Button variant="ghost" size="icon" onClick={loadBookings}>
-                <RefreshCw className="h-4 w-4" />
-              </Button>
+        <header className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur-md">
+          <div className="flex items-center justify-between px-4 sm:px-6 py-4 max-w-6xl mx-auto">
+            <h1 className="font-heading text-xl sm:text-2xl font-bold">My Bookings</h1>
+            <div className="flex items-center gap-3">
               <Button
                 variant="outline"
                 size="sm"
+                onClick={loadBookings}
+                className="h-10 px-4 text-sm gap-2"
+              >
+                <RefreshCw className="h-4 w-4" />
+                <span className="hidden sm:inline">Refresh</span>
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => setIsAuthenticated(false)}
+                className="h-10 px-4 text-sm text-muted-foreground"
               >
                 Log out
               </Button>
@@ -137,55 +170,56 @@ export default function Admin() {
           </div>
         </header>
 
-        <main className="mx-auto max-w-5xl px-4 py-6 space-y-6">
-          {/* Stats Cards */}
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            <StatCard
-              icon={<BarChart3 className="h-5 w-5" />}
-              label="Total"
-              value={stats.total}
-              accent="primary"
-            />
-            <StatCard
-              icon={<Clock className="h-5 w-5" />}
-              label="New"
-              value={stats.newCount}
-              accent="primary"
-            />
-            <StatCard
-              icon={<CalendarDays className="h-5 w-5" />}
-              label="Today"
-              value={stats.today}
-              accent="primary"
-            />
-            <StatCard
-              icon={<CheckCircle2 className="h-5 w-5" />}
-              label="Upcoming"
-              value={stats.upcoming}
-              accent="primary"
+        <main className="mx-auto max-w-6xl px-4 sm:px-6 py-6 space-y-6">
+          {/* Quick Stats — large and color-coded */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+            <QuickStat label="Total" value={stats.total} className="bg-card" />
+            <QuickStat label="New" value={stats.newCount} className="bg-primary/10 border-primary/20" highlight />
+            <QuickStat label="Confirmed" value={stats.confirmed} className="bg-emerald-50 border-emerald-200" />
+            <QuickStat label="Completed" value={stats.completed} className="bg-card" />
+          </div>
+
+          {/* Search */}
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+            <Input
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search by name, phone, or email..."
+              className="h-12 sm:h-14 pl-12 text-base sm:text-lg bg-card"
             />
           </div>
 
-          {/* Filter Tabs */}
-          <div className="flex gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0">
-            {(["all", "new", "confirmed", "completed", "cancelled"] as FilterStatus[]).map(
-              (s) => (
-                <Button
-                  key={s}
-                  variant={filter === s ? "default" : "outline"}
-                  size="sm"
-                  className="h-9 capitalize whitespace-nowrap"
-                  onClick={() => setFilter(s)}
+          {/* Filter Tabs — large tap targets */}
+          <div className="flex gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
+            {FILTER_CONFIG.map((f) => {
+              const count = getCount(f.value);
+              const isActive = filter === f.value;
+              return (
+                <button
+                  key={f.value}
+                  onClick={() => setFilter(f.value)}
+                  className={`
+                    flex items-center gap-2 rounded-xl px-4 sm:px-5 py-3 text-sm sm:text-base font-medium whitespace-nowrap
+                    transition-all border-2
+                    ${isActive
+                      ? "bg-primary text-primary-foreground border-primary shadow-md"
+                      : "bg-card text-foreground border-border hover:border-primary/30"
+                    }
+                  `}
                 >
-                  {s === "all" ? "All Bookings" : s}
-                  {s === "new" && stats.newCount > 0 && (
-                    <span className="ml-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-primary-foreground/20 text-[10px] font-bold">
-                      {stats.newCount}
+                  {f.label}
+                  {count > 0 && (
+                    <span className={`
+                      flex h-6 min-w-[24px] items-center justify-center rounded-full px-1.5 text-xs font-bold
+                      ${isActive ? "bg-primary-foreground/20 text-primary-foreground" : "bg-muted text-muted-foreground"}
+                    `}>
+                      {count}
                     </span>
                   )}
-                </Button>
-              )
-            )}
+                </button>
+              );
+            })}
           </div>
 
           {/* Bookings List */}
@@ -199,24 +233,24 @@ export default function Admin() {
   );
 }
 
-function StatCard({
-  icon,
+/* Simple stat card with large number */
+function QuickStat({
   label,
   value,
-  accent,
+  className = "",
+  highlight = false,
 }: {
-  icon: React.ReactNode;
   label: string;
   value: number;
-  accent: string;
+  className?: string;
+  highlight?: boolean;
 }) {
   return (
-    <div className="rounded-xl border border-border bg-card p-4">
-      <div className="flex items-center gap-2 text-muted-foreground mb-2">
-        {icon}
-        <span className="text-xs font-medium uppercase tracking-wide">{label}</span>
-      </div>
-      <p className="text-2xl font-heading font-bold text-foreground">{value}</p>
+    <div className={`rounded-xl border p-4 sm:p-5 ${className}`}>
+      <p className="text-sm sm:text-base font-medium text-muted-foreground mb-1">{label}</p>
+      <p className={`text-3xl sm:text-4xl font-heading font-bold ${highlight ? "text-primary" : "text-foreground"}`}>
+        {value}
+      </p>
     </div>
   );
 }
