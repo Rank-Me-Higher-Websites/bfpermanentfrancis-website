@@ -5,7 +5,7 @@ import ctaBg from "@/assets/cta-bg.jpg";
 
 export function CTASection() {
   return (
-    <section className="relative overflow-hidden py-20">
+    <section className="relative overflow-hidden py-12 md:py-20">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -17,10 +17,10 @@ export function CTASection() {
       {/* Content */}
       <div className="section-container relative z-10">
         <div className="mx-auto max-w-3xl text-center animate-fade-up">
-          <h2 className="heading-lg mb-6 text-primary-foreground">
+          <h2 className="heading-lg mb-4 md:mb-6 text-primary-foreground">
             Ready to Enhance Your Natural Beauty?
           </h2>
-          <p className="mb-8 text-lg text-primary-foreground/90">
+          <p className="mb-5 md:mb-8 text-sm md:text-lg text-primary-foreground/90">
             Book your consultation today and discover how permanent makeup can simplify your 
             daily routine while keeping you looking your best around the clock.
           </p>

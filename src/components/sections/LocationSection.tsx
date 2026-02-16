@@ -5,20 +5,20 @@ export function LocationSection() {
     <section className="section-padding bg-secondary/30">
       <div className="section-container">
         {/* Header */}
-        <div className="mx-auto mb-12 max-w-2xl text-center animate-fade-up">
+        <div className="mx-auto mb-6 md:mb-12 max-w-2xl text-center animate-fade-up">
           <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
             Visit Us
           </p>
-          <h2 className="heading-lg mb-4">Our Location</h2>
-          <p className="text-lg text-muted-foreground">
+          <h2 className="heading-lg mb-2 md:mb-4">Our Location</h2>
+          <p className="text-sm md:text-lg text-muted-foreground">
             Located at La Passion Beauty Salon in Lemont, Illinois. We serve clients from 
             Chicago and the surrounding areas.
           </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-2 items-stretch">
+        <div className="grid gap-4 md:gap-8 lg:grid-cols-2 items-stretch">
           {/* Map */}
-          <div className="animate-fade-up rounded-2xl overflow-hidden shadow-lg h-[400px] lg:h-full min-h-[400px]">
+          <div className="animate-fade-up rounded-2xl overflow-hidden shadow-lg h-[250px] md:h-[400px] lg:h-full lg:min-h-[400px]">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.6456!2d-87.97!3d41.67!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e4b5c5c5c5c5c%3A0x5c5c5c5c5c5c5c5c!2s12420%20Archer%20Ave%20Unit%20C%2C%20Lemont%2C%20IL%2060439!5e0!3m2!1sen!2sus!4v1234567890"
               width="100%"
@@ -32,9 +32,9 @@ export function LocationSection() {
           </div>
 
           {/* Contact Info */}
-          <div className="animate-fade-up grid gap-6" style={{ animationDelay: "0.2s" }}>
+          <div className="animate-fade-up grid gap-3 md:gap-6" style={{ animationDelay: "0.2s" }}>
             {/* Address Card */}
-            <div className="card-hover rounded-xl bg-card p-6">
+            <div className="card-hover rounded-xl bg-card p-4 md:p-6">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
                   <MapPin className="h-6 w-6 text-primary" />
@@ -59,7 +59,7 @@ export function LocationSection() {
             </div>
 
             {/* Phone Card */}
-            <div className="card-hover rounded-xl bg-card p-6">
+            <div className="card-hover rounded-xl bg-card p-4 md:p-6">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
                   <Phone className="h-6 w-6 text-primary" />
@@ -76,7 +76,7 @@ export function LocationSection() {
             </div>
 
             {/* Email Card */}
-            <div className="card-hover rounded-xl bg-card p-6">
+            <div className="card-hover rounded-xl bg-card p-4 md:p-6">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
                   <Mail className="h-6 w-6 text-primary" />
@@ -94,7 +94,7 @@ export function LocationSection() {
             </div>
 
             {/* Hours Card */}
-            <div className="card-hover rounded-xl bg-card p-6">
+            <div className="card-hover rounded-xl bg-card p-4 md:p-6">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
                   <Clock className="h-6 w-6 text-primary" />

@@ -38,7 +38,7 @@ export function ServicesSection() {
     <section className="section-padding bg-background">
       <div className="section-container">
         {/* Header */}
-        <div className="mx-auto mb-16 max-w-2xl text-center animate-fade-up">
+        <div className="mx-auto mb-8 md:mb-16 max-w-2xl text-center animate-fade-up">
           <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
             Treatment
           </p>
@@ -50,7 +50,7 @@ export function ServicesSection() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-4 md:gap-8 md:grid-cols-3">
           {services.map((service, index) => (
             <article
               key={service.id}
@@ -71,7 +71,7 @@ export function ServicesSection() {
               </div>
 
               {/* Content */}
-              <div className="flex flex-1 flex-col p-6">
+              <div className="flex flex-1 flex-col p-4 md:p-6">
                 <p className="mb-6 flex-1 text-muted-foreground">{service.description}</p>
                 <Link
                   to={service.link}
@@ -86,7 +86,7 @@ export function ServicesSection() {
         </div>
 
         {/* CTA */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+        <div className="mt-8 md:mt-12 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
           <Button variant="cta" size="lg" asChild>
             <Link to="/treatments">
               View Treatments
