@@ -12,7 +12,7 @@ const TRUST_BADGES = [
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[100svh] sm:min-h-[90vh] flex items-start sm:items-center justify-center overflow-hidden pt-16 sm:pt-0">
+    <section className="relative min-h-[100svh] sm:min-h-[90vh] flex items-start sm:items-center justify-center overflow-hidden pt-0 sm:pt-0">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
