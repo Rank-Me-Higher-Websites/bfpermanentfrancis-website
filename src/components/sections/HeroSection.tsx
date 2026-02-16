@@ -35,6 +35,11 @@ export function HeroSection() {
             Expert micropigmentation services by certified Long-Time-Liner® Regional Trainer. 
             Enhance your natural beauty with permanent eyebrows, lips, and eyeliner.
           </p>
+          {/* Booking Form — show above buttons on mobile */}
+          <div className="block sm:hidden mx-auto mt-4 max-w-5xl">
+            <BookingSection variant="hero" />
+          </div>
+
           <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 sm:flex-row">
             <Button variant="cta" size="lg" className="glow-button w-full sm:w-auto" asChild>
               <Link to="/treatments">
@@ -64,11 +69,11 @@ export function HeroSection() {
               </div>
             ))}
           </div>
-        </div>
 
-        {/* Booking Form — compact on mobile, full grid on desktop */}
-        <div className="mx-auto mt-6 sm:mt-12 max-w-5xl">
-          <BookingSection variant="hero" />
+          {/* Booking Form — desktop only (below buttons) */}
+          <div className="hidden sm:block mx-auto mt-12 max-w-5xl">
+            <BookingSection variant="hero" />
+          </div>
         </div>
       </div>
 
