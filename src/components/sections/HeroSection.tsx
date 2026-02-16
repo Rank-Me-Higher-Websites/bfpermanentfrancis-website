@@ -22,7 +22,7 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="section-container relative z-10 py-12 sm:py-20 text-center">
+      <div className="section-container relative z-10 py-6 sm:py-20 text-center">
         <div className="mx-auto max-w-4xl animate-fade-up">
           <p className="mb-2 sm:mb-4 text-xs sm:text-sm font-medium uppercase tracking-widest text-primary-foreground/80">
             Discover the Power of Permanent Makeup Chicago
