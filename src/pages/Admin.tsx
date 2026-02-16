@@ -1,11 +1,12 @@
 import { useState, useEffect, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
-import { Lock, RefreshCw, Search, Users, Clock, CheckCircle2, XCircle, CalendarDays } from "lucide-react";
+import { Lock, RefreshCw, Search, Users, Clock, CheckCircle2, XCircle, CalendarDays, List, LayoutGrid } from "lucide-react";
 import { isToday, isFuture, parseISO } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { BookingTable, type Booking } from "@/components/admin/BookingTable";
 import { type BookingStatus } from "@/components/admin/BookingStatusBadge";
+import { BookingCalendar } from "@/components/admin/BookingCalendar";
 
 const ADMIN_PASSWORD = "admin123";
 
@@ -26,6 +27,7 @@ export default function Admin() {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [filter, setFilter] = useState<FilterStatus>("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [view, setView] = useState<"list" | "calendar">("list");
 
   useEffect(() => {
     if (isAuthenticated) loadBookings();
@@ -148,7 +150,28 @@ export default function Admin() {
         <header className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur-md">
           <div className="flex items-center justify-between px-4 sm:px-6 py-4 max-w-6xl mx-auto">
             <h1 className="font-heading text-xl sm:text-2xl font-bold">My Bookings</h1>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
+              {/* View Toggle */}
+              <div className="flex rounded-xl border border-border overflow-hidden">
+                <button
+                  onClick={() => setView("list")}
+                  className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors ${
+                    view === "list" ? "bg-primary text-primary-foreground" : "bg-card text-muted-foreground hover:bg-muted"
+                  }`}
+                >
+                  <List className="h-4 w-4" />
+                  <span className="hidden sm:inline">List</span>
+                </button>
+                <button
+                  onClick={() => setView("calendar")}
+                  className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors ${
+                    view === "calendar" ? "bg-primary text-primary-foreground" : "bg-card text-muted-foreground hover:bg-muted"
+                  }`}
+                >
+                  <CalendarDays className="h-4 w-4" />
+                  <span className="hidden sm:inline">Calendar</span>
+                </button>
+              </div>
               <Button
                 variant="outline"
                 size="sm"
@@ -222,11 +245,15 @@ export default function Admin() {
             })}
           </div>
 
-          {/* Bookings List */}
-          <BookingTable
-            bookings={filteredBookings}
-            onStatusChange={handleStatusChange}
-          />
+          {/* Content */}
+          {view === "calendar" ? (
+            <BookingCalendar bookings={bookings} />
+          ) : (
+            <BookingTable
+              bookings={filteredBookings}
+              onStatusChange={handleStatusChange}
+            />
+          )}
         </main>
       </div>
     </>
