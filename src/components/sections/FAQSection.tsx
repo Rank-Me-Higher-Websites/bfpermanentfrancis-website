@@ -44,12 +44,12 @@ export function FAQSection() {
       <div className="section-container">
         <div className="mx-auto max-w-3xl">
           {/* Header */}
-          <div className="mb-12 text-center animate-fade-up">
+          <div className="mb-6 md:mb-12 text-center animate-fade-up">
             <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
               FAQ
             </p>
-            <h2 className="heading-lg mb-4">Frequently Asked Questions</h2>
-            <p className="text-lg text-muted-foreground">
+            <h2 className="heading-lg mb-2 md:mb-4">Frequently Asked Questions</h2>
+            <p className="text-sm md:text-lg text-muted-foreground">
               Find answers to common questions about permanent makeup and our services.
             </p>
           </div>
@@ -60,9 +60,9 @@ export function FAQSection() {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="rounded-lg border bg-card px-6"
+                className="rounded-lg border bg-card px-4 md:px-6"
               >
-                <AccordionTrigger className="text-left font-heading text-lg font-semibold hover:text-primary">
+                <AccordionTrigger className="text-left font-heading text-base md:text-lg font-semibold hover:text-primary">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground pb-6">

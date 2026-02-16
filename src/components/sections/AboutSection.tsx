@@ -53,7 +53,7 @@ export function AboutSection() {
   return (
     <section className="section-padding" style={{ background: "var(--section-gradient)" }}>
       <div className="section-container">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Image */}
           <div className="relative animate-fade-up">
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
@@ -98,9 +98,9 @@ export function AboutSection() {
         </div>
 
         {/* Two Column Section: Certifications & Elite Training */}
-        <div className="mt-16 grid gap-8 lg:grid-cols-2 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+        <div className="mt-8 md:mt-16 grid gap-4 md:gap-8 lg:grid-cols-2 animate-fade-up" style={{ animationDelay: "0.3s" }}>
           {/* Certifications Column */}
-          <div className="rounded-2xl bg-card p-8 shadow-sm">
+          <div className="rounded-2xl bg-card p-5 md:p-8 shadow-sm">
             <div className="flex items-center gap-3 mb-4">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
                 <Award className="h-5 w-5 text-primary" />
@@ -113,7 +113,7 @@ export function AboutSection() {
           </div>
 
           {/* Elite Training Seminars Column */}
-          <div className="rounded-2xl bg-card p-8 shadow-sm">
+          <div className="rounded-2xl bg-card p-5 md:p-8 shadow-sm">
             <div className="flex items-center gap-3 mb-4">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
                 <Award className="h-5 w-5 text-primary" />
@@ -131,18 +131,18 @@ export function AboutSection() {
         </div>
 
         {/* Highlights Grid */}
-        <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 md:mt-20 grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
           {highlights.map((item, index) => (
             <div
               key={item.title}
-              className="card-hover rounded-xl bg-card p-6 text-center animate-fade-up"
+              className="card-hover rounded-xl bg-card p-4 md:p-6 text-center animate-fade-up"
               style={{ animationDelay: `${0.1 * index}s` }}
             >
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-                <item.icon className="h-7 w-7 text-primary" />
+              <div className="mx-auto mb-2 md:mb-4 flex h-10 w-10 md:h-14 md:w-14 items-center justify-center rounded-full bg-primary/10">
+                <item.icon className="h-5 w-5 md:h-7 md:w-7 text-primary" />
               </div>
-              <h3 className="mb-2 font-heading text-lg font-semibold">{item.title}</h3>
-              <p className="text-sm text-muted-foreground">{item.description}</p>
+              <h3 className="mb-1 font-heading text-sm md:text-lg font-semibold">{item.title}</h3>
+              <p className="text-xs md:text-sm text-muted-foreground">{item.description}</p>
             </div>
           ))}
         </div>
