@@ -75,34 +75,34 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
 
   if (variant === "hero") {
     return (
-      <div className="rounded-2xl bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 p-6 md:p-8">
-        <h2 className="heading-sm mb-4 text-primary-foreground text-center">
+      <div className="rounded-2xl bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 p-4 sm:p-6 md:p-8">
+        <h2 className="text-base sm:text-lg md:text-xl font-heading font-semibold mb-3 sm:mb-4 text-primary-foreground text-center">
           Book Your Appointment
         </h2>
         <form onSubmit={handleSubmit}>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-2 sm:gap-3 grid-cols-2 lg:grid-cols-4">
             <Input
               name="fullName"
               required
               placeholder="Full Name"
-              className="h-12 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
             />
             <Input
               name="phone"
               type="tel"
               required
               placeholder="Phone Number"
-              className="h-12 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
             />
             <Input
               name="email"
               type="email"
               required
               placeholder="Email Address"
-              className="h-12 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
             />
             <Select name="service" required>
-              <SelectTrigger className="h-12 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground [&>span]:text-primary-foreground/50 data-[state=open]:[&>span]:text-primary-foreground">
+              <SelectTrigger className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground [&>span]:text-primary-foreground/50 data-[state=open]:[&>span]:text-primary-foreground">
                 <SelectValue placeholder="Select Service" />
               </SelectTrigger>
               <SelectContent>
@@ -113,13 +113,13 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
             </Select>
           </div>
 
-          <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-2 sm:mt-3 grid gap-2 sm:gap-3 grid-cols-2 lg:grid-cols-4">
             <Popover>
               <PopoverTrigger asChild>
                 <Button
                   variant="outline"
                   className={cn(
-                    "h-12 w-full justify-start text-left font-normal bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20",
+                    "h-10 sm:h-12 w-full justify-start text-left font-normal text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20",
                     !date && "text-primary-foreground/50"
                   )}
                 >
@@ -140,7 +140,7 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
             </Popover>
 
             <Select name="time" required>
-              <SelectTrigger className="h-12 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground [&>span]:text-primary-foreground/50">
+              <SelectTrigger className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground [&>span]:text-primary-foreground/50">
                 <SelectValue placeholder="Preferred Time" />
               </SelectTrigger>
               <SelectContent>
@@ -152,15 +152,15 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
 
             <Input
               name="notes"
-              placeholder="Special requests (optional)"
-              className="h-12 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+              placeholder="Notes (optional)"
+              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
             />
 
             <Button
               type="submit"
               variant="cta"
               size="lg"
-              className="h-12 w-full glow-button"
+              className="h-10 sm:h-12 w-full glow-button text-sm"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Sending..." : (

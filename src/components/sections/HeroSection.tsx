@@ -66,8 +66,8 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Booking Form — hidden on very small screens to keep hero compact */}
-        <div className="mx-auto mt-8 sm:mt-12 max-w-5xl hidden sm:block">
+        {/* Booking Form — compact on mobile, full grid on desktop */}
+        <div className="mx-auto mt-6 sm:mt-12 max-w-5xl">
           <BookingSection variant="hero" />
         </div>
       </div>
