@@ -85,24 +85,24 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
               name="fullName"
               required
               placeholder="Full Name"
-              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 autofill:shadow-[inset_0_0_0px_1000px_hsla(280,35%,22%,0.6)] autofill:[-webkit-text-fill-color:white]"
             />
             <Input
               name="phone"
               type="tel"
               required
               placeholder="Phone Number"
-              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 autofill:shadow-[inset_0_0_0px_1000px_hsla(280,35%,22%,0.6)] autofill:[-webkit-text-fill-color:white]"
             />
             <Input
               name="email"
               type="email"
               required
               placeholder="Email Address"
-              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 autofill:shadow-[inset_0_0_0px_1000px_hsla(280,35%,22%,0.6)] autofill:[-webkit-text-fill-color:white]"
             />
             <Select name="service" required>
-              <SelectTrigger className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground [&>span]:text-primary-foreground/50 data-[state=open]:[&>span]:text-primary-foreground">
+              <SelectTrigger className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground [&>span]:text-primary-foreground/50 [&>span[data-state]]:text-primary-foreground data-[state=open]:text-primary-foreground">
                 <SelectValue placeholder="Select Service" />
               </SelectTrigger>
               <SelectContent>
@@ -119,11 +119,11 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
                 <Button
                   variant="outline"
                   className={cn(
-                    "h-10 sm:h-12 w-full justify-start text-left font-normal text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20",
+                    "h-10 sm:h-12 w-full justify-start text-left font-normal text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20 hover:text-primary-foreground",
                     !date && "text-primary-foreground/50"
                   )}
                 >
-                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  <CalendarIcon className="mr-2 h-4 w-4 text-primary-foreground" />
                   {date ? format(date, "PPP") : "Preferred Date"}
                 </Button>
               </PopoverTrigger>
@@ -140,7 +140,7 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
             </Popover>
 
             <Select name="time" required>
-              <SelectTrigger className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground [&>span]:text-primary-foreground/50">
+              <SelectTrigger className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground [&>span]:text-primary-foreground/50 [&>span[data-state]]:text-primary-foreground">
                 <SelectValue placeholder="Preferred Time" />
               </SelectTrigger>
               <SelectContent>
@@ -153,7 +153,7 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
             <Input
               name="notes"
               placeholder="Notes (optional)"
-              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 autofill:shadow-[inset_0_0_0px_1000px_hsla(280,35%,22%,0.6)] autofill:[-webkit-text-fill-color:white]"
             />
 
             <Button
