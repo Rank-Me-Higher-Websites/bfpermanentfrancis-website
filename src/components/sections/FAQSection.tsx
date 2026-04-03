@@ -60,7 +60,7 @@ export function FAQSection() {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="rounded-lg border bg-card px-4 md:px-6"
+                className="rounded-lg border border-gray-300 bg-card px-4 md:px-6"
               >
                 <AccordionTrigger className="text-left font-heading text-base md:text-lg font-semibold hover:text-primary">
                   {faq.question}

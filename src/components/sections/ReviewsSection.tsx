@@ -79,7 +79,7 @@ export function ReviewsSection() {
             {reviews.map((review, index) => (
               <article
                 key={review.id}
-                className="card-hover flex flex-col rounded-2xl bg-card p-6 md:p-8 animate-fade-up min-w-[280px] max-w-[320px] md:min-w-0 md:max-w-none snap-center flex-shrink-0 md:flex-shrink"
+                className="card-hover flex flex-col rounded-2xl bg-card border border-gray-300 p-6 md:p-8 animate-fade-up min-w-[280px] max-w-[320px] md:min-w-0 md:max-w-none snap-center flex-shrink-0 md:flex-shrink"
                 style={{ animationDelay: `${0.1 * index}s` }}
               >
                 {/* Author */}

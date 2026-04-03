@@ -54,7 +54,7 @@ export function ServicesSection() {
           {services.map((service, index) => (
             <article
               key={service.id}
-              className="group card-hover flex flex-col overflow-hidden rounded-2xl bg-card animate-fade-up"
+              className="group card-hover flex flex-col overflow-hidden rounded-2xl bg-card border border-gray-300 animate-fade-up"
               style={{ animationDelay: `${0.1 * index}s` }}
             >
               {/* Image */}

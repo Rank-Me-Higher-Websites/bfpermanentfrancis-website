@@ -34,7 +34,7 @@ export function LocationSection() {
           {/* Contact Info */}
           <div className="animate-fade-up grid gap-3 md:gap-6" style={{ animationDelay: "0.2s" }}>
             {/* Address Card */}
-            <div className="card-hover rounded-xl bg-card p-4 md:p-6">
+            <div className="card-hover rounded-xl border border-gray-300 bg-card p-4 md:p-6">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
                   <MapPin className="h-6 w-6 text-primary" />
@@ -59,7 +59,7 @@ export function LocationSection() {
             </div>
 
             {/* Phone Card */}
-            <div className="card-hover rounded-xl bg-card p-4 md:p-6">
+            <div className="card-hover rounded-xl border border-gray-300 bg-card p-4 md:p-6">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
                   <Phone className="h-6 w-6 text-primary" />
@@ -76,7 +76,7 @@ export function LocationSection() {
             </div>
 
             {/* Email Card */}
-            <div className="card-hover rounded-xl bg-card p-4 md:p-6">
+            <div className="card-hover rounded-xl border border-gray-300 bg-card p-4 md:p-6">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
                   <Mail className="h-6 w-6 text-primary" />
@@ -94,7 +94,7 @@ export function LocationSection() {
             </div>
 
             {/* Hours Card */}
-            <div className="card-hover rounded-xl bg-card p-4 md:p-6">
+            <div className="card-hover rounded-xl border border-gray-300 bg-card p-4 md:p-6">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
                   <Clock className="h-6 w-6 text-primary" />

@@ -105,41 +105,39 @@ export function AboutSection() {
             <h2 className="heading-lg">Certifications & Specializations</h2>
           </div>
 
-          <div className="rounded-2xl border border-gray-200 overflow-hidden animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            <div className="grid lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-gray-200">
-              <div className="p-5 md:p-6">
-                <div className="flex items-center gap-2.5 mb-4">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
-                    <Award className="h-4 w-4 text-primary" />
-                  </div>
-                  <h3 className="font-heading text-lg font-bold">Certifications</h3>
+          <div className="grid gap-4 lg:grid-cols-2 animate-fade-up" style={{ animationDelay: "0.1s" }}>
+            <div className="rounded-xl border border-gray-300 p-5 md:p-6 flex flex-col">
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
+                  <Award className="h-4 w-4 text-primary" />
                 </div>
-                <ul className="space-y-2.5">
-                  {certifications.map((cert) => (
-                    <li key={cert} className="flex items-start gap-2.5">
-                      <CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm">{cert}</span>
-                    </li>
-                  ))}
-                </ul>
+                <h3 className="font-heading text-lg font-bold">Certifications</h3>
               </div>
+              <ul className="space-y-2.5 flex-1">
+                {certifications.map((cert) => (
+                  <li key={cert} className="flex items-start gap-2.5">
+                    <CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                    <span className="text-sm">{cert}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-              <div className="p-5 md:p-6">
-                <div className="flex items-center gap-2.5 mb-4">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
-                    <Award className="h-4 w-4 text-primary" />
-                  </div>
-                  <h3 className="font-heading text-lg font-bold">Elite Training Seminars</h3>
+            <div className="rounded-xl border border-gray-300 p-5 md:p-6 flex flex-col">
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
+                  <Award className="h-4 w-4 text-primary" />
                 </div>
-                <ul className="space-y-2.5">
-                  {trainingTopics.map((topic) => (
-                    <li key={topic} className="flex items-start gap-2.5">
-                      <CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm">{topic}</span>
-                    </li>
-                  ))}
-                </ul>
+                <h3 className="font-heading text-lg font-bold">Elite Training Seminars</h3>
               </div>
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5 flex-1">
+                {trainingTopics.map((topic) => (
+                  <li key={topic} className="flex items-start gap-2">
+                    <CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                    <span className="text-sm">{topic}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
@@ -147,7 +145,7 @@ export function AboutSection() {
             {highlights.map((item, index) => (
               <div
                 key={item.title}
-                className="card-hover rounded-xl border border-gray-200 p-3 md:p-5 text-center animate-fade-up"
+                className="card-hover rounded-xl border border-gray-300 p-3 md:p-5 text-center animate-fade-up"
                 style={{ animationDelay: `${0.1 * index}s` }}
               >
                 <div className="mx-auto mb-2 md:mb-3 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-primary/10">
