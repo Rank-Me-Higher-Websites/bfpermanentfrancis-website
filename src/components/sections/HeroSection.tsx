@@ -16,19 +16,19 @@ export function HeroSection() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
-        <div className="absolute inset-0" style={{ background: "var(--hero-overlay)" }} />
+        <div className="absolute inset-0 bg-black/30" />
       </div>
 
       <div className="section-container relative z-10 py-6 sm:py-20 text-center">
         <div className="mx-auto max-w-4xl animate-fade-up">
-          <p className="mb-2 sm:mb-4 text-xs sm:text-sm font-medium uppercase tracking-widest text-primary-foreground/80">
+          <p className="mb-2 sm:mb-4 text-xs sm:text-sm font-medium uppercase tracking-widest text-white/80">
             Discover the Power of Permanent Makeup Chicago
           </p>
-          <h1 className="heading-xl mb-3 sm:mb-6 text-primary-foreground text-3xl sm:text-5xl lg:text-6xl">
+          <h1 className="mb-3 sm:mb-6 text-white text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight drop-shadow-lg" style={{ fontFamily: "var(--font-heading)" }}>
             Long-Lasting Beauty,{" "}
             <span className="block">Effortlessly Yours</span>
           </h1>
-          <p className="mx-auto mb-5 sm:mb-8 max-w-2xl text-sm sm:text-lg text-primary-foreground/90 leading-relaxed">
+          <p className="mx-auto mb-5 sm:mb-8 max-w-2xl text-sm sm:text-lg text-white/90 leading-relaxed">
             Expert micropigmentation services by certified Long-Time-Liner® Regional Trainer. 
             Enhance your natural beauty with permanent eyebrows, lips, and eyeliner.
           </p>
@@ -52,10 +52,10 @@ export function HeroSection() {
             {TRUST_BADGES.map(({ icon: Icon, label }) => (
               <div
                 key={label}
-                className="flex items-center gap-1.5 sm:gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 backdrop-blur-sm px-3 py-1.5 sm:px-4 sm:py-2"
+                className="flex items-center gap-1.5 sm:gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-3 py-1.5 sm:px-4 sm:py-2"
               >
-                <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary-foreground/90" />
-                <span className="text-[11px] sm:text-xs font-medium text-primary-foreground/90 whitespace-nowrap">
+                <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white/90" />
+                <span className="text-[11px] sm:text-xs font-medium text-white/90 whitespace-nowrap">
                   {label}
                 </span>
               </div>
