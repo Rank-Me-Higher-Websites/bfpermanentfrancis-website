@@ -106,14 +106,24 @@ export function AboutSection() {
                 </div>
                 <h3 className="font-heading text-xl font-bold">Elite Training Seminars</h3>
               </div>
-              <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
-                {trainingTopics.map((topic) => (
-                  <li key={topic} className="flex items-start gap-2.5 text-base">
-                    <span className="text-primary text-xl leading-none shrink-0">&#8226;</span>
-                    {topic}
-                  </li>
-                ))}
-              </ul>
+              <div className="grid sm:grid-cols-2 gap-x-6">
+                <ul className="space-y-2">
+                  {trainingTopics.slice(0, Math.ceil(trainingTopics.length / 2)).map((topic) => (
+                    <li key={topic} className="flex items-start gap-2.5 text-base">
+                      <span className="text-primary text-xl leading-none shrink-0">&#8226;</span>
+                      {topic}
+                    </li>
+                  ))}
+                </ul>
+                <ul className="space-y-2">
+                  {trainingTopics.slice(Math.ceil(trainingTopics.length / 2)).map((topic) => (
+                    <li key={topic} className="flex items-start gap-2.5 text-base">
+                      <span className="text-primary text-xl leading-none shrink-0">&#8226;</span>
+                      {topic}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
             <div className="hidden lg:block rounded-xl overflow-hidden">
