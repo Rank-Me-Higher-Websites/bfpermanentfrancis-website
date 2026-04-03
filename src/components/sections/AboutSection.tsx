@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Award, CheckCircle, GraduationCap } from "lucide-react";
 import aboutLips from "@/assets/about-lips.jpg";
+import certPhoto from "@/assets/certifications-photo.png";
 
 const certifications = [
   "BH Brow Henna Workshop",
@@ -82,7 +83,7 @@ export function AboutSection() {
             <h2 className="heading-lg">Certifications & Specializations</h2>
           </div>
 
-          <div className="grid gap-4 lg:grid-cols-2 animate-fade-up" style={{ animationDelay: "0.1s" }}>
+          <div className="grid gap-4 lg:grid-cols-3 animate-fade-up" style={{ animationDelay: "0.1s" }}>
             <div className="rounded-xl border border-gray-300 bg-gray-50/50 p-5">
               <div className="flex items-center gap-2.5 mb-3 pb-3 border-b border-gray-200">
                 <Award className="h-5 w-5 text-primary" />
@@ -103,7 +104,7 @@ export function AboutSection() {
                 <GraduationCap className="h-5 w-5 text-primary" />
                 <h3 className="font-heading text-base font-bold">Elite Training Seminars</h3>
               </div>
-              <ul className="grid grid-cols-2 gap-x-3 gap-y-2">
+              <ul className="space-y-2">
                 {trainingTopics.map((topic) => (
                   <li key={topic} className="flex items-start gap-2">
                     <CheckCircle className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
@@ -111,6 +112,14 @@ export function AboutSection() {
                   </li>
                 ))}
               </ul>
+            </div>
+
+            <div className="hidden lg:block rounded-xl overflow-hidden border border-gray-300">
+              <img
+                src={certPhoto}
+                alt="Professional micropigmentation equipment"
+                className="h-full w-full object-cover"
+              />
             </div>
           </div>
         </div>

@@ -155,7 +155,7 @@ export function ServicesSection() {
             Book Now
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
-          <Button variant="outline" size="lg" className="border-white/40 text-white hover:bg-white/10" asChild>
+          <Button size="lg" className="bg-white/20 text-white border-2 border-white hover:bg-white hover:text-primary font-semibold" asChild>
             <a href="tel:+17087372333">
               <Phone className="mr-2 h-5 w-5" />
               (708) 737-2333
