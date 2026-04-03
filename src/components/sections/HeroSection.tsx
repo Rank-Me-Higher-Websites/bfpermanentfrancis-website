@@ -47,7 +47,7 @@ export function HeroSection() {
             </p>
             <h1 className="mb-3 sm:mb-6 text-white text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight drop-shadow-lg" style={{ fontFamily: "var(--font-heading)" }}>
               Long-Lasting Beauty,{" "}
-              <span className="block text-primary">Effortlessly Yours</span>
+              <span className="block">Effortlessly Yours</span>
             </h1>
             <p className="mb-5 sm:mb-8 max-w-lg text-sm sm:text-lg text-white/90 leading-relaxed mx-auto lg:mx-0">
               Expert micropigmentation services by certified Long-Time-Liner® Regional Trainer. 
@@ -55,9 +55,9 @@ export function HeroSection() {
             </p>
 
             <div className="flex flex-col items-center lg:items-start gap-3 sm:gap-4 sm:flex-row">
-              <Button size="lg" className="w-full sm:w-auto border-2 border-primary bg-primary/10 backdrop-blur-sm text-white hover:bg-primary hover:text-white" asChild data-testid="button-call-hero">
+              <Button variant="hero-outline" size="lg" className="w-full sm:w-auto" asChild data-testid="button-call-hero">
                 <a href="tel:+17087372333">
-                  <Phone className="mr-2 h-5 w-5 text-primary" />
+                  <Phone className="mr-2 h-5 w-5" />
                   Call (708) 737-2333
                 </a>
               </Button>
@@ -67,10 +67,10 @@ export function HeroSection() {
               {TRUST_BADGES.map(({ icon: Icon, label }) => (
                 <div
                   key={label}
-                  className="flex items-center gap-1.5 sm:gap-2 rounded-full border border-primary/40 bg-primary/10 backdrop-blur-sm px-3 py-1.5 sm:px-4 sm:py-2"
+                  className="flex items-center gap-1.5 sm:gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-3 py-1.5 sm:px-4 sm:py-2"
                 >
-                  <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
-                  <span className="text-[11px] sm:text-xs font-medium text-white whitespace-nowrap">
+                  <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white/90" />
+                  <span className="text-[11px] sm:text-xs font-medium text-white/90 whitespace-nowrap">
                     {label}
                   </span>
                 </div>
@@ -92,7 +92,7 @@ export function HeroSection() {
                       "w-full flex items-center justify-between px-4 py-3 rounded-xl border transition-all text-left text-sm",
                       selectedService === s.id
                         ? "border-primary bg-primary/5"
-                        : "border-gray-300 hover:border-gray-400"
+                        : "border-gray-200 hover:border-gray-300"
                     )}
                   >
                     <span className="font-medium text-gray-900">{s.name}</span>
