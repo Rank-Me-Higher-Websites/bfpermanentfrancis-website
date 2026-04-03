@@ -37,24 +37,34 @@ export default function Booking() {
   const [searchParams] = useSearchParams();
   const preselected = searchParams.get("service");
   const [step, setStep] = useState(preselected ? 2 : 1);
-  const [selectedService, setSelectedService] = useState<string | null>(preselected);
+  const preselectedList = preselected ? preselected.split(",").filter(Boolean) : [];
+  const [selectedServices, setSelectedServices] = useState<string[]>(preselectedList);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [formData, setFormData] = useState({ fullName: "", phone: "", email: "", notes: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  const service = SERVICES.find((s) => s.id === selectedService);
+  const services = SERVICES.filter((s) => selectedServices.includes(s.id));
+
+  const toggleService = (id: string) => {
+    setSelectedServices((prev) =>
+      prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
+    );
+  };
 
   const canProceed = () => {
     switch (step) {
-      case 1: return !!selectedService;
+      case 1: return selectedServices.length > 0;
       case 2: return true;
       case 3: return !!selectedDate && !!selectedTime;
       case 4: return formData.fullName && formData.phone && formData.email;
       default: return true;
     }
   };
+
+  const serviceNames = services.map((s) => s.name).join(", ");
+  const servicePrices = services.map((s) => s.price).join(" + ");
 
   const handleSubmit = () => {
     setIsSubmitting(true);
@@ -63,7 +73,7 @@ export default function Booking() {
       full_name: formData.fullName,
       phone: formData.phone,
       email: formData.email,
-      service_type: service?.name || "",
+      service_type: serviceNames,
       preferred_date: selectedDate ? format(selectedDate, "yyyy-MM-dd") : "",
       preferred_time: selectedTime || "",
       notes: formData.notes,
@@ -100,8 +110,8 @@ export default function Booking() {
                         <div
                           className={cn(
                             "w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold border-2 transition-all",
-                            completed && "bg-[#C4993A] border-[#C4993A] text-white",
-                            active && "bg-[#C4993A] border-[#C4993A] text-white",
+                            completed && "bg-primary border-primary text-white",
+                            active && "bg-primary border-primary text-white",
                             !completed && !active && "bg-white border-gray-300 text-gray-400"
                           )}
                         >
@@ -110,7 +120,7 @@ export default function Booking() {
                         <span className="text-[10px] mt-1 text-gray-500 hidden sm:block">{s.label}</span>
                       </div>
                       {i < STEPS.length - 1 && (
-                        <div className={cn("w-10 sm:w-16 h-0.5 mx-1", step > s.num ? "bg-[#C4993A]" : "bg-gray-200")} />
+                        <div className={cn("w-10 sm:w-16 h-0.5 mx-1", step > s.num ? "bg-primary" : "bg-gray-200")} />
                       )}
                     </div>
                   );
@@ -128,21 +138,31 @@ export default function Booking() {
               {step === 1 && (
                 <div data-testid="step-service">
                   <h2 className="font-heading text-2xl font-bold mb-1">Book Now</h2>
-                  <p className="text-gray-500 mb-6">Select a service to get started</p>
+                  <p className="text-gray-500 mb-6">Select one or more services</p>
                   <div className="space-y-3">
                     {SERVICES.map((s) => (
                       <button
                         key={s.id}
                         data-testid={`service-${s.id}`}
-                        onClick={() => setSelectedService(s.id)}
+                        onClick={() => toggleService(s.id)}
                         className={cn(
                           "w-full flex items-center justify-between px-5 py-4 rounded-xl border-2 transition-all text-left",
-                          selectedService === s.id
-                            ? "border-[#C4993A] bg-[#C4993A]/5"
+                          selectedServices.includes(s.id)
+                            ? "border-primary bg-primary/5"
                             : "border-gray-200 hover:border-gray-300 bg-white"
                         )}
                       >
-                        <span className="font-medium text-gray-900">{s.name}</span>
+                        <div className="flex items-center gap-3">
+                          <div className={cn(
+                            "w-5 h-5 rounded border-2 flex items-center justify-center transition-all",
+                            selectedServices.includes(s.id)
+                              ? "bg-primary border-primary"
+                              : "border-gray-300"
+                          )}>
+                            {selectedServices.includes(s.id) && <Check className="w-3 h-3 text-white" />}
+                          </div>
+                          <span className="font-medium text-gray-900">{s.name}</span>
+                        </div>
                         <span className="text-gray-600 font-medium">{s.price}</span>
                       </button>
                     ))}
@@ -160,9 +180,9 @@ export default function Booking() {
                   <button
                     data-testid="stylist-birute"
                     onClick={() => setStep(3)}
-                    className="w-full flex items-center gap-4 px-5 py-4 rounded-xl border-2 border-[#C4993A] bg-[#C4993A]/5 transition-all text-left"
+                    className="w-full flex items-center gap-4 px-5 py-4 rounded-xl border-2 border-primary bg-primary/5 transition-all text-left"
                   >
-                    <div className="w-10 h-10 rounded-full bg-[#C4993A] flex items-center justify-center text-white font-semibold text-sm">
+                    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-semibold text-sm shrink-0">
                       BF
                     </div>
                     <div className="flex-1">
@@ -210,8 +230,8 @@ export default function Booking() {
                             className={cn(
                               "py-2 px-3 rounded-lg text-sm font-medium border transition-all",
                               selectedTime === t
-                                ? "bg-[#C4993A] text-white border-[#C4993A]"
-                                : "bg-white text-gray-700 border-gray-200 hover:border-[#C4993A]/50"
+                                ? "bg-primary text-white border-primary"
+                                : "bg-white text-gray-700 border-gray-200 hover:border-primary/50"
                             )}
                           >
                             {t}
@@ -290,11 +310,11 @@ export default function Booking() {
                     <div className="rounded-xl border border-gray-200 p-5 bg-gray-50">
                       <h3 className="font-heading font-bold text-lg mb-3">Your Booking Summary</h3>
                       <div className="space-y-2 text-sm">
-                        <div className="flex justify-between"><span className="text-gray-500">Service</span><span className="font-medium">{service?.name}</span></div>
+                        <div className="flex justify-between"><span className="text-gray-500">Service</span><span className="font-medium">{serviceNames}</span></div>
                         <div className="flex justify-between"><span className="text-gray-500">Stylist</span><span className="font-medium">Birute Francis</span></div>
                         <div className="flex justify-between"><span className="text-gray-500">Date</span><span className="font-medium">{selectedDate ? format(selectedDate, "EEE, MMM d, yyyy") : ""}</span></div>
                         <div className="flex justify-between"><span className="text-gray-500">Time</span><span className="font-medium">{selectedTime}</span></div>
-                        <div className="flex justify-between"><span className="text-gray-500">Price</span><span className="font-medium text-[#C4993A]">{service?.price}</span></div>
+                        <div className="flex justify-between"><span className="text-gray-500">Price</span><span className="font-medium text-primary">{servicePrices}</span></div>
                       </div>
                     </div>
                   </div>
@@ -310,10 +330,10 @@ export default function Booking() {
                   <p className="text-gray-500 mb-6">Please confirm all details are correct</p>
                   <div className="rounded-xl border border-gray-200 p-6 space-y-4">
                     <div className="grid grid-cols-2 gap-4 text-sm">
-                      <div><span className="text-gray-500 block">Service</span><span className="font-medium">{service?.name}</span></div>
-                      <div><span className="text-gray-500 block">Price</span><span className="font-medium text-[#C4993A]">{service?.price}</span></div>
+                      <div><span className="text-gray-500 block">Service</span><span className="font-medium">{serviceNames}</span></div>
+                      <div><span className="text-gray-500 block">Price</span><span className="font-medium text-primary">{servicePrices}</span></div>
                       <div><span className="text-gray-500 block">Stylist</span><span className="font-medium">Birute Francis</span></div>
-                      <div><span className="text-gray-500 block">Duration</span><span className="font-medium">{service?.duration}</span></div>
+                      <div><span className="text-gray-500 block">Duration</span><span className="font-medium">{services.map(s => s.duration).join(" + ")}</span></div>
                       <div><span className="text-gray-500 block">Date</span><span className="font-medium">{selectedDate ? format(selectedDate, "EEEE, MMMM d, yyyy") : ""}</span></div>
                       <div><span className="text-gray-500 block">Time</span><span className="font-medium">{selectedTime}</span></div>
                     </div>
@@ -335,21 +355,21 @@ export default function Booking() {
                   </div>
                   <h2 className="font-heading text-2xl font-bold mb-2">Booking Confirmed!</h2>
                   <p className="text-gray-500 mb-6 max-w-md mx-auto">
-                    Thank you, {formData.fullName}! We've received your booking for {service?.name} on {selectedDate ? format(selectedDate, "EEEE, MMMM d") : ""} at {selectedTime}. We'll send a confirmation to {formData.email}.
+                    Thank you, {formData.fullName}! We've received your booking for {serviceNames} on {selectedDate ? format(selectedDate, "EEEE, MMMM d") : ""} at {selectedTime}. We'll send a confirmation to {formData.email}.
                   </p>
                   <div className="rounded-xl border border-gray-200 p-5 bg-gray-50 text-left max-w-sm mx-auto mb-6">
                     <div className="space-y-2 text-sm">
-                      <div className="flex justify-between"><span className="text-gray-500">Service</span><span className="font-medium">{service?.name}</span></div>
+                      <div className="flex justify-between"><span className="text-gray-500">Service</span><span className="font-medium">{serviceNames}</span></div>
                       <div className="flex justify-between"><span className="text-gray-500">Stylist</span><span className="font-medium">Birute Francis</span></div>
                       <div className="flex justify-between"><span className="text-gray-500">Date</span><span className="font-medium">{selectedDate ? format(selectedDate, "EEE, MMM d, yyyy") : ""}</span></div>
                       <div className="flex justify-between"><span className="text-gray-500">Time</span><span className="font-medium">{selectedTime}</span></div>
-                      <div className="flex justify-between"><span className="text-gray-500">Price</span><span className="font-medium text-[#C4993A]">{service?.price}</span></div>
+                      <div className="flex justify-between"><span className="text-gray-500">Price</span><span className="font-medium text-primary">{servicePrices}</span></div>
                     </div>
                   </div>
                   <Button
                     data-testid="button-back-home"
                     onClick={() => navigate("/")}
-                    className="bg-[#C4993A] hover:bg-[#B08832] text-white"
+                    className="bg-primary hover:bg-primary/90 text-white"
                   >
                     Back to Home
                   </Button>
@@ -371,7 +391,7 @@ export default function Booking() {
                   {step < 5 && (
                     <Button
                       data-testid="button-next"
-                      className={cn("flex-1 h-12 bg-[#C4993A] hover:bg-[#B08832] text-white", !canProceed() && "opacity-50 cursor-not-allowed")}
+                      className={cn("flex-1 h-12 bg-primary hover:bg-primary/90 text-white", !canProceed() && "opacity-50 cursor-not-allowed")}
                       disabled={!canProceed()}
                       onClick={() => setStep(step + 1)}
                     >
@@ -381,7 +401,7 @@ export default function Booking() {
                   {step === 5 && (
                     <Button
                       data-testid="button-confirm"
-                      className="flex-1 h-12 bg-[#C4993A] hover:bg-[#B08832] text-white"
+                      className="flex-1 h-12 bg-primary hover:bg-primary/90 text-white"
                       disabled={isSubmitting}
                       onClick={handleSubmit}
                     >

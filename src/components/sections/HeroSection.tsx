@@ -19,12 +19,18 @@ const SERVICES = [
 ];
 
 export function HeroSection() {
-  const [selectedService, setSelectedService] = useState<string | null>(null);
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const navigate = useNavigate();
 
+  const toggleService = (id: string) => {
+    setSelectedServices((prev) =>
+      prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
+    );
+  };
+
   const handleBookNow = () => {
-    if (selectedService) {
-      navigate(`/booking?service=${selectedService}`);
+    if (selectedServices.length > 0) {
+      navigate(`/booking?service=${selectedServices.join(",")}`);
     } else {
       navigate("/booking");
     }
@@ -87,10 +93,10 @@ export function HeroSection() {
                   <button
                     key={s.id}
                     data-testid={`hero-service-${s.id}`}
-                    onClick={() => setSelectedService(selectedService === s.id ? null : s.id)}
+                    onClick={() => toggleService(s.id)}
                     className={cn(
                       "w-full flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 rounded-xl border transition-all text-left text-xs sm:text-sm",
-                      selectedService === s.id
+                      selectedServices.includes(s.id)
                         ? "border-primary border-2 bg-primary/5"
                         : "border-gray-300 border hover:border-gray-400"
                     )}
