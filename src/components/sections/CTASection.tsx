@@ -26,8 +26,8 @@ export function CTASection() {
           </p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button variant="cta" size="lg" className="glow-button" asChild>
-              <Link to="/contact">
-                Book Consultation
+              <Link to="/booking">
+                Book Now
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>

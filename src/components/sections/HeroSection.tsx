@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Phone, Award, Shield, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { BookingSection } from "./BookingSection";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const TRUST_BADGES = [
@@ -13,7 +12,6 @@ const TRUST_BADGES = [
 export function HeroSection() {
   return (
     <section className="relative min-h-[100svh] sm:min-h-[90vh] flex items-start sm:items-center justify-center overflow-hidden pt-0 sm:pt-0">
-      {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg})` }}
@@ -21,7 +19,6 @@ export function HeroSection() {
         <div className="absolute inset-0" style={{ background: "var(--hero-overlay)" }} />
       </div>
 
-      {/* Content */}
       <div className="section-container relative z-10 py-6 sm:py-20 text-center">
         <div className="mx-auto max-w-4xl animate-fade-up">
           <p className="mb-2 sm:mb-4 text-xs sm:text-sm font-medium uppercase tracking-widest text-primary-foreground/80">
@@ -35,19 +32,15 @@ export function HeroSection() {
             Expert micropigmentation services by certified Long-Time-Liner® Regional Trainer. 
             Enhance your natural beauty with permanent eyebrows, lips, and eyeliner.
           </p>
-          {/* Booking Form — show above buttons on mobile */}
-          <div className="block sm:hidden mx-auto mt-4 max-w-5xl">
-            <BookingSection variant="hero" />
-          </div>
 
           <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 sm:flex-row">
-            <Button variant="cta" size="lg" className="glow-button w-full sm:w-auto" asChild>
-              <Link to="/treatments">
-                View Treatments
+            <Button variant="cta" size="lg" className="glow-button w-full sm:w-auto text-base px-10 py-6" asChild data-testid="button-book-now-hero">
+              <Link to="/booking">
+                Book Now
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button variant="hero-outline" size="lg" className="w-full sm:w-auto" asChild>
+            <Button variant="hero-outline" size="lg" className="w-full sm:w-auto" asChild data-testid="button-call-hero">
               <a href="tel:+17087372333">
                 <Phone className="mr-2 h-5 w-5" />
                 (708) 737-2333
@@ -55,7 +48,6 @@ export function HeroSection() {
             </Button>
           </div>
 
-          {/* Trust Badges */}
           <div className="mt-6 sm:mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-6">
             {TRUST_BADGES.map(({ icon: Icon, label }) => (
               <div
@@ -69,15 +61,9 @@ export function HeroSection() {
               </div>
             ))}
           </div>
-
-          {/* Booking Form — desktop only (below buttons) */}
-          <div className="hidden sm:block mx-auto mt-12 max-w-5xl">
-            <BookingSection variant="hero" />
-          </div>
         </div>
       </div>
 
-      {/* Decorative Elements */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
