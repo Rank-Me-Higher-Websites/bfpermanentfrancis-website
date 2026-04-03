@@ -45,7 +45,7 @@ export function ReviewsSection() {
     <section className="section-padding bg-secondary/30">
       <div className="section-container">
         {/* Header */}
-        <div className="mx-auto mb-8 md:mb-16 max-w-2xl text-center animate-fade-up">
+        <div className="mx-auto mb-6 md:mb-10 max-w-2xl text-center animate-fade-up">
           <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
             Our Lovely Customers
           </p>

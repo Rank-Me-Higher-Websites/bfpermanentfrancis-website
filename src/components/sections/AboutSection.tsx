@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Award, Clock, Heart, Shield, CheckCircle } from "lucide-react";
+import { Award, CheckCircle, GraduationCap } from "lucide-react";
 import aboutLips from "@/assets/about-lips.jpg";
 
 const certifications = [
@@ -24,29 +24,6 @@ const trainingTopics = [
   "Ombré lips",
   "Individual consultation",
   "Fundamentals of retouching semi-permanent make-up",
-];
-
-const highlights = [
-  {
-    icon: Award,
-    title: "Certified Trainer",
-    description: "Long-Time-Liner® Regional Trainer with elite certifications",
-  },
-  {
-    icon: Clock,
-    title: "Years of Experience",
-    description: "Track record of achievements in top brand pigments and devices",
-  },
-  {
-    icon: Shield,
-    title: "Premium Products",
-    description: "Using only highest quality LONG-TIME-LINER® equipment and pigments",
-  },
-  {
-    icon: Heart,
-    title: "Natural Results",
-    description: "Enhancing your natural beauty with precise micropigmentation",
-  },
 ];
 
 export function AboutSection() {
@@ -96,9 +73,9 @@ export function AboutSection() {
         </div>
       </section>
 
-      <section className="section-padding bg-white">
+      <section className="section-padding-sm bg-white">
         <div className="section-container">
-          <div className="text-center mb-8 animate-fade-up">
+          <div className="text-center mb-6 animate-fade-up">
             <p className="mb-1 text-sm font-medium uppercase tracking-widest text-primary">
               Expertise & Training
             </p>
@@ -106,55 +83,35 @@ export function AboutSection() {
           </div>
 
           <div className="grid gap-4 lg:grid-cols-2 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            <div className="rounded-xl border border-gray-300 p-5 md:p-6 flex flex-col">
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
-                  <Award className="h-4 w-4 text-primary" />
-                </div>
-                <h3 className="font-heading text-lg font-bold">Certifications</h3>
+            <div className="rounded-xl border border-gray-300 bg-gray-50/50 p-5">
+              <div className="flex items-center gap-2.5 mb-3 pb-3 border-b border-gray-200">
+                <Award className="h-5 w-5 text-primary" />
+                <h3 className="font-heading text-base font-bold">Certifications</h3>
               </div>
-              <ul className="space-y-2.5 flex-1">
+              <ul className="space-y-2">
                 {certifications.map((cert) => (
-                  <li key={cert} className="flex items-start gap-2.5">
-                    <CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                    <span className="text-sm">{cert}</span>
+                  <li key={cert} className="flex items-start gap-2">
+                    <CheckCircle className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
+                    <span className="text-sm leading-snug">{cert}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="rounded-xl border border-gray-300 p-5 md:p-6 flex flex-col">
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
-                  <Award className="h-4 w-4 text-primary" />
-                </div>
-                <h3 className="font-heading text-lg font-bold">Elite Training Seminars</h3>
+            <div className="rounded-xl border border-gray-300 bg-gray-50/50 p-5">
+              <div className="flex items-center gap-2.5 mb-3 pb-3 border-b border-gray-200">
+                <GraduationCap className="h-5 w-5 text-primary" />
+                <h3 className="font-heading text-base font-bold">Elite Training Seminars</h3>
               </div>
-              <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5 flex-1">
+              <ul className="grid grid-cols-2 gap-x-3 gap-y-2">
                 {trainingTopics.map((topic) => (
                   <li key={topic} className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                    <span className="text-sm">{topic}</span>
+                    <CheckCircle className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
+                    <span className="text-sm leading-snug">{topic}</span>
                   </li>
                 ))}
               </ul>
             </div>
-          </div>
-
-          <div className="mt-6 md:mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4">
-            {highlights.map((item, index) => (
-              <div
-                key={item.title}
-                className="card-hover rounded-xl border border-gray-300 p-3 md:p-5 text-center animate-fade-up"
-                style={{ animationDelay: `${0.1 * index}s` }}
-              >
-                <div className="mx-auto mb-2 md:mb-3 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-primary/10">
-                  <item.icon className="h-5 w-5 md:h-6 md:w-6 text-primary" />
-                </div>
-                <h3 className="mb-0.5 font-heading text-sm md:text-base font-semibold">{item.title}</h3>
-                <p className="text-xs md:text-sm text-muted-foreground">{item.description}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, Phone, Award, Shield, Star, ChevronRight } from "lucide-react";
+import { ArrowRight, Phone, Award, Shield, Star, ChevronRight, Clock, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -108,6 +108,19 @@ export function HeroSection() {
               >
                 Book Now <ChevronRight className="ml-1 h-5 w-5" />
               </Button>
+              <div className="mt-4 grid grid-cols-2 gap-2">
+                {[
+                  { icon: Award, text: "Certified LTL® Trainer" },
+                  { icon: Clock, text: "15+ Years Experience" },
+                  { icon: Shield, text: "Premium Products" },
+                  { icon: Heart, text: "Natural Results" },
+                ].map(({ icon: Icon, text }) => (
+                  <div key={text} className="flex items-center gap-1.5 text-gray-500">
+                    <Icon className="h-3.5 w-3.5 text-primary shrink-0" />
+                    <span className="text-[11px] font-medium leading-tight">{text}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
