@@ -16,7 +16,7 @@ export function HeroSection() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/60 via-gray-800/50 to-gray-900/60" />
       </div>
 
       <div className="section-container relative z-10 py-6 sm:py-20 text-center">
