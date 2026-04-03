@@ -91,8 +91,8 @@ export function HeroSection() {
                     className={cn(
                       "w-full flex items-center justify-between px-4 py-3 rounded-xl border transition-all text-left text-sm",
                       selectedService === s.id
-                        ? "border-primary bg-primary/5"
-                        : "border-gray-200 hover:border-gray-300"
+                        ? "border-primary border-2 bg-primary/5"
+                        : "border-gray-300 border hover:border-gray-400"
                     )}
                   >
                     <span className="font-medium text-gray-900">{s.name}</span>
