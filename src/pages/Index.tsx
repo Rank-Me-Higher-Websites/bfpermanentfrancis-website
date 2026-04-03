@@ -6,7 +6,6 @@ import { ServicesSection } from "@/components/sections/ServicesSection";
 import { ReviewsSection } from "@/components/sections/ReviewsSection";
 import { LocationSection } from "@/components/sections/LocationSection";
 import { FAQSection } from "@/components/sections/FAQSection";
-import { SEOContentSection } from "@/components/sections/SEOContentSection";
 import { CTASection } from "@/components/sections/CTASection";
 
 
@@ -30,7 +29,6 @@ const Index = () => {
         <ReviewsSection />
         <LocationSection />
         <FAQSection />
-        <SEOContentSection />
         <CTASection />
       </Layout>
     </>
