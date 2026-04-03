@@ -51,10 +51,9 @@ const highlights = [
 
 export function AboutSection() {
   return (
-    <section className="section-padding" style={{ background: "var(--section-gradient)" }}>
+    <section className="section-padding bg-primary">
       <div className="section-container">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 items-center">
-          {/* Image */}
           <div className="relative animate-fade-up">
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <img
@@ -62,23 +61,20 @@ export function AboutSection() {
                 alt="Permanent Lips Before and After"
                 className="h-full w-full object-cover"
               />
-              {/* Decorative Badge */}
-              <div className="absolute bottom-6 left-6 rounded-lg bg-primary px-4 py-3 text-primary-foreground shadow-lg">
+              <div className="absolute bottom-6 left-6 rounded-lg bg-white/20 backdrop-blur-sm px-4 py-3 text-white shadow-lg">
                 <p className="text-xs font-medium uppercase tracking-wider">Long-Time-Liner®</p>
                 <p className="font-heading text-lg font-semibold">Regional Trainer</p>
               </div>
             </div>
-            {/* Decorative Elements */}
-            <div className="absolute -bottom-6 -right-6 h-48 w-48 rounded-2xl border-4 border-primary/20 -z-10" />
+            <div className="absolute -bottom-6 -right-6 h-48 w-48 rounded-2xl border-4 border-white/20 -z-10" />
           </div>
 
-          {/* Content */}
           <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
+            <p className="mb-2 text-sm font-medium uppercase tracking-widest text-white/80">
               Why Choose Us
             </p>
-            <h2 className="heading-lg mb-6">Birute Francis</h2>
-            <p className="mb-6 text-lg text-muted-foreground">
+            <h2 className="heading-lg mb-6 text-white">Birute Francis</h2>
+            <p className="mb-6 text-lg text-white/90">
               Birute Francis, a Long-Time-Liner Regional Trainer, boasts a track record of achievements 
               in top brand pigments and devices. She holds certifications from renowned courses including 
               BH Brow Henna Workshop, Deluxe Brows Nano Master Class, Brow Sketchnology, and "FEEL GOOD" 
@@ -89,7 +85,7 @@ export function AboutSection() {
 
             <Link
               to="/about"
-              className="inline-flex items-center gap-2 font-medium text-primary hover:text-primary/80 transition-colors"
+              className="inline-flex items-center gap-2 font-medium text-white hover:text-white/80 transition-colors"
             >
               Learn more about our expertise
               <span aria-hidden="true">→</span>
@@ -100,29 +96,28 @@ export function AboutSection() {
         {/* Two Column Section: Certifications & Elite Training */}
         <div className="mt-8 md:mt-16 grid gap-4 md:gap-8 lg:grid-cols-2 animate-fade-up" style={{ animationDelay: "0.3s" }}>
           {/* Certifications Column */}
-          <div className="rounded-2xl bg-card p-5 md:p-8 shadow-sm">
+          <div className="rounded-2xl bg-white/10 backdrop-blur-sm p-5 md:p-8">
             <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                <Award className="h-5 w-5 text-primary" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
+                <Award className="h-5 w-5 text-white" />
               </div>
-              <h3 className="font-heading text-xl font-semibold text-primary">Certifications</h3>
+              <h3 className="font-heading text-xl font-semibold text-white">Certifications</h3>
             </div>
-            <p className="text-muted-foreground">
+            <p className="text-white/80">
               Certified to lead specialized courses in line with the Long-Time-Liner Conture Make-up approach
             </p>
           </div>
 
-          {/* Elite Training Seminars Column */}
-          <div className="rounded-2xl bg-card p-5 md:p-8 shadow-sm">
+          <div className="rounded-2xl bg-white/10 backdrop-blur-sm p-5 md:p-8">
             <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                <Award className="h-5 w-5 text-primary" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
+                <Award className="h-5 w-5 text-white" />
               </div>
-              <h3 className="font-heading text-xl font-semibold text-primary">Elite Training Seminars</h3>
+              <h3 className="font-heading text-xl font-semibold text-white">Elite Training Seminars</h3>
             </div>
             <ul className="grid gap-2 sm:grid-cols-2">
               {trainingTopics.map((topic) => (
-                <li key={topic} className="text-sm text-muted-foreground">
+                <li key={topic} className="text-sm text-white/80">
                   {topic}
                 </li>
               ))}
@@ -135,14 +130,14 @@ export function AboutSection() {
           {highlights.map((item, index) => (
             <div
               key={item.title}
-              className="card-hover rounded-xl bg-card p-4 md:p-6 text-center animate-fade-up"
+              className="rounded-xl bg-white/10 backdrop-blur-sm p-4 md:p-6 text-center animate-fade-up transition-all duration-300 hover:-translate-y-1"
               style={{ animationDelay: `${0.1 * index}s` }}
             >
-              <div className="mx-auto mb-2 md:mb-4 flex h-10 w-10 md:h-14 md:w-14 items-center justify-center rounded-full bg-primary/10">
-                <item.icon className="h-5 w-5 md:h-7 md:w-7 text-primary" />
+              <div className="mx-auto mb-2 md:mb-4 flex h-10 w-10 md:h-14 md:w-14 items-center justify-center rounded-full bg-white/20">
+                <item.icon className="h-5 w-5 md:h-7 md:w-7 text-white" />
               </div>
-              <h3 className="mb-1 font-heading text-sm md:text-lg font-semibold">{item.title}</h3>
-              <p className="text-xs md:text-sm text-muted-foreground">{item.description}</p>
+              <h3 className="mb-1 font-heading text-sm md:text-lg font-semibold text-white">{item.title}</h3>
+              <p className="text-xs md:text-sm text-white/80">{item.description}</p>
             </div>
           ))}
         </div>

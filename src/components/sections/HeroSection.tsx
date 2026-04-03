@@ -95,8 +95,8 @@ export function HeroSection() {
                         : "border-gray-300 border hover:border-gray-400"
                     )}
                   >
-                    <span className="font-medium text-gray-900">{s.name}</span>
-                    <span className="text-gray-500 font-medium">{s.price}</span>
+                    <span className="font-semibold text-gray-900">{s.name}</span>
+                    <span className="text-gray-600 font-semibold">{s.price}</span>
                   </button>
                 ))}
               </div>
