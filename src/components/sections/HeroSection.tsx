@@ -115,7 +115,7 @@ export function HeroSection() {
                   { icon: Shield, text: "Premium Products" },
                   { icon: Heart, text: "Natural Results" },
                 ].map(({ icon: Icon, text }) => (
-                  <div key={text} className="flex items-center gap-1.5 rounded-lg border border-gray-200 bg-gray-50 px-2.5 py-2">
+                  <div key={text} className="flex items-center gap-1.5 rounded-lg border border-gray-300 bg-gray-50 px-2.5 py-2">
                     <Icon className="h-3.5 w-3.5 text-primary shrink-0" />
                     <span className="text-[11px] font-semibold text-gray-800 leading-tight">{text}</span>
                   </div>

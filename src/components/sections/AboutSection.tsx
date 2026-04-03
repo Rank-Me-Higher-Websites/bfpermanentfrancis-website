@@ -83,34 +83,30 @@ export function AboutSection() {
             <h2 className="heading-lg">Certifications & Specializations</h2>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-[1fr_1fr] items-start animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            <div className="grid gap-6 sm:grid-cols-2">
-              <div>
-                <h3 className="font-heading text-base font-bold mb-3">Certifications</h3>
-                <ul className="space-y-2">
-                  {certifications.map((cert) => (
-                    <li key={cert} className="flex items-start gap-2.5 text-sm font-medium">
-                      <span className="text-primary text-lg leading-none shrink-0">&#8226;</span>
-                      {cert}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className="grid gap-6 lg:grid-cols-[3fr_2fr] animate-fade-up" style={{ animationDelay: "0.1s" }}>
+            <div>
+              <h3 className="font-heading text-lg font-bold mb-3">Certifications</h3>
+              <ul className="space-y-2 mb-6">
+                {certifications.map((cert) => (
+                  <li key={cert} className="flex items-start gap-2.5 text-base">
+                    <span className="text-primary text-xl leading-none shrink-0">&#8226;</span>
+                    {cert}
+                  </li>
+                ))}
+              </ul>
 
-              <div>
-                <h3 className="font-heading text-base font-bold mb-3">Elite Training Seminars</h3>
-                <ul className="space-y-2">
-                  {trainingTopics.map((topic) => (
-                    <li key={topic} className="flex items-start gap-2.5 text-sm font-medium">
-                      <span className="text-primary text-lg leading-none shrink-0">&#8226;</span>
-                      {topic}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <h3 className="font-heading text-lg font-bold mb-3">Elite Training Seminars</h3>
+              <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
+                {trainingTopics.map((topic) => (
+                  <li key={topic} className="flex items-start gap-2.5 text-base">
+                    <span className="text-primary text-xl leading-none shrink-0">&#8226;</span>
+                    {topic}
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="hidden lg:block rounded-xl overflow-hidden h-full">
+            <div className="hidden lg:block rounded-xl overflow-hidden">
               <img
                 src={certPhoto}
                 alt="Professional micropigmentation equipment"
