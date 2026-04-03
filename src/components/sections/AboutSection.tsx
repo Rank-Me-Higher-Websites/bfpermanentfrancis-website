@@ -85,8 +85,13 @@ export function AboutSection() {
 
           <div className="grid gap-6 lg:grid-cols-[3fr_2fr] animate-fade-up" style={{ animationDelay: "0.1s" }}>
             <div>
-              <h3 className="font-heading text-lg font-bold mb-3">Certifications</h3>
-              <ul className="space-y-2 mb-6">
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10">
+                  <Award className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="font-heading text-xl font-bold">Certifications</h3>
+              </div>
+              <ul className="space-y-2 mb-8">
                 {certifications.map((cert) => (
                   <li key={cert} className="flex items-start gap-2.5 text-base">
                     <span className="text-primary text-xl leading-none shrink-0">&#8226;</span>
@@ -95,7 +100,12 @@ export function AboutSection() {
                 ))}
               </ul>
 
-              <h3 className="font-heading text-lg font-bold mb-3">Elite Training Seminars</h3>
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10">
+                  <GraduationCap className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="font-heading text-xl font-bold">Elite Training Seminars</h3>
+              </div>
               <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
                 {trainingTopics.map((topic) => (
                   <li key={topic} className="flex items-start gap-2.5 text-base">
