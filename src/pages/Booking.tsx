@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Layout } from "@/components/layout/Layout";
 import { Check, ChevronRight, ArrowLeft, User, Phone, Mail } from "lucide-react";
@@ -34,8 +34,10 @@ const STEPS = [
 ];
 
 export default function Booking() {
-  const [step, setStep] = useState(1);
-  const [selectedService, setSelectedService] = useState<string | null>(null);
+  const [searchParams] = useSearchParams();
+  const preselected = searchParams.get("service");
+  const [step, setStep] = useState(preselected ? 2 : 1);
+  const [selectedService, setSelectedService] = useState<string | null>(preselected);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [formData, setFormData] = useState({ fullName: "", phone: "", email: "", notes: "" });
