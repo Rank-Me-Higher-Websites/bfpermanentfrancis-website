@@ -2,15 +2,15 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 export function LocationSection() {
   return (
-    <section className="section-padding bg-secondary/30">
+    <section className="section-padding bg-primary">
       <div className="section-container">
         {/* Header */}
-        <div className="mx-auto mb-6 md:mb-12 max-w-2xl text-center animate-fade-up">
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
+        <div className="mx-auto mb-6 md:mb-10 max-w-2xl text-center animate-fade-up">
+          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-white/80">
             Visit Us
           </p>
-          <h2 className="heading-lg mb-2 md:mb-4">Our Location</h2>
-          <p className="text-sm md:text-lg text-muted-foreground">
+          <h2 className="heading-lg mb-2 md:mb-4 text-white">Our Location</h2>
+          <p className="text-sm md:text-lg text-white/90">
             Located at La Passion Beauty Salon in Lemont, Illinois. We serve clients from 
             Chicago and the surrounding areas.
           </p>
@@ -32,16 +32,16 @@ export function LocationSection() {
           </div>
 
           {/* Contact Info */}
-          <div className="animate-fade-up grid gap-3 md:gap-6" style={{ animationDelay: "0.2s" }}>
+          <div className="animate-fade-up grid gap-3" style={{ animationDelay: "0.2s" }}>
             {/* Address Card */}
-            <div className="card-hover rounded-xl border border-gray-300 bg-card p-4 md:p-6">
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                  <MapPin className="h-6 w-6 text-primary" />
+            <div className="rounded-xl bg-white/10 backdrop-blur-sm p-4">
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white/20">
+                  <MapPin className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="mb-2 font-heading text-lg font-semibold">Address</h3>
-                  <p className="text-muted-foreground">
+                  <h3 className="mb-1 font-heading text-base font-semibold text-white">Address</h3>
+                  <p className="text-white/80 text-sm">
                     La Passion Beauty Salon<br />
                     12420 Archer Ave Unit C<br />
                     Lemont, IL 60439
@@ -50,7 +50,7 @@ export function LocationSection() {
                     href="https://maps.google.com/maps?q=12420+Archer+Ave+Unit+C+Lemont+IL+60439"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-2 inline-block text-sm font-medium text-primary hover:text-primary/80"
+                    className="mt-1 inline-block text-sm font-medium text-white hover:text-white/80"
                   >
                     Get Directions →
                   </a>
@@ -59,33 +59,33 @@ export function LocationSection() {
             </div>
 
             {/* Phone Card */}
-            <div className="card-hover rounded-xl border border-gray-300 bg-card p-4 md:p-6">
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                  <Phone className="h-6 w-6 text-primary" />
+            <div className="rounded-xl bg-white/10 backdrop-blur-sm p-4">
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white/20">
+                  <Phone className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="mb-2 font-heading text-lg font-semibold">Phone</h3>
-                  <p className="text-muted-foreground">
-                    <a href="tel:+17087372333" className="hover:text-primary">(708) 737-2333</a>
+                  <h3 className="mb-1 font-heading text-base font-semibold text-white">Phone</h3>
+                  <p className="text-white/80 text-sm">
+                    <a href="tel:+17087372333" className="hover:text-white">(708) 737-2333</a>
                     <br />
-                    <a href="tel:+13313188113" className="hover:text-primary">(331) 318-8113</a>
+                    <a href="tel:+13313188113" className="hover:text-white">(331) 318-8113</a>
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Email Card */}
-            <div className="card-hover rounded-xl border border-gray-300 bg-card p-4 md:p-6">
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                  <Mail className="h-6 w-6 text-primary" />
+            <div className="rounded-xl bg-white/10 backdrop-blur-sm p-4">
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white/20">
+                  <Mail className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="mb-2 font-heading text-lg font-semibold">Email</h3>
+                  <h3 className="mb-1 font-heading text-base font-semibold text-white">Email</h3>
                   <a
                     href="mailto:francisbirute@yahoo.com"
-                    className="text-muted-foreground hover:text-primary"
+                    className="text-white/80 text-sm hover:text-white"
                   >
                     francisbirute@yahoo.com
                   </a>
@@ -94,16 +94,16 @@ export function LocationSection() {
             </div>
 
             {/* Hours Card */}
-            <div className="card-hover rounded-xl border border-gray-300 bg-card p-4 md:p-6">
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                  <Clock className="h-6 w-6 text-primary" />
+            <div className="rounded-xl bg-white/10 backdrop-blur-sm p-4">
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white/20">
+                  <Clock className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="mb-2 font-heading text-lg font-semibold">Hours</h3>
-                  <p className="text-muted-foreground">
+                  <h3 className="mb-1 font-heading text-base font-semibold text-white">Hours</h3>
+                  <p className="text-white/80 text-sm">
                     By Appointment Only<br />
-                    <span className="text-sm">Contact us to schedule your consultation</span>
+                    Contact us to schedule your consultation
                   </p>
                 </div>
               </div>

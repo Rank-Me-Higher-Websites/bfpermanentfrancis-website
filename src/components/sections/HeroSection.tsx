@@ -108,16 +108,16 @@ export function HeroSection() {
               >
                 Book Now <ChevronRight className="ml-1 h-5 w-5" />
               </Button>
-              <div className="mt-4 grid grid-cols-2 gap-2">
+              <div className="mt-3 grid grid-cols-2 gap-1.5">
                 {[
                   { icon: Award, text: "Certified LTL® Trainer" },
                   { icon: Clock, text: "15+ Years Experience" },
                   { icon: Shield, text: "Premium Products" },
                   { icon: Heart, text: "Natural Results" },
                 ].map(({ icon: Icon, text }) => (
-                  <div key={text} className="flex items-center gap-1.5 text-gray-500">
+                  <div key={text} className="flex items-center gap-1.5 rounded-lg border border-gray-200 bg-gray-50 px-2.5 py-2">
                     <Icon className="h-3.5 w-3.5 text-primary shrink-0" />
-                    <span className="text-[11px] font-medium leading-tight">{text}</span>
+                    <span className="text-[11px] font-semibold text-gray-800 leading-tight">{text}</span>
                   </div>
                 ))}
               </div>

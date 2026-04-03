@@ -35,15 +35,15 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section className="section-padding bg-background">
+    <section className="section-padding bg-primary">
       <div className="section-container">
         {/* Header */}
         <div className="mx-auto mb-6 md:mb-10 max-w-2xl text-center animate-fade-up">
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
+          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-white/80">
             Treatment
           </p>
-          <h2 className="heading-lg mb-4">We Offer</h2>
-          <p className="text-lg text-muted-foreground">
+          <h2 className="heading-lg mb-4 text-white">We Offer</h2>
+          <p className="text-lg text-white/90">
             Professional permanent makeup treatments tailored to enhance your natural beauty 
             with long-lasting, stunning results.
           </p>
@@ -93,7 +93,7 @@ export function ServicesSection() {
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
-          <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground" asChild>
+          <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary" asChild>
             <a href="tel:+17087372333">
               <Phone className="mr-2 h-5 w-5" />
               (708) 737-2333
