@@ -97,7 +97,7 @@ export function HeroSection() {
                         "w-full flex items-center justify-between px-4 py-3.5 rounded-xl border-2 transition-all text-left text-sm group",
                         isSelected
                           ? "border-primary bg-primary/5"
-                          : "border-gray-200 hover:border-primary/40"
+                          : "border-gray-300 hover:border-primary/40"
                       )}
                     >
                       <div className="flex items-center gap-3">
