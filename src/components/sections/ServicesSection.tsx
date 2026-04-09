@@ -102,7 +102,7 @@ export function ServicesSection() {
   return (
     <section className="section-padding bg-white">
       <div className="section-container">
-        <div className="mx-auto mb-10 md:mb-16 max-w-2xl text-center animate-fade-up">
+        <div className="mx-auto mb-8 md:mb-12 max-w-2xl text-center animate-fade-up">
           <span className="inline-block text-xs font-light uppercase tracking-[0.2em] text-primary mb-4">
             Our Treatments
           </span>

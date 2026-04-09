@@ -5,7 +5,7 @@ import ctaBg from "@/assets/cta-bg.jpg";
 
 export function CTASection() {
   return (
-    <section className="relative overflow-hidden py-20 md:py-28">
+    <section className="relative overflow-hidden py-14 md:py-20">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${ctaBg})` }}

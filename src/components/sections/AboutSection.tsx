@@ -30,9 +30,9 @@ const trainingTopics = [
 export function AboutSection() {
   return (
     <>
-      <section className="section-padding section-warm">
+      <section className="section-padding bg-white">
         <div className="section-container">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 items-center">
+          <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 items-center">
             <div className="relative animate-fade-up">
               <div className="relative overflow-hidden rounded-3xl">
                 <img
@@ -71,9 +71,9 @@ export function AboutSection() {
         </div>
       </section>
 
-      <section className="section-padding bg-white">
+      <section className="section-padding section-dark">
         <div className="section-container">
-          <div className="text-center mb-12 animate-fade-up">
+          <div className="text-center mb-10 animate-fade-up">
             <span className="inline-block text-xs font-light uppercase tracking-[0.2em] text-primary mb-4">
               Expertise & Training
             </span>

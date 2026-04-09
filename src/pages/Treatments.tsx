@@ -105,9 +105,9 @@ const Treatments = () => {
         />
 
         {/* Treatments */}
-        <section className="section-padding bg-background">
+        <section className="section-padding bg-white">
           <div className="section-container">
-            <div className="space-y-24">
+            <div className="space-y-16">
               {treatments.map((treatment, index) => (
                 <article
                   key={treatment.id}

@@ -51,9 +51,9 @@ const contactCards = [
 
 export function LocationSection() {
   return (
-    <section className="section-padding section-soft">
+    <section className="section-padding bg-white">
       <div className="section-container">
-        <div className="mx-auto mb-10 md:mb-14 max-w-2xl text-center animate-fade-up">
+        <div className="mx-auto mb-8 md:mb-10 max-w-2xl text-center animate-fade-up">
           <span className="inline-block text-xs font-light uppercase tracking-[0.2em] text-primary mb-4">
             Visit Us
           </span>

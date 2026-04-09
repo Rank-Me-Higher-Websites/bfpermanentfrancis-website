@@ -40,10 +40,10 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding section-dark">
       <div className="section-container">
         <div className="mx-auto max-w-3xl">
-          <div className="mb-10 md:mb-14 text-center animate-fade-up">
+          <div className="mb-8 md:mb-10 text-center animate-fade-up">
             <span className="inline-block text-xs font-light uppercase tracking-[0.2em] text-primary mb-4">
               FAQ
             </span>
@@ -59,13 +59,13 @@ export function FAQSection() {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="rounded-xl border border-border bg-card px-5 md:px-7 data-[state=open]:shadow-sm transition-shadow duration-300"
+                className="rounded-xl border border-white/15 bg-white/8 px-5 md:px-7 data-[state=open]:bg-white/12 transition-all duration-300"
                 data-testid={`faq-item-${index}`}
               >
-                <AccordionTrigger className="text-left text-[15px] md:text-base text-foreground hover:text-primary py-5" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                <AccordionTrigger className="text-left text-[15px] md:text-base text-white hover:text-white/80 py-5" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-6 text-[15px] leading-relaxed">
+                <AccordionContent className="text-white/75 pb-6 text-[15px] leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

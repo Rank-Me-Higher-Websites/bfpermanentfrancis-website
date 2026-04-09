@@ -42,9 +42,9 @@ export function ReviewsSection() {
   };
 
   return (
-    <section className="section-padding section-soft">
+    <section className="section-padding section-dark">
       <div className="section-container">
-        <div className="mx-auto mb-10 md:mb-14 max-w-2xl text-center animate-fade-up">
+        <div className="mx-auto mb-8 md:mb-10 max-w-2xl text-center animate-fade-up">
           <span className="inline-block text-xs font-light uppercase tracking-[0.2em] text-primary mb-4">
             Testimonials
           </span>
@@ -57,19 +57,19 @@ export function ReviewsSection() {
         <div className="relative">
           <button
             onClick={() => scroll("left")}
-            className="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-md"
+            className="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/20 shadow-md"
             aria-label="Previous review"
             data-testid="button-review-prev"
           >
-            <ChevronLeft className="h-4 w-4 text-foreground/60" />
+            <ChevronLeft className="h-4 w-4 text-white/80" />
           </button>
           <button
             onClick={() => scroll("right")}
-            className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-md"
+            className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/20 shadow-md"
             aria-label="Next review"
             data-testid="button-review-next"
           >
-            <ChevronRight className="h-4 w-4 text-foreground/60" />
+            <ChevronRight className="h-4 w-4 text-white/80" />
           </button>
 
           <div
@@ -79,17 +79,17 @@ export function ReviewsSection() {
             {reviews.map((review, index) => (
               <article
                 key={review.id}
-                className="card-elegant flex flex-col p-6 md:p-8 animate-fade-up min-w-[280px] max-w-[320px] md:min-w-0 md:max-w-none snap-center flex-shrink-0 md:flex-shrink"
+                className="card-elegant flex flex-col p-6 md:p-8 animate-fade-up min-w-[280px] max-w-[320px] md:min-w-0 md:max-w-none snap-center flex-shrink-0 md:flex-shrink border border-white/12"
                 style={{ animationDelay: `${0.1 * index}s` }}
                 data-testid={`review-card-${review.id}`}
               >
                 <div className="flex gap-0.5 mb-5">
                   {Array.from({ length: review.rating }).map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-primary/80 text-primary/80" />
+                    <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
 
-                <blockquote className="flex-1 text-[15px] text-muted-foreground leading-relaxed mb-6 italic">
+                <blockquote className="flex-1 text-[15px] text-white/80 leading-relaxed mb-6 italic">
                   "{review.text}"
                 </blockquote>
 
@@ -99,7 +99,7 @@ export function ReviewsSection() {
                     alt={review.name}
                     className="h-11 w-11 rounded-full object-cover"
                   />
-                  <p className="font-heading text-sm font-medium text-foreground" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                  <p className="font-heading text-sm font-medium text-white" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
                     {review.name}
                   </p>
                 </div>
