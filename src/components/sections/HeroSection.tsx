@@ -49,7 +49,7 @@ export function HeroSection() {
             </div>
             <h1 className="mb-3 sm:mb-8 text-white text-3xl sm:text-5xl lg:text-7xl leading-[1.08] drop-shadow-sm" style={{ letterSpacing: '-0.02em' }}>
               Long-Lasting Beauty,{" "}
-              <span className="block italic font-normal mt-1 sm:mt-2 text-white/95">Effortlessly Yours</span>
+              <span className="block mt-1 sm:mt-2 text-white/95">Effortlessly Yours</span>
             </h1>
             <p className="mb-3 sm:mb-10 max-w-md text-xs sm:text-base lg:text-lg text-white/70 leading-relaxed mx-auto lg:mx-0 font-light">
               Expert micropigmentation by certified Long-Time-Liner® Regional Trainer.
@@ -65,9 +65,9 @@ export function HeroSection() {
               </Button>
             </div>
 
-            <div className="hidden sm:flex mt-10 flex-wrap items-center justify-center lg:justify-start gap-6">
+            <div className="hidden sm:flex mt-10 flex-wrap items-center justify-center lg:justify-start gap-4">
               {["Certified LTL® Trainer", "15+ Years Experience", "500+ Clients"].map((label) => (
-                <span key={label} className="text-xs font-light text-white/50 uppercase tracking-wider">
+                <span key={label} className="inline-flex items-center gap-2 text-sm font-medium text-white bg-white/15 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
                   {label}
                 </span>
               ))}
