@@ -179,7 +179,7 @@ export function ServicesSection() {
               <X className="h-5 w-5 text-gray-500" />
             </button>
 
-            <h2 className="text-xl font-bold mb-1" style={{ fontFamily: "var(--font-heading)" }}>Book an Appointment</h2>
+            <h2 className="text-xl font-semibold mb-1 font-heading">Book an Appointment</h2>
             <p className="text-sm text-muted-foreground mb-5">Fill in your details and we'll confirm within 24 hours.</p>
 
             <form onSubmit={handleSubmit} className="space-y-4">

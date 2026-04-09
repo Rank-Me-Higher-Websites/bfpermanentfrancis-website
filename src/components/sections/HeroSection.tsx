@@ -51,11 +51,11 @@ export function HeroSection() {
             <p className="mb-1 sm:mb-4 text-[10px] sm:text-sm font-medium uppercase tracking-widest text-white/80">
               Discover the Power of Permanent Makeup Chicago
             </p>
-            <h1 className="mb-1.5 sm:mb-6 text-white text-2xl sm:text-5xl lg:text-6xl font-bold leading-tight drop-shadow-lg" style={{ fontFamily: "var(--font-heading)" }}>
+            <h1 className="mb-1.5 sm:mb-6 text-white text-3xl sm:text-5xl lg:text-7xl font-semibold leading-[1.1] drop-shadow-lg font-heading">
               Long-Lasting Beauty,{" "}
-              <span className="block">Effortlessly Yours</span>
+              <span className="block italic">Effortlessly Yours</span>
             </h1>
-            <p className="mb-2 sm:mb-8 max-w-lg text-xs sm:text-lg text-white/90 leading-snug sm:leading-relaxed mx-auto lg:mx-0">
+            <p className="mb-2 sm:mb-8 max-w-lg text-xs sm:text-base lg:text-lg text-white/85 leading-snug sm:leading-relaxed mx-auto lg:mx-0 font-light">
               Expert micropigmentation services by certified Long-Time-Liner® Regional Trainer. 
               Enhance your natural beauty with permanent eyebrows, lips, and eyeliner.
             </p>
@@ -86,7 +86,7 @@ export function HeroSection() {
 
           <div className="w-full lg:w-[380px] shrink-0 animate-fade-up" style={{ animationDelay: "0.15s" }}>
             <div className="rounded-2xl bg-white shadow-2xl p-3 sm:p-6">
-              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-0.5 sm:mb-1" style={{ fontFamily: "var(--font-heading)" }}>Book Now</h2>
+              <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-0.5 sm:mb-1 font-heading">Book Now</h2>
               <p className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-4">Select a service to get started</p>
               <div className="space-y-1.5 sm:space-y-2">
                 {SERVICES.map((s) => (
