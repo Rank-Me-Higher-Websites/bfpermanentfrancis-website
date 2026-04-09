@@ -25,7 +25,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-xl border-b border-border/30">
       <nav className="section-container flex h-20 items-center justify-between">
         <Link to="/" className="flex items-center gap-3" data-testid="link-home-logo">
-          <div className="flex h-12 items-center rounded-lg bg-primary/10 px-3">
+          <div className="flex h-12 items-center rounded-lg px-3" style={{ background: 'hsl(350 30% 28%)' }}>
             <img src={logoBf} alt="BF Permanent Francis Logo" className="h-9 w-auto" />
           </div>
         </Link>
@@ -66,7 +66,7 @@ export function Header() {
             <SheetContent side="right" className="w-80">
               <div className="flex flex-col gap-8 py-8">
                 <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3">
-                  <div className="flex h-10 items-center rounded-lg bg-primary/10 px-3">
+                  <div className="flex h-10 items-center rounded-lg px-3" style={{ background: 'hsl(350 30% 28%)' }}>
                     <img src={logoBf} alt="BF Permanent Francis" className="h-7 w-auto" />
                   </div>
                 </Link>

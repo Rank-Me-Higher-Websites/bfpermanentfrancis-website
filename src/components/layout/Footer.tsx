@@ -28,7 +28,7 @@ export function Footer() {
             <Link to="/" className="flex items-center gap-3 mb-6" data-testid="link-footer-logo">
               <img src={logoBf} alt="BF Permanent Francis" className="h-14 w-auto opacity-90" />
             </Link>
-            <p className="text-sm text-accent-foreground/50 mb-8 leading-relaxed font-light">
+            <p className="text-sm text-white/70 mb-8 leading-relaxed font-light">
               Long-Lasting Beauty, Effortlessly Yours. Discover the power of permanent makeup by Long-Time-Liner®.
             </p>
             <div className="flex gap-3">
@@ -56,7 +56,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-medium uppercase tracking-wider text-accent-foreground/70 mb-6" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+            <h3 className="text-sm font-medium uppercase tracking-wider text-white/90 mb-6" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
               Quick Links
             </h3>
             <ul className="space-y-3">
@@ -64,7 +64,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-sm text-accent-foreground/50 transition-colors hover:text-primary font-light"
+                    className="text-sm text-white/70 transition-colors hover:text-primary font-light"
                     data-testid={`footer-link-${link.name.toLowerCase().replace(/\s/g, '-')}`}
                   >
                     {link.name}
@@ -75,7 +75,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-medium uppercase tracking-wider text-accent-foreground/70 mb-6" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+            <h3 className="text-sm font-medium uppercase tracking-wider text-white/90 mb-6" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
               Services
             </h3>
             <ul className="space-y-3">
@@ -83,7 +83,7 @@ export function Footer() {
                 <li key={service.name}>
                   <Link
                     to={service.href}
-                    className="text-sm text-accent-foreground/50 transition-colors hover:text-primary font-light"
+                    className="text-sm text-white/70 transition-colors hover:text-primary font-light"
                     data-testid={`footer-service-${service.name.toLowerCase().replace(/\s/g, '-')}`}
                   >
                     {service.name}
@@ -94,24 +94,24 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-medium uppercase tracking-wider text-accent-foreground/70 mb-6" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+            <h3 className="text-sm font-medium uppercase tracking-wider text-white/90 mb-6" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
               Contact
             </h3>
             <ul className="space-y-4">
               <li>
-                <a href="tel:+17087372333" className="flex items-center gap-3 text-sm text-accent-foreground/50 transition-colors hover:text-primary font-light" data-testid="footer-phone-1">
+                <a href="tel:+17087372333" className="flex items-center gap-3 text-sm text-white/70 transition-colors hover:text-primary font-light" data-testid="footer-phone-1">
                   <Phone className="h-4 w-4 text-primary/70 shrink-0" />
                   (708) 737-2333
                 </a>
               </li>
               <li>
-                <a href="tel:+13313188113" className="flex items-center gap-3 text-sm text-accent-foreground/50 transition-colors hover:text-primary font-light" data-testid="footer-phone-2">
+                <a href="tel:+13313188113" className="flex items-center gap-3 text-sm text-white/70 transition-colors hover:text-primary font-light" data-testid="footer-phone-2">
                   <Phone className="h-4 w-4 text-primary/70 shrink-0" />
                   (331) 318-8113
                 </a>
               </li>
               <li>
-                <a href="mailto:francisbirute@yahoo.com" className="flex items-center gap-3 text-sm text-accent-foreground/50 transition-colors hover:text-primary font-light" data-testid="footer-email">
+                <a href="mailto:francisbirute@yahoo.com" className="flex items-center gap-3 text-sm text-white/70 transition-colors hover:text-primary font-light" data-testid="footer-email">
                   <Mail className="h-4 w-4 text-primary/70 shrink-0" />
                   francisbirute@yahoo.com
                 </a>
@@ -121,7 +121,7 @@ export function Footer() {
                   href="https://maps.google.com/maps?q=12420+Archer+Ave+Unit+C+Lemont+IL+60439"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-3 text-sm text-accent-foreground/50 transition-colors hover:text-primary font-light"
+                  className="flex items-start gap-3 text-sm text-white/70 transition-colors hover:text-primary font-light"
                   data-testid="footer-address"
                 >
                   <MapPin className="h-4 w-4 text-primary/70 shrink-0 mt-0.5" />
@@ -136,10 +136,10 @@ export function Footer() {
       <div className="border-t border-accent-foreground/5">
         <div className="section-container py-6">
           <div className="flex flex-col items-center justify-between gap-3 md:flex-row">
-            <p className="text-xs text-accent-foreground/30 font-light">
+            <p className="text-xs text-white/50 font-light">
               © {new Date().getFullYear()} BF Permanent Francis. All rights reserved.
             </p>
-            <p className="text-xs text-accent-foreground/30 font-light">
+            <p className="text-xs text-white/50 font-light">
               Permanent Makeup Chicago | Long-Time-Liner® Certified
             </p>
           </div>

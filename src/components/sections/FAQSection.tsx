@@ -62,10 +62,10 @@ export function FAQSection() {
                 className="rounded-xl border-none bg-white px-5 md:px-7 data-[state=open]:bg-white transition-all duration-300 shadow-sm"
                 data-testid={`faq-item-${index}`}
               >
-                <AccordionTrigger className="text-left text-[15px] md:text-base py-5 text-foreground" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                <AccordionTrigger className="text-left text-[15px] md:text-base py-5" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: 'hsl(240 10% 20%)' }}>
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="pb-6 text-[15px] leading-relaxed text-muted-foreground">
+                <AccordionContent className="pb-6 text-[15px] leading-relaxed" style={{ color: 'hsl(240 8% 35%)' }}>
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
