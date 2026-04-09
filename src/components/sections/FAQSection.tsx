@@ -44,7 +44,7 @@ export function FAQSection() {
       <div className="section-container">
         <div className="mx-auto max-w-3xl">
           <div className="mb-8 md:mb-10 text-center animate-fade-up">
-            <span className="inline-block text-xs font-light uppercase tracking-[0.2em] text-primary mb-4">
+            <span className="section-label">
               FAQ
             </span>
             <h2 className="heading-lg mb-3">Common Questions</h2>

@@ -54,7 +54,7 @@ export function LocationSection() {
     <section className="section-padding bg-white">
       <div className="section-container">
         <div className="mx-auto mb-8 md:mb-10 max-w-2xl text-center animate-fade-up">
-          <span className="inline-block text-xs font-light uppercase tracking-[0.2em] text-primary mb-4">
+          <span className="section-label">
             Visit Us
           </span>
           <h2 className="heading-lg mb-3">Our Location</h2>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, Phone, ChevronRight } from "lucide-react";
+import { ArrowRight, Phone, ChevronRight, Check, Award, Clock, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -10,6 +10,12 @@ const SERVICES = [
   { id: "spmu-eyeliner", name: "SPMU Eyeliner", price: "$350+" },
   { id: "spmu-lips", name: "SPMU Lips / Lip Blushing", price: "$450+" },
   { id: "browxenna", name: "BrowXenna Powder", price: "$40" },
+];
+
+const BADGES = [
+  { icon: Award, label: "Certified LTL® Trainer" },
+  { icon: Clock, label: "15+ Years Experience" },
+  { icon: Users, label: "500+ Clients" },
 ];
 
 export function HeroSection() {
@@ -36,7 +42,7 @@ export function HeroSection() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(240, 8%, 10%, 0.65) 0%, hsla(350, 15%, 18%, 0.55) 100%)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(350, 15%, 12%, 0.72) 0%, hsla(350, 20%, 18%, 0.6) 100%)" }} />
       </div>
 
       <div className="section-container relative z-10 py-6 sm:py-20 w-full">
@@ -51,7 +57,7 @@ export function HeroSection() {
               Long-Lasting Beauty,<br />
               Effortlessly Yours
             </h1>
-            <p className="mb-3 sm:mb-10 max-w-md text-xs sm:text-base lg:text-lg text-white/70 leading-relaxed mx-auto lg:mx-0 font-light">
+            <p className="mb-3 sm:mb-10 max-w-md text-xs sm:text-base lg:text-lg text-white/75 leading-relaxed mx-auto lg:mx-0">
               Expert micropigmentation by certified Long-Time-Liner® Regional Trainer.
               Enhance your natural beauty with results that last.
             </p>
@@ -65,45 +71,68 @@ export function HeroSection() {
               </Button>
             </div>
 
-            <div className="hidden sm:flex mt-10 flex-wrap items-center justify-center lg:justify-start gap-4">
-              {["Certified LTL® Trainer", "15+ Years Experience", "500+ Clients"].map((label) => (
-                <span key={label} className="inline-flex items-center gap-2 text-sm font-medium text-white bg-white/15 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
-                  {label}
-                </span>
+            <div className="hidden sm:flex mt-10 flex-wrap items-center justify-center lg:justify-start gap-5">
+              {BADGES.map(({ icon: Icon, label }) => (
+                <div key={label} className="flex items-center gap-2.5">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
+                    <Icon className="h-4 w-4 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-white">{label}</span>
+                </div>
               ))}
             </div>
           </div>
 
-          <div className="w-full lg:w-[380px] shrink-0 animate-fade-up" style={{ animationDelay: "0.15s" }}>
-            <div className="rounded-2xl bg-white/95 backdrop-blur-xl shadow-2xl p-4 sm:p-7">
-              <h2 className="text-lg sm:text-xl text-foreground mb-0.5 sm:mb-1" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 600 }}>Book Now</h2>
-              <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Select a service to get started</p>
-              <div className="space-y-2 sm:space-y-2.5">
-                {SERVICES.map((s) => (
-                  <button
-                    key={s.id}
-                    data-testid={`hero-service-${s.id}`}
-                    onClick={() => toggleService(s.id)}
-                    className={cn(
-                      "w-full flex items-center justify-between px-4 py-3 sm:py-3.5 rounded-xl border transition-all text-left text-sm",
-                      selectedServices.includes(s.id)
-                        ? "border-primary bg-primary/5 text-foreground"
-                        : "border-border hover:border-primary/30 text-foreground/80"
-                    )}
-                  >
-                    <span className="font-medium">{s.name}</span>
-                    <span className="text-muted-foreground text-sm">{s.price}</span>
-                  </button>
-                ))}
+          <div className="w-full lg:w-[400px] shrink-0 animate-fade-up" style={{ animationDelay: "0.15s" }}>
+            <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+              <div className="px-5 sm:px-7 pt-5 sm:pt-7 pb-4" style={{ background: "hsl(350, 20%, 18%)" }}>
+                <h2 className="text-lg sm:text-xl text-white mb-0.5" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 600 }}>Book Your Appointment</h2>
+                <p className="text-xs sm:text-sm text-white/60" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Select one or more services</p>
               </div>
-              <Button
-                data-testid="hero-book-now-btn"
-                onClick={handleBookNow}
-                variant="cta"
-                className="w-full mt-4 sm:mt-5 h-11 sm:h-12 text-sm sm:text-[15px] font-medium rounded-xl"
-              >
-                Book Now <ChevronRight className="ml-1 h-4 w-4" />
-              </Button>
+              <div className="bg-white p-5 sm:p-7 pt-4 sm:pt-5">
+                <div className="space-y-2">
+                  {SERVICES.map((s) => {
+                    const isSelected = selectedServices.includes(s.id);
+                    return (
+                      <button
+                        key={s.id}
+                        data-testid={`hero-service-${s.id}`}
+                        onClick={() => toggleService(s.id)}
+                        className={cn(
+                          "w-full flex items-center justify-between px-4 py-3.5 rounded-xl border-2 transition-all text-left text-sm group",
+                          isSelected
+                            ? "border-primary bg-primary/5"
+                            : "border-gray-200 hover:border-primary/40"
+                        )}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className={cn(
+                            "flex h-5 w-5 items-center justify-center rounded-full border-2 transition-all",
+                            isSelected
+                              ? "border-primary bg-primary"
+                              : "border-gray-300 group-hover:border-primary/40"
+                          )}>
+                            {isSelected && <Check className="h-3 w-3 text-white" />}
+                          </div>
+                          <span className="font-medium text-foreground">{s.name}</span>
+                        </div>
+                        <span className="font-semibold text-foreground">{s.price}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+                <Button
+                  data-testid="hero-book-now-btn"
+                  onClick={handleBookNow}
+                  variant="cta"
+                  className="w-full mt-5 h-12 text-[15px] font-semibold rounded-xl"
+                >
+                  Book Now <ChevronRight className="ml-1 h-4 w-4" />
+                </Button>
+                <p className="text-center text-xs text-muted-foreground mt-3" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+                  Free consultation included
+                </p>
+              </div>
             </div>
           </div>
 

@@ -15,29 +15,30 @@ Premium permanent makeup business website for Birute Francis (Chicago). Static f
 - **Headings**: Playfair Display (serif, weight 600) — loaded via `<link>` in index.html
 - **Body**: Inter (sans-serif, weight 400 default) — font-optical-sizing enabled
 - **Font loading**: Google Fonts via HTML `<link>` tags with preconnect hints (NOT CSS @import)
-- **Pattern**: Headings use CSS base rule with `!important`; body uses literal font names throughout
 
-### Color Palette (Warm Rose + Deep Purple Accent)
+### Color Palette (Warm Rose/Charcoal — Unified)
 - **Primary**: Dusty rose `hsl(350, 28%, 56%)` — buttons, accents, links
 - **Background**: Warm off-white `hsl(30, 25%, 98%)`
 - **Foreground**: Deep charcoal `hsl(240, 10%, 15%)`
-- **Accent/Footer**: Deep purple `hsl(280, 35%, 22%)` — also used for alternating dark sections
+- **Accent**: Deep warm charcoal-rose `hsl(350, 20%, 18%)` — dark sections, footer, card headers
 - **Secondary**: Soft cream `hsl(30, 20%, 95%)`
-- **Muted text**: `hsl(240, 8%, 35%)` — darker for better visibility on white
+- **Muted text**: `hsl(240, 8%, 35%)`
 
 ### Section Backgrounds (Alternating Pattern)
 - `bg-white` — light sections
-- `section-dark` — deep purple `hsl(280, 35%, 22%)` with automatic white text
-- Hero/CTA overlays use warm gradients (purple → muted rose)
+- `section-dark` — deep warm charcoal `hsl(350, 20%, 18%)` with automatic white text
+- Hero/CTA overlays use warm rose-charcoal gradients
 - Homepage pattern: About(white) → Certs(dark) → Services(white) → Reviews(dark) → Location(white) → FAQ(dark) → CTA(image overlay)
 
 ### Component Patterns
-- **Cards**: `card-elegant` class — white bg, border, subtle shadow, 2px lift on hover
-- **Dark section cards**: `card-elegant` in `section-dark` gets translucent white bg + white/12 border
-- **Buttons**: Rounded-full pill shape for CTAs, no glow effects
-- **Section headers**: Small caps label + Playfair heading + thin divider line (`divider-soft`)
-- **Nav**: Clean, no uppercase, subtle hover underline animation
-- **Spacing**: Tighter section padding (`py-10 md:py-14 lg:py-16`), reduced header-to-content gaps
+- **Section labels**: `.section-label` — semibold uppercase rose text, auto-adapts for dark sections
+- **Cards**: `.card-elegant` — white bg, border, subtle shadow, 2px lift on hover
+- **Dark section cards**: translucent white bg + white/10 border
+- **Buttons**: Rounded-full pill CTAs, no glow effects
+- **Trust badges**: Icon + label format with translucent circle icon containers
+- **Booking card**: Split header (dark) / body (white) design with checkbox-style service selection
+- **Nav**: Clean, subtle hover underline animation
+- **Spacing**: Tighter padding (`py-10 md:py-14 lg:py-16`)
 
 ## Key Pages
 - `/` — Homepage (Hero, About, Services, Reviews, Location, FAQ, CTA)

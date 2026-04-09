@@ -29,7 +29,7 @@ const Contact = () => {
         <section className="section-padding-sm section-soft">
           <div className="section-container">
             <div className="mb-10 text-center">
-              <span className="inline-block text-xs font-light uppercase tracking-[0.2em] text-primary mb-4">
+              <span className="section-label">
                 Reach Out
               </span>
               <h2 className="heading-md mb-3">Contact Information</h2>

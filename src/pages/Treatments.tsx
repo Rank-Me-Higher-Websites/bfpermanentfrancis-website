@@ -134,7 +134,7 @@ const Treatments = () => {
                     className={`animate-fade-up ${index % 2 === 1 ? "lg:order-1" : ""}`}
                     style={{ animationDelay: "0.2s" }}
                   >
-                    <span className="inline-block text-xs font-light uppercase tracking-[0.2em] text-primary mb-3">
+                    <span className="section-label mb-3">
                       {treatment.subtitle}
                     </span>
                     <h2 className="heading-lg mb-4">{treatment.title}</h2>

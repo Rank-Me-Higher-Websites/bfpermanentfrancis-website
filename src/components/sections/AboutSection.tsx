@@ -46,7 +46,7 @@ export function AboutSection() {
             </div>
 
             <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
-              <span className="inline-block text-xs font-light uppercase tracking-[0.2em] text-primary mb-4">
+              <span className="section-label">
                 Why Choose Us
               </span>
               <h2 className="heading-lg mb-3">Birute Francis</h2>
@@ -74,7 +74,7 @@ export function AboutSection() {
       <section className="section-padding section-dark">
         <div className="section-container">
           <div className="text-center mb-10 animate-fade-up">
-            <span className="inline-block text-xs font-light uppercase tracking-[0.2em] text-primary mb-4">
+            <span className="section-label">
               Expertise & Training
             </span>
             <h2 className="heading-lg mb-3">Certifications</h2>
