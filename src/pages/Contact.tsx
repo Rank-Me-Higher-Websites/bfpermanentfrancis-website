@@ -41,7 +41,7 @@ const Contact = () => {
                     <Phone className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="mb-2 font-heading font-semibold">Phone</h3>
+                    <h3 className="mb-2">Phone</h3>
                     <p className="text-muted-foreground">
                       <a href="tel:+17087372333" className="hover:text-primary">(708) 737-2333</a>
                       <br />
@@ -57,7 +57,7 @@ const Contact = () => {
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="mb-2 font-heading font-semibold">Email</h3>
+                    <h3 className="mb-2">Email</h3>
                     <a href="mailto:francisbirute@yahoo.com" className="text-muted-foreground hover:text-primary">
                       francisbirute@yahoo.com
                     </a>
@@ -71,7 +71,7 @@ const Contact = () => {
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="mb-2 font-heading font-semibold">Address</h3>
+                    <h3 className="mb-2">Address</h3>
                     <p className="text-muted-foreground">
                       La Passion Beauty Salon<br />
                       12420 Archer Ave Unit C<br />
@@ -87,7 +87,7 @@ const Contact = () => {
                     <Clock className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="mb-2 font-heading font-semibold">Hours</h3>
+                    <h3 className="mb-2">Hours</h3>
                     <p className="text-muted-foreground">
                       By Appointment Only<br />
                       <span className="text-sm">Contact us to schedule</span>

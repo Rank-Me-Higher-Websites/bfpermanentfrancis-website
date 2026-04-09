@@ -42,7 +42,7 @@ export function AboutSection() {
                 />
                 <div className="absolute bottom-6 left-6 rounded-lg bg-white/20 backdrop-blur-sm px-4 py-3 text-white shadow-lg">
                   <p className="text-xs font-medium uppercase tracking-wider">Long-Time-Liner®</p>
-                  <p className="font-heading text-lg font-semibold">Regional Trainer</p>
+                  <p className="font-heading text-lg">Regional Trainer</p>
                 </div>
               </div>
               <div className="absolute -bottom-6 -right-6 h-48 w-48 rounded-2xl border-4 border-white/20 -z-10" />
@@ -89,7 +89,7 @@ export function AboutSection() {
                 <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10">
                   <Award className="h-5 w-5 text-primary" />
                 </div>
-                <h3 className="font-heading text-xl font-bold">Certifications</h3>
+                <h3 className="text-xl">Certifications</h3>
               </div>
               <ul className="space-y-2 mb-8">
                 {certifications.map((cert) => (
@@ -104,7 +104,7 @@ export function AboutSection() {
                 <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10">
                   <GraduationCap className="h-5 w-5 text-primary" />
                 </div>
-                <h3 className="font-heading text-xl font-bold">Elite Training Seminars</h3>
+                <h3 className="text-xl">Elite Training Seminars</h3>
               </div>
               <div className="grid sm:grid-cols-2 gap-x-6">
                 <ul className="space-y-2">

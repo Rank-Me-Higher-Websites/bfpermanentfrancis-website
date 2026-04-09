@@ -99,7 +99,7 @@ const Products = () => {
                   <p className="mb-6 text-muted-foreground">{product.description}</p>
                   
                   <div className="border-t pt-6">
-                    <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary">
+                    <h3 className="mb-4 text-sm uppercase tracking-wider text-primary">
                       Key Features
                     </h3>
                     <ul className="grid gap-2 sm:grid-cols-2">

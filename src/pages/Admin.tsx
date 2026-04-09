@@ -107,7 +107,7 @@ export default function Admin() {
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                   <Lock className="h-8 w-8 text-primary" />
                 </div>
-                <h1 className="font-heading text-2xl sm:text-3xl font-bold text-center">
+                <h1 className="text-2xl sm:text-3xl text-center">
                   Admin Login
                 </h1>
                 <p className="text-base text-muted-foreground text-center">
@@ -149,7 +149,7 @@ export default function Admin() {
         {/* Top Bar */}
         <header className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur-md">
           <div className="flex items-center justify-between px-4 sm:px-6 py-4 max-w-6xl mx-auto">
-            <h1 className="font-heading text-xl sm:text-2xl font-bold">My Bookings</h1>
+            <h1 className="text-xl sm:text-2xl">My Bookings</h1>
             <div className="flex items-center gap-2 sm:gap-3">
               {/* View Toggle */}
               <div className="flex rounded-xl border border-border overflow-hidden">

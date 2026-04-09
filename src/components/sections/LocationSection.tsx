@@ -40,7 +40,7 @@ export function LocationSection() {
                   <MapPin className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="mb-1 font-heading text-base font-semibold text-white">Address</h3>
+                  <h3 className="mb-1 text-base text-white">Address</h3>
                   <p className="text-white/80 text-sm">
                     La Passion Beauty Salon<br />
                     12420 Archer Ave Unit C<br />
@@ -65,7 +65,7 @@ export function LocationSection() {
                   <Phone className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="mb-1 font-heading text-base font-semibold text-white">Phone</h3>
+                  <h3 className="mb-1 text-base text-white">Phone</h3>
                   <p className="text-white/80 text-sm">
                     <a href="tel:+17087372333" className="hover:text-white">(708) 737-2333</a>
                     <br />
@@ -82,7 +82,7 @@ export function LocationSection() {
                   <Mail className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="mb-1 font-heading text-base font-semibold text-white">Email</h3>
+                  <h3 className="mb-1 text-base text-white">Email</h3>
                   <a
                     href="mailto:francisbirute@yahoo.com"
                     className="text-white/80 text-sm hover:text-white"
@@ -100,7 +100,7 @@ export function LocationSection() {
                   <Clock className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="mb-1 font-heading text-base font-semibold text-white">Hours</h3>
+                  <h3 className="mb-1 text-base text-white">Hours</h3>
                   <p className="text-white/80 text-sm">
                     By Appointment Only<br />
                     Contact us to schedule your consultation

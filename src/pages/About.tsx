@@ -64,7 +64,7 @@ const About = () => {
                   />
                   <div className="absolute bottom-6 left-6 rounded-lg bg-primary px-4 py-3 text-primary-foreground shadow-lg">
                     <p className="text-xs font-medium uppercase tracking-wider">Long-Time-Liner®</p>
-                    <p className="font-heading text-lg font-semibold">Regional Trainer</p>
+                    <p className="font-heading text-lg">Regional Trainer</p>
                   </div>
                 </div>
                 <div className="absolute -bottom-6 -right-6 h-48 w-48 rounded-2xl border-4 border-primary/20 -z-10" />
@@ -88,7 +88,7 @@ const About = () => {
                 <div className="rounded-xl bg-secondary/50 p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <Award className="h-6 w-6 text-primary" />
-                    <h3 className="font-heading text-lg font-semibold">Certifications</h3>
+                    <h3 className="text-lg">Certifications</h3>
                   </div>
                   <p className="text-muted-foreground">
                     Certified to lead specialized courses in line with the Long-Time-Liner 

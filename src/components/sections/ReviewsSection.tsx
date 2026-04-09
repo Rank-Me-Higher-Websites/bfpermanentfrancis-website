@@ -90,7 +90,7 @@ export function ReviewsSection() {
                     className="h-12 w-12 md:h-16 md:w-16 rounded-full object-cover"
                   />
                   <div>
-                    <p className="font-heading font-semibold text-sm md:text-base">{review.name}</p>
+                    <p className="font-heading text-sm md:text-base">{review.name}</p>
                     <div className="flex gap-0.5">
                       {Array.from({ length: review.rating }).map((_, i) => (
                         <Star key={i} className="h-3.5 w-3.5 md:h-4 md:w-4 fill-primary text-primary" />

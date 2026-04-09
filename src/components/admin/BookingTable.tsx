@@ -65,7 +65,7 @@ export function BookingTable({ bookings, onStatusChange }: BookingTableProps) {
     return (
       <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border bg-card p-16 text-center">
         <Calendar className="mb-4 h-16 w-16 text-muted-foreground/30" />
-        <p className="text-xl font-heading font-semibold text-muted-foreground">No bookings yet</p>
+        <p className="text-xl font-heading text-muted-foreground">No bookings yet</p>
         <p className="text-base text-muted-foreground/70 mt-2">
           When clients book an appointment, they will show up here.
         </p>
@@ -122,7 +122,7 @@ export function BookingTable({ bookings, onStatusChange }: BookingTableProps) {
               <div className="border-t border-border px-4 sm:px-5 pb-5 pt-4 space-y-5">
                 {/* Contact Info — large tap targets */}
                 <div className="space-y-3">
-                  <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                  <h3 className="text-sm text-muted-foreground uppercase tracking-wider">
                     Contact Details
                   </h3>
                   <a
@@ -153,7 +153,7 @@ export function BookingTable({ bookings, onStatusChange }: BookingTableProps) {
 
                 {/* Appointment Info */}
                 <div className="space-y-3">
-                  <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                  <h3 className="text-sm text-muted-foreground uppercase tracking-wider">
                     Appointment
                   </h3>
                   <div className="grid gap-3 sm:grid-cols-2">
@@ -183,7 +183,7 @@ export function BookingTable({ bookings, onStatusChange }: BookingTableProps) {
                 {/* Notes */}
                 {booking.notes && (
                   <div className="space-y-2">
-                    <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                    <h3 className="text-sm text-muted-foreground uppercase tracking-wider">
                       Client's Note
                     </h3>
                     <div className="flex gap-3 rounded-xl border border-border bg-muted/30 p-3 sm:p-4">
@@ -195,7 +195,7 @@ export function BookingTable({ bookings, onStatusChange }: BookingTableProps) {
 
                 {/* Status Buttons — BIG and obvious */}
                 <div className="space-y-3">
-                  <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                  <h3 className="text-sm text-muted-foreground uppercase tracking-wider">
                     Change Status
                   </h3>
                   <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">

@@ -56,7 +56,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-heading text-lg font-semibold mb-6">Quick Links</h3>
+            <h3 className="text-lg mb-6">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
@@ -73,7 +73,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="font-heading text-lg font-semibold mb-6">Our Services</h3>
+            <h3 className="text-lg mb-6">Our Services</h3>
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.name}>
@@ -90,7 +90,7 @@ export function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-heading text-lg font-semibold mb-6">Contact Us</h3>
+            <h3 className="text-lg mb-6">Contact Us</h3>
             <ul className="space-y-4">
               <li>
                 <a

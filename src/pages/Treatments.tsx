@@ -153,7 +153,7 @@ const Treatments = () => {
 
                     {/* Benefits */}
                     <div className="mb-8">
-                      <h3 className="mb-4 font-heading text-lg font-semibold">Benefits</h3>
+                      <h3 className="mb-4 text-lg">Benefits</h3>
                       <ul className="grid gap-2 sm:grid-cols-2">
                         {treatment.benefits.map((benefit) => (
                           <li key={benefit} className="flex items-start gap-2 text-muted-foreground">

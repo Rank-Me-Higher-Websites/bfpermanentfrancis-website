@@ -51,7 +51,7 @@ export function HeroSection() {
             <p className="mb-1 sm:mb-4 text-[10px] sm:text-sm font-medium uppercase tracking-widest text-white/80">
               Discover the Power of Permanent Makeup Chicago
             </p>
-            <h1 className="mb-1.5 sm:mb-6 text-white text-3xl sm:text-5xl lg:text-7xl leading-[1.1] drop-shadow-lg font-heading">
+            <h1 className="mb-1.5 sm:mb-6 text-white text-3xl sm:text-5xl lg:text-7xl leading-[1.1] drop-shadow-lg">
               Long-Lasting Beauty,{" "}
               <span className="block italic">Effortlessly Yours</span>
             </h1>
@@ -86,7 +86,7 @@ export function HeroSection() {
 
           <div className="w-full lg:w-[380px] shrink-0 animate-fade-up" style={{ animationDelay: "0.15s" }}>
             <div className="rounded-2xl bg-white shadow-2xl p-3 sm:p-6">
-              <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-0.5 sm:mb-1 font-heading">Book Now</h2>
+              <h2 className="text-lg sm:text-xl text-gray-900 mb-0.5 sm:mb-1">Book Now</h2>
               <p className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-4">Select a service to get started</p>
               <div className="space-y-1.5 sm:space-y-2">
                 {SERVICES.map((s) => (

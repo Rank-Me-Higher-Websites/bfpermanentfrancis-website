@@ -53,7 +53,7 @@ export function BookingCalendar({ bookings }: BookingCalendarProps) {
           >
             <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
           </button>
-          <h2 className="font-heading text-lg sm:text-xl font-bold">
+          <h2 className="text-lg sm:text-xl">
             {format(currentMonth, "MMMM yyyy")}
           </h2>
           <button
@@ -147,7 +147,7 @@ export function BookingCalendar({ bookings }: BookingCalendarProps) {
       {/* Selected Day Detail */}
       {selectedDate && (
         <div className="rounded-2xl border border-border bg-card p-4 sm:p-5 space-y-3">
-          <h3 className="font-heading text-lg sm:text-xl font-bold">
+          <h3 className="text-lg sm:text-xl">
             📅 {format(selectedDate, "EEEE, MMMM d")}
           </h3>
           {selectedBookings.length === 0 ? (

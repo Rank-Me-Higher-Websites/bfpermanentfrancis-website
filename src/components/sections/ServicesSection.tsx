@@ -127,7 +127,7 @@ export function ServicesSection() {
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
-                <h3 className="absolute bottom-4 left-4 font-heading text-2xl font-bold text-primary-foreground">
+                <h3 className="absolute bottom-4 left-4 text-2xl text-primary-foreground">
                   {service.title}
                 </h3>
               </div>
@@ -179,7 +179,7 @@ export function ServicesSection() {
               <X className="h-5 w-5 text-gray-500" />
             </button>
 
-            <h2 className="text-xl font-semibold mb-1 font-heading">Book an Appointment</h2>
+            <h2 className="text-xl mb-1">Book an Appointment</h2>
             <p className="text-sm text-muted-foreground mb-5">Fill in your details and we'll confirm within 24 hours.</p>
 
             <form onSubmit={handleSubmit} className="space-y-4">

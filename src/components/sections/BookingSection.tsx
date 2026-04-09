@@ -76,7 +76,7 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
   if (variant === "hero") {
     return (
       <div className="rounded-2xl bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 p-4 sm:p-6 md:p-8">
-        <h2 className="text-base sm:text-lg md:text-xl font-heading font-semibold mb-3 sm:mb-4 text-primary-foreground text-center">
+        <h2 className="text-base sm:text-lg md:text-xl font-heading mb-3 sm:mb-4 text-primary-foreground text-center">
           Book Your Appointment
         </h2>
         <form onSubmit={handleSubmit}>
