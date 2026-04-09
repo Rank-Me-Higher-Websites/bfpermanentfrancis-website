@@ -177,12 +177,16 @@
 
   .nav-link::after {
     content: '';
-    @apply absolute bottom-0 left-0 h-px w-0;
+    @apply absolute bottom-0 left-0 h-0.5 w-0;
     background: hsl(350 28% 56%);
     transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .nav-link-active::after {
     @apply w-full;
   }
 
@@ -257,6 +261,37 @@
 
   .section-dark .bg-primary\/8 {
     background: rgba(255, 255, 255, 0.12) !important;
+  }
+
+  .card-accent {
+    @apply rounded-2xl transition-all duration-500;
+    background: hsl(350 30% 28%);
+  }
+
+  .card-accent:hover {
+    transform: translateY(-2px);
+  }
+
+  .card-accent h3 {
+    color: white !important;
+  }
+
+  .card-accent p,
+  .card-accent span,
+  .card-accent a:not(.card-accent-link) {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .card-accent-link {
+    color: hsl(350 50% 75%) !important;
+  }
+
+  .card-accent-icon {
+    color: hsl(350 50% 75%);
+  }
+
+  .card-accent .icon-chip {
+    background: rgba(255, 255, 255, 0.12);
   }
 
   .divider-soft {

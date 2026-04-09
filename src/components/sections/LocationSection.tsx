@@ -22,9 +22,9 @@ const contactCards = [
     title: "Phone",
     content: (
       <>
-        <a href="tel:+17087372333" className="hover:text-primary transition-colors">(708) 737-2333</a>
+        <a href="tel:+17087372333" className="hover:opacity-80 transition-opacity">(708) 737-2333</a>
         <br />
-        <a href="tel:+13313188113" className="hover:text-primary transition-colors">(331) 318-8113</a>
+        <a href="tel:+13313188113" className="hover:opacity-80 transition-opacity">(331) 318-8113</a>
       </>
     ),
   },
@@ -32,7 +32,7 @@ const contactCards = [
     icon: Mail,
     title: "Email",
     content: (
-      <a href="mailto:francisbirute@yahoo.com" className="hover:text-primary transition-colors">
+      <a href="mailto:francisbirute@yahoo.com" className="hover:opacity-80 transition-opacity">
         francisbirute@yahoo.com
       </a>
     ),
@@ -80,20 +80,20 @@ export function LocationSection() {
 
           <div className="animate-fade-up grid gap-4" style={{ animationDelay: "0.2s" }}>
             {contactCards.map(({ icon: Icon, title, content, link }) => (
-              <div key={title} className="card-elegant p-5 md:p-6" data-testid={`location-card-${title.toLowerCase()}`}>
+              <div key={title} className="card-accent p-5 md:p-6" data-testid={`location-card-${title.toLowerCase()}`}>
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/8">
-                    <Icon className="h-5 w-5 text-primary" />
+                  <div className="icon-chip flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full">
+                    <Icon className="h-5 w-5 card-accent-icon" />
                   </div>
                   <div>
-                    <h3 className="mb-1.5 text-base text-foreground">{title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{content}</p>
+                    <h3 className="mb-1.5 text-base">{title}</h3>
+                    <p className="text-sm leading-relaxed">{content}</p>
                     {link && (
                       <a
                         href={link.href}
                         target={link.external ? "_blank" : undefined}
                         rel={link.external ? "noopener noreferrer" : undefined}
-                        className="mt-2 inline-block text-sm font-medium text-primary hover:text-primary/70 transition-colors"
+                        className="card-accent-link mt-2 inline-block text-sm font-medium transition-colors"
                       >
                         {link.text}
                       </a>

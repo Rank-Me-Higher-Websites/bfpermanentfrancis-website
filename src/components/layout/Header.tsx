@@ -37,8 +37,8 @@ export function Header() {
               to={item.href}
               className={`nav-link text-[13px] tracking-wide transition-colors hover:text-primary pb-1 ${
                 isActive(item.href)
-                  ? "text-primary font-medium"
-                  : "text-foreground/60 font-normal"
+                  ? "text-primary font-semibold nav-link-active"
+                  : "text-foreground/80 font-medium"
               }`}
               data-testid={`nav-${item.name.toLowerCase().replace(/\s/g, '-')}`}
             >

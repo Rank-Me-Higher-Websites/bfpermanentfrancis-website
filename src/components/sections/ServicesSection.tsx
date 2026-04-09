@@ -118,26 +118,26 @@ export function ServicesSection() {
           {services.map((service, index) => (
             <article
               key={service.id}
-              className="group card-elegant flex flex-col overflow-hidden animate-fade-up"
+              className="group card-accent flex flex-col overflow-hidden animate-fade-up"
               style={{ animationDelay: `${0.1 * index}s` }}
               data-testid={`service-card-${service.id}`}
             >
-              <div className="relative aspect-[4/3] overflow-hidden rounded-t-2xl">
+              <div className="relative aspect-[4/3] overflow-hidden">
                 <img
                   src={service.image}
                   alt={`${service.title} - Permanent Makeup Chicago`}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                <h3 className="absolute bottom-5 left-5 text-2xl text-white">
+                <h3 className="absolute bottom-5 left-5 text-2xl">
                   {service.title}
                 </h3>
               </div>
               <div className="flex flex-1 flex-col p-5 md:p-7">
-                <p className="mb-6 flex-1 text-[15px] text-muted-foreground leading-relaxed">{service.description}</p>
+                <p className="mb-6 flex-1 text-[15px] leading-relaxed">{service.description}</p>
                 <Link
                   to={service.link}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/70 transition-colors"
+                  className="card-accent-link inline-flex items-center gap-2 text-sm font-medium transition-colors"
                   data-testid={`link-service-${service.id}`}
                 >
                   Learn more

@@ -73,7 +73,7 @@ export function AboutSection() {
 
       <section className="section-padding section-dark">
         <div className="section-container">
-          <div className="text-center mb-10 animate-fade-up">
+          <div className="text-center mb-8 animate-fade-up">
             <span className="section-label">
               Expertise & Training
             </span>
@@ -81,56 +81,35 @@ export function AboutSection() {
             <div className="divider-soft mb-0" />
           </div>
 
-          <div className="grid gap-12 lg:grid-cols-[3fr_2fr] animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            <div>
-              <div className="flex items-center gap-3 mb-5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/8">
-                  <Award className="h-5 w-5 text-primary" />
-                </div>
-                <h3 className="text-xl">Certifications</h3>
+          <div className="grid gap-8 lg:grid-cols-2 animate-fade-up" style={{ animationDelay: "0.1s" }}>
+            <div className="rounded-2xl bg-white/8 border border-white/15 p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <Award className="h-5 w-5 text-primary" />
+                <h3 className="text-lg">Certifications</h3>
               </div>
-              <ul className="space-y-3 mb-10">
+              <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
                 {certifications.map((cert) => (
-                  <li key={cert} className="flex items-start gap-3 text-[15px]" data-testid={`cert-${cert.slice(0,10)}`}>
-                    <span className="text-primary/40 mt-1.5 text-xs">●</span>
+                  <li key={cert} className="flex items-start gap-2 text-sm" data-testid={`cert-${cert.slice(0,10)}`}>
+                    <span className="text-primary/60 mt-1 text-[10px]">●</span>
                     <span className="text-muted-foreground">{cert}</span>
                   </li>
                 ))}
               </ul>
-
-              <div className="flex items-center gap-3 mb-5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/8">
-                  <GraduationCap className="h-5 w-5 text-primary" />
-                </div>
-                <h3 className="text-xl">Elite Training</h3>
-              </div>
-              <div className="grid sm:grid-cols-2 gap-x-8">
-                <ul className="space-y-3">
-                  {trainingTopics.slice(0, Math.ceil(trainingTopics.length / 2)).map((topic) => (
-                    <li key={topic} className="flex items-start gap-3 text-[15px]">
-                      <span className="text-primary/40 mt-1.5 text-xs">●</span>
-                      <span className="text-muted-foreground">{topic}</span>
-                    </li>
-                  ))}
-                </ul>
-                <ul className="space-y-3">
-                  {trainingTopics.slice(Math.ceil(trainingTopics.length / 2)).map((topic) => (
-                    <li key={topic} className="flex items-start gap-3 text-[15px]">
-                      <span className="text-primary/40 mt-1.5 text-xs">●</span>
-                      <span className="text-muted-foreground">{topic}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </div>
 
-            <div className="hidden lg:block rounded-2xl overflow-hidden">
-              <img
-                src={certPhoto}
-                alt="Professional micropigmentation equipment"
-                className="h-full w-full object-cover rounded-2xl"
-                data-testid="img-cert-photo"
-              />
+            <div className="rounded-2xl bg-white/8 border border-white/15 p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <GraduationCap className="h-5 w-5 text-primary" />
+                <h3 className="text-lg">Elite Training</h3>
+              </div>
+              <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
+                {trainingTopics.map((topic) => (
+                  <li key={topic} className="flex items-start gap-2 text-sm">
+                    <span className="text-primary/60 mt-1 text-[10px]">●</span>
+                    <span className="text-muted-foreground">{topic}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
