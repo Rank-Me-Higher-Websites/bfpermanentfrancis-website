@@ -51,7 +51,7 @@ export function HeroSection() {
             <p className="mb-1 sm:mb-4 text-[10px] sm:text-sm font-medium uppercase tracking-widest text-white/80">
               Discover the Power of Permanent Makeup Chicago
             </p>
-            <h1 className="mb-1.5 sm:mb-6 text-white text-3xl sm:text-5xl lg:text-7xl font-semibold leading-[1.1] drop-shadow-lg font-heading">
+            <h1 className="mb-1.5 sm:mb-6 text-white text-3xl sm:text-5xl lg:text-7xl leading-[1.1] drop-shadow-lg font-heading">
               Long-Lasting Beauty,{" "}
               <span className="block italic">Effortlessly Yours</span>
             </h1>

@@ -10,9 +10,9 @@ Permanent makeup business website for Birute Francis (Chicago). Static frontend-
 - **Booking data**: localStorage (no backend database)
 
 ## Fonts
-- **Headings**: Cormorant Garamond (serif) — elegant, premium feel
-- **Body**: DM Sans (sans-serif) — clean, modern
-- **Nav links**: Uppercase, tracked DM Sans
+- **Headings**: Playfair Display (serif, weight 600 default) — fallback: Georgia, serif
+- **Body**: Inter (sans-serif, weights 300-700) — fallback: system-ui, sans-serif
+- **Nav links**: Uppercase, tracked Inter
 
 ## Color Scheme
 - **Primary**: Teal/cyan `hsl(174, 100%, 29%)` — used for hero, about, services, location, FAQ sections
