@@ -47,9 +47,9 @@ export function HeroSection() {
                 Permanent Makeup Chicago
               </span>
             </div>
-            <h1 className="mb-3 sm:mb-8 text-white text-3xl sm:text-5xl lg:text-7xl leading-[1.08] drop-shadow-sm" style={{ letterSpacing: '-0.02em' }}>
-              Long-Lasting Beauty,{" "}
-              <span className="block mt-1 sm:mt-2 text-white/95">Effortlessly Yours</span>
+            <h1 className="mb-3 sm:mb-8 text-white text-3xl sm:text-5xl lg:text-7xl leading-[1.08] drop-shadow-sm" style={{ letterSpacing: '-0.02em', fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 600 }}>
+              Long-Lasting Beauty,<br />
+              Effortlessly Yours
             </h1>
             <p className="mb-3 sm:mb-10 max-w-md text-xs sm:text-base lg:text-lg text-white/70 leading-relaxed mx-auto lg:mx-0 font-light">
               Expert micropigmentation by certified Long-Time-Liner® Regional Trainer.
@@ -76,8 +76,8 @@ export function HeroSection() {
 
           <div className="w-full lg:w-[380px] shrink-0 animate-fade-up" style={{ animationDelay: "0.15s" }}>
             <div className="rounded-2xl bg-white/95 backdrop-blur-xl shadow-2xl p-4 sm:p-7">
-              <h2 className="text-lg sm:text-xl text-foreground mb-0.5 sm:mb-1">Book Now</h2>
-              <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 font-light">Select a service to get started</p>
+              <h2 className="text-lg sm:text-xl text-foreground mb-0.5 sm:mb-1" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 600 }}>Book Now</h2>
+              <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Select a service to get started</p>
               <div className="space-y-2 sm:space-y-2.5">
                 {SERVICES.map((s) => (
                   <button
