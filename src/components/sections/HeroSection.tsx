@@ -55,7 +55,7 @@ export function HeroSection() {
             </div>
             <h1 className="mb-3 sm:mb-8 text-white text-3xl sm:text-5xl lg:text-7xl leading-[1.08] drop-shadow-sm" style={{ letterSpacing: '-0.02em', fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 600 }}>
               Long-Lasting Beauty,<br />
-              <span className="text-primary">Effortlessly Yours</span>
+              Effortlessly Yours
             </h1>
             <p className="mb-3 sm:mb-10 max-w-md text-xs sm:text-base lg:text-lg text-white/75 leading-relaxed mx-auto lg:mx-0">
               Expert micropigmentation by certified Long-Time-Liner® Regional Trainer.
