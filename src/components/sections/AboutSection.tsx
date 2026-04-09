@@ -83,30 +83,30 @@ export function AboutSection() {
 
           <div className="grid gap-5 md:grid-cols-2 animate-fade-up" style={{ animationDelay: "0.1s" }}>
             <div className="rounded-xl bg-white p-5 shadow-sm">
-              <div className="flex items-center gap-2.5 mb-3 pb-3 border-b border-gray-100">
-                <Award className="h-4 w-4 text-primary" />
-                <h3 className="text-sm font-semibold uppercase tracking-wide" style={{ color: 'hsl(240 10% 20%)' }}>Certifications</h3>
+              <div className="flex items-center gap-2.5 mb-3 pb-3" style={{ borderBottom: '1px solid #eee' }}>
+                <Award className="h-4 w-4" style={{ color: 'hsl(350 28% 56%)' }} />
+                <span className="text-sm font-semibold uppercase tracking-wide" style={{ color: '#1a1a2e', fontFamily: "'Inter', system-ui, sans-serif" }}>Certifications</span>
               </div>
               <ul className="space-y-1.5">
                 {certifications.map((cert) => (
                   <li key={cert} className="flex items-start gap-2 text-[13px] leading-snug" data-testid={`cert-${cert.slice(0,10)}`}>
-                    <span className="mt-1 text-[7px] text-primary">●</span>
-                    <span style={{ color: 'hsl(240 10% 20%)' }}>{cert}</span>
+                    <span className="mt-1 text-[7px]" style={{ color: 'hsl(350 28% 56%)' }}>●</span>
+                    <span style={{ color: '#333' }}>{cert}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             <div className="rounded-xl bg-white p-5 shadow-sm">
-              <div className="flex items-center gap-2.5 mb-3 pb-3 border-b border-gray-100">
-                <GraduationCap className="h-4 w-4 text-primary" />
-                <h3 className="text-sm font-semibold uppercase tracking-wide" style={{ color: 'hsl(240 10% 20%)' }}>Training Topics</h3>
+              <div className="flex items-center gap-2.5 mb-3 pb-3" style={{ borderBottom: '1px solid #eee' }}>
+                <GraduationCap className="h-4 w-4" style={{ color: 'hsl(350 28% 56%)' }} />
+                <span className="text-sm font-semibold uppercase tracking-wide" style={{ color: '#1a1a2e', fontFamily: "'Inter', system-ui, sans-serif" }}>Training Topics</span>
               </div>
-              <ul className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+              <ul className="space-y-1.5">
                 {trainingTopics.map((topic) => (
                   <li key={topic} className="flex items-start gap-2 text-[13px] leading-snug">
-                    <span className="mt-1 text-[7px] text-primary">●</span>
-                    <span style={{ color: 'hsl(240 10% 20%)' }}>{topic}</span>
+                    <span className="mt-1 text-[7px]" style={{ color: 'hsl(350 28% 56%)' }}>●</span>
+                    <span style={{ color: '#333' }}>{topic}</span>
                   </li>
                 ))}
               </ul>
