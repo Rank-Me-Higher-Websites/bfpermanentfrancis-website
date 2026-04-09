@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Award, GraduationCap } from "lucide-react";
 import aboutLips from "@/assets/about-lips.jpg";
-import certPhoto from "@/assets/certifications-photo.png";
 
 const certifications = [
   "BH Brow Henna Workshop",
@@ -32,35 +31,39 @@ export function AboutSection() {
     <>
       <section className="section-padding bg-white">
         <div className="section-container">
-          <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 items-center">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
             <div className="relative animate-fade-up">
-              <div className="relative overflow-hidden rounded-3xl">
+              <div className="relative overflow-hidden rounded-2xl">
                 <img
                   src={aboutLips}
                   alt="Permanent Lips Before and After"
-                  className="h-full w-full object-cover"
+                  className="w-full object-cover aspect-[3/4] lg:aspect-[4/5]"
                   data-testid="img-about-lips"
                 />
               </div>
-              <div className="absolute -bottom-4 -right-4 h-full w-full rounded-3xl border border-primary/15 -z-10" />
+              <div className="absolute -bottom-3 -right-3 h-full w-full rounded-2xl border border-primary/15 -z-10" />
             </div>
 
             <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
               <span className="section-label">
                 Why Choose Us
               </span>
-              <h2 className="heading-lg mb-3">Birute Francis</h2>
+              <h2 className="heading-lg mb-4">Birute Francis</h2>
               <div className="divider-soft mb-6 lg:mx-0 lg:ml-0" />
-              <p className="mb-6 text-base leading-relaxed">
+              <p className="mb-4 text-[16px] leading-[1.8]">
                 Birute Francis, a Long-Time-Liner Regional Trainer, boasts a track record of achievements
                 in top brand pigments and devices. She holds certifications from renowned courses including
                 BH Brow Henna Workshop, Deluxe Brows Nano Master Class, Brow Sketchnology, and "FEEL GOOD"
                 Intensive Permanent Make-up Training.
               </p>
+              <p className="mb-6 text-[16px] leading-[1.8]">
+                She is a trusted expert in microblading in Chicago and permanent makeup, delivering
+                natural-looking, long-lasting results with precision and artistry.
+              </p>
 
               <Link
                 to="/about"
-                className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/70 transition-colors"
+                className="inline-flex items-center gap-2 text-[15px] font-medium text-primary hover:text-primary/70 transition-colors"
                 data-testid="link-about-learn-more"
               >
                 Learn more about our expertise
@@ -82,31 +85,31 @@ export function AboutSection() {
           </div>
 
           <div className="grid gap-5 md:grid-cols-2 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            <div className="rounded-xl bg-white p-5 shadow-sm">
-              <div className="flex items-center gap-2.5 mb-3 pb-3" style={{ borderBottom: '1px solid #eee' }}>
-                <Award className="h-4 w-4" style={{ color: 'hsl(350 28% 56%)' }} />
-                <span className="text-sm font-semibold uppercase tracking-wide" style={{ color: '#1a1a2e', fontFamily: "'Inter', system-ui, sans-serif" }}>Certifications</span>
+            <div className="rounded-xl bg-white p-6 shadow-sm">
+              <div className="flex items-center gap-2.5 mb-4 pb-3" style={{ borderBottom: '1px solid #eee' }}>
+                <Award className="h-5 w-5" style={{ color: 'hsl(350 28% 56%)' }} />
+                <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: '#1a1a2e', fontFamily: "'Inter', system-ui, sans-serif" }}>Certifications</span>
               </div>
-              <ul className="space-y-1.5">
+              <ul className="space-y-2.5">
                 {certifications.map((cert) => (
-                  <li key={cert} className="flex items-start gap-2 text-[13px] leading-snug" data-testid={`cert-${cert.slice(0,10)}`}>
-                    <span className="mt-1 text-[7px]" style={{ color: 'hsl(350 28% 56%)' }}>●</span>
-                    <span style={{ color: '#333' }}>{cert}</span>
+                  <li key={cert} className="flex items-start gap-2.5" data-testid={`cert-${cert.slice(0,10)}`}>
+                    <span className="mt-[7px] text-[8px]" style={{ color: 'hsl(350 28% 56%)' }}>●</span>
+                    <span className="text-[14px] leading-relaxed" style={{ color: '#2a2a2a' }}>{cert}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="rounded-xl bg-white p-5 shadow-sm">
-              <div className="flex items-center gap-2.5 mb-3 pb-3" style={{ borderBottom: '1px solid #eee' }}>
-                <GraduationCap className="h-4 w-4" style={{ color: 'hsl(350 28% 56%)' }} />
-                <span className="text-sm font-semibold uppercase tracking-wide" style={{ color: '#1a1a2e', fontFamily: "'Inter', system-ui, sans-serif" }}>Training Topics</span>
+            <div className="rounded-xl bg-white p-6 shadow-sm">
+              <div className="flex items-center gap-2.5 mb-4 pb-3" style={{ borderBottom: '1px solid #eee' }}>
+                <GraduationCap className="h-5 w-5" style={{ color: 'hsl(350 28% 56%)' }} />
+                <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: '#1a1a2e', fontFamily: "'Inter', system-ui, sans-serif" }}>Training Topics</span>
               </div>
-              <ul className="space-y-1.5">
+              <ul className="space-y-2.5">
                 {trainingTopics.map((topic) => (
-                  <li key={topic} className="flex items-start gap-2 text-[13px] leading-snug">
-                    <span className="mt-1 text-[7px]" style={{ color: 'hsl(350 28% 56%)' }}>●</span>
-                    <span style={{ color: '#333' }}>{topic}</span>
+                  <li key={topic} className="flex items-start gap-2.5">
+                    <span className="mt-[7px] text-[8px]" style={{ color: 'hsl(350 28% 56%)' }}>●</span>
+                    <span className="text-[14px] leading-relaxed" style={{ color: '#2a2a2a' }}>{topic}</span>
                   </li>
                 ))}
               </ul>
