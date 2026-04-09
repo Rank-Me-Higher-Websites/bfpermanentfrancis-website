@@ -100,42 +100,45 @@ export function ServicesSection() {
   };
 
   return (
-    <section className="section-padding bg-primary">
+    <section className="section-padding bg-white">
       <div className="section-container">
-        <div className="mx-auto mb-6 md:mb-10 max-w-2xl text-center animate-fade-up">
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-white/80">
-            Treatment
-          </p>
-          <h2 className="heading-lg mb-4 text-white">We Offer</h2>
-          <p className="text-lg text-white/90">
-            Professional permanent makeup treatments tailored to enhance your natural beauty 
+        <div className="mx-auto mb-10 md:mb-16 max-w-2xl text-center animate-fade-up">
+          <span className="inline-block text-xs font-light uppercase tracking-[0.2em] text-primary mb-4">
+            Our Treatments
+          </span>
+          <h2 className="heading-lg mb-3">What We Offer</h2>
+          <div className="divider-soft mb-5" />
+          <p className="text-base text-muted-foreground">
+            Professional permanent makeup treatments tailored to enhance your natural beauty
             with long-lasting, stunning results.
           </p>
         </div>
 
-        <div className="grid gap-4 md:gap-8 md:grid-cols-3">
+        <div className="grid gap-6 md:gap-8 md:grid-cols-3">
           {services.map((service, index) => (
             <article
               key={service.id}
-              className="group card-hover flex flex-col overflow-hidden rounded-2xl bg-card border border-gray-300 animate-fade-up"
+              className="group card-elegant flex flex-col overflow-hidden animate-fade-up"
               style={{ animationDelay: `${0.1 * index}s` }}
+              data-testid={`service-card-${service.id}`}
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-t-2xl">
                 <img
                   src={service.image}
                   alt={`${service.title} - Permanent Makeup Chicago`}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
-                <h3 className="absolute bottom-4 left-4 text-2xl text-primary-foreground">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <h3 className="absolute bottom-5 left-5 text-2xl text-white">
                   {service.title}
                 </h3>
               </div>
-              <div className="flex flex-1 flex-col p-4 md:p-6">
-                <p className="mb-6 flex-1 text-muted-foreground">{service.description}</p>
+              <div className="flex flex-1 flex-col p-5 md:p-7">
+                <p className="mb-6 flex-1 text-[15px] text-muted-foreground leading-relaxed">{service.description}</p>
                 <Link
                   to={service.link}
-                  className="inline-flex items-center gap-2 font-medium text-primary hover:text-primary/80 transition-colors"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/70 transition-colors"
+                  data-testid={`link-service-${service.id}`}
                 >
                   Learn more
                   <ArrowRight className="h-4 w-4" />
@@ -145,19 +148,20 @@ export function ServicesSection() {
           ))}
         </div>
 
-        <div className="mt-6 md:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+        <div className="mt-10 md:mt-14 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
           <Button
             size="lg"
-            className="bg-white text-primary hover:bg-white/90 font-semibold"
+            variant="cta"
+            className="rounded-full"
             onClick={() => setShowBooking(true)}
             data-testid="services-book-now-btn"
           >
-            Book Now
-            <ArrowRight className="ml-2 h-5 w-5" />
+            Book an Appointment
+            <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
-          <Button size="lg" className="bg-white/20 text-white border-2 border-white hover:bg-white hover:text-primary font-semibold" asChild>
-            <a href="tel:+17087372333">
-              <Phone className="mr-2 h-5 w-5" />
+          <Button size="lg" variant="outline" className="rounded-full" asChild>
+            <a href="tel:+17087372333" data-testid="services-call-btn">
+              <Phone className="mr-2 h-4 w-4" />
               (708) 737-2333
             </a>
           </Button>
@@ -166,43 +170,43 @@ export function ServicesSection() {
 
       {showBooking && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={() => setShowBooking(false)}>
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
           <div
-            className="relative w-full max-w-lg rounded-2xl bg-white p-6 md:p-8 shadow-2xl animate-fade-up"
+            className="relative w-full max-w-lg rounded-2xl bg-white p-7 md:p-9 shadow-2xl animate-fade-up"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setShowBooking(false)}
-              className="absolute right-4 top-4 rounded-full p-1 hover:bg-gray-100 transition-colors"
+              className="absolute right-5 top-5 rounded-full p-1.5 hover:bg-secondary transition-colors"
               data-testid="close-booking-modal"
             >
-              <X className="h-5 w-5 text-gray-500" />
+              <X className="h-4 w-4 text-foreground/40" />
             </button>
 
             <h2 className="text-xl mb-1">Book an Appointment</h2>
-            <p className="text-sm text-muted-foreground mb-5">Fill in your details and we'll confirm within 24 hours.</p>
+            <p className="text-sm text-muted-foreground mb-6 font-light">Fill in your details and we'll confirm within 24 hours.</p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-1.5">
                   <Label htmlFor="modal-fullName" className="text-sm">Full Name *</Label>
-                  <Input id="modal-fullName" name="fullName" required placeholder="Your full name" className="h-10" />
+                  <Input id="modal-fullName" name="fullName" required placeholder="Your full name" className="h-11" data-testid="input-modal-fullname" />
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="modal-phone" className="text-sm">Phone *</Label>
-                  <Input id="modal-phone" name="phone" type="tel" required placeholder="(123) 456-7890" className="h-10" />
+                  <Input id="modal-phone" name="phone" type="tel" required placeholder="(123) 456-7890" className="h-11" data-testid="input-modal-phone" />
                 </div>
               </div>
 
               <div className="space-y-1.5">
                 <Label htmlFor="modal-email" className="text-sm">Email *</Label>
-                <Input id="modal-email" name="email" type="email" required placeholder="your@email.com" className="h-10" />
+                <Input id="modal-email" name="email" type="email" required placeholder="your@email.com" className="h-11" data-testid="input-modal-email" />
               </div>
 
               <div className="space-y-1.5">
                 <Label className="text-sm">Service *</Label>
                 <Select name="service" required>
-                  <SelectTrigger className="h-10">
+                  <SelectTrigger className="h-11" data-testid="select-modal-service">
                     <SelectValue placeholder="Select a service" />
                   </SelectTrigger>
                   <SelectContent>
@@ -221,9 +225,10 @@ export function ServicesSection() {
                       <Button
                         variant="outline"
                         className={cn(
-                          "h-10 w-full justify-start text-left font-normal",
+                          "h-11 w-full justify-start text-left font-normal",
                           !date && "text-muted-foreground"
                         )}
+                        data-testid="button-modal-date"
                       >
                         <CalendarIcon className="mr-2 h-4 w-4" />
                         {date ? format(date, "PPP") : "Pick a date"}
@@ -245,7 +250,7 @@ export function ServicesSection() {
                 <div className="space-y-1.5">
                   <Label className="text-sm">Preferred Time *</Label>
                   <Select name="time" required>
-                    <SelectTrigger className="h-10">
+                    <SelectTrigger className="h-11" data-testid="select-modal-time">
                       <SelectValue placeholder="Select time" />
                     </SelectTrigger>
                     <SelectContent>
@@ -266,7 +271,7 @@ export function ServicesSection() {
                 type="submit"
                 variant="cta"
                 size="lg"
-                className="w-full h-11 text-base"
+                className="w-full h-12 text-[15px] rounded-xl"
                 disabled={isSubmitting}
                 data-testid="modal-submit-booking"
               >
@@ -278,7 +283,7 @@ export function ServicesSection() {
                 )}
               </Button>
 
-              <p className="text-center text-xs text-muted-foreground">
+              <p className="text-center text-xs text-muted-foreground font-light">
                 We'll contact you within 24 hours to confirm.
               </p>
             </form>

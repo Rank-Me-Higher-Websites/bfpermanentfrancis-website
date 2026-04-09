@@ -128,7 +128,7 @@ export default function Admin() {
                 <p className="text-base text-destructive text-center font-medium">{error}</p>
               )}
 
-              <Button type="submit" variant="cta" className="w-full h-14 text-lg glow-button">
+              <Button type="submit" variant="cta" className="w-full h-14 text-lg rounded-xl">
                 Sign In
               </Button>
             </form>

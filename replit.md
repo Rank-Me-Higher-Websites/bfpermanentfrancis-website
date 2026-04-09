@@ -1,7 +1,7 @@
 # BF Permanent Francis Website
 
 ## Overview
-Permanent makeup business website for Birute Francis (Chicago). Static frontend-only React + Vite app with a simple Express server for production deployment.
+Premium permanent makeup business website for Birute Francis (Chicago). Static frontend-only React + Vite app with a simple Express server for production deployment. Elegant, modern beauty clinic aesthetic.
 
 ## Architecture
 - **Frontend**: React + TypeScript + Vite + TailwindCSS + shadcn/ui
@@ -9,16 +9,33 @@ Permanent makeup business website for Birute Francis (Chicago). Static frontend-
 - **Production server**: Express serving static files from `dist/` (server/index.cjs)
 - **Booking data**: localStorage (no backend database)
 
-## Fonts
-- **Headings**: Playfair Display (serif, weight 600 default) — fallback: Georgia, serif
-- **Body**: Inter (sans-serif, weights 300-700) — fallback: system-ui, sans-serif
-- **Nav links**: Uppercase, tracked Inter
+## Design System
 
-## Color Scheme
-- **Primary**: Teal/cyan `hsl(174, 100%, 29%)` — used for hero, about, services, location, FAQ sections
-- **Background**: White
-- **Accent**: Purple `hsl(280, 35%, 22%)` — footer only
-- NO yellow/gold in booking system — everything uses primary cyan
+### Fonts
+- **Headings**: Playfair Display (serif, weight 600) — loaded via `<link>` in index.html
+- **Body**: Inter (sans-serif, weight 350 default) — font-optical-sizing enabled
+- **Font loading**: Google Fonts via HTML `<link>` tags with preconnect hints (NOT CSS @import)
+- **Pattern**: Headings use CSS base rule with `!important`; body uses literal font names throughout
+
+### Color Palette (Warm Rose/Neutral)
+- **Primary**: Dusty rose `hsl(350, 28%, 56%)` — buttons, accents, links
+- **Background**: Warm off-white `hsl(30, 25%, 98%)`
+- **Foreground**: Deep charcoal `hsl(240, 10%, 15%)`
+- **Accent/Footer**: Deep dark `hsl(240, 8%, 18%)`
+- **Secondary**: Soft cream `hsl(30, 20%, 95%)`
+- **Muted text**: `hsl(240, 6%, 46%)`
+
+### Section Backgrounds
+- `bg-white` — clean sections
+- `section-soft` — soft cream `hsl(30, 20%, 96%)`
+- `section-warm` — soft rose tint `hsl(350, 15%, 96%)`
+- Hero/CTA overlays use warm gradients (dark charcoal → muted rose)
+
+### Component Patterns
+- **Cards**: `card-elegant` class — white bg, subtle shadow, 2px lift on hover
+- **Buttons**: Rounded-full pill shape for CTAs, no glow effects
+- **Section headers**: Small caps label + Playfair heading + thin divider line (`divider-soft`)
+- **Nav**: Clean, no uppercase, subtle hover underline animation
 
 ## Key Pages
 - `/` — Homepage (Hero, About, Services, Reviews, Location, FAQ, CTA)
@@ -38,8 +55,10 @@ Permanent makeup business website for Birute Francis (Chicago). Static frontend-
 - Target: Replit Autoscale
 
 ## Important Files
-- `src/index.css` — Global styles, CSS variables, font imports
+- `index.html` — Google Fonts link tags, page title/meta
+- `src/index.css` — Global styles, CSS variables, component utilities, animations
 - `tailwind.config.ts` — Theme configuration
 - `server/index.cjs` — Production static file server
 - `src/components/sections/` — Homepage sections
+- `src/components/ui/button.tsx` — Button variants (cta, hero, hero-outline)
 - `src/pages/Booking.tsx` — Multi-step booking flow

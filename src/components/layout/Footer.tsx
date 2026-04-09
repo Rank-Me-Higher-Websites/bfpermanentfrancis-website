@@ -4,7 +4,7 @@ import logoBf from "@/assets/logo-bf.webp";
 
 const quickLinks = [
   { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
+  { name: "About", href: "/about" },
   { name: "Treatments", href: "/treatments" },
   { name: "Products", href: "/products" },
   { name: "Training", href: "/training" },
@@ -22,47 +22,50 @@ const services = [
 export function Footer() {
   return (
     <footer className="bg-accent text-accent-foreground">
-      <div className="section-container py-16">
+      <div className="section-container py-16 lg:py-20">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-          {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-3 mb-6">
-              <img src={logoBf} alt="BF Permanent Francis" className="h-16 w-auto" />
+            <Link to="/" className="flex items-center gap-3 mb-6" data-testid="link-footer-logo">
+              <img src={logoBf} alt="BF Permanent Francis" className="h-14 w-auto opacity-90" />
             </Link>
-            <p className="text-sm text-accent-foreground/70 mb-6">
-              Long-Lasting Beauty, Effortlessly Yours: Discover the Power of Permanent Makeup by LONG-TIME-LINER®.
+            <p className="text-sm text-accent-foreground/50 mb-8 leading-relaxed font-light">
+              Long-Lasting Beauty, Effortlessly Yours. Discover the power of permanent makeup by Long-Time-Liner®.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               <a
                 href="https://www.facebook.com/share/1AdAYWJBYw/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-foreground/10 transition-colors hover:bg-primary hover:text-primary-foreground"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-accent-foreground/10 transition-all hover:bg-primary hover:border-primary hover:text-white"
                 aria-label="Facebook"
+                data-testid="link-facebook"
               >
-                <Facebook className="h-5 w-5" />
+                <Facebook className="h-4 w-4" />
               </a>
               <a
                 href="https://www.instagram.com/b.f_permanent"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-foreground/10 transition-colors hover:bg-primary hover:text-primary-foreground"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-accent-foreground/10 transition-all hover:bg-primary hover:border-primary hover:text-white"
                 aria-label="Instagram"
+                data-testid="link-instagram"
               >
-                <Instagram className="h-5 w-5" />
+                <Instagram className="h-4 w-4" />
               </a>
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="text-lg mb-6">Quick Links</h3>
+            <h3 className="text-sm font-medium uppercase tracking-wider text-accent-foreground/70 mb-6" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+              Quick Links
+            </h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-sm text-accent-foreground/70 transition-colors hover:text-primary"
+                    className="text-sm text-accent-foreground/50 transition-colors hover:text-primary font-light"
+                    data-testid={`footer-link-${link.name.toLowerCase().replace(/\s/g, '-')}`}
                   >
                     {link.name}
                   </Link>
@@ -71,15 +74,17 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
           <div>
-            <h3 className="text-lg mb-6">Our Services</h3>
+            <h3 className="text-sm font-medium uppercase tracking-wider text-accent-foreground/70 mb-6" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+              Services
+            </h3>
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.name}>
                   <Link
                     to={service.href}
-                    className="text-sm text-accent-foreground/70 transition-colors hover:text-primary"
+                    className="text-sm text-accent-foreground/50 transition-colors hover:text-primary font-light"
+                    data-testid={`footer-service-${service.name.toLowerCase().replace(/\s/g, '-')}`}
                   >
                     {service.name}
                   </Link>
@@ -88,35 +93,27 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div>
-            <h3 className="text-lg mb-6">Contact Us</h3>
+            <h3 className="text-sm font-medium uppercase tracking-wider text-accent-foreground/70 mb-6" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+              Contact
+            </h3>
             <ul className="space-y-4">
               <li>
-                <a
-                  href="tel:+17087372333"
-                  className="flex items-start gap-3 text-sm text-accent-foreground/70 transition-colors hover:text-primary"
-                >
-                  <Phone className="h-5 w-5 flex-shrink-0 text-primary" />
-                  <span>(708) 737-2333</span>
+                <a href="tel:+17087372333" className="flex items-center gap-3 text-sm text-accent-foreground/50 transition-colors hover:text-primary font-light" data-testid="footer-phone-1">
+                  <Phone className="h-4 w-4 text-primary/70 shrink-0" />
+                  (708) 737-2333
                 </a>
               </li>
               <li>
-                <a
-                  href="tel:+13313188113"
-                  className="flex items-start gap-3 text-sm text-accent-foreground/70 transition-colors hover:text-primary"
-                >
-                  <Phone className="h-5 w-5 flex-shrink-0 text-primary" />
-                  <span>(331) 318-8113</span>
+                <a href="tel:+13313188113" className="flex items-center gap-3 text-sm text-accent-foreground/50 transition-colors hover:text-primary font-light" data-testid="footer-phone-2">
+                  <Phone className="h-4 w-4 text-primary/70 shrink-0" />
+                  (331) 318-8113
                 </a>
               </li>
               <li>
-                <a
-                  href="mailto:francisbirute@yahoo.com"
-                  className="flex items-start gap-3 text-sm text-accent-foreground/70 transition-colors hover:text-primary"
-                >
-                  <Mail className="h-5 w-5 flex-shrink-0 text-primary" />
-                  <span>francisbirute@yahoo.com</span>
+                <a href="mailto:francisbirute@yahoo.com" className="flex items-center gap-3 text-sm text-accent-foreground/50 transition-colors hover:text-primary font-light" data-testid="footer-email">
+                  <Mail className="h-4 w-4 text-primary/70 shrink-0" />
+                  francisbirute@yahoo.com
                 </a>
               </li>
               <li>
@@ -124,14 +121,11 @@ export function Footer() {
                   href="https://maps.google.com/maps?q=12420+Archer+Ave+Unit+C+Lemont+IL+60439"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-3 text-sm text-accent-foreground/70 transition-colors hover:text-primary"
+                  className="flex items-start gap-3 text-sm text-accent-foreground/50 transition-colors hover:text-primary font-light"
+                  data-testid="footer-address"
                 >
-                  <MapPin className="h-5 w-5 flex-shrink-0 text-primary" />
-                  <span>
-                    La Passion Beauty Salon<br />
-                    12420 Archer Ave Unit C<br />
-                    Lemont, IL 60439
-                  </span>
+                  <MapPin className="h-4 w-4 text-primary/70 shrink-0 mt-0.5" />
+                  <span>La Passion Beauty Salon<br />12420 Archer Ave Unit C<br />Lemont, IL 60439</span>
                 </a>
               </li>
             </ul>
@@ -139,14 +133,13 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Copyright */}
-      <div className="border-t border-accent-foreground/10">
+      <div className="border-t border-accent-foreground/5">
         <div className="section-container py-6">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="text-sm text-accent-foreground/50">
+          <div className="flex flex-col items-center justify-between gap-3 md:flex-row">
+            <p className="text-xs text-accent-foreground/30 font-light">
               © {new Date().getFullYear()} BF Permanent Francis. All rights reserved.
             </p>
-            <p className="text-sm text-accent-foreground/50">
+            <p className="text-xs text-accent-foreground/30 font-light">
               Permanent Makeup Chicago | Long-Time-Liner® Certified
             </p>
           </div>

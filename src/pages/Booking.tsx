@@ -97,7 +97,7 @@ export default function Booking() {
         <meta name="description" content="Book your permanent makeup appointment with Birute Francis, certified SPMU artist." />
       </Helmet>
       <Layout>
-        <section className="min-h-screen bg-[#FAF8F5] py-10 md:py-16">
+        <section className="min-h-screen bg-background py-12 md:py-20">
           <div className="section-container max-w-2xl mx-auto">
             {step <= 5 && (
               <div className="flex items-center justify-center gap-0 mb-10" data-testid="booking-stepper">
@@ -134,7 +134,7 @@ export default function Booking() {
               </p>
             )}
 
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 sm:p-10">
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 sm:p-10">
               {step === 1 && (
                 <div data-testid="step-service">
                   <h2 className="text-2xl mb-1">Book Now</h2>

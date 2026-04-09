@@ -10,37 +10,34 @@ interface PageHeroProps {
 
 export function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
   return (
-    <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
+    <section className="relative min-h-[45vh] flex items-center justify-center overflow-hidden">
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
-        {/* Overlay */}
-        <div className="absolute inset-0" style={{ background: "var(--hero-overlay)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(240, 8%, 10%, 0.7) 0%, hsla(350, 15%, 18%, 0.6) 100%)" }} />
       </div>
 
-      {/* Content */}
       <div className="section-container relative z-10 py-20 text-center">
-        <div className="mx-auto max-w-4xl animate-fade-up">
+        <div className="mx-auto max-w-3xl animate-fade-up">
           {subtitle && (
-            <p className="mb-4 text-sm font-medium uppercase tracking-widest text-primary-foreground/80">
+            <span className="inline-block text-xs font-light uppercase tracking-[0.25em] text-white/60 mb-5">
               {subtitle}
-            </p>
+            </span>
           )}
-          <h1 className="heading-xl mb-8 text-primary-foreground">
+          <h1 className="heading-xl mb-8 text-white">
             {title}
           </h1>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button variant="cta" size="lg" className="glow-button" asChild>
+            <Button variant="cta" size="lg" className="rounded-full" asChild data-testid="pagehero-treatments-btn">
               <Link to="/treatments">
                 View Treatments
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button variant="hero-outline" size="lg" asChild>
+            <Button variant="hero-outline" size="lg" className="rounded-full" asChild data-testid="pagehero-call-btn">
               <a href="tel:+17087372333">
-                <Phone className="mr-2 h-5 w-5" />
+                <Phone className="mr-2 h-4 w-4" />
                 (708) 737-2333
               </a>
             </Button>
@@ -48,8 +45,7 @@ export function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
         </div>
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 }

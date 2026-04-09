@@ -40,32 +40,32 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section className="section-padding bg-background">
+    <section className="section-padding bg-white">
       <div className="section-container">
         <div className="mx-auto max-w-3xl">
-          {/* Header */}
-          <div className="mb-6 md:mb-12 text-center animate-fade-up">
-            <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
+          <div className="mb-10 md:mb-14 text-center animate-fade-up">
+            <span className="inline-block text-xs font-light uppercase tracking-[0.2em] text-primary mb-4">
               FAQ
-            </p>
-            <h2 className="heading-lg mb-2 md:mb-4">Frequently Asked Questions</h2>
-            <p className="text-sm md:text-lg text-muted-foreground">
-              Find answers to common questions about permanent makeup and our services.
+            </span>
+            <h2 className="heading-lg mb-3">Common Questions</h2>
+            <div className="divider-soft mb-5" />
+            <p className="text-base text-muted-foreground">
+              Everything you need to know about permanent makeup and our services.
             </p>
           </div>
 
-          {/* Accordion */}
-          <Accordion type="single" collapsible className="w-full space-y-4 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+          <Accordion type="single" collapsible className="w-full space-y-3 animate-fade-up" style={{ animationDelay: "0.2s" }}>
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="rounded-lg border border-primary/20 bg-primary px-4 md:px-6 text-white"
+                className="rounded-xl border border-border bg-card px-5 md:px-7 data-[state=open]:shadow-sm transition-shadow duration-300"
+                data-testid={`faq-item-${index}`}
               >
-                <AccordionTrigger className="text-left font-heading text-base md:text-lg text-white hover:text-white/80">
+                <AccordionTrigger className="text-left text-[15px] md:text-base text-foreground hover:text-primary py-5" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-white/90 pb-6">
+                <AccordionContent className="text-muted-foreground pb-6 text-[15px] leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

@@ -182,7 +182,7 @@ const Training = () => {
               <p className="text-sm text-muted-foreground mb-6">
                 Requirements vary by course. All prices are net excluding applicable VAT.
               </p>
-              <Button variant="cta" size="lg" className="glow-button" asChild>
+              <Button variant="cta" size="lg" className="rounded-full" asChild>
                 <Link to="/contact">
                   Contact Us to Book
                   <ArrowRight className="ml-2 h-5 w-5" />

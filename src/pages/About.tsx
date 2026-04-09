@@ -62,9 +62,9 @@ const About = () => {
                     alt="Birute Francis - Certified Permanent Makeup Artist"
                     className="h-full w-full object-cover"
                   />
-                  <div className="absolute bottom-6 left-6 rounded-lg bg-primary px-4 py-3 text-primary-foreground shadow-lg">
-                    <p className="text-xs font-medium uppercase tracking-wider">Long-Time-Liner®</p>
-                    <p className="font-heading text-lg">Regional Trainer</p>
+                  <div className="absolute bottom-6 left-6 rounded-lg bg-white/90 backdrop-blur-sm px-4 py-3 shadow-lg">
+                    <p className="text-xs font-medium uppercase tracking-wider text-foreground/60">Long-Time-Liner®</p>
+                    <p className="font-heading text-lg text-foreground" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>Regional Trainer</p>
                   </div>
                 </div>
                 <div className="absolute -bottom-6 -right-6 h-48 w-48 rounded-2xl border-4 border-primary/20 -z-10" />
@@ -85,7 +85,7 @@ const About = () => {
                   eyeliner to lips.
                 </p>
 
-                <div className="rounded-xl bg-secondary/50 p-6">
+                <div className="rounded-xl bg-secondary p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <Award className="h-6 w-6 text-primary" />
                     <h3 className="text-lg">Certifications</h3>
@@ -100,8 +100,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Certifications & Training */}
-        <section className="section-padding bg-secondary/30">
+        <section className="section-padding section-soft">
           <div className="section-container">
             <div className="grid gap-12 lg:grid-cols-2">
               {/* Certifications */}
@@ -110,7 +109,7 @@ const About = () => {
                 <ul className="space-y-4">
                   {certifications.map((cert) => (
                     <li key={cert} className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 flex-shrink-0 text-primary mt-0.5" />
+                      <span className="text-primary/40 mt-1.5 text-xs">●</span>
                       <span className="text-muted-foreground">{cert}</span>
                     </li>
                   ))}
@@ -122,8 +121,8 @@ const About = () => {
                 <h2 className="heading-md mb-8">Elite Training Seminars Include</h2>
                 <ul className="grid gap-3 sm:grid-cols-2">
                   {trainingTopics.map((topic) => (
-                    <li key={topic} className="flex items-start gap-2 text-muted-foreground">
-                      <span className="text-primary">•</span>
+                    <li key={topic} className="flex items-start gap-3 text-muted-foreground">
+                      <span className="text-primary/40 mt-1.5 text-xs">●</span>
                       <span>{topic}</span>
                     </li>
                   ))}

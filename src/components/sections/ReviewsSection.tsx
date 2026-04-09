@@ -42,75 +42,74 @@ export function ReviewsSection() {
   };
 
   return (
-    <section className="section-padding bg-secondary/30">
+    <section className="section-padding section-soft">
       <div className="section-container">
-        {/* Header */}
-        <div className="mx-auto mb-6 md:mb-10 max-w-2xl text-center animate-fade-up">
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
-            Our Lovely Customers
-          </p>
-          <h2 className="heading-lg mb-2 md:mb-4">
-            What Our Customers Say
+        <div className="mx-auto mb-10 md:mb-14 max-w-2xl text-center animate-fade-up">
+          <span className="inline-block text-xs font-light uppercase tracking-[0.2em] text-primary mb-4">
+            Testimonials
+          </span>
+          <h2 className="heading-lg mb-3">
+            What Our Clients Say
           </h2>
+          <div className="divider-soft" />
         </div>
 
-        {/* Mobile: horizontal scroll | Desktop: grid */}
         <div className="relative">
-          {/* Scroll arrows — mobile only */}
           <button
             onClick={() => scroll("left")}
-            className="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-card border border-border shadow-md"
+            className="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-md"
             aria-label="Previous review"
+            data-testid="button-review-prev"
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="h-4 w-4 text-foreground/60" />
           </button>
           <button
             onClick={() => scroll("right")}
-            className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-card border border-border shadow-md"
+            className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-md"
             aria-label="Next review"
+            data-testid="button-review-next"
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-4 w-4 text-foreground/60" />
           </button>
 
           <div
             ref={scrollRef}
-            className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-none px-1 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible"
+            className="flex gap-5 overflow-x-auto snap-x snap-mandatory scrollbar-none px-1 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible"
           >
             {reviews.map((review, index) => (
               <article
                 key={review.id}
-                className="card-hover flex flex-col rounded-2xl bg-card border border-gray-300 p-6 md:p-8 animate-fade-up min-w-[280px] max-w-[320px] md:min-w-0 md:max-w-none snap-center flex-shrink-0 md:flex-shrink"
+                className="card-elegant flex flex-col p-6 md:p-8 animate-fade-up min-w-[280px] max-w-[320px] md:min-w-0 md:max-w-none snap-center flex-shrink-0 md:flex-shrink"
                 style={{ animationDelay: `${0.1 * index}s` }}
+                data-testid={`review-card-${review.id}`}
               >
-                {/* Author */}
-                <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
+                <div className="flex gap-0.5 mb-5">
+                  {Array.from({ length: review.rating }).map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-primary/80 text-primary/80" />
+                  ))}
+                </div>
+
+                <blockquote className="flex-1 text-[15px] text-muted-foreground leading-relaxed mb-6 italic">
+                  "{review.text}"
+                </blockquote>
+
+                <div className="flex items-center gap-3">
                   <img
                     src={review.image}
                     alt={review.name}
-                    className="h-12 w-12 md:h-16 md:w-16 rounded-full object-cover"
+                    className="h-11 w-11 rounded-full object-cover"
                   />
-                  <div>
-                    <p className="font-heading text-sm md:text-base">{review.name}</p>
-                    <div className="flex gap-0.5">
-                      {Array.from({ length: review.rating }).map((_, i) => (
-                        <Star key={i} className="h-3.5 w-3.5 md:h-4 md:w-4 fill-primary text-primary" />
-                      ))}
-                    </div>
-                  </div>
+                  <p className="font-heading text-sm font-medium text-foreground" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                    {review.name}
+                  </p>
                 </div>
-
-                {/* Quote */}
-                <blockquote className="flex-1 text-sm md:text-base text-muted-foreground">
-                  "{review.text}"
-                </blockquote>
               </article>
             ))}
           </div>
 
-          {/* Scroll indicator dots — mobile only */}
-          <div className="flex justify-center gap-1.5 mt-4 md:hidden">
+          <div className="flex justify-center gap-2 mt-5 md:hidden">
             {reviews.map((r) => (
-              <div key={r.id} className="h-1.5 w-1.5 rounded-full bg-primary/30" />
+              <div key={r.id} className="h-1 w-6 rounded-full bg-primary/20" />
             ))}
           </div>
         </div>

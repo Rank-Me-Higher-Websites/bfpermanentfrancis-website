@@ -7,7 +7,7 @@ import logoBf from "@/assets/logo-bf.webp";
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
+  { name: "About", href: "/about" },
   { name: "Treatments", href: "/treatments" },
   { name: "Products", href: "/products" },
   { name: "Training", href: "/training" },
@@ -22,35 +22,33 @@ export function Header() {
   const isActive = (href: string) => location.pathname === href;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-xl border-b border-border/30">
       <nav className="section-container flex h-20 items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-3">
-          <div className="flex h-14 items-center rounded bg-primary px-3">
-            <img src={logoBf} alt="BF Permanent Francis Logo" className="h-10 w-auto" />
+        <Link to="/" className="flex items-center gap-3" data-testid="link-home-logo">
+          <div className="flex h-12 items-center rounded-lg bg-primary/10 px-3">
+            <img src={logoBf} alt="BF Permanent Francis Logo" className="h-9 w-auto" />
           </div>
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden lg:flex lg:items-center lg:gap-8">
+        <div className="hidden lg:flex lg:items-center lg:gap-7">
           {navigation.map((item) => (
             <Link
               key={item.name}
               to={item.href}
-              className={`nav-link text-[13px] font-medium uppercase tracking-wide transition-colors hover:text-primary pb-1 ${
+              className={`nav-link text-[13px] tracking-wide transition-colors hover:text-primary pb-1 ${
                 isActive(item.href)
-                  ? "text-primary"
-                  : "text-muted-foreground"
+                  ? "text-primary font-medium"
+                  : "text-foreground/60 font-normal"
               }`}
+              data-testid={`nav-${item.name.toLowerCase().replace(/\s/g, '-')}`}
             >
               {item.name}
             </Link>
           ))}
         </div>
 
-        {/* CTA Button - Desktop */}
         <div className="hidden lg:flex lg:items-center lg:gap-4">
-          <Button variant="cta" size="lg" asChild>
+          <Button variant="cta" size="default" className="rounded-full px-6" asChild data-testid="button-call-header">
             <a href="tel:+17087372333">
               <Phone className="mr-2 h-4 w-4" />
               (708) 737-2333
@@ -58,38 +56,38 @@ export function Header() {
           </Button>
         </div>
 
-        {/* Mobile Menu */}
         <div className="lg:hidden">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label="Open menu">
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="icon" aria-label="Open menu" data-testid="button-menu-toggle">
+                <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-80">
-              <div className="flex flex-col gap-6 py-6">
+              <div className="flex flex-col gap-8 py-8">
                 <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3">
-                  <div className="flex h-12 items-center rounded bg-primary px-3">
-                    <img src={logoBf} alt="BF Permanent Francis" className="h-8 w-auto" />
+                  <div className="flex h-10 items-center rounded-lg bg-primary/10 px-3">
+                    <img src={logoBf} alt="BF Permanent Francis" className="h-7 w-auto" />
                   </div>
                 </Link>
-                <nav className="flex flex-col gap-4">
+                <nav className="flex flex-col gap-5">
                   {navigation.map((item) => (
                     <Link
                       key={item.name}
                       to={item.href}
                       onClick={() => setIsOpen(false)}
-                      className={`text-lg font-medium transition-colors hover:text-primary ${
+                      className={`text-base transition-colors hover:text-primary ${
                         isActive(item.href)
-                          ? "text-primary"
-                          : "text-foreground"
+                          ? "text-primary font-medium"
+                          : "text-foreground/70"
                       }`}
+                      data-testid={`mobile-nav-${item.name.toLowerCase().replace(/\s/g, '-')}`}
                     >
                       {item.name}
                     </Link>
                   ))}
                 </nav>
-                <Button variant="cta" size="lg" className="w-full" asChild>
+                <Button variant="cta" size="lg" className="w-full rounded-full" asChild>
                   <a href="tel:+17087372333">
                     <Phone className="mr-2 h-4 w-4" />
                     (708) 737-2333

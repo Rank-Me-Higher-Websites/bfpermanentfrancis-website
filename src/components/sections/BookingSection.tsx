@@ -85,21 +85,21 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
               name="fullName"
               required
               placeholder="Full Name"
-              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 autofill:shadow-[inset_0_0_0px_1000px_hsla(280,35%,22%,0.6)] autofill:[-webkit-text-fill-color:white]"
+              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 autofill:shadow-[inset_0_0_0px_1000px_hsla(240,8%,18%,0.6)] autofill:[-webkit-text-fill-color:white]"
             />
             <Input
               name="phone"
               type="tel"
               required
               placeholder="Phone Number"
-              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 autofill:shadow-[inset_0_0_0px_1000px_hsla(280,35%,22%,0.6)] autofill:[-webkit-text-fill-color:white]"
+              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 autofill:shadow-[inset_0_0_0px_1000px_hsla(240,8%,18%,0.6)] autofill:[-webkit-text-fill-color:white]"
             />
             <Input
               name="email"
               type="email"
               required
               placeholder="Email Address"
-              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 autofill:shadow-[inset_0_0_0px_1000px_hsla(280,35%,22%,0.6)] autofill:[-webkit-text-fill-color:white]"
+              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 autofill:shadow-[inset_0_0_0px_1000px_hsla(240,8%,18%,0.6)] autofill:[-webkit-text-fill-color:white]"
             />
             <Select name="service" required>
               <SelectTrigger className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground [&>span]:text-primary-foreground/50 [&>span[data-state]]:text-primary-foreground data-[state=open]:text-primary-foreground">
@@ -153,14 +153,14 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
             <Input
               name="notes"
               placeholder="Notes (optional)"
-              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 autofill:shadow-[inset_0_0_0px_1000px_hsla(280,35%,22%,0.6)] autofill:[-webkit-text-fill-color:white]"
+              className="h-10 sm:h-12 text-sm bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 autofill:shadow-[inset_0_0_0px_1000px_hsla(240,8%,18%,0.6)] autofill:[-webkit-text-fill-color:white]"
             />
 
             <Button
               type="submit"
               variant="cta"
               size="lg"
-              className="h-10 sm:h-12 w-full glow-button text-sm"
+              className="h-10 sm:h-12 w-full text-sm"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Sending..." : (
@@ -273,7 +273,7 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
                 type="submit"
                 variant="cta"
                 size="lg"
-                className="h-12 w-full glow-button"
+                className="h-12 w-full"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "Sending..." : (
@@ -405,7 +405,7 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
               type="submit"
               variant="cta"
               size="lg"
-              className="w-full glow-button h-13 text-base"
+              className="w-full h-12 text-base rounded-xl"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Submitting..." : (

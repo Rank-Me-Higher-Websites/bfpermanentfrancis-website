@@ -134,9 +134,9 @@ const Treatments = () => {
                     className={`animate-fade-up ${index % 2 === 1 ? "lg:order-1" : ""}`}
                     style={{ animationDelay: "0.2s" }}
                   >
-                    <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
+                    <span className="inline-block text-xs font-light uppercase tracking-[0.2em] text-primary mb-3">
                       {treatment.subtitle}
-                    </p>
+                    </span>
                     <h2 className="heading-lg mb-4">{treatment.title}</h2>
                     <p className="mb-6 text-lg text-muted-foreground">{treatment.description}</p>
 
@@ -164,7 +164,7 @@ const Treatments = () => {
                       </ul>
                     </div>
 
-                    <Button variant="default" size="lg" asChild>
+                    <Button variant="cta" size="lg" className="rounded-full" asChild>
                       <Link to="/contact">
                         Book Consultation
                         <ArrowRight className="ml-2 h-5 w-5" />
