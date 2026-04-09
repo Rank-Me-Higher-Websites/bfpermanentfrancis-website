@@ -37,7 +37,7 @@ export function Header() {
             <Link
               key={item.name}
               to={item.href}
-              className={`text-[13px] font-medium uppercase tracking-wide transition-colors hover:text-primary ${
+              className={`nav-link text-[13px] font-medium uppercase tracking-wide transition-colors hover:text-primary pb-1 ${
                 isActive(item.href)
                   ? "text-primary"
                   : "text-muted-foreground"
