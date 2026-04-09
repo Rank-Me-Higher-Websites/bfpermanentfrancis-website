@@ -73,10 +73,8 @@ export function HeroSection() {
 
             <div className="hidden sm:flex mt-10 flex-wrap items-center justify-center lg:justify-start gap-5">
               {BADGES.map(({ icon: Icon, label }) => (
-                <div key={label} className="flex items-center gap-2.5">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
-                    <Icon className="h-4 w-4 text-white" />
-                  </div>
+                <div key={label} className="flex items-center gap-2.5 bg-primary/80 backdrop-blur-sm rounded-full px-4 py-2">
+                  <Icon className="h-4 w-4 text-white" />
                   <span className="text-sm font-medium text-white">{label}</span>
                 </div>
               ))}
@@ -84,7 +82,7 @@ export function HeroSection() {
           </div>
 
           <div className="w-full lg:w-[400px] shrink-0 animate-fade-up" style={{ animationDelay: "0.15s" }}>
-            <div className="rounded-2xl bg-white shadow-2xl border border-gray-200 p-5 sm:p-7">
+            <div className="rounded-2xl bg-white shadow-2xl border-2 border-primary/30 p-5 sm:p-7">
               <h2 className="text-lg sm:text-xl text-foreground mb-0.5" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 700 }}>Book Your Appointment</h2>
               <p className="text-xs sm:text-sm text-muted-foreground mb-4" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Select one or more services</p>
               <div className="space-y-2.5">
