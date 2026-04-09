@@ -81,36 +81,32 @@ export function AboutSection() {
             <div className="divider-soft mb-0" />
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            <div className="rounded-2xl bg-white p-6 md:p-8 shadow-sm">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10">
-                  <Award className="h-4 w-4 text-primary" />
-                </div>
-                <h3 className="text-lg" style={{ color: 'hsl(240 10% 15%)' }}>Certifications</h3>
+          <div className="grid gap-5 md:grid-cols-2 animate-fade-up" style={{ animationDelay: "0.1s" }}>
+            <div className="rounded-xl bg-white p-5 shadow-sm">
+              <div className="flex items-center gap-2.5 mb-3 pb-3 border-b border-gray-100">
+                <Award className="h-4 w-4 text-primary" />
+                <h3 className="text-sm font-semibold uppercase tracking-wide" style={{ color: 'hsl(240 10% 20%)' }}>Certifications</h3>
               </div>
-              <ul className="space-y-3">
+              <ul className="space-y-1.5">
                 {certifications.map((cert) => (
-                  <li key={cert} className="flex items-start gap-2.5 text-sm" data-testid={`cert-${cert.slice(0,10)}`}>
-                    <span className="mt-1.5 text-[8px]" style={{ color: 'hsl(350 28% 56%)' }}>●</span>
-                    <span style={{ color: 'hsl(240 8% 35%)' }}>{cert}</span>
+                  <li key={cert} className="flex items-start gap-2 text-[13px] leading-snug" data-testid={`cert-${cert.slice(0,10)}`}>
+                    <span className="mt-1 text-[7px] text-primary">●</span>
+                    <span style={{ color: 'hsl(240 10% 20%)' }}>{cert}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="rounded-2xl bg-white p-6 md:p-8 shadow-sm">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10">
-                  <GraduationCap className="h-4 w-4 text-primary" />
-                </div>
-                <h3 className="text-lg" style={{ color: 'hsl(240 10% 15%)' }}>Elite Training</h3>
+            <div className="rounded-xl bg-white p-5 shadow-sm">
+              <div className="flex items-center gap-2.5 mb-3 pb-3 border-b border-gray-100">
+                <GraduationCap className="h-4 w-4 text-primary" />
+                <h3 className="text-sm font-semibold uppercase tracking-wide" style={{ color: 'hsl(240 10% 20%)' }}>Training Topics</h3>
               </div>
-              <ul className="space-y-3">
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-1.5">
                 {trainingTopics.map((topic) => (
-                  <li key={topic} className="flex items-start gap-2.5 text-sm">
-                    <span className="mt-1.5 text-[8px]" style={{ color: 'hsl(350 28% 56%)' }}>●</span>
-                    <span style={{ color: 'hsl(240 8% 35%)' }}>{topic}</span>
+                  <li key={topic} className="flex items-start gap-2 text-[13px] leading-snug">
+                    <span className="mt-1 text-[7px] text-primary">●</span>
+                    <span style={{ color: 'hsl(240 10% 20%)' }}>{topic}</span>
                   </li>
                 ))}
               </ul>
