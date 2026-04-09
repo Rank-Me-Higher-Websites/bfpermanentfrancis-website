@@ -37,7 +37,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[85svh] flex items-center justify-center overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{ backgroundImage: `url(${heroBg})` }}
@@ -55,7 +55,7 @@ export function HeroSection() {
             </div>
             <h1 className="mb-3 sm:mb-8 text-white text-3xl sm:text-5xl lg:text-7xl leading-[1.08] drop-shadow-sm" style={{ letterSpacing: '-0.02em', fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 600 }}>
               Long-Lasting Beauty,<br />
-              Effortlessly Yours
+              <span className="text-primary">Effortlessly Yours</span>
             </h1>
             <p className="mb-3 sm:mb-10 max-w-md text-xs sm:text-base lg:text-lg text-white/75 leading-relaxed mx-auto lg:mx-0">
               Expert micropigmentation by certified Long-Time-Liner® Regional Trainer.
@@ -137,7 +137,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 bg-gradient-to-t from-background to-transparent" />
+      {/* bottom fade removed */}
     </section>
   );
 }
