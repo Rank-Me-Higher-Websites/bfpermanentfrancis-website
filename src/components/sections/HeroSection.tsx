@@ -84,55 +84,51 @@ export function HeroSection() {
           </div>
 
           <div className="w-full lg:w-[400px] shrink-0 animate-fade-up" style={{ animationDelay: "0.15s" }}>
-            <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-              <div className="px-5 sm:px-7 pt-5 sm:pt-7 pb-4" style={{ background: "hsl(350, 20%, 18%)" }}>
-                <h2 className="text-lg sm:text-xl text-white mb-0.5" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 600 }}>Book Your Appointment</h2>
-                <p className="text-xs sm:text-sm text-white/60" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Select one or more services</p>
-              </div>
-              <div className="bg-white p-5 sm:p-7 pt-4 sm:pt-5">
-                <div className="space-y-2">
-                  {SERVICES.map((s) => {
-                    const isSelected = selectedServices.includes(s.id);
-                    return (
-                      <button
-                        key={s.id}
-                        data-testid={`hero-service-${s.id}`}
-                        onClick={() => toggleService(s.id)}
-                        className={cn(
-                          "w-full flex items-center justify-between px-4 py-3.5 rounded-xl border-2 transition-all text-left text-sm group",
+            <div className="rounded-2xl bg-white shadow-2xl border border-gray-200 p-5 sm:p-7">
+              <h2 className="text-lg sm:text-xl text-foreground mb-0.5" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 700 }}>Book Your Appointment</h2>
+              <p className="text-xs sm:text-sm text-muted-foreground mb-4" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Select one or more services</p>
+              <div className="space-y-2.5">
+                {SERVICES.map((s) => {
+                  const isSelected = selectedServices.includes(s.id);
+                  return (
+                    <button
+                      key={s.id}
+                      data-testid={`hero-service-${s.id}`}
+                      onClick={() => toggleService(s.id)}
+                      className={cn(
+                        "w-full flex items-center justify-between px-4 py-3.5 rounded-xl border-2 transition-all text-left text-sm group",
+                        isSelected
+                          ? "border-primary bg-primary/5"
+                          : "border-gray-200 hover:border-primary/40"
+                      )}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={cn(
+                          "flex h-5 w-5 items-center justify-center rounded-full border-2 transition-all",
                           isSelected
-                            ? "border-primary bg-primary/5"
-                            : "border-gray-200 hover:border-primary/40"
-                        )}
-                      >
-                        <div className="flex items-center gap-3">
-                          <div className={cn(
-                            "flex h-5 w-5 items-center justify-center rounded-full border-2 transition-all",
-                            isSelected
-                              ? "border-primary bg-primary"
-                              : "border-gray-300 group-hover:border-primary/40"
-                          )}>
-                            {isSelected && <Check className="h-3 w-3 text-white" />}
-                          </div>
-                          <span className="font-medium text-foreground">{s.name}</span>
+                            ? "border-primary bg-primary"
+                            : "border-gray-300 group-hover:border-primary/40"
+                        )}>
+                          {isSelected && <Check className="h-3 w-3 text-white" />}
                         </div>
-                        <span className="font-semibold text-foreground">{s.price}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-                <Button
-                  data-testid="hero-book-now-btn"
-                  onClick={handleBookNow}
-                  variant="cta"
-                  className="w-full mt-5 h-12 text-[15px] font-semibold rounded-xl"
-                >
-                  Book Now <ChevronRight className="ml-1 h-4 w-4" />
-                </Button>
-                <p className="text-center text-xs text-muted-foreground mt-3" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-                  Free consultation included
-                </p>
+                        <span className="font-medium text-foreground">{s.name}</span>
+                      </div>
+                      <span className="font-semibold text-foreground">{s.price}</span>
+                    </button>
+                  );
+                })}
               </div>
+              <Button
+                data-testid="hero-book-now-btn"
+                onClick={handleBookNow}
+                variant="cta"
+                className="w-full mt-5 h-12 text-[15px] font-semibold rounded-xl"
+              >
+                Book Now <ChevronRight className="ml-1 h-4 w-4" />
+              </Button>
+              <p className="text-center text-xs text-muted-foreground mt-3" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+                Free consultation included
+              </p>
             </div>
           </div>
 
