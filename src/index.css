@@ -138,11 +138,11 @@
   }
 
   .section-padding {
-    @apply py-5 sm:py-8 md:py-16 lg:py-20;
+    @apply py-5 sm:py-8 md:py-10 lg:py-12;
   }
 
   .section-padding-sm {
-    @apply py-4 sm:py-6 md:py-12 lg:py-14;
+    @apply py-4 sm:py-6 md:py-8 lg:py-10;
   }
 
   .heading-xl {
