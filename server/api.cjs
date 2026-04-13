@@ -412,6 +412,10 @@ app.patch("/api/bookings/:id", async (req, res) => {
 app.delete("/api/bookings/:id", async (req, res) => {
   const { id } = req.params;
   try {
+    const { rows } = await pool.query(`SELECT teamup_event_id FROM bookings WHERE id = $1`, [id]);
+    if (rows.length && rows[0].teamup_event_id) {
+      await deleteTeamupEvent(rows[0].teamup_event_id);
+    }
     await pool.query(`UPDATE bookings SET deleted_at = NOW(), updated_at = NOW() WHERE id = $1`, [id]);
     res.json({ success: true });
   } catch (err) {
