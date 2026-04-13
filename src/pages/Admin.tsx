@@ -183,7 +183,7 @@ export default function Admin() {
 
                   <div className="grid grid-cols-7">
                     {Array.from({ length: startDayOfWeek }).map((_, i) => (
-                      <div key={`empty-${i}`} className="border-b border-r border-gray-200 bg-gray-50/50 min-h-[70px]" />
+                      <div key={`empty-${i}`} className="border border-gray-300 bg-gray-50/50 min-h-[70px]" />
                     ))}
 
                     {days.map((day) => {
@@ -198,7 +198,7 @@ export default function Admin() {
                           key={key}
                           onClick={() => setSelectedDate(isSelected ? null : day)}
                           className={`
-                            relative border-b border-r border-gray-200 min-h-[70px] p-1.5
+                            relative border border-gray-300 min-h-[70px] p-1.5
                             text-left transition-colors flex flex-col
                             ${isSelected ? "bg-purple-100 ring-2 ring-purple-500 ring-inset" : "hover:bg-gray-50"}
                             ${today && !isSelected ? "bg-purple-50" : ""}
