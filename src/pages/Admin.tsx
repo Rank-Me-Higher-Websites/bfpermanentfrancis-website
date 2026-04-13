@@ -8,6 +8,7 @@ import { BookingTable, type Booking } from "@/components/admin/BookingTable";
 import { type BookingStatus } from "@/components/admin/BookingStatusBadge";
 import { BookingCalendar } from "@/components/admin/BookingCalendar";
 
+const ADMIN_USERNAME = "admin";
 const ADMIN_PASSWORD = "admin123";
 
 type FilterStatus = "all" | BookingStatus;
@@ -22,6 +23,7 @@ const FILTER_CONFIG: { value: FilterStatus; label: string; icon: React.ReactNode
 
 export default function Admin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -59,11 +61,11 @@ export default function Admin() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
+    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
       setIsAuthenticated(true);
       setError("");
     } else {
-      setError("Wrong password. Please try again.");
+      setError("Invalid username or password. Please try again.");
     }
   };
 
@@ -129,17 +131,27 @@ export default function Admin() {
                   Admin Login
                 </h1>
                 <p className="text-base text-muted-foreground text-center">
-                  Enter your password to see your bookings
+                  Enter your credentials to see your bookings
                 </p>
               </div>
+
+              <Input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Username"
+                className="h-14 text-lg px-5"
+                data-testid="input-username"
+                autoFocus
+              />
 
               <Input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Type your password here"
+                placeholder="Password"
                 className="h-14 text-lg px-5"
-                autoFocus
+                data-testid="input-password"
               />
 
               {error && (
