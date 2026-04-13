@@ -21,6 +21,8 @@ const Contact = () => {
           title="Get in Touch"
           subtitle="Contact"
           backgroundImage={heroImage}
+          ctaLabel="Book an Appointment"
+          ctaLink="/booking"
         />
 
         <section className="section-padding-sm section-soft">

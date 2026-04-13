@@ -6,9 +6,11 @@ interface PageHeroProps {
   title: string;
   subtitle?: string;
   backgroundImage: string;
+  ctaLabel?: string;
+  ctaLink?: string;
 }
 
-export function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
+export function PageHero({ title, subtitle, backgroundImage, ctaLabel = "View Treatments", ctaLink = "/treatments" }: PageHeroProps) {
   return (
     <section className="relative min-h-[45vh] flex items-center justify-center overflow-hidden">
       <div
@@ -29,8 +31,8 @@ export function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
           </h1>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button variant="cta" size="lg" className="rounded-full" asChild data-testid="pagehero-treatments-btn">
-              <Link to="/treatments">
-                View Treatments
+              <Link to={ctaLink}>
+                {ctaLabel}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
