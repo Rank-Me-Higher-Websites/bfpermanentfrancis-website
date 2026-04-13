@@ -8,7 +8,8 @@ Premium permanent makeup business website for Birute Francis (Chicago). Static f
 - **Routing**: react-router-dom v6
 - **API server**: Express API on port 3001 (server/api.cjs) — Teamup calendar integration
 - **Production server**: Express serving static files + API routes from `dist/` (server/index.cjs)
-- **Booking data**: localStorage + Teamup calendar sync
+- **Database**: PostgreSQL (Replit built-in) — bookings + blocked_times tables
+- **Booking data**: PostgreSQL database + Teamup calendar sync
 - **Dev command**: `node server/api.cjs & vite` — runs API server alongside Vite dev server with proxy
 
 ## Teamup Calendar Integration
@@ -20,6 +21,20 @@ Premium permanent makeup business website for Birute Francis (Chicago). Static f
   - `GET /api/availability?date=YYYY-MM-DD` — returns available 30-min time slots after checking Teamup for conflicts
   - `POST /api/bookings` — creates booking and pushes event to Teamup calendar
 - **Sync behavior**: When a booking is confirmed, a 2-hour event is created on the Teamup calendar with client details. Existing Teamup events block those time slots from being available.
+- `POST /api/sync-teamup` — imports all Teamup events into the local database
+- `PATCH /api/bookings/:id/status` — updates booking status + syncs to Teamup (cancelled = prefix title with [CANCELLED])
+- `PATCH /api/bookings/:id` — edit booking date/time/service/notes + syncs to Teamup
+- `DELETE /api/bookings/:id` — soft-delete (sets deleted_at)
+- `POST /api/bookings/:id/restore` — restores soft-deleted booking
+- `GET /api/bookings/stats` — returns today/pending/total counts
+- `GET /api/bookings/deleted` — returns soft-deleted bookings
+- `GET /api/blocked-times` — returns all blocked time slots
+- `POST /api/blocked-times` — creates a blocked time slot
+- `DELETE /api/blocked-times/:id` — removes a blocked time slot
+
+## Database Tables
+- **bookings**: id, teamup_event_id, full_name, phone, email, service_type, preferred_date, preferred_time, notes, admin_notes, status (pending/confirmed/cancelled/completed), deleted_at, created_at, updated_at
+- **blocked_times**: id, block_date, start_time, end_time, reason, teamup_event_id, created_at
 
 ## Design System
 
@@ -64,7 +79,7 @@ Premium permanent makeup business website for Birute Francis (Chicago). Static f
 ## Key Pages
 - `/` — Homepage (Hero, About, Services, Reviews, Location, FAQ, CTA)
 - `/booking` — Multi-step booking form (supports multi-service selection via `?service=id1,id2`)
-- `/admin` — Admin panel (reads bookings from localStorage)
+- `/admin` — Admin panel with 5 tabs: Dashboard, Bookings, Calendar, Blocked, Deleted (PostgreSQL backend, Teamup sync)
 - `/about`, `/treatments`, `/products`, `/training`, `/gallery`, `/contact` — Content pages
 
 ## Services
