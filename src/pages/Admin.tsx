@@ -129,8 +129,8 @@ export default function Admin() {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <div className="min-h-screen bg-muted flex">
-        <aside className="w-56 sm:w-64 flex-shrink-0 border-r border-border bg-card flex flex-col min-h-screen sticky top-0">
-          <div className="p-5 border-b border-border">
+        <aside className="w-56 sm:w-64 flex-shrink-0 border-r-2 border-gray-300 bg-card flex flex-col min-h-screen sticky top-0">
+          <div className="p-5 border-b-2 border-gray-300">
             <h1 className="text-lg sm:text-xl font-bold" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>My Bookings</h1>
           </div>
 
@@ -157,7 +157,7 @@ export default function Admin() {
             </button>
           </nav>
 
-          <div className="p-3 border-t border-border space-y-1">
+          <div className="p-3 border-t-2 border-gray-300 space-y-1">
             <Button
               variant="outline"
               size="sm"
@@ -237,7 +237,7 @@ function UpcomingList({ bookings }: { bookings: Booking[] }) {
               </div>
             )}
             <div
-              className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 sm:p-5"
+              className="flex items-center gap-3 rounded-xl border-2 border-gray-300 bg-card p-4 sm:p-5"
               data-testid={`booking-card-${b.id}`}
             >
               <div className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-primary/10 flex-shrink-0">

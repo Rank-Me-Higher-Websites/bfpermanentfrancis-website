@@ -49,9 +49,9 @@ export function BookingCalendar({ bookings }: BookingCalendarProps) {
   return (
     <div className="space-y-4">
       {/* Calendar Grid */}
-      <div className="rounded-2xl border border-border bg-card overflow-hidden">
+      <div className="rounded-2xl border-2 border-gray-300 bg-card overflow-hidden">
         {/* Month Navigation */}
-        <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-border">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b-2 border-gray-300">
           <button
             onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
             className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl border border-border hover:bg-muted transition-colors"
@@ -70,7 +70,7 @@ export function BookingCalendar({ bookings }: BookingCalendarProps) {
         </div>
 
         {/* Weekday Headers */}
-        <div className="grid grid-cols-7 border-b border-border">
+        <div className="grid grid-cols-7 border-b-2 border-gray-300">
           {WEEKDAYS.map((day) => (
             <div key={day} className="py-2 sm:py-3 text-center text-xs sm:text-sm font-semibold text-muted-foreground">
               {day}
@@ -82,7 +82,7 @@ export function BookingCalendar({ bookings }: BookingCalendarProps) {
         <div className="grid grid-cols-7">
           {/* Empty cells before first day */}
           {Array.from({ length: startDayOfWeek }).map((_, i) => (
-            <div key={`empty-${i}`} className="border-b border-r border-border bg-muted/30 min-h-[60px] sm:min-h-[80px]" />
+            <div key={`empty-${i}`} className="border-b border-r border-gray-200 bg-muted/30 min-h-[60px] sm:min-h-[80px]" />
           ))}
 
           {days.map((day) => {
@@ -97,7 +97,7 @@ export function BookingCalendar({ bookings }: BookingCalendarProps) {
                 key={key}
                 onClick={() => setSelectedDate(isSelected ? null : day)}
                 className={`
-                  relative border-b border-r border-border min-h-[60px] sm:min-h-[80px] p-1 sm:p-2
+                  relative border-b border-r border-gray-200 min-h-[60px] sm:min-h-[80px] p-1 sm:p-2
                   text-left transition-colors flex flex-col
                   ${isSelected ? "bg-purple-100 ring-2 ring-purple-400 ring-inset" : "hover:bg-muted/50"}
                   ${today ? "bg-accent/30" : ""}
@@ -151,7 +151,7 @@ export function BookingCalendar({ bookings }: BookingCalendarProps) {
 
       {/* Selected Day Detail */}
       {selectedDate && (
-        <div className="rounded-2xl border border-border bg-card p-4 sm:p-5 space-y-3">
+        <div className="rounded-2xl border-2 border-gray-300 bg-card p-4 sm:p-5 space-y-3">
           <h3 className="text-lg sm:text-xl">
             📅 {format(selectedDate, "EEEE, MMMM d")}
           </h3>
@@ -162,7 +162,7 @@ export function BookingCalendar({ bookings }: BookingCalendarProps) {
               {selectedBookings.map((booking) => (
                 <div
                   key={booking.id}
-                  className="flex items-center gap-3 rounded-xl border border-border bg-muted/30 p-3 sm:p-4"
+                  className="flex items-center gap-3 rounded-xl border-2 border-gray-300 bg-muted/30 p-3 sm:p-4"
                 >
                   <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-primary/10 flex-shrink-0">
                     <User className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
