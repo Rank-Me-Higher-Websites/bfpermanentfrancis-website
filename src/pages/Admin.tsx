@@ -47,7 +47,7 @@ interface Stats {
   total: number;
 }
 
-type TabKey = "dashboard" | "bookings" | "calendar" | "blocked" | "deleted";
+type TabKey = "dashboard" | "calendar" | "blocked" | "deleted";
 
 const STATUS_COLORS: Record<BookingStatus, string> = {
   pending: "bg-amber-100 text-amber-800 border-amber-300",
@@ -58,7 +58,6 @@ const STATUS_COLORS: Record<BookingStatus, string> = {
 
 const TABS: { key: TabKey; label: string; icon: typeof LayoutDashboard }[] = [
   { key: "dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { key: "bookings", label: "Bookings", icon: List },
   { key: "calendar", label: "Calendar", icon: Calendar },
   { key: "blocked", label: "Blocked", icon: Ban },
   { key: "deleted", label: "Deleted", icon: Trash2 },
@@ -410,45 +409,6 @@ export default function Admin() {
                     </div>
                   </div>
 
-                  <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
-                    <div className="px-5 py-3 border-b border-gray-200 flex items-center justify-between">
-                      <h2 className="text-base font-bold" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Today's Appointments</h2>
-                      <button onClick={() => { setActiveTab("bookings"); setStatusFilter("pending"); }} className="text-xs text-primary font-medium flex items-center gap-1 hover:underline">
-                        View pending <ArrowRight className="h-3 w-3" />
-                      </button>
-                    </div>
-                    <div className="divide-y divide-gray-100">
-                      {bookings.filter((b) => b.preferred_date === new Date().toISOString().split("T")[0] && b.status !== "cancelled").length === 0 ? (
-                        <div className="p-8 text-center"><p className="text-gray-400">No appointments today.</p></div>
-                      ) : (
-                        bookings
-                          .filter((b) => b.preferred_date === new Date().toISOString().split("T")[0] && b.status !== "cancelled")
-                          .sort((a, b) => (a.preferred_time || "").localeCompare(b.preferred_time || ""))
-                          .map((b) => (
-                            <div key={b.id} className="flex items-center gap-3 px-5 py-3">
-                              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 flex-shrink-0">
-                                <User className="h-4 w-4 text-primary" />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <p className="text-sm font-bold truncate">{b.full_name}</p>
-                                <p className="text-xs text-gray-500">{b.preferred_time} · {b.service_type}</p>
-                              </div>
-                              {renderStatusBadge(b.status)}
-                              {b.phone && (
-                                <a href={`tel:${b.phone}`} className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 flex-shrink-0 hover:bg-primary/20">
-                                  <Phone className="h-3.5 w-3.5 text-primary" />
-                                </a>
-                              )}
-                            </div>
-                          ))
-                      )}
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {activeTab === "bookings" && (
-                <div className="space-y-4">
                   <div className="flex gap-2 flex-wrap">
                     {(["all", "pending", "confirmed", "completed", "cancelled"] as const).map((s) => (
                       <button
