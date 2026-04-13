@@ -12,14 +12,13 @@ export function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
   return (
     <section className="relative min-h-[45vh] flex items-center justify-center overflow-hidden">
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${backgroundImage})` }}
-      >
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(280, 20%, 8%, 0.85) 0%, hsla(280, 25%, 12%, 0.75) 100%)" }} />
-      </div>
+      />
+      <div className="absolute inset-0 bg-black/50" />
 
       <div className="section-container relative z-10 py-20 text-center">
-        <div className="mx-auto max-w-3xl ">
+        <div className="mx-auto max-w-3xl">
           {subtitle && (
             <span className="inline-block text-xs font-medium uppercase tracking-[0.25em] text-white/60 mb-5" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
               {subtitle}
@@ -44,8 +43,6 @@ export function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
           </div>
         </div>
       </div>
-
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 }
