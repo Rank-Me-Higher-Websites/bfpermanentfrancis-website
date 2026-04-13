@@ -79,27 +79,26 @@ export function ReviewsSection() {
             {reviews.map((review, index) => (
               <article
                 key={review.id}
-                className="card-elegant flex flex-col p-6 md:p-8 animate-fade-up min-w-[280px] max-w-[320px] md:min-w-0 md:max-w-none snap-center flex-shrink-0 md:flex-shrink border border-white/12"
-                style={{ animationDelay: `${0.1 * index}s` }}
+                className="card-elegant flex flex-col p-7 md:p-9 min-w-[300px] max-w-[340px] md:min-w-0 md:max-w-none snap-center flex-shrink-0 md:flex-shrink border border-white/10"
                 data-testid={`review-card-${review.id}`}
               >
-                <div className="flex gap-0.5 mb-5">
+                <div className="flex gap-1 mb-6">
                   {Array.from({ length: review.rating }).map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
+                    <Star key={i} className="h-5 w-5 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
 
-                <blockquote className="flex-1 text-[15px] text-white/80 leading-relaxed mb-6 italic">
+                <blockquote className="flex-1 text-[16px] text-white/80 leading-[1.8] mb-7 italic">
                   "{review.text}"
                 </blockquote>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-4">
                   <img
                     src={review.image}
                     alt={review.name}
-                    className="h-11 w-11 rounded-full object-cover"
+                    className="h-12 w-12 rounded-full object-cover ring-2 ring-white/15"
                   />
-                  <p className="font-heading text-sm font-medium text-white" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                  <p className="font-heading text-base font-medium text-white" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
                     {review.name}
                   </p>
                 </div>

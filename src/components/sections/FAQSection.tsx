@@ -59,7 +59,8 @@ export function FAQSection() {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="rounded-xl border-none bg-white px-5 md:px-7 data-[state=open]:bg-white transition-all duration-300 shadow-sm"
+                className="rounded-xl border-none bg-white px-6 md:px-8 data-[state=open]:bg-white transition-all duration-300"
+                style={{ boxShadow: '0 4px 20px -4px rgba(0,0,0,0.1)' }}
                 data-testid={`faq-item-${index}`}
               >
                 <AccordionTrigger className="text-left text-[15px] md:text-base py-5" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: 'hsl(240 10% 20%)' }}>

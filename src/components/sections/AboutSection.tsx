@@ -32,8 +32,8 @@ export function AboutSection() {
       <section className="section-padding bg-white">
         <div className="section-container">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
-            <div className="relative animate-fade-up">
-              <div className="relative overflow-hidden rounded-2xl">
+            <div className="relative">
+              <div className="relative overflow-hidden rounded-2xl" style={{ boxShadow: '0 25px 50px -12px rgba(0,0,0,0.2)' }}>
                 <img
                   src={aboutLips}
                   alt="Permanent Lips Before and After"
@@ -41,7 +41,7 @@ export function AboutSection() {
                   data-testid="img-about-lips"
                 />
               </div>
-              <div className="absolute -bottom-3 -right-3 h-full w-full rounded-2xl border border-primary/15 -z-10" />
+              <div className="absolute -bottom-4 -right-4 h-full w-full rounded-2xl border-2 border-primary/20 -z-10" />
             </div>
 
             <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
@@ -85,8 +85,8 @@ export function AboutSection() {
           </div>
 
           <div className="grid gap-5 md:grid-cols-2 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            <div className="rounded-xl bg-white p-6 shadow-sm">
-              <div className="flex items-center gap-2.5 mb-4 pb-3" style={{ borderBottom: '1px solid #eee' }}>
+            <div className="rounded-xl bg-white p-7" style={{ boxShadow: '0 8px 30px -6px rgba(0,0,0,0.12)' }}>
+              <div className="flex items-center gap-2.5 mb-5 pb-3" style={{ borderBottom: '1px solid #eee' }}>
                 <Award className="h-5 w-5" style={{ color: 'hsl(350 28% 56%)' }} />
                 <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: '#1a1a2e', fontFamily: "'Inter', system-ui, sans-serif" }}>Certifications</span>
               </div>
@@ -100,8 +100,8 @@ export function AboutSection() {
               </ul>
             </div>
 
-            <div className="rounded-xl bg-white p-6 shadow-sm">
-              <div className="flex items-center gap-2.5 mb-4 pb-3" style={{ borderBottom: '1px solid #eee' }}>
+            <div className="rounded-xl bg-white p-7" style={{ boxShadow: '0 8px 30px -6px rgba(0,0,0,0.12)' }}>
+              <div className="flex items-center gap-2.5 mb-5 pb-3" style={{ borderBottom: '1px solid #eee' }}>
                 <GraduationCap className="h-5 w-5" style={{ color: 'hsl(350 28% 56%)' }} />
                 <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: '#1a1a2e', fontFamily: "'Inter', system-ui, sans-serif" }}>Training Topics</span>
               </div>

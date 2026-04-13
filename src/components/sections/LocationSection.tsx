@@ -80,7 +80,7 @@ export function LocationSection() {
 
           <div className="animate-fade-up grid gap-4" style={{ animationDelay: "0.2s" }}>
             {contactCards.map(({ icon: Icon, title, content, link }) => (
-              <div key={title} className="card-accent p-5 md:p-6" data-testid={`location-card-${title.toLowerCase()}`}>
+              <div key={title} className="card-accent p-6 md:p-7" data-testid={`location-card-${title.toLowerCase()}`}>
                 <div className="flex items-start gap-4">
                   <div className="icon-chip flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full">
                     <Icon className="h-5 w-5 card-accent-icon" />

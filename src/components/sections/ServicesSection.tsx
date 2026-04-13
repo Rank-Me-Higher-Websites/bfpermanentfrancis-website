@@ -122,18 +122,18 @@ export function ServicesSection() {
               style={{ animationDelay: `${0.1 * index}s` }}
               data-testid={`service-card-${service.id}`}
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative aspect-[3/4] overflow-hidden">
                 <img
                   src={service.image}
                   alt={`${service.title} - Permanent Makeup Chicago`}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                <h3 className="absolute bottom-5 left-5 text-2xl">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <h3 className="absolute bottom-6 left-6 right-6 text-2xl lg:text-[1.7rem] leading-tight" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.4)' }}>
                   {service.title}
                 </h3>
               </div>
-              <div className="flex flex-1 flex-col p-5 md:p-7">
+              <div className="flex flex-1 flex-col p-6 md:p-8">
                 <p className="mb-6 flex-1 text-[15px] leading-relaxed">{service.description}</p>
                 <Link
                   to={service.link}

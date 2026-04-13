@@ -37,33 +37,33 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[85svh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[92svh] flex items-center justify-center overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(350, 15%, 12%, 0.72) 0%, hsla(350, 20%, 18%, 0.6) 100%)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(350, 15%, 8%, 0.78) 0%, hsla(350, 18%, 12%, 0.62) 100%)" }} />
       </div>
 
-      <div className="section-container relative z-10 py-6 sm:py-20 w-full">
-        <div className="flex flex-col lg:flex-row items-center lg:items-center gap-4 sm:gap-12 lg:gap-16">
-          <div className="flex-1 text-center lg:text-left animate-fade-up">
-            <div className="mb-3 sm:mb-6">
-              <span className="inline-block text-[10px] sm:text-xs font-light uppercase tracking-[0.25em] text-white/70 border-b border-white/20 pb-1">
+      <div className="section-container relative z-10 py-8 sm:py-24 w-full">
+        <div className="flex flex-col lg:flex-row items-center lg:items-center gap-6 sm:gap-14 lg:gap-20">
+          <div className="flex-1 text-center lg:text-left">
+            <div className="mb-4 sm:mb-7">
+              <span className="inline-block text-[10px] sm:text-xs font-medium uppercase tracking-[0.3em] text-white/60 border-b border-white/15 pb-2">
                 Permanent Makeup Chicago
               </span>
             </div>
-            <h1 className="mb-3 sm:mb-8 text-white text-3xl sm:text-5xl lg:text-7xl leading-[1.08] drop-shadow-sm" style={{ letterSpacing: '-0.02em', fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 600 }}>
+            <h1 className="mb-4 sm:mb-8 text-white text-4xl sm:text-6xl lg:text-[5.2rem] leading-[1.05]" style={{ letterSpacing: '-0.025em', fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 600, textShadow: '0 2px 30px rgba(0,0,0,0.3)' }}>
               Long-Lasting Beauty,<br />
               Effortlessly Yours
             </h1>
-            <p className="mb-3 sm:mb-10 max-w-md text-xs sm:text-base lg:text-lg text-white/75 leading-relaxed mx-auto lg:mx-0">
+            <p className="mb-4 sm:mb-10 max-w-lg text-sm sm:text-lg lg:text-xl text-white/70 leading-relaxed mx-auto lg:mx-0" style={{ fontWeight: 300 }}>
               Expert micropigmentation by certified Long-Time-Liner® Regional Trainer.
               Enhance your natural beauty with results that last.
             </p>
 
             <div className="hidden sm:flex flex-col items-center lg:items-start gap-4 sm:flex-row">
-              <Button variant="hero-outline" size="lg" className="rounded-full" asChild data-testid="button-call-hero">
+              <Button variant="hero-outline" size="lg" className="rounded-full text-[15px] px-8 h-13" asChild data-testid="button-call-hero">
                 <a href="tel:+17087372333">
                   <Phone className="mr-2 h-4 w-4" />
                   (708) 737-2333
@@ -71,18 +71,18 @@ export function HeroSection() {
               </Button>
             </div>
 
-            <div className="hidden sm:flex mt-10 flex-wrap items-center justify-center lg:justify-start gap-5">
+            <div className="hidden sm:flex mt-12 flex-wrap items-center justify-center lg:justify-start gap-5">
               {BADGES.map(({ icon: Icon, label }) => (
-                <div key={label} className="flex items-center gap-2.5 bg-primary/80 backdrop-blur-sm rounded-full px-4 py-2">
-                  <Icon className="h-4 w-4 text-white" />
-                  <span className="text-sm font-medium text-white">{label}</span>
+                <div key={label} className="flex items-center gap-2.5 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-5 py-2.5">
+                  <Icon className="h-4 w-4 text-white/80" />
+                  <span className="text-sm font-medium text-white/90">{label}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="w-full lg:w-[400px] shrink-0 animate-fade-up" style={{ animationDelay: "0.15s" }}>
-            <div className="rounded-2xl bg-white shadow-2xl border-2 border-primary/30 p-5 sm:p-7">
+          <div className="w-full lg:w-[420px] shrink-0">
+            <div className="rounded-2xl bg-white p-6 sm:p-8" style={{ boxShadow: '0 25px 60px -12px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.1)' }}>
               <h2 className="text-lg sm:text-xl text-foreground mb-0.5" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 700 }}>Book Your Appointment</h2>
               <p className="text-xs sm:text-sm text-muted-foreground mb-4" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Select one or more services</p>
               <div className="space-y-2.5">
