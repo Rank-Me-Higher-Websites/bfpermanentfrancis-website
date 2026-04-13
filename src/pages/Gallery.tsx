@@ -49,8 +49,8 @@ const Gallery = () => {
               {galleryImages.map((image, index) => (
                 <div
                   key={index}
-                  className="group relative aspect-square overflow-hidden rounded-xl card-hover animate-fade-up"
-                  style={{ animationDelay: `${0.05 * index}s` }}
+                  className="group relative aspect-square overflow-hidden rounded-xl card-hover "
+                  
                 >
                   <img
                     src={image.src}

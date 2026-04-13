@@ -19,7 +19,7 @@ export function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
       </div>
 
       <div className="section-container relative z-10 py-20 text-center">
-        <div className="mx-auto max-w-3xl animate-fade-up">
+        <div className="mx-auto max-w-3xl ">
           {subtitle && (
             <span className="inline-block text-xs font-medium uppercase tracking-[0.25em] text-white/60 mb-5" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
               {subtitle}

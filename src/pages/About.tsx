@@ -55,7 +55,7 @@ const About = () => {
           <div className="section-container">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
               {/* Image */}
-              <div className="relative animate-fade-up">
+              <div className="relative ">
                 <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                   <img
                     src={aboutBirute}
@@ -71,7 +71,7 @@ const About = () => {
               </div>
 
               {/* Content */}
-              <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
+              <div>
                 <h2 className="heading-lg mb-6">Birute Francis</h2>
                 <p className="mb-6 text-lg text-muted-foreground">
                   Birute Francis, a Long-Time-Liner Regional Trainer, boasts a track record of 
@@ -104,7 +104,7 @@ const About = () => {
           <div className="section-container">
             <div className="grid gap-12 lg:grid-cols-2">
               {/* Certifications */}
-              <div className="animate-fade-up">
+              <div className="">
                 <h2 className="heading-md mb-8">Professional Certifications</h2>
                 <ul className="space-y-4">
                   {certifications.map((cert) => (
@@ -117,7 +117,7 @@ const About = () => {
               </div>
 
               {/* Training Topics */}
-              <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
+              <div>
                 <h2 className="heading-md mb-8">Elite Training Seminars Include</h2>
                 <ul className="grid gap-3 sm:grid-cols-2">
                   {trainingTopics.map((topic) => (

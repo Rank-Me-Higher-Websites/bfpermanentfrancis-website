@@ -92,8 +92,8 @@ const Products = () => {
               {products.map((product, index) => (
                 <article
                   key={product.id}
-                  className="card-hover rounded-2xl bg-card p-8 animate-fade-up"
-                  style={{ animationDelay: `${0.1 * index}s` }}
+                  className="card-hover rounded-2xl bg-card p-8 "
+                  
                 >
                   <h2 className="heading-sm mb-4">{product.title}</h2>
                   <p className="mb-6 text-muted-foreground">{product.description}</p>
@@ -116,7 +116,7 @@ const Products = () => {
             </div>
 
             {/* Info Box */}
-            <div className="mt-12 rounded-2xl bg-secondary/50 p-8 text-center animate-fade-up">
+            <div className="mt-12 rounded-2xl bg-secondary/50 p-8 text-center ">
               <h3 className="heading-sm mb-4">Interested in Long-Time-Liner® Products?</h3>
               <p className="mb-6 text-muted-foreground max-w-2xl mx-auto">
                 Whether you're a professional looking for equipment or interested in our{" "}

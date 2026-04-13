@@ -102,7 +102,7 @@ export function ServicesSection() {
   return (
     <section className="section-padding bg-white">
       <div className="section-container">
-        <div className="mx-auto mb-8 md:mb-12 max-w-2xl text-center animate-fade-up">
+        <div className="mx-auto mb-8 md:mb-12 max-w-2xl text-center ">
           <span className="section-label">
             Our Treatments
           </span>
@@ -118,8 +118,8 @@ export function ServicesSection() {
           {services.map((service, index) => (
             <article
               key={service.id}
-              className="group card-accent flex flex-col overflow-hidden animate-fade-up"
-              style={{ animationDelay: `${0.1 * index}s` }}
+              className="group card-accent flex flex-col overflow-hidden "
+              
               data-testid={`service-card-${service.id}`}
             >
               <div className="relative aspect-[3/4] overflow-hidden">
@@ -148,7 +148,7 @@ export function ServicesSection() {
           ))}
         </div>
 
-        <div className="mt-10 md:mt-14 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+        <div className="mt-10 md:mt-14 flex flex-col sm:flex-row items-center justify-center gap-4 ">
           <Button
             size="lg"
             variant="cta"
@@ -172,7 +172,7 @@ export function ServicesSection() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={() => setShowBooking(false)}>
           <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
           <div
-            className="relative w-full max-w-lg rounded-2xl bg-white p-7 md:p-9 shadow-2xl animate-fade-up"
+            className="relative w-full max-w-lg rounded-2xl bg-white p-7 md:p-9 shadow-2xl "
             onClick={(e) => e.stopPropagation()}
           >
             <button

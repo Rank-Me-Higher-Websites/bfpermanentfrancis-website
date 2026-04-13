@@ -5,7 +5,7 @@ export function SEOContentSection() {
     <section className="section-padding-sm bg-background">
       <div className="section-container">
         <article className="mx-auto max-w-4xl prose prose-lg">
-          <div className="animate-fade-up">
+          <div className="">
             <h2 className="heading-md mb-6 text-center">
               Chicago's Premier Permanent Makeup Studio
             </h2>

@@ -53,7 +53,7 @@ export function LocationSection() {
   return (
     <section className="section-padding bg-white">
       <div className="section-container">
-        <div className="mx-auto mb-8 md:mb-10 max-w-2xl text-center animate-fade-up">
+        <div className="mx-auto mb-8 md:mb-10 max-w-2xl text-center ">
           <span className="section-label">
             Visit Us
           </span>
@@ -65,7 +65,7 @@ export function LocationSection() {
         </div>
 
         <div className="grid gap-6 md:gap-8 lg:grid-cols-2 items-stretch">
-          <div className="animate-fade-up rounded-2xl overflow-hidden h-[280px] md:h-[420px] lg:h-full lg:min-h-[420px] card-elegant">
+          <div className=" rounded-2xl overflow-hidden h-[280px] md:h-[420px] lg:h-full lg:min-h-[420px] card-elegant">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.6456!2d-87.97!3d41.67!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e4b5c5c5c5c5c%3A0x5c5c5c5c5c5c5c5c!2s12420%20Archer%20Ave%20Unit%20C%2C%20Lemont%2C%20IL%2060439!5e0!3m2!1sen!2sus!4v1234567890"
               width="100%"
@@ -78,7 +78,7 @@ export function LocationSection() {
             />
           </div>
 
-          <div className="animate-fade-up grid gap-4" style={{ animationDelay: "0.2s" }}>
+          <div className=" grid gap-4">
             {contactCards.map(({ icon: Icon, title, content, link }) => (
               <div key={title} className="card-accent p-6 md:p-7" data-testid={`location-card-${title.toLowerCase()}`}>
                 <div className="flex items-start gap-4">

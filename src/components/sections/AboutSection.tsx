@@ -38,7 +38,7 @@ export function AboutSection() {
               <div className="absolute -bottom-4 -right-4 h-full w-full rounded-2xl border-2 border-primary/20 -z-10" />
             </div>
 
-            <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
+            <div>
               <span className="section-label">
                 Why Choose Us
               </span>

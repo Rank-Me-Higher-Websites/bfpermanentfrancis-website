@@ -118,7 +118,7 @@ const Treatments = () => {
                 >
                   {/* Image */}
                   <div
-                    className={`animate-fade-up ${index % 2 === 1 ? "lg:order-2" : ""}`}
+                    className={` ${index % 2 === 1 ? "lg:order-2" : ""}`}
                   >
                     <div className="relative overflow-hidden rounded-2xl shadow-xl">
                       <img
@@ -131,8 +131,8 @@ const Treatments = () => {
 
                   {/* Content */}
                   <div
-                    className={`animate-fade-up ${index % 2 === 1 ? "lg:order-1" : ""}`}
-                    style={{ animationDelay: "0.2s" }}
+                    className={` ${index % 2 === 1 ? "lg:order-1" : ""}`}
+                    
                   >
                     <span className="section-label mb-3">
                       {treatment.subtitle}

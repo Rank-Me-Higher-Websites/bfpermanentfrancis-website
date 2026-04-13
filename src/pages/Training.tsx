@@ -112,8 +112,8 @@ const Training = () => {
               {courses.map((course, index) => (
                 <Card
                   key={course.id}
-                  className="h-full flex flex-col card-hover animate-fade-up"
-                  style={{ animationDelay: `${0.1 * index}s` }}
+                  className="h-full flex flex-col card-hover "
+                  
                 >
                   <CardContent className="flex flex-col flex-1 p-8">
                     {/* Header */}
@@ -173,7 +173,7 @@ const Training = () => {
             </div>
 
             {/* Booking Info */}
-            <div className="mt-12 rounded-2xl bg-secondary/50 p-8 text-center animate-fade-up">
+            <div className="mt-12 rounded-2xl bg-secondary/50 p-8 text-center ">
               <h3 className="heading-sm mb-4">Ready to Start Your PMU Career?</h3>
               <p className="mb-2 text-muted-foreground max-w-2xl mx-auto">
                 Training seminars can be booked throughout the year. Please contact us to check 

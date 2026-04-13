@@ -43,7 +43,7 @@ export function FAQSection() {
     <section className="section-padding section-dark">
       <div className="section-container">
         <div className="mx-auto max-w-3xl">
-          <div className="mb-8 md:mb-10 text-center animate-fade-up">
+          <div className="mb-8 md:mb-10 text-center ">
             <span className="section-label">
               FAQ
             </span>
@@ -54,7 +54,7 @@ export function FAQSection() {
             </p>
           </div>
 
-          <Accordion type="single" collapsible className="w-full space-y-3 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+          <Accordion type="single" collapsible className="w-full space-y-3 ">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
