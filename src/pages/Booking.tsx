@@ -94,7 +94,10 @@ export default function Booking() {
         <meta name="description" content="Book your permanent makeup appointment with Birute Francis, certified SPMU artist." />
       </Helmet>
       <Layout>
-        <section className="min-h-screen bg-background py-12 md:py-20">
+        <section
+          className="min-h-screen py-12 md:py-20"
+          style={{ background: "linear-gradient(135deg, hsl(280 45% 35%) 0%, hsl(300 40% 38%) 50%, hsl(315 35% 40%) 100%)" }}
+        >
           <div className="section-container max-w-2xl mx-auto">
             {step <= 4 && (
               <div className="flex items-center justify-center gap-0 mb-10" data-testid="booking-stepper">
@@ -107,17 +110,17 @@ export default function Booking() {
                         <div
                           className={cn(
                             "w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold border-2 transition-all",
-                            completed && "gradient-bg border-transparent text-white",
-                            active && "gradient-bg border-transparent text-white",
-                            !completed && !active && "bg-white border-gray-300 text-gray-400"
+                            completed && "bg-white border-white text-purple-700",
+                            active && "bg-white border-white text-purple-700",
+                            !completed && !active && "bg-white/20 border-white/30 text-white/60"
                           )}
                         >
                           {completed ? <Check className="w-4 h-4" /> : s.num}
                         </div>
-                        <span className="text-[10px] mt-1 text-gray-500 hidden sm:block">{s.label}</span>
+                        <span className="text-[10px] mt-1 text-white/70 hidden sm:block">{s.label}</span>
                       </div>
                       {i < STEPS.length - 1 && (
-                        <div className={cn("w-10 sm:w-16 h-0.5 mx-1", step > s.num ? "gradient-bg" : "bg-gray-200")} />
+                        <div className={cn("w-10 sm:w-16 h-0.5 mx-1", step > s.num ? "bg-white" : "bg-white/20")} />
                       )}
                     </div>
                   );
@@ -126,15 +129,15 @@ export default function Booking() {
             )}
 
             {step <= 4 && (
-              <p className="text-center text-sm text-gray-500 -mt-6 mb-8">
+              <p className="text-center text-sm text-white/70 -mt-6 mb-8">
                 Step {step} of 4: {STEPS[step - 1].label}
               </p>
             )}
 
-            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 sm:p-10">
+            <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-10">
               {step === 1 && (
                 <div data-testid="step-service">
-                  <h2 className="text-2xl mb-1" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Book Now</h2>
+                  <h2 className="text-2xl mb-1 text-gray-900" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Book Now</h2>
                   <p className="text-gray-500 mb-6">Select one or more services</p>
                   <div className="space-y-3">
                     {SERVICES.map((s) => (
@@ -172,10 +175,10 @@ export default function Booking() {
                   <button onClick={() => setStep(1)} className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-4" data-testid="back-to-service">
                     <ArrowLeft className="w-4 h-4 mr-1" /> Back to Service
                   </button>
-                  <h2 className="text-2xl mb-1" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Pick Date & Time</h2>
+                  <h2 className="text-2xl mb-1 text-gray-900" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Pick Date & Time</h2>
                   <p className="text-gray-500 mb-6">Choose your preferred appointment time</p>
 
-                  <div className="border border-gray-200 rounded-xl p-4 mb-6">
+                  <div className="border border-gray-200 rounded-xl p-4 mb-6 bg-white">
                     <Calendar
                       mode="single"
                       selected={selectedDate}
@@ -221,11 +224,11 @@ export default function Booking() {
                   <button onClick={() => setStep(2)} className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-4" data-testid="back-to-datetime">
                     <ArrowLeft className="w-4 h-4 mr-1" /> Back to Date & Time
                   </button>
-                  <h2 className="text-2xl mb-1" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Your Information</h2>
+                  <h2 className="text-2xl mb-1 text-gray-900" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Your Information</h2>
                   <p className="text-gray-500 mb-6">We'll send your confirmation here</p>
                   <div className="space-y-5">
                     <div className="space-y-2">
-                      <Label htmlFor="fullName">Full Name *</Label>
+                      <Label htmlFor="fullName" className="text-gray-700">Full Name *</Label>
                       <div className="relative">
                         <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                         <Input
@@ -234,12 +237,12 @@ export default function Booking() {
                           placeholder="Jane Smith"
                           value={formData.fullName}
                           onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                          className="pl-10 h-12 border-gray-300"
+                          className="pl-10 h-12 border-gray-300 bg-white text-gray-900"
                         />
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="phone">Phone *</Label>
+                      <Label htmlFor="phone" className="text-gray-700">Phone *</Label>
                       <div className="relative">
                         <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                         <Input
@@ -249,12 +252,12 @@ export default function Booking() {
                           placeholder="(312) 555-0100"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="pl-10 h-12 border-gray-300"
+                          className="pl-10 h-12 border-gray-300 bg-white text-gray-900"
                         />
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email *</Label>
+                      <Label htmlFor="email" className="text-gray-700">Email *</Label>
                       <div className="relative">
                         <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                         <Input
@@ -264,28 +267,28 @@ export default function Booking() {
                           placeholder="jane@example.com"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="pl-10 h-12 border-gray-300"
+                          className="pl-10 h-12 border-gray-300 bg-white text-gray-900"
                         />
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="notes">Notes (optional)</Label>
+                      <Label htmlFor="notes" className="text-gray-700">Notes (optional)</Label>
                       <Textarea
                         id="notes"
                         data-testid="input-notes"
                         placeholder="Any special requests..."
                         value={formData.notes}
                         onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                        className="min-h-[100px] border-gray-300"
+                        className="min-h-[100px] border-gray-300 bg-white text-gray-900"
                       />
                     </div>
 
                     <div className="rounded-xl border border-gray-200 p-5 bg-gray-50">
-                      <h3 className="text-lg mb-3" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Your Booking Summary</h3>
+                      <h3 className="text-lg mb-3 text-gray-900" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Your Booking Summary</h3>
                       <div className="space-y-2 text-sm">
-                        <div className="flex justify-between"><span className="text-gray-500">Service</span><span className="font-medium">{serviceNames}</span></div>
-                        <div className="flex justify-between"><span className="text-gray-500">Date</span><span className="font-medium">{selectedDate ? format(selectedDate, "EEE, MMM d, yyyy") : ""}</span></div>
-                        <div className="flex justify-between"><span className="text-gray-500">Time</span><span className="font-medium">{selectedTime}</span></div>
+                        <div className="flex justify-between"><span className="text-gray-500">Service</span><span className="font-medium text-gray-900">{serviceNames}</span></div>
+                        <div className="flex justify-between"><span className="text-gray-500">Date</span><span className="font-medium text-gray-900">{selectedDate ? format(selectedDate, "EEE, MMM d, yyyy") : ""}</span></div>
+                        <div className="flex justify-between"><span className="text-gray-500">Time</span><span className="font-medium text-gray-900">{selectedTime}</span></div>
                         <div className="flex justify-between"><span className="text-gray-500">Price</span><span className="font-medium gradient-text">{servicePrices}</span></div>
                       </div>
                     </div>
@@ -298,22 +301,22 @@ export default function Booking() {
                   <button onClick={() => setStep(3)} className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-4" data-testid="back-to-info">
                     <ArrowLeft className="w-4 h-4 mr-1" /> Back
                   </button>
-                  <h2 className="text-2xl mb-1" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Review Your Booking</h2>
+                  <h2 className="text-2xl mb-1 text-gray-900" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Review Your Booking</h2>
                   <p className="text-gray-500 mb-6">Please confirm all details are correct</p>
-                  <div className="rounded-xl border border-gray-200 p-6 space-y-4">
+                  <div className="rounded-xl border border-gray-200 p-6 space-y-4 bg-gray-50">
                     <div className="grid grid-cols-2 gap-4 text-sm">
-                      <div><span className="text-gray-500 block">Service</span><span className="font-medium">{serviceNames}</span></div>
+                      <div><span className="text-gray-500 block">Service</span><span className="font-medium text-gray-900">{serviceNames}</span></div>
                       <div><span className="text-gray-500 block">Price</span><span className="font-medium gradient-text">{servicePrices}</span></div>
-                      <div><span className="text-gray-500 block">Duration</span><span className="font-medium">{services.map(s => s.duration).join(" + ")}</span></div>
-                      <div><span className="text-gray-500 block">Date</span><span className="font-medium">{selectedDate ? format(selectedDate, "EEEE, MMMM d, yyyy") : ""}</span></div>
-                      <div><span className="text-gray-500 block">Time</span><span className="font-medium">{selectedTime}</span></div>
+                      <div><span className="text-gray-500 block">Duration</span><span className="font-medium text-gray-900">{services.map(s => s.duration).join(" + ")}</span></div>
+                      <div><span className="text-gray-500 block">Date</span><span className="font-medium text-gray-900">{selectedDate ? format(selectedDate, "EEEE, MMMM d, yyyy") : ""}</span></div>
+                      <div><span className="text-gray-500 block">Time</span><span className="font-medium text-gray-900">{selectedTime}</span></div>
                     </div>
                     <hr className="border-gray-200" />
                     <div className="text-sm space-y-2">
-                      <div><span className="text-gray-500">Name:</span> <span className="font-medium">{formData.fullName}</span></div>
-                      <div><span className="text-gray-500">Phone:</span> <span className="font-medium">{formData.phone}</span></div>
-                      <div><span className="text-gray-500">Email:</span> <span className="font-medium">{formData.email}</span></div>
-                      {formData.notes && <div><span className="text-gray-500">Notes:</span> <span className="font-medium">{formData.notes}</span></div>}
+                      <div><span className="text-gray-500">Name:</span> <span className="font-medium text-gray-900">{formData.fullName}</span></div>
+                      <div><span className="text-gray-500">Phone:</span> <span className="font-medium text-gray-900">{formData.phone}</span></div>
+                      <div><span className="text-gray-500">Email:</span> <span className="font-medium text-gray-900">{formData.email}</span></div>
+                      {formData.notes && <div><span className="text-gray-500">Notes:</span> <span className="font-medium text-gray-900">{formData.notes}</span></div>}
                     </div>
                   </div>
                 </div>
@@ -324,15 +327,15 @@ export default function Booking() {
                   <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
                     <Check className="w-8 h-8 text-green-600" />
                   </div>
-                  <h2 className="text-2xl mb-2" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Booking Confirmed!</h2>
+                  <h2 className="text-2xl mb-2 text-gray-900" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Booking Confirmed!</h2>
                   <p className="text-gray-500 mb-6 max-w-md mx-auto">
                     Thank you, {formData.fullName}! We've received your booking for {serviceNames} on {selectedDate ? format(selectedDate, "EEEE, MMMM d") : ""} at {selectedTime}. We'll send a confirmation to {formData.email}.
                   </p>
                   <div className="rounded-xl border border-gray-200 p-5 bg-gray-50 text-left max-w-sm mx-auto mb-6">
                     <div className="space-y-2 text-sm">
-                      <div className="flex justify-between"><span className="text-gray-500">Service</span><span className="font-medium">{serviceNames}</span></div>
-                      <div className="flex justify-between"><span className="text-gray-500">Date</span><span className="font-medium">{selectedDate ? format(selectedDate, "EEE, MMM d, yyyy") : ""}</span></div>
-                      <div className="flex justify-between"><span className="text-gray-500">Time</span><span className="font-medium">{selectedTime}</span></div>
+                      <div className="flex justify-between"><span className="text-gray-500">Service</span><span className="font-medium text-gray-900">{serviceNames}</span></div>
+                      <div className="flex justify-between"><span className="text-gray-500">Date</span><span className="font-medium text-gray-900">{selectedDate ? format(selectedDate, "EEE, MMM d, yyyy") : ""}</span></div>
+                      <div className="flex justify-between"><span className="text-gray-500">Time</span><span className="font-medium text-gray-900">{selectedTime}</span></div>
                       <div className="flex justify-between"><span className="text-gray-500">Price</span><span className="font-medium gradient-text">{servicePrices}</span></div>
                     </div>
                   </div>
@@ -352,7 +355,7 @@ export default function Booking() {
                     <Button
                       data-testid="button-back"
                       variant="outline"
-                      className="flex-1 h-12 border-gray-300"
+                      className="flex-1 h-12 border-gray-300 text-gray-700"
                       onClick={() => setStep(step - 1)}
                     >
                       <ArrowLeft className="w-4 h-4 mr-2" /> Back
