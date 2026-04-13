@@ -1,24 +1,14 @@
 import { useState, useEffect, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
-import { Lock, RefreshCw, Search, Users, CheckCircle2, XCircle, CalendarDays, List } from "lucide-react";
-import { isToday, isFuture, parseISO } from "date-fns";
+import { Lock, RefreshCw, CalendarDays, List, User, Phone } from "lucide-react";
+import { format, parseISO, isToday, isBefore, startOfDay } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { BookingTable, type Booking } from "@/components/admin/BookingTable";
-import { type BookingStatus } from "@/components/admin/BookingStatusBadge";
+import { type Booking } from "@/components/admin/BookingTable";
 import { BookingCalendar } from "@/components/admin/BookingCalendar";
 
 const ADMIN_USERNAME = "Birute";
 const ADMIN_PASSWORD = "Birute123@";
-
-type FilterStatus = "all" | BookingStatus;
-
-const FILTER_CONFIG: { value: FilterStatus; label: string; icon: React.ReactNode; color: string }[] = [
-  { value: "all", label: "All", icon: <Users className="h-5 w-5" />, color: "text-foreground" },
-  { value: "confirmed", label: "Confirmed", icon: <CheckCircle2 className="h-5 w-5" />, color: "text-emerald-600" },
-  { value: "completed", label: "Done", icon: <CalendarDays className="h-5 w-5" />, color: "text-muted-foreground" },
-  { value: "cancelled", label: "Cancelled", icon: <XCircle className="h-5 w-5" />, color: "text-destructive" },
-];
 
 export default function Admin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -26,15 +16,12 @@ export default function Admin() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [bookings, setBookings] = useState<Booking[]>([]);
-  const [filter, setFilter] = useState<FilterStatus>("all");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [view, setView] = useState<"list" | "calendar">("calendar");
+  const [view, setView] = useState<"calendar" | "upcoming">("calendar");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (isAuthenticated) loadBookings();
   }, [isAuthenticated]);
-
-  const [loading, setLoading] = useState(false);
 
   const loadBookings = async () => {
     setLoading(true);
@@ -45,14 +32,14 @@ export default function Admin() {
 
       const localBookings = JSON.parse(localStorage.getItem("bookings") || "[]") as Booking[];
       const teamupIds = new Set(teamupBookings.map((b) => b.id));
-      const uniqueLocal = localBookings.filter((b) => !teamupIds.has(b.id) && !b.teamup_event_id);
+      const uniqueLocal = localBookings.filter((b) => !teamupIds.has(b.id) && !(b as any).teamup_event_id);
 
       const merged = [...teamupBookings, ...uniqueLocal];
-      merged.sort((a, b) => new Date(b.preferred_date || b.created_at).getTime() - new Date(a.preferred_date || a.created_at).getTime());
+      merged.sort((a, b) => new Date(a.preferred_date || a.created_at).getTime() - new Date(b.preferred_date || b.created_at).getTime());
       setBookings(merged);
     } catch {
       const data = JSON.parse(localStorage.getItem("bookings") || "[]") as Booking[];
-      data.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      data.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
       setBookings(data);
     }
     setLoading(false);
@@ -68,45 +55,15 @@ export default function Admin() {
     }
   };
 
-  const handleStatusChange = (id: string, status: BookingStatus) => {
-    const updated = bookings.map((b) =>
-      b.id === id ? { ...b, status } : b
-    );
-    setBookings(updated);
-    localStorage.setItem("bookings", JSON.stringify(updated));
-  };
-
-  const filteredBookings = useMemo(() => {
-    let result = filter === "all" ? bookings : bookings.filter((b) => b.status === filter);
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      result = result.filter(
-        (b) =>
-          b.full_name.toLowerCase().includes(q) ||
-          b.phone.includes(q) ||
-          b.email.toLowerCase().includes(q) ||
-          b.service_type.toLowerCase().includes(q)
-      );
-    }
-    return result;
-  }, [bookings, filter, searchQuery]);
-
-  const stats = useMemo(() => {
-    const confirmed = bookings.filter((b) => b.status === "confirmed").length;
-    const completed = bookings.filter((b) => b.status === "completed").length;
-    const cancelled = bookings.filter((b) => b.status === "cancelled").length;
-    return { total: bookings.length, confirmed, completed, cancelled };
+  const upcomingBookings = useMemo(() => {
+    const today = startOfDay(new Date());
+    return bookings.filter((b) => {
+      if (!b.preferred_date) return false;
+      const date = startOfDay(parseISO(b.preferred_date));
+      return !isBefore(date, today);
+    });
   }, [bookings]);
 
-  const getCount = (status: FilterStatus) => {
-    if (status === "all") return stats.total;
-    if (status === "confirmed") return stats.confirmed;
-    if (status === "completed") return stats.completed;
-    if (status === "cancelled") return stats.cancelled;
-    return 0;
-  };
-
-  // Login screen — big, simple, friendly
   if (!isAuthenticated) {
     return (
       <>
@@ -155,7 +112,7 @@ export default function Admin() {
                 <p className="text-base text-destructive text-center font-medium">{error}</p>
               )}
 
-              <Button type="submit" variant="cta" className="w-full h-14 text-lg rounded-xl">
+              <Button type="submit" variant="cta" className="w-full h-14 text-lg rounded-xl" data-testid="button-sign-in">
                 Sign In
               </Button>
             </form>
@@ -165,7 +122,6 @@ export default function Admin() {
     );
   }
 
-  // Dashboard — clean, large text, obvious actions
   return (
     <>
       <Helmet>
@@ -173,30 +129,30 @@ export default function Admin() {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <div className="min-h-screen bg-muted">
-        {/* Top Bar */}
         <header className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur-md">
           <div className="flex items-center justify-between px-4 sm:px-6 py-4 max-w-6xl mx-auto">
             <h1 className="text-xl sm:text-2xl" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>My Bookings</h1>
             <div className="flex items-center gap-2 sm:gap-3">
-              {/* View Toggle */}
               <div className="flex rounded-xl border border-border overflow-hidden">
-                <button
-                  onClick={() => setView("list")}
-                  className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors ${
-                    view === "list" ? "gradient-bg text-primary-foreground" : "bg-card text-muted-foreground hover:bg-muted"
-                  }`}
-                >
-                  <List className="h-4 w-4" />
-                  <span className="hidden sm:inline">List</span>
-                </button>
                 <button
                   onClick={() => setView("calendar")}
                   className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors ${
                     view === "calendar" ? "gradient-bg text-primary-foreground" : "bg-card text-muted-foreground hover:bg-muted"
                   }`}
+                  data-testid="tab-calendar"
                 >
                   <CalendarDays className="h-4 w-4" />
                   <span className="hidden sm:inline">Calendar</span>
+                </button>
+                <button
+                  onClick={() => setView("upcoming")}
+                  className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors ${
+                    view === "upcoming" ? "gradient-bg text-primary-foreground" : "bg-card text-muted-foreground hover:bg-muted"
+                  }`}
+                  data-testid="tab-upcoming"
+                >
+                  <List className="h-4 w-4" />
+                  <span className="hidden sm:inline">Upcoming</span>
                 </button>
               </div>
               <Button
@@ -204,6 +160,7 @@ export default function Admin() {
                 size="sm"
                 onClick={loadBookings}
                 className="h-10 px-4 text-sm gap-2"
+                data-testid="button-refresh"
               >
                 <RefreshCw className="h-4 w-4" />
                 <span className="hidden sm:inline">Refresh</span>
@@ -213,6 +170,7 @@ export default function Admin() {
                 size="sm"
                 onClick={() => setIsAuthenticated(false)}
                 className="h-10 px-4 text-sm text-muted-foreground"
+                data-testid="button-logout"
               >
                 Log out
               </Button>
@@ -220,58 +178,7 @@ export default function Admin() {
           </div>
         </header>
 
-        <main className="mx-auto max-w-6xl px-4 sm:px-6 py-6 space-y-6">
-          {/* Quick Stats — large and color-coded */}
-          <div className="grid grid-cols-3 gap-3 sm:gap-4">
-            <QuickStat label="Total" value={stats.total} className="bg-card" />
-            <QuickStat label="Confirmed" value={stats.confirmed} className="bg-emerald-50 border-emerald-200" highlight />
-            <QuickStat label="Done" value={stats.completed} className="bg-card" />
-          </div>
-
-          {/* Search */}
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by name, phone, or email..."
-              className="h-12 sm:h-14 pl-12 text-base sm:text-lg bg-card"
-            />
-          </div>
-
-          {/* Filter Tabs — large tap targets */}
-          <div className="flex gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
-            {FILTER_CONFIG.map((f) => {
-              const count = getCount(f.value);
-              const isActive = filter === f.value;
-              return (
-                <button
-                  key={f.value}
-                  onClick={() => setFilter(f.value)}
-                  className={`
-                    flex items-center gap-2 rounded-xl px-4 sm:px-5 py-3 text-sm sm:text-base font-medium whitespace-nowrap
-                    transition-all border-2
-                    ${isActive
-                      ? "gradient-bg text-primary-foreground border-transparent shadow-md"
-                      : "bg-card text-foreground border-border hover:border-primary/30"
-                    }
-                  `}
-                >
-                  {f.label}
-                  {count > 0 && (
-                    <span className={`
-                      flex h-6 min-w-[24px] items-center justify-center rounded-full px-1.5 text-xs font-bold
-                      ${isActive ? "bg-primary-foreground/20 text-primary-foreground" : "bg-muted text-muted-foreground"}
-                    `}>
-                      {count}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Content */}
+        <main className="mx-auto max-w-6xl px-4 sm:px-6 py-6">
           {loading ? (
             <div className="flex items-center justify-center py-20">
               <div className="text-center space-y-3">
@@ -280,12 +187,9 @@ export default function Admin() {
               </div>
             </div>
           ) : view === "calendar" ? (
-            <BookingCalendar bookings={filteredBookings} />
+            <BookingCalendar bookings={bookings} />
           ) : (
-            <BookingTable
-              bookings={filteredBookings}
-              onStatusChange={handleStatusChange}
-            />
+            <UpcomingList bookings={upcomingBookings} />
           )}
         </main>
       </div>
@@ -293,24 +197,70 @@ export default function Admin() {
   );
 }
 
-/* Simple stat card with large number */
-function QuickStat({
-  label,
-  value,
-  className = "",
-  highlight = false,
-}: {
-  label: string;
-  value: number;
-  className?: string;
-  highlight?: boolean;
-}) {
+function UpcomingList({ bookings }: { bookings: Booking[] }) {
+  if (bookings.length === 0) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <p className="text-muted-foreground text-lg">No upcoming appointments.</p>
+      </div>
+    );
+  }
+
+  let lastDate = "";
+
   return (
-    <div className={`rounded-xl border p-4 sm:p-5 ${className}`}>
-      <p className="text-sm sm:text-base font-medium text-muted-foreground mb-1">{label}</p>
-      <p className={`text-3xl sm:text-4xl font-bold ${highlight ? "text-primary" : "text-foreground"}`} style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
-        {value}
-      </p>
+    <div className="space-y-3">
+      {bookings.map((b) => {
+        const dateStr = b.preferred_date || "";
+        const showDateHeader = dateStr !== lastDate;
+        lastDate = dateStr;
+
+        let dateLabel = "";
+        try {
+          const parsed = parseISO(dateStr);
+          dateLabel = isToday(parsed)
+            ? "Today"
+            : format(parsed, "EEEE, MMMM d, yyyy");
+        } catch {
+          dateLabel = dateStr;
+        }
+
+        return (
+          <div key={b.id}>
+            {showDateHeader && (
+              <div className="pt-4 pb-2 first:pt-0">
+                <h3 className="text-base sm:text-lg font-bold text-foreground" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
+                  {dateLabel}
+                </h3>
+              </div>
+            )}
+            <div
+              className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 sm:p-5"
+              data-testid={`booking-card-${b.id}`}
+            >
+              <div className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-primary/10 flex-shrink-0">
+                <User className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-base sm:text-lg font-bold truncate" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
+                  {b.full_name}
+                </p>
+                <p className="text-sm font-semibold text-primary">{b.preferred_time}</p>
+                <p className="text-sm text-muted-foreground truncate">{b.service_type}</p>
+              </div>
+              {b.phone && (
+                <a
+                  href={`tel:${b.phone}`}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 flex-shrink-0 hover:bg-primary/20 transition-colors"
+                  data-testid={`call-${b.id}`}
+                >
+                  <Phone className="h-4 w-4 text-primary" />
+                </a>
+              )}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
