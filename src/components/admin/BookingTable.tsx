@@ -5,6 +5,7 @@ import { BookingStatusBadge, type BookingStatus } from "./BookingStatusBadge";
 
 export interface Booking {
   id: string;
+  teamup_event_id?: number | string;
   full_name: string;
   phone: string;
   email: string;

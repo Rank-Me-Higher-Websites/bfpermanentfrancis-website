@@ -173,6 +173,76 @@ app.post("/api/bookings", async (req, res) => {
   });
 });
 
+app.get("/api/bookings", async (req, res) => {
+  const { startDate, endDate } = req.query;
+  const start = startDate || new Date().toISOString().split("T")[0];
+  const end = endDate || new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
+
+  try {
+    const url = `${TEAMUP_BASE}/events?startDate=${start}&endDate=${end}&subcalendarId[]=${SUBCALENDAR_ID}`;
+    const r = await fetch(url, {
+      headers: {
+        "Teamup-Token": TEAMUP_API_KEY,
+        "Content-Type": "application/json",
+      },
+    });
+    if (!r.ok) {
+      console.error("Teamup fetch error:", r.status);
+      return res.json({ bookings: [] });
+    }
+    const data = await r.json();
+    const events = data.events || [];
+
+    const bookings = events.map((e) => {
+      const startDt = new Date(e.start_dt);
+      const endDt = new Date(e.end_dt);
+      const nameMatch = (e.title || "").match(/^(.+?)\s*-\s*(.+)$/);
+      const service = nameMatch ? nameMatch[1].trim() : e.title || "Appointment";
+      const clientName = nameMatch ? nameMatch[2].trim() : (e.who || "Client");
+
+      let phone = "";
+      let email = "";
+      let notes = "";
+      if (e.notes) {
+        const phoneMatch = e.notes.match(/Phone:\s*([^\n]+)/);
+        const emailMatch = e.notes.match(/Email:\s*([^\n]+)/);
+        const notesMatch = e.notes.match(/Notes:\s*([^\n]+)/);
+        if (phoneMatch) phone = phoneMatch[1].trim();
+        if (emailMatch) email = emailMatch[1].trim();
+        if (notesMatch) notes = notesMatch[1].trim();
+      }
+
+      const hours = startDt.getHours();
+      const minutes = startDt.getMinutes();
+      const ampm = hours >= 12 ? "PM" : "AM";
+      const displayH = hours > 12 ? hours - 12 : hours === 0 ? 12 : hours;
+      const displayM = minutes === 0 ? "00" : String(minutes).padStart(2, "0");
+      const timeStr = `${displayH}:${displayM} ${ampm}`;
+
+      return {
+        id: String(e.id),
+        teamup_event_id: e.id,
+        full_name: clientName,
+        phone,
+        email,
+        service_type: service,
+        preferred_date: startDt.toISOString().split("T")[0],
+        preferred_time: timeStr,
+        notes,
+        status: "confirmed",
+        created_at: e.creation_dt || startDt.toISOString(),
+      };
+    });
+
+    bookings.sort((a, b) => new Date(a.preferred_date).getTime() - new Date(b.preferred_date).getTime());
+
+    res.json({ bookings });
+  } catch (err) {
+    console.error("Fetch bookings error:", err.message);
+    res.json({ bookings: [] });
+  }
+});
+
 if (require.main === module) {
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`API server running on port ${PORT}`);

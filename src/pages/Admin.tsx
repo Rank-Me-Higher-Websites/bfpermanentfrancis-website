@@ -33,10 +33,28 @@ export default function Admin() {
     if (isAuthenticated) loadBookings();
   }, [isAuthenticated]);
 
-  const loadBookings = () => {
-    const data = JSON.parse(localStorage.getItem("bookings") || "[]") as Booking[];
-    data.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
-    setBookings(data);
+  const [loading, setLoading] = useState(false);
+
+  const loadBookings = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/bookings");
+      const data = await res.json();
+      const teamupBookings = (data.bookings || []) as Booking[];
+
+      const localBookings = JSON.parse(localStorage.getItem("bookings") || "[]") as Booking[];
+      const teamupIds = new Set(teamupBookings.map((b) => b.id));
+      const uniqueLocal = localBookings.filter((b) => !teamupIds.has(b.id) && !b.teamup_event_id);
+
+      const merged = [...teamupBookings, ...uniqueLocal];
+      merged.sort((a, b) => new Date(b.preferred_date || b.created_at).getTime() - new Date(a.preferred_date || a.created_at).getTime());
+      setBookings(merged);
+    } catch {
+      const data = JSON.parse(localStorage.getItem("bookings") || "[]") as Booking[];
+      data.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      setBookings(data);
+    }
+    setLoading(false);
   };
 
   const handleLogin = (e: React.FormEvent) => {
@@ -246,7 +264,14 @@ export default function Admin() {
           </div>
 
           {/* Content */}
-          {view === "calendar" ? (
+          {loading ? (
+            <div className="flex items-center justify-center py-20">
+              <div className="text-center space-y-3">
+                <RefreshCw className="h-8 w-8 text-primary mx-auto opacity-60" style={{ animation: "spin 1s linear infinite" }} />
+                <p className="text-muted-foreground text-lg">Loading bookings from Teamup...</p>
+              </div>
+            </div>
+          ) : view === "calendar" ? (
             <BookingCalendar bookings={bookings} />
           ) : (
             <BookingTable
