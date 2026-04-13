@@ -50,12 +50,10 @@ const About = () => {
           backgroundImage={aboutHeroBg}
         />
 
-        {/* About Birute */}
-        <section className="section-padding bg-background">
+        <section className="section-padding section-dark">
           <div className="section-container">
-            <div className="grid gap-6 md:gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-              {/* Image */}
-              <div className="relative ">
+            <div className="grid gap-5 md:gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+              <div className="relative">
                 <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                   <img
                     src={aboutBirute}
@@ -67,30 +65,28 @@ const About = () => {
                     <p className="font-heading text-lg font-bold text-foreground" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Regional Trainer</p>
                   </div>
                 </div>
-                <div className="absolute -bottom-6 -right-6 h-48 w-48 rounded-2xl border-4 border-primary/20 -z-10" />
               </div>
 
-              {/* Content */}
               <div>
-                <h2 className="heading-lg mb-6">Birute Francis</h2>
-                <p className="mb-6 text-lg text-muted-foreground">
+                <h2 className="heading-lg mb-4 md:mb-6 text-white">Birute Francis</h2>
+                <p className="mb-4 md:mb-6 text-base md:text-lg text-white/80">
                   Birute Francis, a Long-Time-Liner Regional Trainer, boasts a track record of 
                   achievements in top brand pigments and devices. She is a trusted expert in 
                   microblading in Chicago and is highly knowledgeable about permanent makeup.
                 </p>
-                <p className="mb-4 md:mb-8 text-muted-foreground">
+                <p className="mb-4 md:mb-8 text-white/70">
                   She holds certifications from renowned courses and has completed training at 
                   Long-Time-Liner Conture Make-up GmbH centers in Munich and Beverly Hills. 
                   Her expertise spans across all areas of permanent makeup, from eyebrows and 
                   eyeliner to lips.
                 </p>
 
-                <div className="rounded-xl bg-secondary p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Award className="h-6 w-6 text-primary" />
-                    <h3 className="text-lg">Certifications</h3>
+                <div className="rounded-xl p-5 md:p-6" style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)' }}>
+                  <div className="flex items-center gap-3 mb-3">
+                    <Award className="h-6 w-6 text-white/80" />
+                    <h3 className="text-lg text-white">Certifications</h3>
                   </div>
-                  <p className="text-muted-foreground">
+                  <p className="text-white/70">
                     Certified to lead specialized courses in line with the Long-Time-Liner 
                     Conture Make-up approach.
                   </p>
@@ -102,28 +98,26 @@ const About = () => {
 
         <section className="section-padding section-soft">
           <div className="section-container">
-            <div className="grid gap-6 md:gap-12 lg:grid-cols-2">
-              {/* Certifications */}
-              <div className="">
+            <div className="grid gap-5 md:gap-12 lg:grid-cols-2">
+              <div>
                 <h2 className="heading-md mb-4 md:mb-8">Professional Certifications</h2>
-                <ul className="space-y-4">
+                <ul className="space-y-3 md:space-y-4">
                   {certifications.map((cert) => (
                     <li key={cert} className="flex items-start gap-3">
-                      <span className="text-primary/40 mt-1.5 text-xs">●</span>
-                      <span className="text-muted-foreground">{cert}</span>
+                      <CheckCircle className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
+                      <span className="text-muted-foreground text-sm md:text-base">{cert}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* Training Topics */}
               <div>
                 <h2 className="heading-md mb-4 md:mb-8">Elite Training Seminars Include</h2>
-                <ul className="grid gap-3 sm:grid-cols-2">
+                <ul className="grid gap-2 md:gap-3 sm:grid-cols-2">
                   {trainingTopics.map((topic) => (
                     <li key={topic} className="flex items-start gap-3 text-muted-foreground">
-                      <span className="text-primary/40 mt-1.5 text-xs">●</span>
-                      <span>{topic}</span>
+                      <CheckCircle className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
+                      <span className="text-sm md:text-base">{topic}</span>
                     </li>
                   ))}
                 </ul>

@@ -102,13 +102,13 @@ export function ServicesSection() {
   return (
     <section className="section-padding bg-white">
       <div className="section-container">
-        <div className="mx-auto mb-5 md:mb-12 max-w-2xl text-center ">
+        <div className="mx-auto mb-3 md:mb-12 max-w-2xl text-center ">
           <span className="section-label">
             Our Treatments
           </span>
-          <h2 className="heading-lg mb-3">What We Offer</h2>
-          <div className="divider-soft mb-5" />
-          <p className="text-base text-muted-foreground">
+          <h2 className="heading-lg mb-2 md:mb-3">What We Offer</h2>
+          <div className="divider-soft mb-3 md:mb-5" />
+          <p className="text-sm md:text-base text-muted-foreground hidden md:block">
             Professional permanent makeup treatments tailored to enhance your natural beauty
             with long-lasting, stunning results.
           </p>
@@ -122,26 +122,26 @@ export function ServicesSection() {
               
               data-testid={`service-card-${service.id}`}
             >
-              <div className="relative aspect-[4/3] md:aspect-[3/4] overflow-hidden">
+              <div className="relative aspect-[16/9] md:aspect-[3/4] overflow-hidden">
                 <img
                   src={service.image}
                   alt={`${service.title} - Permanent Makeup Chicago`}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                <h3 className="absolute bottom-6 left-6 right-6 text-2xl lg:text-[1.7rem] leading-tight" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.4)' }}>
+                <h3 className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 text-xl md:text-2xl lg:text-[1.7rem] leading-tight" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.4)' }}>
                   {service.title}
                 </h3>
               </div>
-              <div className="flex flex-1 flex-col p-4 md:p-8">
-                <p className="mb-3 md:mb-6 flex-1 text-[13px] md:text-[15px] leading-relaxed">{service.description}</p>
+              <div className="flex flex-1 flex-col p-3 md:p-8">
+                <p className="mb-2 md:mb-6 flex-1 text-[12px] md:text-[15px] leading-relaxed">{service.description}</p>
                 <Link
                   to={service.link}
-                  className="card-accent-link inline-flex items-center gap-2 text-sm font-medium transition-colors"
+                  className="card-accent-link inline-flex items-center gap-2 text-xs md:text-sm font-medium transition-colors"
                   data-testid={`link-service-${service.id}`}
                 >
                   Learn more
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-3 w-3 md:h-4 md:w-4" />
                 </Link>
               </div>
             </article>
