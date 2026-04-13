@@ -74,42 +74,42 @@ export function AboutSection() {
         </div>
       </section>
 
-      <section className="section-padding section-dark">
+      <section className="py-14 sm:py-16 section-dark">
         <div className="section-container">
-          <div className="text-center mb-8 animate-fade-up">
-            <span className="section-label">
+          <div className="text-center mb-10 animate-fade-up">
+            <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] mb-3 text-white/60" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
               Expertise & Training
             </span>
-            <h2 className="heading-lg mb-3">Certifications</h2>
-            <div className="divider-soft mb-0" />
+            <h2 className="heading-lg mb-3 text-white">Certifications</h2>
+            <div className="w-16 h-0.5 mx-auto rounded-full" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)' }} />
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            <div className="rounded-xl bg-white p-7" style={{ boxShadow: '0 8px 30px -6px rgba(0,0,0,0.12)' }}>
-              <div className="flex items-center gap-2.5 mb-5 pb-3" style={{ borderBottom: '1px solid #eee' }}>
-                <Award className="h-5 w-5" style={{ color: 'hsl(280 50% 58%)' }} />
-                <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: '#1a1a2e', fontFamily: "'Inter', system-ui, sans-serif" }}>Certifications</span>
+          <div className="grid md:grid-cols-2 gap-x-16 gap-y-4 max-w-4xl mx-auto animate-fade-up" style={{ animationDelay: "0.1s" }}>
+            <div>
+              <div className="flex items-center gap-2.5 mb-4">
+                <Award className="h-4.5 w-4.5 text-white/70" />
+                <span className="text-[13px] font-semibold uppercase tracking-wider text-white/80" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Certifications</span>
               </div>
-              <ul className="space-y-2.5">
+              <ul className="space-y-2">
                 {certifications.map((cert) => (
                   <li key={cert} className="flex items-start gap-2.5" data-testid={`cert-${cert.slice(0,10)}`}>
-                    <span className="mt-[7px] text-[8px]" style={{ color: 'hsl(280 50% 58%)' }}>●</span>
-                    <span className="text-[14px] leading-relaxed" style={{ color: '#2a2a2a' }}>{cert}</span>
+                    <span className="mt-[7px] text-[7px] text-white/50">●</span>
+                    <span className="text-[13.5px] leading-relaxed text-white/80">{cert}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="rounded-xl bg-white p-7" style={{ boxShadow: '0 8px 30px -6px rgba(0,0,0,0.12)' }}>
-              <div className="flex items-center gap-2.5 mb-5 pb-3" style={{ borderBottom: '1px solid #eee' }}>
-                <GraduationCap className="h-5 w-5" style={{ color: 'hsl(280 50% 58%)' }} />
-                <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: '#1a1a2e', fontFamily: "'Inter', system-ui, sans-serif" }}>Training Topics</span>
+            <div>
+              <div className="flex items-center gap-2.5 mb-4 mt-6 md:mt-0">
+                <GraduationCap className="h-4.5 w-4.5 text-white/70" />
+                <span className="text-[13px] font-semibold uppercase tracking-wider text-white/80" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Training Topics</span>
               </div>
-              <ul className="space-y-2.5">
+              <ul className="space-y-2">
                 {trainingTopics.map((topic) => (
                   <li key={topic} className="flex items-start gap-2.5">
-                    <span className="mt-[7px] text-[8px]" style={{ color: 'hsl(280 50% 58%)' }}>●</span>
-                    <span className="text-[14px] leading-relaxed" style={{ color: '#2a2a2a' }}>{topic}</span>
+                    <span className="mt-[7px] text-[7px] text-white/50">●</span>
+                    <span className="text-[13.5px] leading-relaxed text-white/80">{topic}</span>
                   </li>
                 ))}
               </ul>
