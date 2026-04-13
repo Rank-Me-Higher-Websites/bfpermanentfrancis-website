@@ -9,7 +9,10 @@ const TEAMUP_TOKEN = process.env.TEAMUP_TOKEN || "";
 const TEAMUP_BASE = `https://api.teamup.com/${TEAMUP_CALENDAR_KEY}`;
 const SUBCALENDAR_ID = 14609252;
 
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
+});
 
 const AVAILABILITY = {
   0: null,
