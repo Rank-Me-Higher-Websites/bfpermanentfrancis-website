@@ -65,7 +65,7 @@ export function BookingTable({ bookings, onStatusChange }: BookingTableProps) {
     return (
       <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border bg-card p-16 text-center">
         <Calendar className="mb-4 h-16 w-16 text-muted-foreground/30" />
-        <p className="text-xl font-heading text-muted-foreground">No bookings yet</p>
+        <p className="text-xl text-muted-foreground" style={{ fontFamily: "'Montserrat', system-ui, sans-serif", fontWeight: 900 }}>No bookings yet</p>
         <p className="text-base text-muted-foreground/70 mt-2">
           When clients book an appointment, they will show up here.
         </p>
@@ -94,7 +94,7 @@ export function BookingTable({ bookings, onStatusChange }: BookingTableProps) {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-heading text-base sm:text-lg font-bold text-foreground truncate">
+                    <span className="text-base sm:text-lg font-bold text-foreground truncate" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
                       {booking.full_name}
                     </span>
                     <BookingStatusBadge status={booking.status} />

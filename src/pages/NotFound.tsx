@@ -22,7 +22,7 @@ const NotFound = () => {
         <section className="section-padding flex items-center justify-center min-h-[60vh]">
           <div className="section-container">
             <div className="mx-auto max-w-lg text-center">
-              <p className="text-8xl font-heading font-bold text-primary mb-4">404</p>
+              <p className="text-8xl font-bold text-primary mb-4" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>404</p>
               <h1 className="heading-lg mb-4">Page Not Found</h1>
               <p className="text-lg text-muted-foreground mb-8">
                 Sorry, the page you're looking for doesn't exist or has been moved.

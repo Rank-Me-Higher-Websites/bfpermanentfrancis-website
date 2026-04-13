@@ -164,7 +164,7 @@ export function BookingCalendar({ bookings }: BookingCalendarProps) {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-heading text-base sm:text-lg font-bold truncate">
+                      <span className="text-base sm:text-lg font-bold truncate" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
                         {booking.full_name}
                       </span>
                       <BookingStatusBadge status={booking.status} />

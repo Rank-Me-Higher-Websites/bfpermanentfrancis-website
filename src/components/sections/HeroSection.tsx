@@ -83,7 +83,7 @@ export function HeroSection() {
 
           <div className="w-full lg:w-[420px] shrink-0">
             <div className="rounded-2xl bg-white p-6 sm:p-8" style={{ boxShadow: '0 25px 60px -12px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.1)' }}>
-              <h2 className="text-lg sm:text-xl text-foreground mb-0.5" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 700 }}>Book Your Appointment</h2>
+              <h2 className="text-lg sm:text-xl text-foreground mb-0.5" style={{ fontFamily: "'Montserrat', system-ui, sans-serif", fontWeight: 900 }}>Book Your Appointment</h2>
               <p className="text-xs sm:text-sm text-muted-foreground mb-4" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Select one or more services</p>
               <div className="space-y-2.5">
                 {SERVICES.map((s) => {

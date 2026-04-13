@@ -56,7 +56,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-medium uppercase tracking-wider text-white/90 mb-6" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white/90 mb-6" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
               Quick Links
             </h3>
             <ul className="space-y-3">
@@ -75,7 +75,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-medium uppercase tracking-wider text-white/90 mb-6" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white/90 mb-6" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
               Services
             </h3>
             <ul className="space-y-3">
@@ -94,7 +94,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-medium uppercase tracking-wider text-white/90 mb-6" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white/90 mb-6" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
               Contact
             </h3>
             <ul className="space-y-4">

@@ -76,7 +76,7 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
   if (variant === "hero") {
     return (
       <div className="rounded-2xl bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 p-4 sm:p-6 md:p-8">
-        <h2 className="text-base sm:text-lg md:text-xl font-heading mb-3 sm:mb-4 text-primary-foreground text-center">
+        <h2 className="text-base sm:text-lg md:text-xl font-heading mb-3 sm:mb-4 text-primary-foreground text-center" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
           Book Your Appointment
         </h2>
         <form onSubmit={handleSubmit}>
@@ -181,7 +181,7 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
       <section className="relative bg-accent py-10 md:py-14">
         <div className="section-container">
           <div className="mx-auto max-w-4xl text-center">
-            <h2 className="heading-md mb-3 text-accent-foreground">
+            <h2 className="heading-md mb-3 text-accent-foreground" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
               Book Your Appointment
             </h2>
             <p className="mb-8 text-accent-foreground/80">
@@ -302,7 +302,7 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
             <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
               Schedule Your Visit
             </p>
-            <h2 className="heading-md mb-4">Book an Appointment</h2>
+            <h2 className="heading-md mb-4" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Book an Appointment</h2>
             <p className="text-muted-foreground">
               Fill out the form below and we'll confirm your appointment within 24 hours.
             </p>

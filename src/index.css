@@ -90,9 +90,19 @@
     scroll-behavior: smooth;
   }
 
+  body,
+  div, p, span, a, li, ul, ol,
+  input, button, textarea, select, label,
+  td, th, tr, table,
+  strong, em, b, i, small,
+  blockquote, figcaption, figure,
+  nav, header, footer, main, section, article, aside,
+  form, fieldset, legend, details, summary {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', system-ui, sans-serif;
     font-weight: 400;
     letter-spacing: -0.01em;
     -webkit-font-smoothing: antialiased;
@@ -101,13 +111,17 @@
   }
 
   p {
-    font-family: 'Inter', system-ui, sans-serif;
     line-height: 1.7;
     color: hsl(240 8% 30%);
   }
 
-  input, button, textarea, select, label, span, a, li {
-    font-family: 'Inter', system-ui, sans-serif;
+  label {
+    font-weight: 700;
+    font-size: 0.875rem;
+  }
+
+  button {
+    font-weight: 700;
   }
 
   h1, h2, h3, h4, h5, h6 {

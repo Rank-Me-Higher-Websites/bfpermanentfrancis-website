@@ -137,7 +137,7 @@ export default function Booking() {
             <div className="bg-card rounded-2xl shadow-sm border border-border p-6 sm:p-10">
               {step === 1 && (
                 <div data-testid="step-service">
-                  <h2 className="text-2xl mb-1">Book Now</h2>
+                  <h2 className="text-2xl mb-1" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Book Now</h2>
                   <p className="text-gray-500 mb-6">Select one or more services</p>
                   <div className="space-y-3">
                     {SERVICES.map((s) => (
@@ -175,7 +175,7 @@ export default function Booking() {
                   <button onClick={() => setStep(1)} className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-4" data-testid="back-to-service">
                     <ArrowLeft className="w-4 h-4 mr-1" /> Back to Service
                   </button>
-                  <h2 className="text-2xl mb-1">Choose Your Stylist</h2>
+                  <h2 className="text-2xl mb-1" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Choose Your Stylist</h2>
                   <p className="text-gray-500 mb-6">Select who you'd like to see</p>
                   <button
                     data-testid="stylist-birute"
@@ -199,7 +199,7 @@ export default function Booking() {
                   <button onClick={() => setStep(2)} className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-4" data-testid="back-to-stylist">
                     <ArrowLeft className="w-4 h-4 mr-1" /> Back to Stylist
                   </button>
-                  <h2 className="text-2xl mb-1">Pick Date & Time</h2>
+                  <h2 className="text-2xl mb-1" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Pick Date & Time</h2>
                   <p className="text-gray-500 mb-6">Choose your preferred appointment time</p>
 
                   <div className="border border-gray-200 rounded-xl p-4 mb-6">
@@ -248,7 +248,7 @@ export default function Booking() {
                   <button onClick={() => setStep(3)} className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-4" data-testid="back-to-datetime">
                     <ArrowLeft className="w-4 h-4 mr-1" /> Back to Date & Time
                   </button>
-                  <h2 className="text-2xl mb-1">Your Information</h2>
+                  <h2 className="text-2xl mb-1" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Your Information</h2>
                   <p className="text-gray-500 mb-6">We'll send your confirmation here</p>
                   <div className="space-y-5">
                     <div className="space-y-2">
@@ -308,7 +308,7 @@ export default function Booking() {
                     </div>
 
                     <div className="rounded-xl border border-gray-200 p-5 bg-gray-50">
-                      <h3 className="text-lg mb-3">Your Booking Summary</h3>
+                      <h3 className="text-lg mb-3" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Your Booking Summary</h3>
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between"><span className="text-gray-500">Service</span><span className="font-medium">{serviceNames}</span></div>
                         <div className="flex justify-between"><span className="text-gray-500">Stylist</span><span className="font-medium">Birute Francis</span></div>
@@ -326,7 +326,7 @@ export default function Booking() {
                   <button onClick={() => setStep(4)} className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-4" data-testid="back-to-info">
                     <ArrowLeft className="w-4 h-4 mr-1" /> Back
                   </button>
-                  <h2 className="text-2xl mb-1">Review Your Booking</h2>
+                  <h2 className="text-2xl mb-1" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Review Your Booking</h2>
                   <p className="text-gray-500 mb-6">Please confirm all details are correct</p>
                   <div className="rounded-xl border border-gray-200 p-6 space-y-4">
                     <div className="grid grid-cols-2 gap-4 text-sm">
@@ -353,7 +353,7 @@ export default function Booking() {
                   <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
                     <Check className="w-8 h-8 text-green-600" />
                   </div>
-                  <h2 className="text-2xl mb-2">Booking Confirmed!</h2>
+                  <h2 className="text-2xl mb-2" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Booking Confirmed!</h2>
                   <p className="text-gray-500 mb-6 max-w-md mx-auto">
                     Thank you, {formData.fullName}! We've received your booking for {serviceNames} on {selectedDate ? format(selectedDate, "EEEE, MMMM d") : ""} at {selectedTime}. We'll send a confirmation to {formData.email}.
                   </p>
