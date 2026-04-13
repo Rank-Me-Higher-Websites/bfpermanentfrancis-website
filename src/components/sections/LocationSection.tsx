@@ -51,7 +51,7 @@ const contactCards = [
 
 export function LocationSection() {
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding section-dark">
       <div className="section-container">
         <div className="mx-auto mb-5 md:mb-10 max-w-2xl text-center ">
           <span className="section-label">
@@ -65,7 +65,7 @@ export function LocationSection() {
         </div>
 
         <div className="grid gap-3 md:gap-8 lg:grid-cols-2 items-stretch">
-          <div className=" rounded-2xl overflow-hidden h-[180px] md:h-[420px] lg:h-full lg:min-h-[420px] card-elegant">
+          <div className=" rounded-2xl overflow-hidden h-[180px] md:h-[420px] lg:h-full lg:min-h-[420px]" style={{ boxShadow: '0 8px 24px -4px rgba(0,0,0,0.3)' }}>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.6456!2d-87.97!3d41.67!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e4b5c5c5c5c5c%3A0x5c5c5c5c5c5c5c5c!2s12420%20Archer%20Ave%20Unit%20C%2C%20Lemont%2C%20IL%2060439!5e0!3m2!1sen!2sus!4v1234567890"
               width="100%"
@@ -80,20 +80,21 @@ export function LocationSection() {
 
           <div className=" grid gap-2 md:gap-4">
             {contactCards.map(({ icon: Icon, title, content, link }) => (
-              <div key={title} className="card-accent p-3 md:p-7" data-testid={`location-card-${title.toLowerCase()}`}>
+              <div key={title} className="location-card-white rounded-2xl p-3 md:p-7 bg-white" data-testid={`location-card-${title.toLowerCase()}`} style={{ boxShadow: '0 4px 20px -4px rgba(0,0,0,0.1)' }}>
                 <div className="flex items-start gap-4">
-                  <div className="icon-chip flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full">
-                    <Icon className="h-5 w-5 card-accent-icon" />
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full" style={{ background: 'hsl(280 50% 95%)' }}>
+                    <Icon className="h-5 w-5" style={{ color: 'hsl(280 50% 50%)' }} />
                   </div>
                   <div>
-                    <h3 className="mb-1.5 text-base">{title}</h3>
-                    <p className="text-sm leading-relaxed">{content}</p>
+                    <h3 className="mb-1.5 text-base" style={{ color: 'hsl(240 10% 20%)' }}>{title}</h3>
+                    <p className="text-sm leading-relaxed" style={{ color: 'hsl(240 8% 40%)' }}>{content}</p>
                     {link && (
                       <a
                         href={link.href}
                         target={link.external ? "_blank" : undefined}
                         rel={link.external ? "noopener noreferrer" : undefined}
-                        className="card-accent-link mt-2 inline-block text-sm font-medium transition-colors"
+                        className="mt-2 inline-block text-sm font-medium hover:opacity-80"
+                        style={{ color: 'hsl(280 50% 50%)' }}
                       >
                         {link.text}
                       </a>

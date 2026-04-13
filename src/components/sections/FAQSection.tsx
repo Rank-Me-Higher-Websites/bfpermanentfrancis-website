@@ -40,7 +40,7 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section className="section-padding section-dark">
+    <section className="section-padding bg-white">
       <div className="section-container">
         <div className="mx-auto max-w-3xl">
           <div className="mb-5 md:mb-10 text-center ">
@@ -59,14 +59,13 @@ export function FAQSection() {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="rounded-xl border-none bg-white px-4 md:px-8 data-[state=open]:bg-white transition-all duration-300"
-                style={{ boxShadow: '0 4px 20px -4px rgba(0,0,0,0.1)' }}
+                className="faq-card-accent rounded-xl border-none px-4 md:px-8"
                 data-testid={`faq-item-${index}`}
               >
-                <AccordionTrigger className="text-left text-[13px] md:text-base py-3 md:py-5 font-bold" style={{ fontFamily: "'Montserrat', system-ui, sans-serif", color: 'hsl(240 10% 20%)' }}>
+                <AccordionTrigger className="text-left text-[13px] md:text-base py-3 md:py-5 font-bold text-white" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="pb-4 md:pb-6 text-[13px] md:text-[15px] leading-relaxed" style={{ color: 'hsl(240 8% 35%)' }}>
+                <AccordionContent className="pb-4 md:pb-6 text-[13px] md:text-[15px] leading-relaxed text-white/80">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
