@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
-import { Lock, RefreshCw, Search, Users, Clock, CheckCircle2, XCircle, CalendarDays, List, LayoutGrid } from "lucide-react";
+import { Lock, RefreshCw, Search, Users, CheckCircle2, XCircle, CalendarDays, List } from "lucide-react";
 import { isToday, isFuture, parseISO } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,7 +15,6 @@ type FilterStatus = "all" | BookingStatus;
 
 const FILTER_CONFIG: { value: FilterStatus; label: string; icon: React.ReactNode; color: string }[] = [
   { value: "all", label: "All", icon: <Users className="h-5 w-5" />, color: "text-foreground" },
-  { value: "new", label: "New", icon: <Clock className="h-5 w-5" />, color: "text-primary" },
   { value: "confirmed", label: "Confirmed", icon: <CheckCircle2 className="h-5 w-5" />, color: "text-emerald-600" },
   { value: "completed", label: "Done", icon: <CalendarDays className="h-5 w-5" />, color: "text-muted-foreground" },
   { value: "cancelled", label: "Cancelled", icon: <XCircle className="h-5 w-5" />, color: "text-destructive" },
@@ -93,16 +92,14 @@ export default function Admin() {
   }, [bookings, filter, searchQuery]);
 
   const stats = useMemo(() => {
-    const newCount = bookings.filter((b) => b.status === "new").length;
     const confirmed = bookings.filter((b) => b.status === "confirmed").length;
     const completed = bookings.filter((b) => b.status === "completed").length;
     const cancelled = bookings.filter((b) => b.status === "cancelled").length;
-    return { total: bookings.length, newCount, confirmed, completed, cancelled };
+    return { total: bookings.length, confirmed, completed, cancelled };
   }, [bookings]);
 
   const getCount = (status: FilterStatus) => {
     if (status === "all") return stats.total;
-    if (status === "new") return stats.newCount;
     if (status === "confirmed") return stats.confirmed;
     if (status === "completed") return stats.completed;
     if (status === "cancelled") return stats.cancelled;
@@ -225,11 +222,10 @@ export default function Admin() {
 
         <main className="mx-auto max-w-6xl px-4 sm:px-6 py-6 space-y-6">
           {/* Quick Stats — large and color-coded */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+          <div className="grid grid-cols-3 gap-3 sm:gap-4">
             <QuickStat label="Total" value={stats.total} className="bg-card" />
-            <QuickStat label="New" value={stats.newCount} className="bg-primary/10 border-primary/20" highlight />
-            <QuickStat label="Confirmed" value={stats.confirmed} className="bg-emerald-50 border-emerald-200" />
-            <QuickStat label="Completed" value={stats.completed} className="bg-card" />
+            <QuickStat label="Confirmed" value={stats.confirmed} className="bg-emerald-50 border-emerald-200" highlight />
+            <QuickStat label="Done" value={stats.completed} className="bg-card" />
           </div>
 
           {/* Search */}
@@ -284,7 +280,7 @@ export default function Admin() {
               </div>
             </div>
           ) : view === "calendar" ? (
-            <BookingCalendar bookings={bookings} />
+            <BookingCalendar bookings={filteredBookings} />
           ) : (
             <BookingTable
               bookings={filteredBookings}
