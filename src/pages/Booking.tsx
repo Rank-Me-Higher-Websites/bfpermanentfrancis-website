@@ -237,7 +237,7 @@ export default function Booking() {
                         head_row: "flex w-full justify-between",
                         head_cell: "text-muted-foreground rounded-md flex-1 font-medium text-sm text-center py-2",
                         row: "flex w-full justify-between mt-1",
-                        cell: "flex-1 text-center text-sm p-0.5 relative [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
+                        cell: "flex-1 text-center text-sm p-0.5 relative focus-within:relative focus-within:z-20",
                         day: "h-10 w-10 mx-auto p-0 font-normal rounded-lg hover:bg-gray-100 inline-flex items-center justify-center aria-selected:opacity-100",
                         day_selected: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
                         day_today: "bg-purple-100 text-primary font-semibold",
