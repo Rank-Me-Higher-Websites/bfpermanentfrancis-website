@@ -230,8 +230,8 @@ export default function Admin() {
                 <h1 className="text-2xl sm:text-3xl text-center" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Admin Login</h1>
                 <p className="text-base text-muted-foreground text-center">Enter your credentials to see your bookings</p>
               </div>
-              <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" className="h-14 text-lg px-5" data-testid="input-username" autoFocus />
-              <Input type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="h-14 text-lg px-5" data-testid="input-password" />
+              <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" className="h-14 text-lg px-5 border-2 border-gray-300 focus:border-primary" data-testid="input-username" autoFocus />
+              <Input type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="h-14 text-lg px-5 border-2 border-gray-300 focus:border-primary" data-testid="input-password" />
               {error && <p className="text-base text-destructive text-center font-medium">{error}</p>}
               <Button type="submit" variant="cta" className="w-full h-14 text-lg rounded-xl" data-testid="button-sign-in">Sign In</Button>
             </form>
