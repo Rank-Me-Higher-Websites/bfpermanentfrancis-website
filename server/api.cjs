@@ -2,8 +2,9 @@ const express = require("express");
 const app = express();
 const PORT = process.env.API_PORT || 3001;
 
-const TEAMUP_API_KEY = process.env.TEAMUP_API_KEY || "ks20db078d08133796";
-const TEAMUP_BASE = `https://api.teamup.com/ks20db078d08133796`;
+const TEAMUP_CALENDAR_KEY = process.env.TEAMUP_API_KEY || "ks20db078d08133796";
+const TEAMUP_TOKEN = process.env.TEAMUP_TOKEN || "";
+const TEAMUP_BASE = `https://api.teamup.com/${TEAMUP_CALENDAR_KEY}`;
 const SUBCALENDAR_ID = 14609252;
 
 const AVAILABILITY = {
@@ -53,7 +54,7 @@ async function fetchTeamupEvents(dateStr) {
     const url = `${TEAMUP_BASE}/events?startDate=${dateStr}&endDate=${dateStr}&subcalendarId[]=${SUBCALENDAR_ID}`;
     const res = await fetch(url, {
       headers: {
-        "Teamup-Token": TEAMUP_API_KEY,
+        "Teamup-Token": TEAMUP_TOKEN,
         "Content-Type": "application/json",
       },
     });
@@ -90,7 +91,7 @@ async function createTeamupEvent(booking) {
     const res = await fetch(`${TEAMUP_BASE}/events`, {
       method: "POST",
       headers: {
-        "Teamup-Token": TEAMUP_API_KEY,
+        "Teamup-Token": TEAMUP_TOKEN,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(eventData),
@@ -182,7 +183,7 @@ app.get("/api/bookings", async (req, res) => {
     const url = `${TEAMUP_BASE}/events?startDate=${start}&endDate=${end}&subcalendarId[]=${SUBCALENDAR_ID}`;
     const r = await fetch(url, {
       headers: {
-        "Teamup-Token": TEAMUP_API_KEY,
+        "Teamup-Token": TEAMUP_TOKEN,
         "Content-Type": "application/json",
       },
     });
@@ -196,20 +197,34 @@ app.get("/api/bookings", async (req, res) => {
     const bookings = events.map((e) => {
       const startDt = new Date(e.start_dt);
       const endDt = new Date(e.end_dt);
-      const nameMatch = (e.title || "").match(/^(.+?)\s*-\s*(.+)$/);
-      const service = nameMatch ? nameMatch[1].trim() : e.title || "Appointment";
-      const clientName = nameMatch ? nameMatch[2].trim() : (e.who || "Client");
+      const title = (e.title || "Appointment").trim();
+
+      const dashMatch = title.match(/^(.+?)\s*[-—]\s*(.+)$/);
+      let clientName = "";
+      let service = "";
+      if (dashMatch) {
+        clientName = dashMatch[1].trim();
+        service = dashMatch[2].trim();
+      } else {
+        clientName = title;
+        service = "Appointment";
+      }
 
       let phone = "";
       let email = "";
       let notes = "";
       if (e.notes) {
-        const phoneMatch = e.notes.match(/Phone:\s*([^\n]+)/);
-        const emailMatch = e.notes.match(/Email:\s*([^\n]+)/);
-        const notesMatch = e.notes.match(/Notes:\s*([^\n]+)/);
+        const stripped = e.notes.replace(/<[^>]+>/g, "\n");
+        const phoneMatch = stripped.match(/Phone:\s*([^\n]+)/);
+        const emailMatch = stripped.match(/Email:\s*([^\n]+)/);
+        const notesMatch = stripped.match(/Notes:\s*([^\n]+)/);
         if (phoneMatch) phone = phoneMatch[1].trim();
         if (emailMatch) email = emailMatch[1].trim();
         if (notesMatch) notes = notesMatch[1].trim();
+      }
+
+      if (e.who && e.who.trim()) {
+        clientName = e.who.trim();
       }
 
       const hours = startDt.getHours();

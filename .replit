@@ -50,3 +50,4 @@ externalPort = 3000
 
 [userenv.shared]
 TEAMUP_API_KEY = "ks20db078d08133796"
+TEAMUP_TOKEN = "ec699077849c51decc8e134eb37ba20ea87e50290027fc2de8b053e586c136ea"
