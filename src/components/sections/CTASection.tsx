@@ -17,7 +17,7 @@ export function CTASection() {
           <h2 className="heading-lg mb-6 text-white !text-4xl md:!text-5xl" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}>
             Ready to Enhance Your Natural Beauty?
           </h2>
-          <p className="mb-10 text-base md:text-lg text-white/65 leading-relaxed" style={{ fontWeight: 300 }}>
+          <p className="mb-5 md:mb-10 text-base md:text-lg text-white/65 leading-relaxed" style={{ fontWeight: 300 }}>
             Book your consultation today and discover how permanent makeup can simplify your
             daily routine while keeping you looking your best.
           </p>

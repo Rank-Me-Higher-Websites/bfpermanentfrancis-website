@@ -53,7 +53,7 @@ const About = () => {
         {/* About Birute */}
         <section className="section-padding bg-background">
           <div className="section-container">
-            <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+            <div className="grid gap-6 md:gap-12 lg:grid-cols-2 lg:gap-16 items-center">
               {/* Image */}
               <div className="relative ">
                 <div className="relative overflow-hidden rounded-2xl shadow-2xl">
@@ -78,7 +78,7 @@ const About = () => {
                   achievements in top brand pigments and devices. She is a trusted expert in 
                   microblading in Chicago and is highly knowledgeable about permanent makeup.
                 </p>
-                <p className="mb-8 text-muted-foreground">
+                <p className="mb-4 md:mb-8 text-muted-foreground">
                   She holds certifications from renowned courses and has completed training at 
                   Long-Time-Liner Conture Make-up GmbH centers in Munich and Beverly Hills. 
                   Her expertise spans across all areas of permanent makeup, from eyebrows and 
@@ -102,10 +102,10 @@ const About = () => {
 
         <section className="section-padding section-soft">
           <div className="section-container">
-            <div className="grid gap-12 lg:grid-cols-2">
+            <div className="grid gap-6 md:gap-12 lg:grid-cols-2">
               {/* Certifications */}
               <div className="">
-                <h2 className="heading-md mb-8">Professional Certifications</h2>
+                <h2 className="heading-md mb-4 md:mb-8">Professional Certifications</h2>
                 <ul className="space-y-4">
                   {certifications.map((cert) => (
                     <li key={cert} className="flex items-start gap-3">
@@ -118,7 +118,7 @@ const About = () => {
 
               {/* Training Topics */}
               <div>
-                <h2 className="heading-md mb-8">Elite Training Seminars Include</h2>
+                <h2 className="heading-md mb-4 md:mb-8">Elite Training Seminars Include</h2>
                 <ul className="grid gap-3 sm:grid-cols-2">
                   {trainingTopics.map((topic) => (
                     <li key={topic} className="flex items-start gap-3 text-muted-foreground">

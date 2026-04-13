@@ -88,7 +88,7 @@ const Products = () => {
         {/* Products Grid */}
         <section className="section-padding bg-background">
           <div className="section-container">
-            <div className="grid gap-8 md:grid-cols-2">
+            <div className="grid gap-4 md:gap-8 md:grid-cols-2">
               {products.map((product, index) => (
                 <article
                   key={product.id}

@@ -53,7 +53,7 @@ export function LocationSection() {
   return (
     <section className="section-padding bg-white">
       <div className="section-container">
-        <div className="mx-auto mb-8 md:mb-10 max-w-2xl text-center ">
+        <div className="mx-auto mb-5 md:mb-10 max-w-2xl text-center ">
           <span className="section-label">
             Visit Us
           </span>

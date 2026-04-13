@@ -65,7 +65,7 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-80">
-              <div className="flex flex-col gap-8 py-8">
+              <div className="flex flex-col gap-5 py-6">
                 <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3">
                   <div className="flex h-10 items-center rounded-lg gradient-bg px-3">
                     <img src={logoBf} alt="BF Permanent Francis" className="h-7 w-auto" />

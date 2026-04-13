@@ -57,7 +57,7 @@ export function HeroSection() {
               Long-Lasting Beauty,<br />
               <span className="hero-gradient-text">Effortlessly Yours</span>
             </h1>
-            <p className="mb-4 sm:mb-10 max-w-lg text-sm sm:text-lg text-white/80 leading-relaxed mx-auto lg:mx-0" style={{ fontWeight: 400, fontFamily: "'Inter', system-ui, sans-serif" }}>
+            <p className="mb-4 sm:mb-8 max-w-lg text-sm sm:text-lg text-white/80 leading-relaxed mx-auto lg:mx-0" style={{ fontWeight: 400, fontFamily: "'Inter', system-ui, sans-serif" }}>
               Expert micropigmentation by certified Long-Time-Liner® Regional Trainer.
               Enhance your natural beauty with results that last.
             </p>

@@ -108,7 +108,7 @@ const Training = () => {
         {/* Courses Grid */}
         <section className="section-padding bg-background">
           <div className="section-container">
-            <div className="grid gap-8 md:grid-cols-2 items-stretch">
+            <div className="grid gap-4 md:gap-8 md:grid-cols-2 items-stretch">
               {courses.map((course, index) => (
                 <Card
                   key={course.id}

@@ -107,12 +107,12 @@ const Treatments = () => {
         {/* Treatments */}
         <section className="section-padding bg-white">
           <div className="section-container">
-            <div className="space-y-16">
+            <div className="space-y-8 md:space-y-16">
               {treatments.map((treatment, index) => (
                 <article
                   key={treatment.id}
                   id={treatment.id}
-                  className={`grid gap-12 lg:grid-cols-2 lg:gap-16 items-center ${
+                  className={`grid gap-6 md:gap-12 lg:grid-cols-2 lg:gap-16 items-center ${
                     index % 2 === 1 ? "lg:flex-row-reverse" : ""
                   }`}
                 >
@@ -152,8 +152,8 @@ const Treatments = () => {
                     </div>
 
                     {/* Benefits */}
-                    <div className="mb-8">
-                      <h3 className="mb-4 text-lg">Benefits</h3>
+                    <div className="mb-4 md:mb-8">
+                      <h3 className="mb-3 md:mb-4 text-lg">Benefits</h3>
                       <ul className="grid gap-2 sm:grid-cols-2">
                         {treatment.benefits.map((benefit) => (
                           <li key={benefit} className="flex items-start gap-2 text-muted-foreground">

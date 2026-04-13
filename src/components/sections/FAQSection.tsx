@@ -43,7 +43,7 @@ export function FAQSection() {
     <section className="section-padding section-dark">
       <div className="section-container">
         <div className="mx-auto max-w-3xl">
-          <div className="mb-8 md:mb-10 text-center ">
+          <div className="mb-5 md:mb-10 text-center ">
             <span className="section-label">
               FAQ
             </span>

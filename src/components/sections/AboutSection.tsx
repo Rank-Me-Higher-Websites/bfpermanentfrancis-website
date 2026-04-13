@@ -25,7 +25,7 @@ export function AboutSection() {
     <>
       <section className="section-padding bg-white">
         <div className="section-container">
-          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
+          <div className="grid gap-5 md:gap-8 lg:grid-cols-2 lg:gap-12 items-center">
             <div className="relative">
               <div className="relative overflow-hidden rounded-2xl" style={{ boxShadow: '0 25px 50px -12px rgba(0,0,0,0.2)' }}>
                 <img
@@ -70,14 +70,14 @@ export function AboutSection() {
 
       <section className="py-14 sm:py-18 section-dark">
         <div className="section-container">
-          <div className="text-center mb-10">
+          <div className="text-center mb-5 md:mb-10">
             <span className="inline-block text-xs font-semibold uppercase tracking-[0.25em] mb-3 text-white/50" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
               Expertise & Training
             </span>
             <h2 className="heading-lg text-white">Certifications</h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-8 max-w-5xl mx-auto">
             <div className="rounded-2xl p-6 sm:p-8" style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)' }}>
               <div className="flex items-center gap-3 mb-5">
                 <div className="flex h-9 w-9 items-center justify-center rounded-lg" style={{ background: 'rgba(255,255,255,0.1)' }}>

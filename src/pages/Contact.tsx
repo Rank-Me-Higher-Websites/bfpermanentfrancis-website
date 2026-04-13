@@ -27,7 +27,7 @@ const Contact = () => {
 
         <section className="section-padding-sm section-soft">
           <div className="section-container">
-            <div className="mb-10 text-center">
+            <div className="mb-5 md:mb-10 text-center">
               <span className="section-label">
                 Reach Out
               </span>
@@ -36,7 +36,7 @@ const Contact = () => {
               <p className="text-muted-foreground">Reach us directly or book your appointment</p>
             </div>
 
-            <div className="grid gap-5 sm:grid-cols-3 max-w-4xl mx-auto">
+            <div className="grid gap-3 sm:gap-5 sm:grid-cols-3 max-w-4xl mx-auto">
               <div className="rounded-2xl border-2 border-border bg-card p-6" data-testid="contact-card-phone">
                 <div className="flex items-start gap-4">
                   <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/8">
@@ -86,7 +86,7 @@ const Contact = () => {
               </Link>
             </div>
 
-            <div className="mt-8 text-center">
+            <div className="mt-5 md:mt-8 text-center">
               <a
                 href="tel:+17087372333"
                 className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-white font-bold text-base gradient-bg hover:opacity-90 transition-opacity"
