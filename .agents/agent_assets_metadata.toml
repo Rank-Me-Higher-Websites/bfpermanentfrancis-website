@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "QWyjyx3Lo9XFxAYDh_3Hb"
+uri = "file://src/assets/hero-bg.jpg"
+type = "image"
+title = "Hero Background Image (hero-bg.jpg)"
