@@ -7,9 +7,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 
-app.use("/api", (req, res, next) => {
-  apiApp(req, res, next);
-});
+app.use(apiApp);
 
 app.use(express.static(path.join(__dirname), {
   maxAge: "1d",
