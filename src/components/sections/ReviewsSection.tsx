@@ -98,7 +98,7 @@ export function ReviewsSection() {
                     alt={review.name}
                     className="h-12 w-12 rounded-full object-cover ring-2 ring-white/15"
                   />
-                  <p className="font-heading text-base font-medium text-white" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                  <p className="font-heading text-base font-semibold text-white" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
                     {review.name}
                   </p>
                 </div>

@@ -37,7 +37,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[92svh] flex items-center justify-center overflow-hidden">
+    <section className="relative flex items-center justify-center overflow-hidden" style={{ height: 'calc(100vh - 80px)' }}>
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{ backgroundImage: `url(${heroBg})` }}
@@ -49,21 +49,21 @@ export function HeroSection() {
         <div className="flex flex-col lg:flex-row items-center lg:items-center gap-6 sm:gap-14 lg:gap-20">
           <div className="flex-1 text-center lg:text-left">
             <div className="mb-4 sm:mb-7">
-              <span className="inline-block text-[10px] sm:text-xs font-medium uppercase tracking-[0.3em] text-white/60 border-b border-white/15 pb-2">
+              <span className="inline-block text-[10px] sm:text-xs font-medium uppercase tracking-[0.3em] text-white/60 border-b border-white/15 pb-2" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                 Permanent Makeup Chicago
               </span>
             </div>
-            <h1 className="mb-4 sm:mb-8 text-white text-4xl sm:text-6xl lg:text-[5.2rem] leading-[1.05]" style={{ letterSpacing: '-0.025em', fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 600, textShadow: '0 2px 30px rgba(0,0,0,0.3)' }}>
+            <h1 className="mb-4 sm:mb-8 text-white text-3xl sm:text-5xl lg:text-[3.75rem] leading-[0.95]" style={{ letterSpacing: '-0.03em', fontFamily: "'Montserrat', system-ui, sans-serif", fontWeight: 900, fontStyle: 'italic', textShadow: '0 2px 30px rgba(0,0,0,0.3)' }}>
               Long-Lasting Beauty,<br />
               Effortlessly Yours
             </h1>
-            <p className="mb-4 sm:mb-10 max-w-lg text-sm sm:text-lg lg:text-xl text-white/70 leading-relaxed mx-auto lg:mx-0" style={{ fontWeight: 300 }}>
+            <p className="mb-4 sm:mb-10 max-w-lg text-sm sm:text-lg text-white/80 leading-relaxed mx-auto lg:mx-0" style={{ fontWeight: 400, fontFamily: "'Inter', system-ui, sans-serif" }}>
               Expert micropigmentation by certified Long-Time-Liner® Regional Trainer.
               Enhance your natural beauty with results that last.
             </p>
 
             <div className="hidden sm:flex flex-col items-center lg:items-start gap-4 sm:flex-row">
-              <Button variant="hero-outline" size="lg" className="rounded-full text-[15px] px-8 h-13" asChild data-testid="button-call-hero">
+              <Button variant="hero-outline" size="lg" className="rounded-full text-lg px-8 h-13 font-bold" asChild data-testid="button-call-hero">
                 <a href="tel:+17087372333">
                   <Phone className="mr-2 h-4 w-4" />
                   (708) 737-2333
@@ -75,7 +75,7 @@ export function HeroSection() {
               {BADGES.map(({ icon: Icon, label }) => (
                 <div key={label} className="flex items-center gap-2.5 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-5 py-2.5">
                   <Icon className="h-4 w-4 text-white/80" />
-                  <span className="text-sm font-medium text-white/90">{label}</span>
+                  <span className="text-sm font-semibold text-white/90" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>{label}</span>
                 </div>
               ))}
             </div>

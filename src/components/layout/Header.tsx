@@ -37,9 +37,10 @@ export function Header() {
               to={item.href}
               className={`nav-link text-[13px] tracking-wide transition-colors hover:text-primary pb-1 ${
                 isActive(item.href)
-                  ? "text-primary font-semibold nav-link-active"
+                  ? "text-primary font-medium nav-link-active"
                   : "text-foreground/80 font-medium"
               }`}
+              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
               data-testid={`nav-${item.name.toLowerCase().replace(/\s/g, '-')}`}
             >
               {item.name}
@@ -76,11 +77,12 @@ export function Header() {
                       key={item.name}
                       to={item.href}
                       onClick={() => setIsOpen(false)}
-                      className={`text-base transition-colors hover:text-primary ${
+                      className={`text-base font-medium transition-colors hover:text-primary ${
                         isActive(item.href)
-                          ? "text-primary font-medium"
+                          ? "text-primary"
                           : "text-foreground/70"
                       }`}
+                      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                       data-testid={`mobile-nav-${item.name.toLowerCase().replace(/\s/g, '-')}`}
                     >
                       {item.name}

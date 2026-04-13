@@ -64,7 +64,7 @@ const About = () => {
                   />
                   <div className="absolute bottom-6 left-6 rounded-lg bg-white/90 backdrop-blur-sm px-4 py-3 shadow-lg">
                     <p className="text-xs font-medium uppercase tracking-wider text-foreground/60">Long-Time-Liner®</p>
-                    <p className="font-heading text-lg text-foreground" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>Regional Trainer</p>
+                    <p className="font-heading text-lg font-bold text-foreground" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Regional Trainer</p>
                   </div>
                 </div>
                 <div className="absolute -bottom-6 -right-6 h-48 w-48 rounded-2xl border-4 border-primary/20 -z-10" />

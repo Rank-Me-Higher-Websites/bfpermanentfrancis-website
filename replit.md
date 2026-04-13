@@ -12,8 +12,16 @@ Premium permanent makeup business website for Birute Francis (Chicago). Static f
 ## Design System
 
 ### Fonts
-- **Headings**: Playfair Display (serif, weight 600) — loaded via `<link>` in index.html
-- **Body**: Inter (sans-serif, weight 400 default) — font-optical-sizing enabled
+- **Headings**: Montserrat (sans-serif, weight 900) — loaded via `<link>` in index.html
+  - Hero h1: weight 900 italic, `font-size: clamp(3rem, 5vw, 3.75rem)`, `line-height: 0.95`, `letter-spacing: -0.03em`
+  - Section headings (h2): Montserrat weight 900
+  - heading-sm: weight 800
+- **Body/UI**: Inter (sans-serif) — font-optical-sizing enabled
+  - Buttons: Inter weight 700 (font-bold)
+  - Nav links: Inter weight 500 (font-medium)
+  - Form labels: Inter weight 700
+  - Trust badges: Inter weight 600 (font-semibold)
+  - Body/paragraph: Inter weight 400
 - **Font loading**: Google Fonts via HTML `<link>` tags with preconnect hints (NOT CSS @import)
 
 ### Color Palette (Warm Rose/Charcoal — Unified)
