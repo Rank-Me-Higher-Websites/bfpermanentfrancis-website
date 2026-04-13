@@ -181,55 +181,59 @@ export default function Admin() {
                     ))}
                   </div>
 
-                  <div className="grid grid-cols-7 gap-px bg-gray-300">
-                    {Array.from({ length: startDayOfWeek }).map((_, i) => (
-                      <div key={`empty-${i}`} className="bg-gray-100 min-h-[70px]" />
-                    ))}
+                  <table className="w-full border-collapse">
+                    <tbody>
+                      {(() => {
+                        const allCells: (Date | null)[] = [];
+                        for (let i = 0; i < startDayOfWeek; i++) allCells.push(null);
+                        days.forEach((d) => allCells.push(d));
+                        while (allCells.length % 7 !== 0) allCells.push(null);
+                        const weeks: (Date | null)[][] = [];
+                        for (let i = 0; i < allCells.length; i += 7) weeks.push(allCells.slice(i, i + 7));
 
-                    {days.map((day) => {
-                      const key = format(day, "yyyy-MM-dd");
-                      const dayBookings = bookingsByDate.get(key) || [];
-                      const hasBookings = dayBookings.length > 0;
-                      const isSelected = selectedDate && isSameDay(day, selectedDate);
-                      const today = isToday(day);
+                        return weeks.map((week, wi) => (
+                          <tr key={wi}>
+                            {week.map((day, di) => {
+                              if (!day) {
+                                return <td key={`empty-${wi}-${di}`} className="border border-gray-300 bg-white min-h-[70px] h-[70px]" />;
+                              }
+                              const key = format(day, "yyyy-MM-dd");
+                              const dayBookings = bookingsByDate.get(key) || [];
+                              const hasBookings = dayBookings.length > 0;
+                              const isSelected = selectedDate && isSameDay(day, selectedDate);
+                              const today = isToday(day);
 
-                      return (
-                        <button
-                          key={key}
-                          onClick={() => setSelectedDate(isSelected ? null : day)}
-                          className={`
-                            relative min-h-[70px] p-1.5
-                            text-left transition-colors flex flex-col
-                            ${isSelected ? "bg-purple-100 ring-2 ring-purple-500 ring-inset" : "bg-white hover:bg-gray-50"}
-                            ${today && !isSelected ? "bg-purple-50" : ""}
-                          `}
-                        >
-                          <span className={`
-                            text-sm font-semibold
-                            ${today ? "flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white" : ""}
-                            ${!today && hasBookings ? "text-foreground" : "text-gray-400"}
-                          `}>
-                            {format(day, "d")}
-                          </span>
-
-                          {hasBookings && (
-                            <div className="mt-auto flex flex-col gap-0.5">
-                              {dayBookings.slice(0, 2).map((b) => (
-                                <span key={b.id} className="text-[10px] leading-tight font-semibold truncate rounded px-1 py-0.5 bg-primary/15 text-primary">
-                                  {b.full_name.split(" ")[0]}
-                                </span>
-                              ))}
-                              {dayBookings.length > 2 && (
-                                <span className="text-[10px] text-gray-500 font-semibold">
-                                  +{dayBookings.length - 2} more
-                                </span>
-                              )}
-                            </div>
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
+                              return (
+                                <td
+                                  key={key}
+                                  onClick={() => setSelectedDate(isSelected ? null : day)}
+                                  className={`border border-gray-300 h-[70px] p-1.5 align-top cursor-pointer transition-colors ${isSelected ? "bg-purple-100" : "bg-white hover:bg-gray-50"} ${today && !isSelected ? "bg-purple-50" : ""}`}
+                                >
+                                  <div className="flex flex-col h-full">
+                                    <span className={`text-sm font-semibold ${today ? "flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white" : ""} ${!today && hasBookings ? "text-foreground" : "text-gray-400"}`}>
+                                      {format(day, "d")}
+                                    </span>
+                                    {hasBookings && (
+                                      <div className="mt-auto flex flex-col gap-0.5">
+                                        {dayBookings.slice(0, 2).map((b) => (
+                                          <span key={b.id} className="text-[10px] leading-tight font-semibold truncate rounded px-1 py-0.5 bg-primary/15 text-primary">
+                                            {b.full_name.split(" ")[0]}
+                                          </span>
+                                        ))}
+                                        {dayBookings.length > 2 && (
+                                          <span className="text-[10px] text-gray-500 font-semibold">+{dayBookings.length - 2} more</span>
+                                        )}
+                                      </div>
+                                    )}
+                                  </div>
+                                </td>
+                              );
+                            })}
+                          </tr>
+                        ));
+                      })()}
+                    </tbody>
+                  </table>
                 </div>
               </div>
 
