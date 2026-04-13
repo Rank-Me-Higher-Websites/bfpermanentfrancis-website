@@ -335,6 +335,9 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  font-family: 'Montserrat', system-ui, sans-serif !important;
+  font-weight: 900;
+  font-style: italic;
 }
 
 .animate-hero-fade-in {
