@@ -67,6 +67,64 @@ function formatTime12(h, m) {
   return `${displayH}:${displayM} ${ampm}`;
 }
 
+let lastSyncTime = 0;
+const SYNC_INTERVAL = 5 * 60 * 1000;
+
+async function syncFromTeamup() {
+  try {
+    const start = new Date().toISOString().split("T")[0];
+    const end = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
+    const events = await fetchTeamupEvents(start, end);
+    let synced = 0;
+    for (const e of events) {
+      const startDt = new Date(e.start_dt);
+      const title = (e.title || "").trim();
+      const dashMatch = title.match(/^(.+?)\s*[-—]\s*(.+)$/);
+      let clientName = e.who || (dashMatch ? dashMatch[2].trim() : title);
+      let service = dashMatch ? dashMatch[1].trim() : "Appointment";
+      let phone = "", email = "", notes = "";
+      if (e.notes) {
+        const stripped = e.notes.replace(/<[^>]+>/g, "\n");
+        const phoneMatch = stripped.match(/Phone:\s*([^\n]+)/);
+        const emailMatch = stripped.match(/Email:\s*([^\n]+)/);
+        const notesMatch = stripped.match(/Notes:\s*([^\n]+)/);
+        if (phoneMatch) phone = phoneMatch[1].trim();
+        if (emailMatch) email = emailMatch[1].trim();
+        if (notesMatch) notes = notesMatch[1].trim();
+      }
+      const dateStr = startDt.toISOString().split("T")[0];
+      const timeStr = formatTime12(startDt.getHours(), startDt.getMinutes());
+      const eventIdStr = String(e.id);
+      const { rows: existing } = await pool.query(
+        `SELECT id FROM bookings WHERE teamup_event_id = $1`, [eventIdStr]
+      );
+      if (!existing.length) {
+        const isCancelled = title.startsWith("[CANCELLED]");
+        await pool.query(
+          `INSERT INTO bookings (id, teamup_event_id, full_name, phone, email, service_type, preferred_date, preferred_time, notes, status, created_at)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+          [crypto.randomUUID(), eventIdStr, clientName, phone, email, service, dateStr, timeStr, notes, isCancelled ? "cancelled" : "confirmed", e.creation_dt || new Date().toISOString()]
+        );
+        synced++;
+      }
+    }
+    lastSyncTime = Date.now();
+    console.log(`Teamup sync complete: ${synced} new, ${events.length} total`);
+    return { synced, total: events.length };
+  } catch (err) {
+    console.error("Auto-sync error:", err.message);
+    return { synced: 0, total: 0 };
+  }
+}
+
+async function ensureSynced() {
+  if (Date.now() - lastSyncTime > SYNC_INTERVAL) {
+    await syncFromTeamup();
+  }
+}
+
+setTimeout(() => syncFromTeamup(), 3000);
+
 async function fetchTeamupEvents(startDate, endDate) {
   try {
     const end = endDate || startDate;
@@ -272,6 +330,7 @@ app.post("/api/bookings", async (req, res) => {
 
 app.get("/api/bookings", async (req, res) => {
   try {
+    await ensureSynced();
     const { status, includeDeleted } = req.query;
     let query = `SELECT * FROM bookings`;
     const conditions = [];
@@ -477,49 +536,9 @@ app.delete("/api/blocked-times/:id", async (req, res) => {
 
 app.post("/api/sync-teamup", async (req, res) => {
   try {
-    const start = new Date().toISOString().split("T")[0];
-    const end = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
-    const events = await fetchTeamupEvents(start, end);
-
-    let synced = 0;
-    for (const e of events) {
-      const startDt = new Date(e.start_dt);
-      const title = (e.title || "").trim();
-      const dashMatch = title.match(/^(.+?)\s*[-—]\s*(.+)$/);
-      let clientName = e.who || (dashMatch ? dashMatch[2].trim() : title);
-      let service = dashMatch ? dashMatch[1].trim() : "Appointment";
-
-      let phone = "", email = "", notes = "";
-      if (e.notes) {
-        const stripped = e.notes.replace(/<[^>]+>/g, "\n");
-        const phoneMatch = stripped.match(/Phone:\s*([^\n]+)/);
-        const emailMatch = stripped.match(/Email:\s*([^\n]+)/);
-        const notesMatch = stripped.match(/Notes:\s*([^\n]+)/);
-        if (phoneMatch) phone = phoneMatch[1].trim();
-        if (emailMatch) email = emailMatch[1].trim();
-        if (notesMatch) notes = notesMatch[1].trim();
-      }
-
-      const dateStr = startDt.toISOString().split("T")[0];
-      const timeStr = formatTime12(startDt.getHours(), startDt.getMinutes());
-      const eventIdStr = String(e.id);
-
-      const { rows: existing } = await pool.query(
-        `SELECT id FROM bookings WHERE teamup_event_id = $1`, [eventIdStr]
-      );
-
-      if (!existing.length) {
-        const isCancelled = title.startsWith("[CANCELLED]");
-        await pool.query(
-          `INSERT INTO bookings (id, teamup_event_id, full_name, phone, email, service_type, preferred_date, preferred_time, notes, status, created_at)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
-          [crypto.randomUUID(), eventIdStr, clientName, phone, email, service, dateStr, timeStr, notes, isCancelled ? "cancelled" : "confirmed", e.creation_dt || new Date().toISOString()]
-        );
-        synced++;
-      }
-    }
-
-    res.json({ success: true, synced, total: events.length });
+    lastSyncTime = 0;
+    const result = await syncFromTeamup();
+    res.json({ success: true, ...result });
   } catch (err) {
     console.error("Sync error:", err.message);
     res.status(500).json({ error: "Sync failed" });
