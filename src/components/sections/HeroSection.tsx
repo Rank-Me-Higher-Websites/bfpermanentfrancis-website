@@ -42,7 +42,7 @@ export function HeroSection() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(350, 15%, 8%, 0.78) 0%, hsla(350, 18%, 12%, 0.62) 100%)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(280, 15%, 8%, 0.78) 0%, hsla(280, 18%, 12%, 0.62) 100%)" }} />
       </div>
 
       <div className="section-container relative z-10 py-8 sm:py-24 w-full">

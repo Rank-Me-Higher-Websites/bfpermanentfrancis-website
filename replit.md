@@ -24,18 +24,19 @@ Premium permanent makeup business website for Birute Francis (Chicago). Static f
   - Body/paragraph: Inter weight 400
 - **Font loading**: Google Fonts via HTML `<link>` tags with preconnect hints (NOT CSS @import)
 
-### Color Palette (Warm Rose/Charcoal — Unified)
-- **Primary**: Dusty rose `hsl(350, 28%, 56%)` — buttons, accents, links
+### Color Palette (Purple/Charcoal — Unified)
+- **Primary**: Rich purple `hsl(280, 50%, 58%)` — buttons, accents, links
 - **Background**: Warm off-white `hsl(30, 25%, 98%)`
 - **Foreground**: Deep charcoal `hsl(240, 10%, 15%)`
-- **Accent**: Deep warm charcoal-rose `hsl(350, 20%, 18%)` — dark sections, footer, card headers
+- **Accent**: Deep purple `hsl(280, 45%, 45%)` — dark sections, footer, card headers
 - **Secondary**: Soft cream `hsl(30, 20%, 95%)`
 - **Muted text**: `hsl(240, 8%, 35%)`
+- **Hero gradient text**: `linear-gradient(135deg, hsl(280 60% 70%), hsl(300 50% 75%), hsl(320 45% 80%))` on "Effortlessly Yours"
 
 ### Section Backgrounds (Alternating Pattern)
 - `bg-white` — light sections
-- `section-dark` — deep warm charcoal `hsl(350, 20%, 18%)` with automatic white text
-- Hero/CTA overlays use warm rose-charcoal gradients
+- `section-dark` — deep purple `hsl(280, 45%, 40%)` with automatic white text
+- Hero/CTA overlays use warm purple-charcoal gradients
 - Homepage pattern: About(white) → Certs(dark) → Services(white) → Reviews(dark) → Location(white) → FAQ(dark) → CTA(image overlay)
 
 ### Component Patterns

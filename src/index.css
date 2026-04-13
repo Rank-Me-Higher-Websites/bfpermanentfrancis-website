@@ -13,10 +13,10 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 15%;
 
-    --primary: 350 28% 56%;
+    --primary: 280 50% 58%;
     --primary-foreground: 0 0% 100%;
 
-    --accent: 350 28% 45%;
+    --accent: 280 45% 45%;
     --accent-foreground: 0 0% 100%;
 
     --secondary: 30 20% 95%;
@@ -30,7 +30,7 @@
 
     --border: 30 10% 85%;
     --input: 30 15% 88%;
-    --ring: 350 28% 56%;
+    --ring: 280 50% 58%;
 
     --radius: 0.5rem;
 
@@ -47,7 +47,7 @@
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 350 28% 56%;
+    --sidebar-ring: 280 50% 58%;
   }
 
   .dark {
@@ -60,14 +60,14 @@
     --popover: 240 10% 10%;
     --popover-foreground: 0 0% 95%;
 
-    --primary: 350 35% 65%;
+    --primary: 280 50% 68%;
     --primary-foreground: 0 0% 100%;
 
-    --accent: 350 25% 30%;
+    --accent: 280 35% 30%;
     --accent-foreground: 0 0% 100%;
 
     --secondary: 240 10% 15%;
-    --secondary-foreground: 350 30% 80%;
+    --secondary-foreground: 280 30% 80%;
 
     --muted: 240 10% 15%;
     --muted-foreground: 240 6% 60%;
@@ -77,7 +77,7 @@
 
     --border: 240 10% 18%;
     --input: 240 10% 18%;
-    --ring: 350 35% 65%;
+    --ring: 280 50% 68%;
   }
 }
 
@@ -185,7 +185,7 @@
   .section-label {
     @apply inline-block text-xs font-semibold uppercase tracking-[0.2em] mb-4;
     font-family: 'Inter', system-ui, sans-serif;
-    color: hsl(350 28% 56%);
+    color: hsl(280 50% 58%);
   }
 
   .nav-link {
@@ -195,7 +195,7 @@
   .nav-link::after {
     content: '';
     @apply absolute bottom-0 left-0 h-0.5 w-0;
-    background: hsl(350 28% 56%);
+    background: hsl(280 50% 58%);
     transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -231,7 +231,7 @@
   }
 
   .section-dark {
-    background: hsl(350 28% 38%);
+    background: hsl(280 45% 40%);
   }
 
   .section-dark h1,
@@ -252,11 +252,11 @@
   }
 
   .section-dark .section-label {
-    color: hsl(350 50% 75%);
+    color: hsl(280 50% 75%);
   }
 
   .section-dark .text-primary {
-    color: hsl(350 50% 75%) !important;
+    color: hsl(280 50% 75%) !important;
   }
 
   .section-dark .text-muted-foreground {
@@ -264,7 +264,7 @@
   }
 
   .section-dark .divider-soft {
-    background: hsl(350 40% 50% / 0.4);
+    background: hsl(280 40% 50% / 0.4);
   }
 
   .section-dark .card-elegant {
@@ -282,7 +282,7 @@
 
   .card-accent {
     @apply rounded-2xl transition-all duration-500;
-    background: hsl(350 28% 45%);
+    background: hsl(280 45% 45%);
   }
 
   .card-accent:hover {
@@ -301,11 +301,11 @@
   }
 
   .card-accent-link {
-    color: hsl(350 50% 75%) !important;
+    color: hsl(280 50% 75%) !important;
   }
 
   .card-accent-icon {
-    color: hsl(350 50% 75%);
+    color: hsl(280 50% 75%);
   }
 
   .card-accent .icon-chip {
@@ -314,7 +314,7 @@
 
   .divider-soft {
     @apply w-20 h-0.5 mx-auto rounded-full;
-    background: linear-gradient(90deg, transparent, hsl(350 28% 56% / 0.5), transparent);
+    background: linear-gradient(90deg, transparent, hsl(280 50% 58% / 0.5), transparent);
   }
 }
 

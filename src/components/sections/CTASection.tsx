@@ -10,7 +10,7 @@ export function CTASection() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{ backgroundImage: `url(${ctaBg})` }}
       />
-      <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(350, 15%, 8%, 0.82) 0%, hsla(350, 18%, 14%, 0.65) 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(280, 15%, 8%, 0.82) 0%, hsla(280, 18%, 14%, 0.65) 100%)" }} />
 
       <div className="section-container relative z-10">
         <div className="mx-auto max-w-2xl text-center">
