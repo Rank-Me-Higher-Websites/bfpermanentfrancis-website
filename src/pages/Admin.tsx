@@ -160,80 +160,91 @@ export default function Admin() {
           ) : (
             <div className="flex gap-6 flex-col lg:flex-row">
               <div className="lg:w-[55%] flex-shrink-0">
-                <div className="rounded-2xl border-2 border-gray-300 bg-card overflow-hidden">
-                  <div className="flex items-center justify-between px-4 sm:px-5 py-3 border-b-2 border-gray-300 bg-gray-50">
-                    <button onClick={() => setCurrentMonth(subMonths(currentMonth, 1))} className="flex h-9 w-9 items-center justify-center rounded-lg border-2 border-gray-300 hover:bg-muted transition-colors">
+                <div className="rounded-2xl border-2 border-gray-200 bg-white overflow-hidden shadow-sm">
+                  <div className="flex items-center justify-between px-5 py-4">
+                    <button onClick={() => setCurrentMonth(subMonths(currentMonth, 1))} className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-gray-100 transition-colors text-gray-500">
                       <ChevronLeft className="h-5 w-5" />
                     </button>
-                    <h2 className="text-lg font-bold" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
+                    <h2 className="text-lg font-bold text-foreground" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
                       {format(currentMonth, "MMMM yyyy")}
                     </h2>
-                    <button onClick={() => setCurrentMonth(addMonths(currentMonth, 1))} className="flex h-9 w-9 items-center justify-center rounded-lg border-2 border-gray-300 hover:bg-muted transition-colors">
+                    <button onClick={() => setCurrentMonth(addMonths(currentMonth, 1))} className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-gray-100 transition-colors text-gray-500">
                       <ChevronRight className="h-5 w-5" />
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-7 border-b-2 border-gray-300 bg-gray-50">
+                  <div className="grid grid-cols-7 px-3 pb-2">
                     {WEEKDAYS.map((day) => (
-                      <div key={day} className="py-2 text-center text-xs font-bold text-gray-500 uppercase tracking-wider">
-                        {day}
+                      <div key={day} className="py-1 text-center text-xs font-semibold text-gray-400">
+                        {day.slice(0, 2)}
                       </div>
                     ))}
                   </div>
 
-                  <table className="w-full border-collapse">
-                    <tbody>
-                      {(() => {
-                        const allCells: (Date | null)[] = [];
-                        for (let i = 0; i < startDayOfWeek; i++) allCells.push(null);
-                        days.forEach((d) => allCells.push(d));
-                        while (allCells.length % 7 !== 0) allCells.push(null);
-                        const weeks: (Date | null)[][] = [];
-                        for (let i = 0; i < allCells.length; i += 7) weeks.push(allCells.slice(i, i + 7));
+                  <div className="px-3 pb-4">
+                    {(() => {
+                      const allCells: (Date | null)[] = [];
+                      for (let i = 0; i < startDayOfWeek; i++) allCells.push(null);
+                      days.forEach((d) => allCells.push(d));
+                      while (allCells.length % 7 !== 0) allCells.push(null);
+                      const weeks: (Date | null)[][] = [];
+                      for (let i = 0; i < allCells.length; i += 7) weeks.push(allCells.slice(i, i + 7));
 
-                        return weeks.map((week, wi) => (
-                          <tr key={wi}>
-                            {week.map((day, di) => {
-                              if (!day) {
-                                return <td key={`empty-${wi}-${di}`} className="border border-gray-300 bg-white min-h-[70px] h-[70px]" />;
-                              }
-                              const key = format(day, "yyyy-MM-dd");
-                              const dayBookings = bookingsByDate.get(key) || [];
-                              const hasBookings = dayBookings.length > 0;
-                              const isSelected = selectedDate && isSameDay(day, selectedDate);
-                              const today = isToday(day);
+                      return weeks.map((week, wi) => (
+                        <div key={wi} className="grid grid-cols-7 gap-1.5 mb-1.5">
+                          {week.map((day, di) => {
+                            if (!day) {
+                              return <div key={`empty-${wi}-${di}`} className="h-[72px]" />;
+                            }
+                            const key = format(day, "yyyy-MM-dd");
+                            const dayBookings = bookingsByDate.get(key) || [];
+                            const hasBookings = dayBookings.length > 0;
+                            const isSelected = selectedDate && isSameDay(day, selectedDate);
+                            const today = isToday(day);
 
-                              return (
-                                <td
-                                  key={key}
-                                  onClick={() => setSelectedDate(isSelected ? null : day)}
-                                  className={`border border-gray-300 h-[70px] p-1.5 align-top cursor-pointer transition-colors ${isSelected ? "bg-purple-100" : "bg-white hover:bg-gray-50"} ${today && !isSelected ? "bg-purple-50" : ""}`}
-                                >
-                                  <div className="flex flex-col h-full">
-                                    <span className={`text-sm font-semibold ${today ? "flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white" : ""} ${!today && hasBookings ? "text-foreground" : "text-gray-400"}`}>
-                                      {format(day, "d")}
+                            return (
+                              <button
+                                key={key}
+                                onClick={() => setSelectedDate(isSelected ? null : day)}
+                                className={`
+                                  h-[72px] rounded-lg p-1.5 text-left flex flex-col transition-colors
+                                  ${isSelected
+                                    ? "bg-primary/15 ring-2 ring-primary"
+                                    : hasBookings
+                                      ? "bg-purple-50 border border-purple-200 hover:bg-purple-100"
+                                      : "border border-gray-200 hover:bg-gray-50"
+                                  }
+                                  ${today && !isSelected ? "ring-2 ring-primary" : ""}
+                                `}
+                              >
+                                <div className="flex items-center justify-between w-full">
+                                  <span className={`
+                                    text-sm font-semibold
+                                    ${today ? "flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white text-xs" : ""}
+                                    ${!today ? "text-gray-700" : ""}
+                                  `}>
+                                    {format(day, "d")}
+                                  </span>
+                                  {hasBookings && (
+                                    <span className="flex h-5 min-w-[20px] items-center justify-center rounded-full bg-primary text-white text-[10px] font-bold px-1">
+                                      {dayBookings.length}
                                     </span>
-                                    {hasBookings && (
-                                      <div className="mt-auto flex flex-col gap-0.5">
-                                        {dayBookings.slice(0, 2).map((b) => (
-                                          <span key={b.id} className="text-[10px] leading-tight font-semibold truncate rounded px-1 py-0.5 bg-primary/15 text-primary">
-                                            {b.full_name.split(" ")[0]}
-                                          </span>
-                                        ))}
-                                        {dayBookings.length > 2 && (
-                                          <span className="text-[10px] text-gray-500 font-semibold">+{dayBookings.length - 2} more</span>
-                                        )}
-                                      </div>
-                                    )}
+                                  )}
+                                </div>
+                                {hasBookings && (
+                                  <div className="mt-auto">
+                                    <span className="text-[10px] leading-tight font-medium text-primary/80 truncate block">
+                                      {dayBookings[0].full_name.split(" ")[0]}
+                                    </span>
                                   </div>
-                                </td>
-                              );
-                            })}
-                          </tr>
-                        ));
-                      })()}
-                    </tbody>
-                  </table>
+                                )}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      ));
+                    })()}
+                  </div>
                 </div>
               </div>
 
