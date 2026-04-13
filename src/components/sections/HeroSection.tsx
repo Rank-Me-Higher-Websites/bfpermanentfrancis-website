@@ -53,16 +53,16 @@ export function HeroSection() {
                 Permanent Makeup Chicago
               </span>
             </div>
-            <h1 className="mb-4 sm:mb-8 text-white text-3xl sm:text-5xl lg:text-[3.75rem] leading-[0.95]" style={{ letterSpacing: '-0.03em', fontFamily: "'Montserrat', system-ui, sans-serif", fontWeight: 900, fontStyle: 'italic', textShadow: '0 2px 30px rgba(0,0,0,0.3)' }}>
+            <h1 className="animate-hero-fade-in mb-4 sm:mb-8 text-white text-3xl sm:text-5xl lg:text-[3.75rem] leading-[0.95]" style={{ letterSpacing: '-0.025em', fontFamily: "'Montserrat', system-ui, sans-serif", fontWeight: 900, fontStyle: 'italic', textShadow: '0 2px 30px rgba(0,0,0,0.3)' }}>
               Long-Lasting Beauty,<br />
-              Effortlessly Yours
+              <span className="hero-gradient-text">Effortlessly Yours</span>
             </h1>
-            <p className="mb-4 sm:mb-10 max-w-lg text-sm sm:text-lg text-white/80 leading-relaxed mx-auto lg:mx-0" style={{ fontWeight: 400, fontFamily: "'Inter', system-ui, sans-serif" }}>
+            <p className="animate-hero-fade-in-up mb-4 sm:mb-10 max-w-lg text-sm sm:text-lg text-white/80 leading-relaxed mx-auto lg:mx-0" style={{ fontWeight: 400, fontFamily: "'Inter', system-ui, sans-serif", animationDelay: '0.15s' }}>
               Expert micropigmentation by certified Long-Time-Liner® Regional Trainer.
               Enhance your natural beauty with results that last.
             </p>
 
-            <div className="hidden sm:flex flex-col items-center lg:items-start gap-4 sm:flex-row">
+            <div className="hidden sm:flex flex-col items-center lg:items-start gap-4 sm:flex-row animate-hero-fade-in-up" style={{ animationDelay: '0.3s' }}>
               <Button variant="hero-outline" size="lg" className="rounded-full text-lg px-8 h-13 font-bold" asChild data-testid="button-call-hero">
                 <a href="tel:+17087372333">
                   <Phone className="mr-2 h-4 w-4" />
@@ -71,7 +71,7 @@ export function HeroSection() {
               </Button>
             </div>
 
-            <div className="hidden sm:flex mt-12 items-center justify-center lg:justify-start gap-3">
+            <div className="hidden sm:flex mt-12 items-center justify-center lg:justify-start gap-3 animate-hero-fade-in-up" style={{ animationDelay: '0.45s' }}>
               {BADGES.map(({ icon: Icon, label }) => (
                 <div key={label} className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-4 py-2.5 whitespace-nowrap">
                   <Icon className="h-4 w-4 text-white/80 shrink-0" />
