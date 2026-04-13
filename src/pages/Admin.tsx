@@ -534,39 +534,35 @@ export default function Admin() {
                   </div>
 
                   {showBlockForm && (
-                    <div className="rounded-xl border border-gray-200 bg-white p-4 space-y-3">
+                    <div className="rounded-xl border-2 border-gray-300 bg-white p-4 space-y-3">
                       <p className="text-xs font-bold text-gray-500 uppercase">New Blocked Time</p>
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                        <Input type="date" value={newBlock.block_date} onChange={(e) => setNewBlock({ ...newBlock, block_date: e.target.value })} className="text-sm h-9" data-testid="input-block-date" />
-                        <Input type="time" value={newBlock.start_time} onChange={(e) => setNewBlock({ ...newBlock, start_time: e.target.value })} className="text-sm h-9" data-testid="input-block-start" />
-                        <Input type="time" value={newBlock.end_time} onChange={(e) => setNewBlock({ ...newBlock, end_time: e.target.value })} className="text-sm h-9" data-testid="input-block-end" />
-                        <Input type="text" value={newBlock.reason} onChange={(e) => setNewBlock({ ...newBlock, reason: e.target.value })} placeholder="Reason" className="text-sm h-9" data-testid="input-block-reason" />
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <Input type="date" value={newBlock.block_date} onChange={(e) => setNewBlock({ ...newBlock, block_date: e.target.value })} className="text-sm h-9 border-2 border-gray-300" data-testid="input-block-date" />
+                        <Input type="time" value={newBlock.start_time} onChange={(e) => setNewBlock({ ...newBlock, start_time: e.target.value })} placeholder="Start" className="text-sm h-9 border-2 border-gray-300" data-testid="input-block-start" />
+                        <Input type="time" value={newBlock.end_time} onChange={(e) => setNewBlock({ ...newBlock, end_time: e.target.value })} placeholder="End" className="text-sm h-9 border-2 border-gray-300" data-testid="input-block-end" />
                       </div>
                       <Button size="sm" onClick={addBlockedTime} className="text-xs h-8" data-testid="button-save-block">Save Block</Button>
                     </div>
                   )}
 
                   {blockedTimes.length === 0 ? (
-                    <div className="rounded-xl border border-gray-200 bg-white p-12 text-center">
+                    <div className="rounded-xl border-2 border-gray-300 bg-white p-12 text-center">
                       <Ban className="h-10 w-10 text-gray-300 mx-auto mb-2" />
                       <p className="text-gray-400">No blocked time slots.</p>
                     </div>
                   ) : (
                     <div className="space-y-4">
                       {Array.from(blockedByDate.entries()).map(([date, blocks]) => (
-                        <div key={date} className="rounded-xl border border-gray-200 bg-white overflow-hidden">
-                          <div className="px-4 py-2 bg-gray-50 border-b border-gray-200">
+                        <div key={date} className="rounded-xl border-2 border-gray-300 bg-white overflow-hidden">
+                          <div className="px-4 py-2 bg-gray-50 border-b-2 border-gray-300">
                             <span className="text-xs font-bold text-gray-500 uppercase">{date}</span>
                           </div>
-                          <div className="divide-y divide-gray-100">
+                          <div className="divide-y divide-gray-200">
                             {blocks.map((bl) => (
                               <div key={bl.id} className="flex items-center justify-between px-4 py-3">
                                 <div className="flex items-center gap-3">
                                   <Ban className="h-4 w-4 text-red-400" />
-                                  <div>
-                                    <p className="text-sm font-medium">{bl.start_time} — {bl.end_time}</p>
-                                    {bl.reason && <p className="text-xs text-gray-500">{bl.reason}</p>}
-                                  </div>
+                                  <p className="text-sm font-medium">{bl.start_time} — {bl.end_time}</p>
                                 </div>
                                 <Button size="sm" variant="ghost" onClick={() => removeBlock(bl.id)} className="text-red-500 hover:text-red-700 h-7 w-7 p-0" data-testid={`button-remove-block-${bl.id}`}>
                                   <X className="h-4 w-4" />
