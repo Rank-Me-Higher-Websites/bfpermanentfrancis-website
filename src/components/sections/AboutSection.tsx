@@ -87,13 +87,13 @@ export function AboutSection() {
           <div className="grid gap-5 md:grid-cols-2 animate-fade-up" style={{ animationDelay: "0.1s" }}>
             <div className="rounded-xl bg-white p-6 shadow-sm">
               <div className="flex items-center gap-2.5 mb-4 pb-3" style={{ borderBottom: '1px solid #eee' }}>
-                <Award className="h-5 w-5" style={{ color: 'hsl(38 70% 50%)' }} />
+                <Award className="h-5 w-5" style={{ color: 'hsl(350 28% 56%)' }} />
                 <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: '#1a1a2e', fontFamily: "'Inter', system-ui, sans-serif" }}>Certifications</span>
               </div>
               <ul className="space-y-2.5">
                 {certifications.map((cert) => (
                   <li key={cert} className="flex items-start gap-2.5" data-testid={`cert-${cert.slice(0,10)}`}>
-                    <span className="mt-[7px] text-[8px]" style={{ color: 'hsl(38 70% 50%)' }}>●</span>
+                    <span className="mt-[7px] text-[8px]" style={{ color: 'hsl(350 28% 56%)' }}>●</span>
                     <span className="text-[14px] leading-relaxed" style={{ color: '#2a2a2a' }}>{cert}</span>
                   </li>
                 ))}
@@ -102,13 +102,13 @@ export function AboutSection() {
 
             <div className="rounded-xl bg-white p-6 shadow-sm">
               <div className="flex items-center gap-2.5 mb-4 pb-3" style={{ borderBottom: '1px solid #eee' }}>
-                <GraduationCap className="h-5 w-5" style={{ color: 'hsl(38 70% 50%)' }} />
+                <GraduationCap className="h-5 w-5" style={{ color: 'hsl(350 28% 56%)' }} />
                 <span className="text-[15px] font-semibold uppercase tracking-wide" style={{ color: '#1a1a2e', fontFamily: "'Inter', system-ui, sans-serif" }}>Training Topics</span>
               </div>
               <ul className="space-y-2.5">
                 {trainingTopics.map((topic) => (
                   <li key={topic} className="flex items-start gap-2.5">
-                    <span className="mt-[7px] text-[8px]" style={{ color: 'hsl(38 70% 50%)' }}>●</span>
+                    <span className="mt-[7px] text-[8px]" style={{ color: 'hsl(350 28% 56%)' }}>●</span>
                     <span className="text-[14px] leading-relaxed" style={{ color: '#2a2a2a' }}>{topic}</span>
                   </li>
                 ))}
