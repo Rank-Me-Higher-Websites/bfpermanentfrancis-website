@@ -21,7 +21,7 @@ const services = [
 
 export function Footer() {
   return (
-    <footer className="bg-accent text-accent-foreground">
+    <footer className="text-accent-foreground" style={{ background: 'hsl(345 35% 14%)' }}>
       <div className="section-container py-12 lg:py-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1">
