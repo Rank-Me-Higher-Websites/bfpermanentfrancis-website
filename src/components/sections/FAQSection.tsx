@@ -54,19 +54,19 @@ export function FAQSection() {
             </p>
           </div>
 
-          <Accordion type="single" collapsible className="w-full space-y-3 ">
+          <Accordion type="single" collapsible className="w-full space-y-2 md:space-y-3 ">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="rounded-xl border-none bg-white px-6 md:px-8 data-[state=open]:bg-white transition-all duration-300"
+                className="rounded-xl border-none bg-white px-4 md:px-8 data-[state=open]:bg-white transition-all duration-300"
                 style={{ boxShadow: '0 4px 20px -4px rgba(0,0,0,0.1)' }}
                 data-testid={`faq-item-${index}`}
               >
-                <AccordionTrigger className="text-left text-[15px] md:text-base py-5 font-bold" style={{ fontFamily: "'Montserrat', system-ui, sans-serif", color: 'hsl(240 10% 20%)' }}>
+                <AccordionTrigger className="text-left text-[13px] md:text-base py-3 md:py-5 font-bold" style={{ fontFamily: "'Montserrat', system-ui, sans-serif", color: 'hsl(240 10% 20%)' }}>
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="pb-6 text-[15px] leading-relaxed" style={{ color: 'hsl(240 8% 35%)' }}>
+                <AccordionContent className="pb-4 md:pb-6 text-[13px] md:text-[15px] leading-relaxed" style={{ color: 'hsl(240 8% 35%)' }}>
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

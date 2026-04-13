@@ -114,7 +114,7 @@ export function ServicesSection() {
           </p>
         </div>
 
-        <div className="grid gap-6 md:gap-8 md:grid-cols-3">
+        <div className="grid gap-3 md:gap-8 md:grid-cols-3">
           {services.map((service, index) => (
             <article
               key={service.id}
@@ -122,7 +122,7 @@ export function ServicesSection() {
               
               data-testid={`service-card-${service.id}`}
             >
-              <div className="relative aspect-[3/4] overflow-hidden">
+              <div className="relative aspect-[4/3] md:aspect-[3/4] overflow-hidden">
                 <img
                   src={service.image}
                   alt={`${service.title} - Permanent Makeup Chicago`}
@@ -133,8 +133,8 @@ export function ServicesSection() {
                   {service.title}
                 </h3>
               </div>
-              <div className="flex flex-1 flex-col p-6 md:p-8">
-                <p className="mb-6 flex-1 text-[15px] leading-relaxed">{service.description}</p>
+              <div className="flex flex-1 flex-col p-4 md:p-8">
+                <p className="mb-3 md:mb-6 flex-1 text-[13px] md:text-[15px] leading-relaxed">{service.description}</p>
                 <Link
                   to={service.link}
                   className="card-accent-link inline-flex items-center gap-2 text-sm font-medium transition-colors"
@@ -148,7 +148,7 @@ export function ServicesSection() {
           ))}
         </div>
 
-        <div className="mt-10 md:mt-14 flex flex-col sm:flex-row items-center justify-center gap-4 ">
+        <div className="mt-5 md:mt-14 flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 ">
           <Button
             size="lg"
             variant="cta"

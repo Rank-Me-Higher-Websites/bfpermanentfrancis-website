@@ -5,7 +5,7 @@ import ctaBg from "@/assets/cta-bg.jpg";
 
 export function CTASection() {
   return (
-    <section className="relative overflow-hidden py-20 md:py-28 lg:py-32">
+    <section className="relative overflow-hidden py-10 md:py-28 lg:py-32">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{ backgroundImage: `url(${ctaBg})` }}
@@ -14,7 +14,7 @@ export function CTASection() {
 
       <div className="section-container relative z-10">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="heading-lg mb-6 text-white !text-4xl md:!text-5xl" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}>
+          <h2 className="heading-lg mb-3 md:mb-6 text-white !text-2xl md:!text-5xl" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}>
             Ready to Enhance Your Natural Beauty?
           </h2>
           <p className="mb-5 md:mb-10 text-base md:text-lg text-white/65 leading-relaxed" style={{ fontWeight: 300 }}>
