@@ -128,57 +128,59 @@ export default function Admin() {
         <title>My Bookings | BF Permanent Francis</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
-      <div className="min-h-screen bg-muted">
-        <header className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur-md">
-          <div className="flex items-center justify-between px-4 sm:px-6 py-4 max-w-6xl mx-auto">
-            <h1 className="text-xl sm:text-2xl" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>My Bookings</h1>
-            <div className="flex items-center gap-2 sm:gap-3">
-              <div className="flex rounded-xl border border-border overflow-hidden">
-                <button
-                  onClick={() => setView("calendar")}
-                  className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors ${
-                    view === "calendar" ? "gradient-bg text-primary-foreground" : "bg-card text-muted-foreground hover:bg-muted"
-                  }`}
-                  data-testid="tab-calendar"
-                >
-                  <CalendarDays className="h-4 w-4" />
-                  <span className="hidden sm:inline">Calendar</span>
-                </button>
-                <button
-                  onClick={() => setView("upcoming")}
-                  className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors ${
-                    view === "upcoming" ? "gradient-bg text-primary-foreground" : "bg-card text-muted-foreground hover:bg-muted"
-                  }`}
-                  data-testid="tab-upcoming"
-                >
-                  <List className="h-4 w-4" />
-                  <span className="hidden sm:inline">Upcoming</span>
-                </button>
-              </div>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={loadBookings}
-                className="h-10 px-4 text-sm gap-2"
-                data-testid="button-refresh"
-              >
-                <RefreshCw className="h-4 w-4" />
-                <span className="hidden sm:inline">Refresh</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsAuthenticated(false)}
-                className="h-10 px-4 text-sm text-muted-foreground"
-                data-testid="button-logout"
-              >
-                Log out
-              </Button>
-            </div>
+      <div className="min-h-screen bg-muted flex">
+        <aside className="w-56 sm:w-64 flex-shrink-0 border-r border-border bg-card flex flex-col min-h-screen sticky top-0">
+          <div className="p-5 border-b border-border">
+            <h1 className="text-lg sm:text-xl font-bold" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>My Bookings</h1>
           </div>
-        </header>
 
-        <main className="mx-auto max-w-6xl px-4 sm:px-6 py-6">
+          <nav className="flex-1 p-3 space-y-1">
+            <button
+              onClick={() => setView("calendar")}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                view === "calendar" ? "gradient-bg text-primary-foreground" : "text-foreground hover:bg-muted"
+              }`}
+              data-testid="tab-calendar"
+            >
+              <CalendarDays className="h-5 w-5" />
+              Calendar
+            </button>
+            <button
+              onClick={() => setView("upcoming")}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                view === "upcoming" ? "gradient-bg text-primary-foreground" : "text-foreground hover:bg-muted"
+              }`}
+              data-testid="tab-upcoming"
+            >
+              <List className="h-5 w-5" />
+              Upcoming
+            </button>
+          </nav>
+
+          <div className="p-3 border-t border-border space-y-1">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={loadBookings}
+              className="w-full h-10 text-sm gap-2 justify-start px-4"
+              data-testid="button-refresh"
+            >
+              <RefreshCw className="h-4 w-4" />
+              Refresh
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsAuthenticated(false)}
+              className="w-full h-10 text-sm text-muted-foreground justify-start px-4"
+              data-testid="button-logout"
+            >
+              Log out
+            </Button>
+          </div>
+        </aside>
+
+        <main className="flex-1 p-4 sm:p-6 overflow-auto">
           {loading ? (
             <div className="flex items-center justify-center py-20">
               <div className="text-center space-y-3">
