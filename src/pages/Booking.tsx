@@ -213,7 +213,7 @@ export default function Booking() {
                   <h2 className="text-2xl mb-1 text-gray-900" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Pick Date & Time</h2>
                   <p className="text-gray-500 mb-6">Choose your preferred appointment time</p>
 
-                  <div className="border border-gray-200 rounded-xl p-4 mb-6 bg-white">
+                  <div className="border-2 border-gray-300 rounded-xl p-4 sm:p-6 mb-6 bg-white">
                     <Calendar
                       mode="single"
                       selected={selectedDate}
@@ -223,7 +223,28 @@ export default function Booking() {
                         today.setHours(0, 0, 0, 0);
                         return d < today || CLOSED_DAYS.includes(d.getDay());
                       }}
-                      className="mx-auto pointer-events-auto"
+                      className="w-full pointer-events-auto"
+                      classNames={{
+                        months: "w-full",
+                        month: "w-full space-y-4",
+                        caption: "flex justify-center pt-1 relative items-center",
+                        caption_label: "text-base font-semibold",
+                        nav: "space-x-1 flex items-center",
+                        nav_button: "h-8 w-8 bg-transparent p-0 opacity-50 hover:opacity-100 border border-gray-300 rounded-lg inline-flex items-center justify-center",
+                        nav_button_previous: "absolute left-1",
+                        nav_button_next: "absolute right-1",
+                        table: "w-full border-collapse",
+                        head_row: "flex w-full justify-between",
+                        head_cell: "text-muted-foreground rounded-md flex-1 font-medium text-sm text-center py-2",
+                        row: "flex w-full justify-between mt-1",
+                        cell: "flex-1 text-center text-sm p-0.5 relative [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
+                        day: "h-10 w-10 mx-auto p-0 font-normal rounded-lg hover:bg-gray-100 inline-flex items-center justify-center aria-selected:opacity-100",
+                        day_selected: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
+                        day_today: "bg-purple-100 text-primary font-semibold",
+                        day_outside: "text-muted-foreground opacity-50",
+                        day_disabled: "text-muted-foreground opacity-30",
+                        day_hidden: "invisible",
+                      }}
                     />
                   </div>
 
