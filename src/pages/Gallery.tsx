@@ -45,12 +45,11 @@ const Gallery = () => {
         {/* Gallery Grid */}
         <section className="section-padding bg-background">
           <div className="section-container">
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-2 gap-2 md:gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {galleryImages.map((image, index) => (
                 <div
                   key={index}
-                  className="group relative aspect-square overflow-hidden rounded-xl card-hover "
-                  
+                  className="group relative aspect-square overflow-hidden rounded-lg md:rounded-xl card-hover"
                 >
                   <img
                     src={image.src}

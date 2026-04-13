@@ -92,20 +92,19 @@ const Products = () => {
               {products.map((product, index) => (
                 <article
                   key={product.id}
-                  className="card-hover rounded-2xl bg-card p-8 "
-                  
+                  className="card-hover rounded-xl md:rounded-2xl bg-card p-4 md:p-8"
                 >
-                  <h2 className="heading-sm mb-4">{product.title}</h2>
-                  <p className="mb-6 text-muted-foreground">{product.description}</p>
+                  <h2 className="heading-sm mb-2 md:mb-4 !text-base md:!text-xl">{product.title}</h2>
+                  <p className="mb-3 md:mb-6 text-xs md:text-base text-muted-foreground">{product.description}</p>
                   
-                  <div className="border-t pt-6">
-                    <h3 className="mb-4 text-sm uppercase tracking-wider text-primary">
+                  <div className="border-t pt-3 md:pt-6">
+                    <h3 className="mb-2 md:mb-4 text-xs md:text-sm uppercase tracking-wider text-primary">
                       Key Features
                     </h3>
-                    <ul className="grid gap-2 sm:grid-cols-2">
+                    <ul className="grid gap-1 md:gap-2 sm:grid-cols-2">
                       {product.features.map((feature) => (
-                        <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <CheckCircle className="h-4 w-4 flex-shrink-0 text-primary" />
+                        <li key={feature} className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm text-muted-foreground">
+                          <CheckCircle className="h-3 w-3 md:h-4 md:w-4 flex-shrink-0 text-primary" />
                           <span>{feature}</span>
                         </li>
                       ))}
@@ -115,10 +114,9 @@ const Products = () => {
               ))}
             </div>
 
-            {/* Info Box */}
-            <div className="mt-12 rounded-2xl bg-secondary/50 p-8 text-center ">
-              <h3 className="heading-sm mb-4">Interested in Long-Time-Liner® Products?</h3>
-              <p className="mb-6 text-muted-foreground max-w-2xl mx-auto">
+            <div className="mt-5 md:mt-12 rounded-xl md:rounded-2xl bg-secondary/50 p-4 md:p-8 text-center">
+              <h3 className="heading-sm mb-2 md:mb-4 !text-base md:!text-xl">Interested in Long-Time-Liner® Products?</h3>
+              <p className="mb-3 md:mb-6 text-xs md:text-base text-muted-foreground max-w-2xl mx-auto">
                 Whether you're a professional looking for equipment or interested in our{" "}
                 <Link to="/training" className="text-primary hover:text-primary/80">
                   training programs
