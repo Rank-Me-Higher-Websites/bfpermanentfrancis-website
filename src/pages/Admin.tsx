@@ -83,7 +83,7 @@ export default function Admin() {
   const [editForm, setEditForm] = useState({ preferred_date: "", preferred_time: "", service_type: "", admin_notes: "" });
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [syncing, setSyncing] = useState(false);
-  const [newBlock, setNewBlock] = useState({ block_date: "", start_time: "", end_time: "", reason: "" });
+  const [newBlock, setNewBlock] = useState({ block_date: "", start_time: "10:00 AM", end_time: "5:00 PM", reason: "" });
   const [showBlockForm, setShowBlockForm] = useState(false);
 
   const loadAll = useCallback(async () => {
@@ -533,17 +533,51 @@ export default function Admin() {
                     </Button>
                   </div>
 
-                  {showBlockForm && (
-                    <div className="rounded-xl border-2 border-gray-300 bg-white p-4 space-y-3">
-                      <p className="text-xs font-bold text-gray-500 uppercase">New Blocked Time</p>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                        <Input type="date" value={newBlock.block_date} onChange={(e) => setNewBlock({ ...newBlock, block_date: e.target.value })} className="text-sm h-9 border-2 border-gray-300" data-testid="input-block-date" />
-                        <Input type="time" value={newBlock.start_time} onChange={(e) => setNewBlock({ ...newBlock, start_time: e.target.value })} placeholder="Start" className="text-sm h-9 border-2 border-gray-300" data-testid="input-block-start" />
-                        <Input type="time" value={newBlock.end_time} onChange={(e) => setNewBlock({ ...newBlock, end_time: e.target.value })} placeholder="End" className="text-sm h-9 border-2 border-gray-300" data-testid="input-block-end" />
+                  {showBlockForm && (() => {
+                    const timeSlots: string[] = [];
+                    for (let h = 8; h <= 20; h++) {
+                      for (let m = 0; m < 60; m += 30) {
+                        const ampm = h >= 12 ? "PM" : "AM";
+                        const dh = h > 12 ? h - 12 : h === 0 ? 12 : h;
+                        const dm = m === 0 ? "00" : "30";
+                        timeSlots.push(`${dh}:${dm} ${ampm}`);
+                      }
+                    }
+                    return (
+                      <div className="rounded-xl border-2 border-gray-300 bg-white p-4 space-y-3">
+                        <p className="text-xs font-bold text-gray-500 uppercase">New Blocked Time</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                          <div>
+                            <label className="text-xs font-medium text-gray-500 mb-1 block">Date</label>
+                            <Input type="date" value={newBlock.block_date} onChange={(e) => setNewBlock({ ...newBlock, block_date: e.target.value })} className="text-sm h-10 border-2 border-gray-300" data-testid="input-block-date" />
+                          </div>
+                          <div>
+                            <label className="text-xs font-medium text-gray-500 mb-1 block">From</label>
+                            <select
+                              value={newBlock.start_time}
+                              onChange={(e) => setNewBlock({ ...newBlock, start_time: e.target.value })}
+                              className="w-full h-10 rounded-lg border-2 border-gray-300 bg-white px-3 text-sm font-medium text-gray-700 focus:border-primary focus:outline-none"
+                              data-testid="input-block-start"
+                            >
+                              {timeSlots.map((t) => <option key={t} value={t}>{t}</option>)}
+                            </select>
+                          </div>
+                          <div>
+                            <label className="text-xs font-medium text-gray-500 mb-1 block">To</label>
+                            <select
+                              value={newBlock.end_time}
+                              onChange={(e) => setNewBlock({ ...newBlock, end_time: e.target.value })}
+                              className="w-full h-10 rounded-lg border-2 border-gray-300 bg-white px-3 text-sm font-medium text-gray-700 focus:border-primary focus:outline-none"
+                              data-testid="input-block-end"
+                            >
+                              {timeSlots.map((t) => <option key={t} value={t}>{t}</option>)}
+                            </select>
+                          </div>
+                        </div>
+                        <Button size="sm" onClick={addBlockedTime} className="text-xs h-8" data-testid="button-save-block">Save Block</Button>
                       </div>
-                      <Button size="sm" onClick={addBlockedTime} className="text-xs h-8" data-testid="button-save-block">Save Block</Button>
-                    </div>
-                  )}
+                    );
+                  })()}
 
                   {blockedTimes.length === 0 ? (
                     <div className="rounded-xl border-2 border-gray-300 bg-white p-12 text-center">
