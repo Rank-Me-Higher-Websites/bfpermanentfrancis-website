@@ -156,9 +156,9 @@ const Training = () => {
                       ))}
                     </ul>
 
-                    <Button variant="default" className="mt-auto w-full h-8 md:h-10 text-xs md:text-sm" asChild>
-                      <Link to="/contact">
-                        Inquire About This Course
+                    <Button variant="cta" className="mt-auto w-full h-8 md:h-10 text-xs md:text-sm rounded-full" asChild>
+                      <Link to="/booking">
+                        Book Now
                         <ArrowRight className="ml-1.5 md:ml-2 h-3.5 w-3.5 md:h-4 md:w-4" />
                       </Link>
                     </Button>

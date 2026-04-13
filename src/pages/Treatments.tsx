@@ -156,8 +156,8 @@ const Treatments = () => {
                     </div>
 
                     <Button variant="cta" size="default" className="rounded-full text-sm md:text-base h-9 md:h-11 px-5 md:px-8" asChild>
-                      <Link to="/contact">
-                        Book Consultation
+                      <Link to="/booking">
+                        Book Now
                         <ArrowRight className="ml-1.5 md:ml-2 h-4 w-4" />
                       </Link>
                     </Button>

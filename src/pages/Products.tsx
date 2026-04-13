@@ -124,10 +124,10 @@ const Products = () => {
                 , we can help you get started with premium Long-Time-Liner® products.
               </p>
               <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 font-medium text-primary hover:text-primary/80 transition-colors"
+                to="/booking"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 md:px-8 md:py-3 text-sm md:text-base font-bold text-white gradient-bg hover:opacity-90 transition-opacity"
               >
-                Contact us for more information
+                Book Now
                 <span aria-hidden="true">→</span>
               </Link>
             </div>
