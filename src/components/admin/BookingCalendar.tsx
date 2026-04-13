@@ -36,7 +36,12 @@ export function BookingCalendar({ bookings }: BookingCalendarProps) {
   const selectedBookings = useMemo(() => {
     if (!selectedDate) return [];
     const key = format(selectedDate, "yyyy-MM-dd");
-    return bookingsByDate.get(key) || [];
+    const dayBookings = bookingsByDate.get(key) || [];
+    return [...dayBookings].sort((a, b) => {
+      const timeA = a.preferred_time || "";
+      const timeB = b.preferred_time || "";
+      return timeA.localeCompare(timeB);
+    });
   }, [selectedDate, bookingsByDate]);
 
   const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -169,15 +174,13 @@ export function BookingCalendar({ bookings }: BookingCalendarProps) {
                       </span>
                       <BookingStatusBadge status={booking.status} />
                     </div>
+                    <p className="text-sm font-semibold text-primary">{booking.preferred_time}</p>
                     <p className="text-sm text-muted-foreground truncate">{booking.service_type}</p>
-                    <div className="flex gap-3 mt-1">
-                      <a href={`tel:${booking.phone}`} className="text-sm text-primary font-medium hover:underline">
-                        📞 Call
+                    {booking.phone && (
+                      <a href={`tel:${booking.phone}`} className="text-sm text-primary font-medium hover:underline mt-1 inline-block">
+                        📞 {booking.phone}
                       </a>
-                      <a href={`mailto:${booking.email}`} className="text-sm text-primary font-medium hover:underline">
-                        ✉️ Email
-                      </a>
-                    </div>
+                    )}
                   </div>
                 </div>
               ))}
