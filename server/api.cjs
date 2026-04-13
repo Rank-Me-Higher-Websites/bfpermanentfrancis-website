@@ -237,14 +237,29 @@ app.post("/api/bookings", async (req, res) => {
     [id, teamupId, b.full_name, b.phone, b.email, b.service_type, b.preferred_date, b.preferred_time, b.notes || ""]
   );
 
+  const SERVICE_DETAILS = {
+    "SPMU Brows": { duration: 120, price: "$400+" },
+    "SPMU Eyeliner": { duration: 90, price: "$350+" },
+    "SPMU Lips": { duration: 120, price: "$450+" },
+    "BrowXenna Powder": { duration: 60, price: "$40" },
+  };
+  const svcInfo = SERVICE_DETAILS[b.service_type] || { duration: 120, price: "TBD" };
+
   try {
     await fetch(N8N_WEBHOOK_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        id, full_name: b.full_name, phone: b.phone, email: b.email,
-        service_type: b.service_type, preferred_date: b.preferred_date,
-        preferred_time: b.preferred_time, notes: b.notes || "", status: "pending",
+        client_name: b.full_name,
+        client_phone: b.phone,
+        client_email: b.email,
+        service_name: b.service_type,
+        service_duration: svcInfo.duration,
+        service_price: svcInfo.price,
+        date: b.preferred_date,
+        time: b.preferred_time,
+        staff_name: "Birute Francis",
+        notes: b.notes || "",
       }),
     });
   } catch (err) { console.error("n8n webhook error:", err.message); }
