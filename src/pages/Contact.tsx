@@ -85,6 +85,17 @@ const Contact = () => {
                 </div>
               </Link>
             </div>
+
+            <div className="mt-8 text-center">
+              <a
+                href="tel:+17087372333"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-white font-bold text-base gradient-bg hover:opacity-90 transition-opacity"
+                data-testid="button-call"
+              >
+                <Phone className="h-5 w-5" />
+                Call (708) 737-2333
+              </a>
+            </div>
           </div>
         </section>
       </Layout>
