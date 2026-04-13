@@ -8,8 +8,8 @@ import { BookingTable, type Booking } from "@/components/admin/BookingTable";
 import { type BookingStatus } from "@/components/admin/BookingStatusBadge";
 import { BookingCalendar } from "@/components/admin/BookingCalendar";
 
-const ADMIN_USERNAME = "admin";
-const ADMIN_PASSWORD = "admin123";
+const ADMIN_USERNAME = "Birute";
+const ADMIN_PASSWORD = "Birute123@";
 
 type FilterStatus = "all" | BookingStatus;
 
@@ -146,7 +146,7 @@ export default function Admin() {
               />
 
               <Input
-                type="password"
+                type="text"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
