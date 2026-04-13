@@ -15,7 +15,7 @@ export function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(280, 15%, 12%, 0.75) 0%, hsla(280, 20%, 18%, 0.65) 100%)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(280, 20%, 8%, 0.85) 0%, hsla(280, 25%, 12%, 0.75) 100%)" }} />
       </div>
 
       <div className="section-container relative z-10 py-20 text-center">
