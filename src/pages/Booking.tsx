@@ -12,10 +12,10 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 
 const SERVICES = [
-  { id: "spmu-brows", name: "SPMU Brows", price: "$400+", duration: "2-3 hrs" },
-  { id: "spmu-eyeliner", name: "SPMU Eyeliner", price: "$350+", duration: "1.5-2 hrs" },
-  { id: "spmu-lips", name: "SPMU Lips / Lip Blushing", price: "$450+", duration: "2-3 hrs" },
-  { id: "browxenna", name: "BrowXenna Powder", price: "$40", duration: "1 hr" },
+  { id: "spmu-brows", name: "SPMU Brows", price: "$400+", numericPrice: 400, duration: "2-3 hrs" },
+  { id: "spmu-eyeliner", name: "SPMU Eyeliner", price: "$350+", numericPrice: 350, duration: "1.5-2 hrs" },
+  { id: "spmu-lips", name: "SPMU Lips / Lip Blushing", price: "$450+", numericPrice: 450, duration: "2-3 hrs" },
+  { id: "browxenna", name: "BrowXenna Powder", price: "$40", numericPrice: 40, duration: "1 hr" },
 ];
 
 const TIME_SLOTS = [
@@ -62,6 +62,8 @@ export default function Booking() {
 
   const serviceNames = services.map((s) => s.name).join(", ");
   const servicePrices = services.map((s) => s.price).join(" + ");
+  const totalPrice = services.reduce((sum, s) => sum + s.numericPrice, 0);
+  const hasPlus = services.some((s) => s.price.includes("+"));
 
   const handleSubmit = () => {
     setIsSubmitting(true);
@@ -167,6 +169,12 @@ export default function Booking() {
                       </button>
                     ))}
                   </div>
+                  {selectedServices.length >= 2 && (
+                    <div className="mt-4 p-4 rounded-xl bg-purple-50 border border-purple-200 flex justify-between items-center">
+                      <span className="text-sm font-medium text-gray-700">{selectedServices.length} services selected</span>
+                      <span className="text-lg font-bold gradient-text">${totalPrice}{hasPlus ? "+" : ""}</span>
+                    </div>
+                  )}
                 </div>
               )}
 
