@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Layout } from "@/components/layout/Layout";
-import { Check, ChevronRight, ArrowLeft, User, Phone, Mail } from "lucide-react";
+import { Check, ChevronRight, ArrowLeft, User, Phone, Mail, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -18,11 +18,7 @@ const SERVICES = [
   { id: "browxenna", name: "BrowXenna Powder", price: "$40", numericPrice: 40, duration: "1 hr" },
 ];
 
-const TIME_SLOTS = [
-  "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM",
-  "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM",
-  "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM",
-];
+const CLOSED_DAYS = [0, 1];
 
 const STEPS = [
   { num: 1, label: "Service" },
@@ -39,9 +35,30 @@ export default function Booking() {
   const [selectedServices, setSelectedServices] = useState<string[]>(preselectedList);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  const [availableSlots, setAvailableSlots] = useState<string[]>([]);
+  const [loadingSlots, setLoadingSlots] = useState(false);
   const [formData, setFormData] = useState({ fullName: "", phone: "", email: "", notes: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!selectedDate) {
+      setAvailableSlots([]);
+      return;
+    }
+    const dateStr = format(selectedDate, "yyyy-MM-dd");
+    setLoadingSlots(true);
+    setSelectedTime(null);
+    fetch(`/api/availability?date=${dateStr}`)
+      .then((r) => r.json())
+      .then((data) => {
+        setAvailableSlots(data.slots || []);
+      })
+      .catch(() => {
+        setAvailableSlots([]);
+      })
+      .finally(() => setLoadingSlots(false));
+  }, [selectedDate]);
 
   const services = SERVICES.filter((s) => selectedServices.includes(s.id));
 
@@ -65,7 +82,7 @@ export default function Booking() {
   const totalPrice = services.reduce((sum, s) => sum + s.numericPrice, 0);
   const hasPlus = services.some((s) => s.price.includes("+"));
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setIsSubmitting(true);
     const booking = {
       id: crypto.randomUUID(),
@@ -76,17 +93,27 @@ export default function Booking() {
       preferred_date: selectedDate ? format(selectedDate, "yyyy-MM-dd") : "",
       preferred_time: selectedTime || "",
       notes: formData.notes,
-      status: "new" as const,
-      created_at: new Date().toISOString(),
     };
-    const existing = JSON.parse(localStorage.getItem("bookings") || "[]");
-    existing.push(booking);
-    localStorage.setItem("bookings", JSON.stringify(existing));
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setStep(5);
-    }, 1000);
+    try {
+      const res = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(booking),
+      });
+      const data = await res.json();
+
+      const stored = JSON.parse(localStorage.getItem("bookings") || "[]");
+      stored.push({ ...booking, status: "new", created_at: new Date().toISOString(), teamup_event_id: data.teamup_event_id });
+      localStorage.setItem("bookings", JSON.stringify(stored));
+    } catch {
+      const stored = JSON.parse(localStorage.getItem("bookings") || "[]");
+      stored.push({ ...booking, status: "new", created_at: new Date().toISOString() });
+      localStorage.setItem("bookings", JSON.stringify(stored));
+    }
+
+    setIsSubmitting(false);
+    setStep(5);
   };
 
   return (
@@ -190,23 +217,36 @@ export default function Booking() {
                     <Calendar
                       mode="single"
                       selected={selectedDate}
-                      onSelect={(d) => { setSelectedDate(d); setSelectedTime(null); }}
+                      onSelect={setSelectedDate}
                       disabled={(d) => {
                         const today = new Date();
                         today.setHours(0, 0, 0, 0);
-                        return d < today || d.getDay() === 0;
+                        return d < today || CLOSED_DAYS.includes(d.getDay());
                       }}
                       className="mx-auto pointer-events-auto"
                     />
                   </div>
 
-                  {selectedDate && (
+                  {selectedDate && loadingSlots && (
+                    <div className="flex items-center justify-center gap-2 py-6 text-gray-500">
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span className="text-sm">Loading available times...</span>
+                    </div>
+                  )}
+
+                  {selectedDate && !loadingSlots && availableSlots.length === 0 && (
+                    <div className="text-center py-6">
+                      <p className="text-sm text-gray-500">No available times for this date. Please choose another day.</p>
+                    </div>
+                  )}
+
+                  {selectedDate && !loadingSlots && availableSlots.length > 0 && (
                     <div>
                       <p className="text-sm font-medium text-gray-700 mb-3">
                         Available times for {format(selectedDate, "EEEE, MMMM d, yyyy")}
                       </p>
                       <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
-                        {TIME_SLOTS.map((t) => (
+                        {availableSlots.map((t) => (
                           <button
                             key={t}
                             data-testid={`time-${t.replace(/\s/g, "-")}`}

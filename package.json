@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build && cp server/index.cjs dist/index.cjs",
+    "dev": "node server/api.cjs & vite",
+    "build": "vite build && cp server/index.cjs dist/index.cjs && cp server/api.cjs dist/api.cjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",

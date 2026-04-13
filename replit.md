@@ -6,8 +6,20 @@ Premium permanent makeup business website for Birute Francis (Chicago). Static f
 ## Architecture
 - **Frontend**: React + TypeScript + Vite + TailwindCSS + shadcn/ui
 - **Routing**: react-router-dom v6
-- **Production server**: Express serving static files from `dist/` (server/index.cjs)
-- **Booking data**: localStorage (no backend database)
+- **API server**: Express API on port 3001 (server/api.cjs) — Teamup calendar integration
+- **Production server**: Express serving static files + API routes from `dist/` (server/index.cjs)
+- **Booking data**: localStorage + Teamup calendar sync
+- **Dev command**: `node server/api.cjs & vite` — runs API server alongside Vite dev server with proxy
+
+## Teamup Calendar Integration
+- **API Key**: Stored as `TEAMUP_API_KEY` env var
+- **Calendar URL**: `https://api.teamup.com/ks20db078d08133796`
+- **Subcalendar ID**: 14609252 (Birute Francis)
+- **Availability**: Tue-Sat 10:00 AM – 5:00 PM, Sun & Mon off
+- **Endpoints**:
+  - `GET /api/availability?date=YYYY-MM-DD` — returns available 30-min time slots after checking Teamup for conflicts
+  - `POST /api/bookings` — creates booking and pushes event to Teamup calendar
+- **Sync behavior**: When a booking is confirmed, a 2-hour event is created on the Teamup calendar with client details. Existing Teamup events block those time slots from being available.
 
 ## Design System
 
