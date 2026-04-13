@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Award, GraduationCap } from "lucide-react";
+import { Award, GraduationCap, CheckCircle } from "lucide-react";
 import aboutLips from "@/assets/about-lips.jpg";
 
 const certifications = [
@@ -8,22 +8,16 @@ const certifications = [
   "Brow Sketchnology",
   "FEEL GOOD Intensive PMU Training",
   "Purebeau Master Training Seminar",
-  "Long-Time-Liner Conture Make-up GmbH (Munich & Beverly Hills)",
+  "Long-Time-Liner Conture Make-up GmbH",
 ];
 
 const trainingTopics = [
-  "Perfect pre-drawing and pigmentation technique",
-  "Device overview",
-  "Hygiene and legal regulations",
-  "Colour theory",
-  "Quality control",
-  "Eyebrow pigmentation",
-  "Ombré brows",
-  "Lashline enhancement and eyeliners",
+  "Pre-drawing & pigmentation technique",
+  "Colour theory & device overview",
+  "Eyebrow pigmentation & ombré brows",
+  "Lashline enhancement & eyeliners",
   "Lip contours with full shading",
-  "Ombré lips",
-  "Individual consultation",
-  "Fundamentals of retouching semi-permanent make-up",
+  "Retouching semi-permanent make-up",
 ];
 
 export function AboutSection() {
@@ -74,45 +68,48 @@ export function AboutSection() {
         </div>
       </section>
 
-      <section className="py-14 sm:py-16 section-dark">
+      <section className="py-14 sm:py-18 section-dark">
         <div className="section-container">
-          <div className="text-center mb-10 animate-fade-up">
-            <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] mb-3 text-white/60" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+          <div className="text-center mb-10">
+            <span className="inline-block text-xs font-semibold uppercase tracking-[0.25em] mb-3 text-white/50" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
               Expertise & Training
             </span>
-            <h2 className="heading-lg mb-3 text-white">Certifications</h2>
-            <div className="w-16 h-0.5 mx-auto rounded-full" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)' }} />
+            <h2 className="heading-lg text-white">Certifications</h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-x-16 gap-y-4 max-w-4xl mx-auto animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            <div>
-              <div className="flex items-center gap-2.5 mb-4">
-                <Award className="h-4.5 w-4.5 text-white/70" />
-                <span className="text-[13px] font-semibold uppercase tracking-wider text-white/80" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Certifications</span>
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="rounded-2xl p-6 sm:p-8" style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <div className="flex items-center gap-3 mb-5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg" style={{ background: 'rgba(255,255,255,0.1)' }}>
+                  <Award className="h-5 w-5 text-white/80" />
+                </div>
+                <h3 className="text-[15px] font-bold uppercase tracking-wider text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Certifications</h3>
               </div>
-              <ul className="space-y-2">
+              <div className="space-y-3">
                 {certifications.map((cert) => (
-                  <li key={cert} className="flex items-start gap-2.5" data-testid={`cert-${cert.slice(0,10)}`}>
-                    <span className="mt-[7px] text-[7px] text-white/50">●</span>
-                    <span className="text-[13.5px] leading-relaxed text-white/80">{cert}</span>
-                  </li>
+                  <div key={cert} className="flex items-start gap-3" data-testid={`cert-${cert.slice(0,10)}`}>
+                    <CheckCircle className="h-4 w-4 mt-0.5 shrink-0" style={{ color: 'hsl(280 50% 75%)' }} />
+                    <span className="text-[14px] leading-snug text-white/90">{cert}</span>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
 
-            <div>
-              <div className="flex items-center gap-2.5 mb-4 mt-6 md:mt-0">
-                <GraduationCap className="h-4.5 w-4.5 text-white/70" />
-                <span className="text-[13px] font-semibold uppercase tracking-wider text-white/80" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Training Topics</span>
+            <div className="rounded-2xl p-6 sm:p-8" style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <div className="flex items-center gap-3 mb-5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg" style={{ background: 'rgba(255,255,255,0.1)' }}>
+                  <GraduationCap className="h-5 w-5 text-white/80" />
+                </div>
+                <h3 className="text-[15px] font-bold uppercase tracking-wider text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Training Topics</h3>
               </div>
-              <ul className="space-y-2">
+              <div className="space-y-3">
                 {trainingTopics.map((topic) => (
-                  <li key={topic} className="flex items-start gap-2.5">
-                    <span className="mt-[7px] text-[7px] text-white/50">●</span>
-                    <span className="text-[13.5px] leading-relaxed text-white/80">{topic}</span>
-                  </li>
+                  <div key={topic} className="flex items-start gap-3">
+                    <CheckCircle className="h-4 w-4 mt-0.5 shrink-0" style={{ color: 'hsl(280 50% 75%)' }} />
+                    <span className="text-[14px] leading-snug text-white/90">{topic}</span>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
