@@ -93,7 +93,7 @@ export function LocationSection() {
                         href={link.href}
                         target={link.external ? "_blank" : undefined}
                         rel={link.external ? "noopener noreferrer" : undefined}
-                        className="mt-2 inline-block text-sm font-medium hover:opacity-80"
+                        className="location-link mt-2 inline-block text-sm font-medium hover:opacity-80"
                         style={{ color: 'hsl(280 50% 50%)' }}
                       >
                         {link.text}

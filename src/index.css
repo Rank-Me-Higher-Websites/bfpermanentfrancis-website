@@ -328,6 +328,20 @@
   .faq-card-accent svg {
     color: white !important;
   }
+
+  .section-dark .location-card-white h3 {
+    color: hsl(240 10% 20%) !important;
+  }
+
+  .section-dark .location-card-white p,
+  .section-dark .location-card-white span,
+  .section-dark .location-card-white a {
+    color: hsl(240 8% 40%) !important;
+  }
+
+  .section-dark .location-card-white a.location-link {
+    color: hsl(280 50% 50%) !important;
+  }
 }
 
 .card-accent {
