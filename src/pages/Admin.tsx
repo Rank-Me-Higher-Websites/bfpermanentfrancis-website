@@ -207,22 +207,17 @@ export default function Admin() {
                                 key={key}
                                 onClick={() => setSelectedDate(isSelected ? null : day)}
                                 className={`
-                                  h-[72px] rounded-lg p-1.5 text-left flex flex-col transition-colors
+                                  h-[72px] rounded-lg p-1.5 text-left flex flex-col transition-colors border
                                   ${isSelected
-                                    ? "bg-primary/15 ring-2 ring-primary"
+                                    ? "bg-primary/10 border-primary"
                                     : hasBookings
-                                      ? "bg-purple-50 border border-purple-200 hover:bg-purple-100"
-                                      : "border border-gray-200 hover:bg-gray-50"
+                                      ? "bg-white border-primary/50 hover:bg-purple-50"
+                                      : "bg-white border-gray-300 hover:bg-gray-50"
                                   }
-                                  ${today && !isSelected ? "ring-2 ring-primary" : ""}
                                 `}
                               >
                                 <div className="flex items-center justify-between w-full">
-                                  <span className={`
-                                    text-sm font-semibold
-                                    ${today ? "flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white text-xs" : ""}
-                                    ${!today ? "text-gray-700" : ""}
-                                  `}>
+                                  <span className="text-sm font-semibold text-gray-700">
                                     {format(day, "d")}
                                   </span>
                                   {hasBookings && (
