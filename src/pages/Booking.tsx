@@ -19,18 +19,16 @@ const SERVICES = [
 ];
 
 const TIME_SLOTS = [
-  "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM",
-  "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM",
-  "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM",
-  "3:00 PM", "3:30 PM", "4:00 PM",
+  "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM",
+  "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM",
+  "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM",
 ];
 
 const STEPS = [
   { num: 1, label: "Service" },
-  { num: 2, label: "Stylist" },
-  { num: 3, label: "Date & Time" },
-  { num: 4, label: "Your Info" },
-  { num: 5, label: "Review" },
+  { num: 2, label: "Date & Time" },
+  { num: 3, label: "Your Info" },
+  { num: 4, label: "Review" },
 ];
 
 export default function Booking() {
@@ -56,9 +54,8 @@ export default function Booking() {
   const canProceed = () => {
     switch (step) {
       case 1: return selectedServices.length > 0;
-      case 2: return true;
-      case 3: return !!selectedDate && !!selectedTime;
-      case 4: return formData.fullName && formData.phone && formData.email;
+      case 2: return !!selectedDate && !!selectedTime;
+      case 3: return formData.fullName && formData.phone && formData.email;
       default: return true;
     }
   };
@@ -86,7 +83,7 @@ export default function Booking() {
 
     setTimeout(() => {
       setIsSubmitting(false);
-      setStep(6);
+      setStep(5);
     }, 1000);
   };
 
@@ -99,7 +96,7 @@ export default function Booking() {
       <Layout>
         <section className="min-h-screen bg-background py-12 md:py-20">
           <div className="section-container max-w-2xl mx-auto">
-            {step <= 5 && (
+            {step <= 4 && (
               <div className="flex items-center justify-center gap-0 mb-10" data-testid="booking-stepper">
                 {STEPS.map((s, i) => {
                   const completed = step > s.num;
@@ -128,9 +125,9 @@ export default function Booking() {
               </div>
             )}
 
-            {step <= 5 && (
+            {step <= 4 && (
               <p className="text-center text-sm text-gray-500 -mt-6 mb-8">
-                Step {step} of 5: {STEPS[step - 1].label}
+                Step {step} of 4: {STEPS[step - 1].label}
               </p>
             )}
 
@@ -171,33 +168,9 @@ export default function Booking() {
               )}
 
               {step === 2 && (
-                <div data-testid="step-stylist">
+                <div data-testid="step-datetime">
                   <button onClick={() => setStep(1)} className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-4" data-testid="back-to-service">
                     <ArrowLeft className="w-4 h-4 mr-1" /> Back to Service
-                  </button>
-                  <h2 className="text-2xl mb-1" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Choose Your Stylist</h2>
-                  <p className="text-gray-500 mb-6">Select who you'd like to see</p>
-                  <button
-                    data-testid="stylist-birute"
-                    onClick={() => setStep(3)}
-                    className="w-full flex items-center gap-4 px-5 py-4 rounded-xl border-2 border-purple-400 bg-purple-50 transition-all text-left"
-                  >
-                    <div className="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-semibold text-sm shrink-0">
-                      BF
-                    </div>
-                    <div className="flex-1">
-                      <p className="font-medium text-gray-900">Birute Francis</p>
-                      <p className="text-sm text-gray-500">SPMU Artist</p>
-                    </div>
-                    <ChevronRight className="w-5 h-5 text-gray-400" />
-                  </button>
-                </div>
-              )}
-
-              {step === 3 && (
-                <div data-testid="step-datetime">
-                  <button onClick={() => setStep(2)} className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-4" data-testid="back-to-stylist">
-                    <ArrowLeft className="w-4 h-4 mr-1" /> Back to Stylist
                   </button>
                   <h2 className="text-2xl mb-1" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Pick Date & Time</h2>
                   <p className="text-gray-500 mb-6">Choose your preferred appointment time</p>
@@ -243,9 +216,9 @@ export default function Booking() {
                 </div>
               )}
 
-              {step === 4 && (
+              {step === 3 && (
                 <div data-testid="step-info">
-                  <button onClick={() => setStep(3)} className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-4" data-testid="back-to-datetime">
+                  <button onClick={() => setStep(2)} className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-4" data-testid="back-to-datetime">
                     <ArrowLeft className="w-4 h-4 mr-1" /> Back to Date & Time
                   </button>
                   <h2 className="text-2xl mb-1" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Your Information</h2>
@@ -311,7 +284,6 @@ export default function Booking() {
                       <h3 className="text-lg mb-3" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Your Booking Summary</h3>
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between"><span className="text-gray-500">Service</span><span className="font-medium">{serviceNames}</span></div>
-                        <div className="flex justify-between"><span className="text-gray-500">Stylist</span><span className="font-medium">Birute Francis</span></div>
                         <div className="flex justify-between"><span className="text-gray-500">Date</span><span className="font-medium">{selectedDate ? format(selectedDate, "EEE, MMM d, yyyy") : ""}</span></div>
                         <div className="flex justify-between"><span className="text-gray-500">Time</span><span className="font-medium">{selectedTime}</span></div>
                         <div className="flex justify-between"><span className="text-gray-500">Price</span><span className="font-medium gradient-text">{servicePrices}</span></div>
@@ -321,9 +293,9 @@ export default function Booking() {
                 </div>
               )}
 
-              {step === 5 && (
+              {step === 4 && (
                 <div data-testid="step-review">
-                  <button onClick={() => setStep(4)} className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-4" data-testid="back-to-info">
+                  <button onClick={() => setStep(3)} className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-4" data-testid="back-to-info">
                     <ArrowLeft className="w-4 h-4 mr-1" /> Back
                   </button>
                   <h2 className="text-2xl mb-1" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>Review Your Booking</h2>
@@ -332,7 +304,6 @@ export default function Booking() {
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div><span className="text-gray-500 block">Service</span><span className="font-medium">{serviceNames}</span></div>
                       <div><span className="text-gray-500 block">Price</span><span className="font-medium gradient-text">{servicePrices}</span></div>
-                      <div><span className="text-gray-500 block">Stylist</span><span className="font-medium">Birute Francis</span></div>
                       <div><span className="text-gray-500 block">Duration</span><span className="font-medium">{services.map(s => s.duration).join(" + ")}</span></div>
                       <div><span className="text-gray-500 block">Date</span><span className="font-medium">{selectedDate ? format(selectedDate, "EEEE, MMMM d, yyyy") : ""}</span></div>
                       <div><span className="text-gray-500 block">Time</span><span className="font-medium">{selectedTime}</span></div>
@@ -348,7 +319,7 @@ export default function Booking() {
                 </div>
               )}
 
-              {step === 6 && (
+              {step === 5 && (
                 <div className="text-center py-8" data-testid="step-confirmation">
                   <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
                     <Check className="w-8 h-8 text-green-600" />
@@ -360,7 +331,6 @@ export default function Booking() {
                   <div className="rounded-xl border border-gray-200 p-5 bg-gray-50 text-left max-w-sm mx-auto mb-6">
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between"><span className="text-gray-500">Service</span><span className="font-medium">{serviceNames}</span></div>
-                      <div className="flex justify-between"><span className="text-gray-500">Stylist</span><span className="font-medium">Birute Francis</span></div>
                       <div className="flex justify-between"><span className="text-gray-500">Date</span><span className="font-medium">{selectedDate ? format(selectedDate, "EEE, MMM d, yyyy") : ""}</span></div>
                       <div className="flex justify-between"><span className="text-gray-500">Time</span><span className="font-medium">{selectedTime}</span></div>
                       <div className="flex justify-between"><span className="text-gray-500">Price</span><span className="font-medium gradient-text">{servicePrices}</span></div>
@@ -376,7 +346,7 @@ export default function Booking() {
                 </div>
               )}
 
-              {step >= 1 && step <= 5 && step !== 2 && (
+              {step >= 1 && step <= 4 && (
                 <div className="flex gap-3 mt-8">
                   {step > 1 && (
                     <Button
@@ -388,7 +358,7 @@ export default function Booking() {
                       <ArrowLeft className="w-4 h-4 mr-2" /> Back
                     </Button>
                   )}
-                  {step < 5 && (
+                  {step < 4 && (
                     <Button
                       data-testid="button-next"
                       className={cn("flex-1 h-12 gradient-bg text-white", !canProceed() && "opacity-50 cursor-not-allowed")}
@@ -398,7 +368,7 @@ export default function Booking() {
                       Next <ChevronRight className="w-4 h-4 ml-2" />
                     </Button>
                   )}
-                  {step === 5 && (
+                  {step === 4 && (
                     <Button
                       data-testid="button-confirm"
                       className="flex-1 h-12 gradient-bg text-white"
