@@ -250,7 +250,7 @@ export default function Admin() {
     const isEditing = editingId === b.id;
     const isExpanded = expandedId === b.id;
     return (
-      <div key={b.id} className="rounded-xl border border-gray-200 bg-white overflow-hidden" data-testid={`card-booking-${b.id}`}>
+      <div key={b.id} className="rounded-xl border-2 border-gray-300 bg-white overflow-hidden" data-testid={`card-booking-${b.id}`}>
         <button
           onClick={() => setExpandedId(isExpanded ? null : b.id)}
           className="flex w-full items-center justify-between gap-3 p-4 text-left hover:bg-gray-50 transition-colors"
