@@ -32,7 +32,7 @@ const STATUS_ACTIONS: { status: BookingStatus; label: string; emoji: string; act
     status: "new",
     label: "New",
     emoji: "🆕",
-    activeClass: "bg-primary text-primary-foreground border-primary",
+    activeClass: "gradient-bg text-primary-foreground border-transparent",
     inactiveClass: "bg-card text-foreground border-border hover:border-primary/40",
   },
   {

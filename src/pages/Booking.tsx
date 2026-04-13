@@ -110,8 +110,8 @@ export default function Booking() {
                         <div
                           className={cn(
                             "w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold border-2 transition-all",
-                            completed && "bg-primary border-primary text-white",
-                            active && "bg-primary border-primary text-white",
+                            completed && "gradient-bg border-transparent text-white",
+                            active && "gradient-bg border-transparent text-white",
                             !completed && !active && "bg-white border-gray-300 text-gray-400"
                           )}
                         >
@@ -120,7 +120,7 @@ export default function Booking() {
                         <span className="text-[10px] mt-1 text-gray-500 hidden sm:block">{s.label}</span>
                       </div>
                       {i < STEPS.length - 1 && (
-                        <div className={cn("w-10 sm:w-16 h-0.5 mx-1", step > s.num ? "bg-primary" : "bg-gray-200")} />
+                        <div className={cn("w-10 sm:w-16 h-0.5 mx-1", step > s.num ? "gradient-bg" : "bg-gray-200")} />
                       )}
                     </div>
                   );
@@ -148,7 +148,7 @@ export default function Booking() {
                         className={cn(
                           "w-full flex items-center justify-between px-5 py-4 rounded-xl border-2 transition-all text-left",
                           selectedServices.includes(s.id)
-                            ? "border-primary bg-primary/5"
+                            ? "border-purple-400 bg-purple-50"
                             : "border-gray-200 hover:border-gray-300 bg-white"
                         )}
                       >
@@ -156,7 +156,7 @@ export default function Booking() {
                           <div className={cn(
                             "w-5 h-5 rounded border-2 flex items-center justify-center transition-all",
                             selectedServices.includes(s.id)
-                              ? "bg-primary border-primary"
+                              ? "gradient-bg border-transparent"
                               : "border-gray-300"
                           )}>
                             {selectedServices.includes(s.id) && <Check className="w-3 h-3 text-white" />}
@@ -180,9 +180,9 @@ export default function Booking() {
                   <button
                     data-testid="stylist-birute"
                     onClick={() => setStep(3)}
-                    className="w-full flex items-center gap-4 px-5 py-4 rounded-xl border-2 border-primary bg-primary/5 transition-all text-left"
+                    className="w-full flex items-center gap-4 px-5 py-4 rounded-xl border-2 border-purple-400 bg-purple-50 transition-all text-left"
                   >
-                    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-semibold text-sm shrink-0">
+                    <div className="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-semibold text-sm shrink-0">
                       BF
                     </div>
                     <div className="flex-1">
@@ -230,8 +230,8 @@ export default function Booking() {
                             className={cn(
                               "py-2 px-3 rounded-lg text-sm font-medium border transition-all",
                               selectedTime === t
-                                ? "bg-primary text-white border-primary"
-                                : "bg-white text-gray-700 border-gray-200 hover:border-primary/50"
+                                ? "gradient-bg text-white border-transparent"
+                                : "bg-white text-gray-700 border-gray-200 hover:border-purple-300"
                             )}
                           >
                             {t}
@@ -314,7 +314,7 @@ export default function Booking() {
                         <div className="flex justify-between"><span className="text-gray-500">Stylist</span><span className="font-medium">Birute Francis</span></div>
                         <div className="flex justify-between"><span className="text-gray-500">Date</span><span className="font-medium">{selectedDate ? format(selectedDate, "EEE, MMM d, yyyy") : ""}</span></div>
                         <div className="flex justify-between"><span className="text-gray-500">Time</span><span className="font-medium">{selectedTime}</span></div>
-                        <div className="flex justify-between"><span className="text-gray-500">Price</span><span className="font-medium text-primary">{servicePrices}</span></div>
+                        <div className="flex justify-between"><span className="text-gray-500">Price</span><span className="font-medium gradient-text">{servicePrices}</span></div>
                       </div>
                     </div>
                   </div>
@@ -331,7 +331,7 @@ export default function Booking() {
                   <div className="rounded-xl border border-gray-200 p-6 space-y-4">
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div><span className="text-gray-500 block">Service</span><span className="font-medium">{serviceNames}</span></div>
-                      <div><span className="text-gray-500 block">Price</span><span className="font-medium text-primary">{servicePrices}</span></div>
+                      <div><span className="text-gray-500 block">Price</span><span className="font-medium gradient-text">{servicePrices}</span></div>
                       <div><span className="text-gray-500 block">Stylist</span><span className="font-medium">Birute Francis</span></div>
                       <div><span className="text-gray-500 block">Duration</span><span className="font-medium">{services.map(s => s.duration).join(" + ")}</span></div>
                       <div><span className="text-gray-500 block">Date</span><span className="font-medium">{selectedDate ? format(selectedDate, "EEEE, MMMM d, yyyy") : ""}</span></div>
@@ -363,13 +363,13 @@ export default function Booking() {
                       <div className="flex justify-between"><span className="text-gray-500">Stylist</span><span className="font-medium">Birute Francis</span></div>
                       <div className="flex justify-between"><span className="text-gray-500">Date</span><span className="font-medium">{selectedDate ? format(selectedDate, "EEE, MMM d, yyyy") : ""}</span></div>
                       <div className="flex justify-between"><span className="text-gray-500">Time</span><span className="font-medium">{selectedTime}</span></div>
-                      <div className="flex justify-between"><span className="text-gray-500">Price</span><span className="font-medium text-primary">{servicePrices}</span></div>
+                      <div className="flex justify-between"><span className="text-gray-500">Price</span><span className="font-medium gradient-text">{servicePrices}</span></div>
                     </div>
                   </div>
                   <Button
                     data-testid="button-back-home"
                     onClick={() => navigate("/")}
-                    className="bg-primary hover:bg-primary/90 text-white"
+                    className="gradient-bg text-white"
                   >
                     Back to Home
                   </Button>
@@ -391,7 +391,7 @@ export default function Booking() {
                   {step < 5 && (
                     <Button
                       data-testid="button-next"
-                      className={cn("flex-1 h-12 bg-primary hover:bg-primary/90 text-white", !canProceed() && "opacity-50 cursor-not-allowed")}
+                      className={cn("flex-1 h-12 gradient-bg text-white", !canProceed() && "opacity-50 cursor-not-allowed")}
                       disabled={!canProceed()}
                       onClick={() => setStep(step + 1)}
                     >
@@ -401,7 +401,7 @@ export default function Booking() {
                   {step === 5 && (
                     <Button
                       data-testid="button-confirm"
-                      className="flex-1 h-12 bg-primary hover:bg-primary/90 text-white"
+                      className="flex-1 h-12 gradient-bg text-white"
                       disabled={isSubmitting}
                       onClick={handleSubmit}
                     >

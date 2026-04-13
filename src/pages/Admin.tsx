@@ -156,7 +156,7 @@ export default function Admin() {
                 <button
                   onClick={() => setView("list")}
                   className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors ${
-                    view === "list" ? "bg-primary text-primary-foreground" : "bg-card text-muted-foreground hover:bg-muted"
+                    view === "list" ? "gradient-bg text-primary-foreground" : "bg-card text-muted-foreground hover:bg-muted"
                   }`}
                 >
                   <List className="h-4 w-4" />
@@ -165,7 +165,7 @@ export default function Admin() {
                 <button
                   onClick={() => setView("calendar")}
                   className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors ${
-                    view === "calendar" ? "bg-primary text-primary-foreground" : "bg-card text-muted-foreground hover:bg-muted"
+                    view === "calendar" ? "gradient-bg text-primary-foreground" : "bg-card text-muted-foreground hover:bg-muted"
                   }`}
                 >
                   <CalendarDays className="h-4 w-4" />
@@ -226,7 +226,7 @@ export default function Admin() {
                     flex items-center gap-2 rounded-xl px-4 sm:px-5 py-3 text-sm sm:text-base font-medium whitespace-nowrap
                     transition-all border-2
                     ${isActive
-                      ? "bg-primary text-primary-foreground border-primary shadow-md"
+                      ? "gradient-bg text-primary-foreground border-transparent shadow-md"
                       : "bg-card text-foreground border-border hover:border-primary/30"
                     }
                   `}

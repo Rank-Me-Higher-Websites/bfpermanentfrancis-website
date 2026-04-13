@@ -25,7 +25,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-xl border-b border-border/30">
       <nav className="section-container flex h-20 items-center justify-between">
         <Link to="/" className="flex items-center gap-3" data-testid="link-home-logo">
-          <div className="flex h-12 items-center rounded-lg bg-primary px-3">
+          <div className="flex h-12 items-center rounded-lg gradient-bg px-3">
             <img src={logoBf} alt="BF Permanent Francis Logo" className="h-9 w-auto" />
           </div>
         </Link>
@@ -35,10 +35,10 @@ export function Header() {
             <Link
               key={item.name}
               to={item.href}
-              className={`nav-link text-[13px] tracking-wide transition-colors hover:text-primary pb-1 ${
+              className={`nav-link text-[13px] tracking-wide transition-colors pb-1 ${
                 isActive(item.href)
-                  ? "text-primary font-medium nav-link-active"
-                  : "text-foreground/80 font-medium"
+                  ? "gradient-text font-medium nav-link-active"
+                  : "text-foreground/80 font-medium hover:text-foreground"
               }`}
               style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
               data-testid={`nav-${item.name.toLowerCase().replace(/\s/g, '-')}`}
@@ -67,7 +67,7 @@ export function Header() {
             <SheetContent side="right" className="w-80">
               <div className="flex flex-col gap-8 py-8">
                 <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3">
-                  <div className="flex h-10 items-center rounded-lg bg-primary px-3">
+                  <div className="flex h-10 items-center rounded-lg gradient-bg px-3">
                     <img src={logoBf} alt="BF Permanent Francis" className="h-7 w-auto" />
                   </div>
                 </Link>
@@ -77,10 +77,10 @@ export function Header() {
                       key={item.name}
                       to={item.href}
                       onClick={() => setIsOpen(false)}
-                      className={`text-base font-medium transition-colors hover:text-primary ${
+                      className={`text-base font-medium transition-colors ${
                         isActive(item.href)
-                          ? "text-primary"
-                          : "text-foreground/70"
+                          ? "gradient-text"
+                          : "text-foreground/70 hover:text-foreground"
                       }`}
                       style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                       data-testid={`mobile-nav-${item.name.toLowerCase().replace(/\s/g, '-')}`}

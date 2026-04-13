@@ -94,7 +94,7 @@ export function BookingCalendar({ bookings }: BookingCalendarProps) {
                 className={`
                   relative border-b border-r border-border min-h-[60px] sm:min-h-[80px] p-1 sm:p-2
                   text-left transition-colors flex flex-col
-                  ${isSelected ? "bg-primary/10 ring-2 ring-primary ring-inset" : "hover:bg-muted/50"}
+                  ${isSelected ? "bg-purple-100 ring-2 ring-purple-400 ring-inset" : "hover:bg-muted/50"}
                   ${today ? "bg-accent/30" : ""}
                 `}
               >

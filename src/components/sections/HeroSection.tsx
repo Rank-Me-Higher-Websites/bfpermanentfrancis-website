@@ -96,16 +96,16 @@ export function HeroSection() {
                       className={cn(
                         "w-full flex items-center justify-between px-4 py-3.5 rounded-xl border-2 transition-all text-left text-sm group",
                         isSelected
-                          ? "border-primary bg-primary/5"
-                          : "border-gray-300 hover:border-primary/40"
+                          ? "border-purple-400 bg-purple-50"
+                          : "border-gray-300 hover:border-purple-300"
                       )}
                     >
                       <div className="flex items-center gap-3">
                         <div className={cn(
                           "flex h-5 w-5 items-center justify-center rounded-full border-2 transition-all",
                           isSelected
-                            ? "border-primary bg-primary"
-                            : "border-gray-300 group-hover:border-primary/40"
+                            ? "gradient-bg border-transparent"
+                            : "border-gray-300 group-hover:border-purple-300"
                         )}>
                           {isSelected && <Check className="h-3 w-3 text-white" />}
                         </div>
