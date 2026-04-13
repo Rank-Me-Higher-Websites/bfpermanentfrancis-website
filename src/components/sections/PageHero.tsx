@@ -10,7 +10,7 @@ interface PageHeroProps {
   ctaLink?: string;
 }
 
-export function PageHero({ title, subtitle, backgroundImage, ctaLabel = "View Treatments", ctaLink = "/treatments" }: PageHeroProps) {
+export function PageHero({ title, subtitle, backgroundImage, ctaLabel = "Book Now", ctaLink = "/booking" }: PageHeroProps) {
   return (
     <section className="relative min-h-[45vh] flex items-center justify-center overflow-hidden">
       <div
