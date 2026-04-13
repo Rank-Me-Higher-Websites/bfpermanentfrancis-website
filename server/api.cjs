@@ -3,6 +3,7 @@ const { Pool } = require("pg");
 const app = express();
 const PORT = process.env.API_PORT || 3001;
 
+const N8N_WEBHOOK_URL = "https://cdlagency.app.n8n.cloud/webhook/69f5a44d-7dac-4c50-a80c-104d08d76307";
 const TEAMUP_CALENDAR_KEY = process.env.TEAMUP_API_KEY || "ks20db078d08133796";
 const TEAMUP_TOKEN = process.env.TEAMUP_TOKEN || "";
 const TEAMUP_BASE = `https://api.teamup.com/${TEAMUP_CALENDAR_KEY}`;
@@ -235,6 +236,18 @@ app.post("/api/bookings", async (req, res) => {
      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, 'pending')`,
     [id, teamupId, b.full_name, b.phone, b.email, b.service_type, b.preferred_date, b.preferred_time, b.notes || ""]
   );
+
+  try {
+    await fetch(N8N_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id, full_name: b.full_name, phone: b.phone, email: b.email,
+        service_type: b.service_type, preferred_date: b.preferred_date,
+        preferred_time: b.preferred_time, notes: b.notes || "", status: "pending",
+      }),
+    });
+  } catch (err) { console.error("n8n webhook error:", err.message); }
 
   res.json({ success: true, booking: { id, teamup_event_id: teamupId, ...b, status: "pending" } });
 });
