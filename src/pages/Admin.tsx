@@ -1,11 +1,10 @@
 import { useState, useEffect, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
-import { Lock, RefreshCw, CalendarDays, List, User, Phone } from "lucide-react";
-import { format, parseISO, isToday, isBefore, startOfDay } from "date-fns";
+import { Lock, RefreshCw, User, Phone, ChevronLeft, ChevronRight } from "lucide-react";
+import { format, parseISO, isToday, isBefore, startOfDay, startOfMonth, endOfMonth, eachDayOfInterval, getDay, isSameDay, addMonths, subMonths } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { type Booking } from "@/components/admin/BookingTable";
-import { BookingCalendar } from "@/components/admin/BookingCalendar";
 
 const ADMIN_USERNAME = "Birute";
 const ADMIN_PASSWORD = "Birute123@";
@@ -16,8 +15,9 @@ export default function Admin() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [bookings, setBookings] = useState<Booking[]>([]);
-  const [view, setView] = useState<"calendar" | "upcoming">("calendar");
   const [loading, setLoading] = useState(false);
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   useEffect(() => {
     if (isAuthenticated) loadBookings();
@@ -29,11 +29,9 @@ export default function Admin() {
       const res = await fetch("/api/bookings");
       const data = await res.json();
       const teamupBookings = (data.bookings || []) as Booking[];
-
       const localBookings = JSON.parse(localStorage.getItem("bookings") || "[]") as Booking[];
       const teamupIds = new Set(teamupBookings.map((b) => b.id));
       const uniqueLocal = localBookings.filter((b) => !teamupIds.has(b.id) && !(b as any).teamup_event_id);
-
       const merged = [...teamupBookings, ...uniqueLocal];
       merged.sort((a, b) => new Date(a.preferred_date || a.created_at).getTime() - new Date(b.preferred_date || b.created_at).getTime());
       setBookings(merged);
@@ -55,6 +53,18 @@ export default function Admin() {
     }
   };
 
+  const bookingsByDate = useMemo(() => {
+    const map = new Map<string, Booking[]>();
+    bookings.forEach((b) => {
+      if (b.preferred_date) {
+        const key = b.preferred_date;
+        if (!map.has(key)) map.set(key, []);
+        map.get(key)!.push(b);
+      }
+    });
+    return map;
+  }, [bookings]);
+
   const upcomingBookings = useMemo(() => {
     const today = startOfDay(new Date());
     return bookings.filter((b) => {
@@ -63,6 +73,24 @@ export default function Admin() {
       return !isBefore(date, today);
     });
   }, [bookings]);
+
+  const rightPanelBookings = useMemo(() => {
+    if (selectedDate) {
+      const key = format(selectedDate, "yyyy-MM-dd");
+      const dayBookings = bookingsByDate.get(key) || [];
+      return [...dayBookings].sort((a, b) => (a.preferred_time || "").localeCompare(b.preferred_time || ""));
+    }
+    return upcomingBookings;
+  }, [selectedDate, bookingsByDate, upcomingBookings]);
+
+  const days = useMemo(() => {
+    const start = startOfMonth(currentMonth);
+    const end = endOfMonth(currentMonth);
+    return eachDayOfInterval({ start, end });
+  }, [currentMonth]);
+
+  const startDayOfWeek = getDay(startOfMonth(currentMonth));
+  const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   if (!isAuthenticated) {
     return (
@@ -75,7 +103,7 @@ export default function Admin() {
           <div className="w-full max-w-md">
             <form
               onSubmit={handleLogin}
-              className="rounded-2xl border border-border bg-card p-8 sm:p-10 shadow-lg space-y-8"
+              className="rounded-2xl border-2 border-gray-300 bg-card p-8 sm:p-10 shadow-lg space-y-8"
             >
               <div className="flex flex-col items-center gap-4">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
@@ -88,33 +116,10 @@ export default function Admin() {
                   Enter your credentials to see your bookings
                 </p>
               </div>
-
-              <Input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Username"
-                className="h-14 text-lg px-5"
-                data-testid="input-username"
-                autoFocus
-              />
-
-              <Input
-                type="text"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                className="h-14 text-lg px-5"
-                data-testid="input-password"
-              />
-
-              {error && (
-                <p className="text-base text-destructive text-center font-medium">{error}</p>
-              )}
-
-              <Button type="submit" variant="cta" className="w-full h-14 text-lg rounded-xl" data-testid="button-sign-in">
-                Sign In
-              </Button>
+              <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" className="h-14 text-lg px-5" data-testid="input-username" autoFocus />
+              <Input type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="h-14 text-lg px-5" data-testid="input-password" />
+              {error && <p className="text-base text-destructive text-center font-medium">{error}</p>}
+              <Button type="submit" variant="cta" className="w-full h-14 text-lg rounded-xl" data-testid="button-sign-in">Sign In</Button>
             </form>
           </div>
         </div>
@@ -128,141 +133,175 @@ export default function Admin() {
         <title>My Bookings | BF Permanent Francis</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
-      <div className="min-h-screen bg-muted flex">
-        <aside className="w-56 sm:w-64 flex-shrink-0 border-r-2 border-gray-300 bg-card flex flex-col min-h-screen sticky top-0">
-          <div className="p-5 border-b-2 border-gray-300">
-            <h1 className="text-lg sm:text-xl font-bold" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>My Bookings</h1>
+      <div className="min-h-screen bg-muted">
+        <header className="border-b-2 border-gray-300 bg-card">
+          <div className="flex items-center justify-between px-4 sm:px-6 py-4 max-w-[1400px] mx-auto">
+            <h1 className="text-xl sm:text-2xl font-bold" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>My Bookings</h1>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" size="sm" onClick={loadBookings} className="h-10 px-4 text-sm gap-2 border-2 border-gray-300" data-testid="button-refresh">
+                <RefreshCw className="h-4 w-4" />
+                Refresh
+              </Button>
+              <Button variant="ghost" size="sm" onClick={() => setIsAuthenticated(false)} className="h-10 px-4 text-sm text-muted-foreground" data-testid="button-logout">
+                Log out
+              </Button>
+            </div>
           </div>
+        </header>
 
-          <nav className="flex-1 p-3 space-y-1">
-            <button
-              onClick={() => setView("calendar")}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                view === "calendar" ? "gradient-bg text-primary-foreground" : "text-foreground hover:bg-muted"
-              }`}
-              data-testid="tab-calendar"
-            >
-              <CalendarDays className="h-5 w-5" />
-              Calendar
-            </button>
-            <button
-              onClick={() => setView("upcoming")}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                view === "upcoming" ? "gradient-bg text-primary-foreground" : "text-foreground hover:bg-muted"
-              }`}
-              data-testid="tab-upcoming"
-            >
-              <List className="h-5 w-5" />
-              Upcoming
-            </button>
-          </nav>
-
-          <div className="p-3 border-t-2 border-gray-300 space-y-1">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={loadBookings}
-              className="w-full h-10 text-sm gap-2 justify-start px-4"
-              data-testid="button-refresh"
-            >
-              <RefreshCw className="h-4 w-4" />
-              Refresh
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsAuthenticated(false)}
-              className="w-full h-10 text-sm text-muted-foreground justify-start px-4"
-              data-testid="button-logout"
-            >
-              Log out
-            </Button>
-          </div>
-        </aside>
-
-        <main className="flex-1 p-4 sm:p-6 overflow-auto">
+        <main className="max-w-[1400px] mx-auto px-4 sm:px-6 py-6">
           {loading ? (
             <div className="flex items-center justify-center py-20">
               <div className="text-center space-y-3">
                 <RefreshCw className="h-8 w-8 text-primary mx-auto opacity-60" style={{ animation: "spin 1s linear infinite" }} />
-                <p className="text-muted-foreground text-lg">Loading bookings from Teamup...</p>
+                <p className="text-muted-foreground text-lg">Loading bookings...</p>
               </div>
             </div>
-          ) : view === "calendar" ? (
-            <BookingCalendar bookings={bookings} />
           ) : (
-            <UpcomingList bookings={upcomingBookings} />
+            <div className="flex gap-6 flex-col lg:flex-row">
+              <div className="lg:w-[55%] flex-shrink-0">
+                <div className="rounded-2xl border-2 border-gray-300 bg-card overflow-hidden">
+                  <div className="flex items-center justify-between px-4 sm:px-5 py-3 border-b-2 border-gray-300 bg-gray-50">
+                    <button onClick={() => setCurrentMonth(subMonths(currentMonth, 1))} className="flex h-9 w-9 items-center justify-center rounded-lg border-2 border-gray-300 hover:bg-muted transition-colors">
+                      <ChevronLeft className="h-5 w-5" />
+                    </button>
+                    <h2 className="text-lg font-bold" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
+                      {format(currentMonth, "MMMM yyyy")}
+                    </h2>
+                    <button onClick={() => setCurrentMonth(addMonths(currentMonth, 1))} className="flex h-9 w-9 items-center justify-center rounded-lg border-2 border-gray-300 hover:bg-muted transition-colors">
+                      <ChevronRight className="h-5 w-5" />
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-7 border-b-2 border-gray-300 bg-gray-50">
+                    {WEEKDAYS.map((day) => (
+                      <div key={day} className="py-2 text-center text-xs font-bold text-gray-500 uppercase tracking-wider">
+                        {day}
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="grid grid-cols-7">
+                    {Array.from({ length: startDayOfWeek }).map((_, i) => (
+                      <div key={`empty-${i}`} className="border-b border-r border-gray-200 bg-gray-50/50 min-h-[70px]" />
+                    ))}
+
+                    {days.map((day) => {
+                      const key = format(day, "yyyy-MM-dd");
+                      const dayBookings = bookingsByDate.get(key) || [];
+                      const hasBookings = dayBookings.length > 0;
+                      const isSelected = selectedDate && isSameDay(day, selectedDate);
+                      const today = isToday(day);
+
+                      return (
+                        <button
+                          key={key}
+                          onClick={() => setSelectedDate(isSelected ? null : day)}
+                          className={`
+                            relative border-b border-r border-gray-200 min-h-[70px] p-1.5
+                            text-left transition-colors flex flex-col
+                            ${isSelected ? "bg-purple-100 ring-2 ring-purple-500 ring-inset" : "hover:bg-gray-50"}
+                            ${today && !isSelected ? "bg-purple-50" : ""}
+                          `}
+                        >
+                          <span className={`
+                            text-sm font-semibold
+                            ${today ? "flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white" : ""}
+                            ${!today && hasBookings ? "text-foreground" : "text-gray-400"}
+                          `}>
+                            {format(day, "d")}
+                          </span>
+
+                          {hasBookings && (
+                            <div className="mt-auto flex flex-col gap-0.5">
+                              {dayBookings.slice(0, 2).map((b) => (
+                                <span key={b.id} className="text-[10px] leading-tight font-semibold truncate rounded px-1 py-0.5 bg-primary/15 text-primary">
+                                  {b.full_name.split(" ")[0]}
+                                </span>
+                              ))}
+                              {dayBookings.length > 2 && (
+                                <span className="text-[10px] text-gray-500 font-semibold">
+                                  +{dayBookings.length - 2} more
+                                </span>
+                              )}
+                            </div>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              <div className="lg:w-[45%] flex-shrink-0">
+                <div className="rounded-2xl border-2 border-gray-300 bg-card overflow-hidden">
+                  <div className="px-5 py-3 border-b-2 border-gray-300 bg-gray-50">
+                    <h2 className="text-lg font-bold" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
+                      {selectedDate ? format(selectedDate, "EEEE, MMMM d") : "Upcoming Appointments"}
+                    </h2>
+                    {selectedDate && (
+                      <button
+                        onClick={() => setSelectedDate(null)}
+                        className="text-sm text-primary font-medium hover:underline mt-0.5"
+                      >
+                        Show all upcoming
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="max-h-[calc(100vh-220px)] overflow-y-auto">
+                    {rightPanelBookings.length === 0 ? (
+                      <div className="p-8 text-center">
+                        <p className="text-gray-400 text-base">
+                          {selectedDate ? "No appointments on this day." : "No upcoming appointments."}
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="divide-y divide-gray-200">
+                        {rightPanelBookings.map((b, i) => {
+                          const showDateHeader = !selectedDate && (i === 0 || b.preferred_date !== rightPanelBookings[i - 1].preferred_date);
+                          let dateLabel = "";
+                          if (showDateHeader) {
+                            try {
+                              const parsed = parseISO(b.preferred_date);
+                              dateLabel = isToday(parsed) ? "Today" : format(parsed, "EEE, MMM d");
+                            } catch { dateLabel = b.preferred_date; }
+                          }
+
+                          return (
+                            <div key={b.id}>
+                              {showDateHeader && (
+                                <div className="px-5 py-2 bg-gray-50 border-b border-gray-200">
+                                  <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">{dateLabel}</span>
+                                </div>
+                              )}
+                              <div className="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 transition-colors">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 flex-shrink-0">
+                                  <User className="h-5 w-5 text-primary" />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <p className="text-sm font-bold text-foreground truncate">{b.full_name}</p>
+                                  <p className="text-xs font-semibold text-primary">{b.preferred_time}</p>
+                                  <p className="text-xs text-gray-500 truncate">{b.service_type}</p>
+                                </div>
+                                {b.phone && (
+                                  <a href={`tel:${b.phone}`} className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 flex-shrink-0 hover:bg-primary/20 transition-colors">
+                                    <Phone className="h-4 w-4 text-primary" />
+                                  </a>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
           )}
         </main>
       </div>
     </>
-  );
-}
-
-function UpcomingList({ bookings }: { bookings: Booking[] }) {
-  if (bookings.length === 0) {
-    return (
-      <div className="flex items-center justify-center py-20">
-        <p className="text-muted-foreground text-lg">No upcoming appointments.</p>
-      </div>
-    );
-  }
-
-  let lastDate = "";
-
-  return (
-    <div className="space-y-3">
-      {bookings.map((b) => {
-        const dateStr = b.preferred_date || "";
-        const showDateHeader = dateStr !== lastDate;
-        lastDate = dateStr;
-
-        let dateLabel = "";
-        try {
-          const parsed = parseISO(dateStr);
-          dateLabel = isToday(parsed)
-            ? "Today"
-            : format(parsed, "EEEE, MMMM d, yyyy");
-        } catch {
-          dateLabel = dateStr;
-        }
-
-        return (
-          <div key={b.id}>
-            {showDateHeader && (
-              <div className="pt-4 pb-2 first:pt-0">
-                <h3 className="text-base sm:text-lg font-bold text-foreground" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
-                  {dateLabel}
-                </h3>
-              </div>
-            )}
-            <div
-              className="flex items-center gap-3 rounded-xl border-2 border-gray-300 bg-card p-4 sm:p-5"
-              data-testid={`booking-card-${b.id}`}
-            >
-              <div className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-primary/10 flex-shrink-0">
-                <User className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-base sm:text-lg font-bold truncate" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
-                  {b.full_name}
-                </p>
-                <p className="text-sm font-semibold text-primary">{b.preferred_time}</p>
-                <p className="text-sm text-muted-foreground truncate">{b.service_type}</p>
-              </div>
-              {b.phone && (
-                <a
-                  href={`tel:${b.phone}`}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 flex-shrink-0 hover:bg-primary/20 transition-colors"
-                  data-testid={`call-${b.id}`}
-                >
-                  <Phone className="h-4 w-4 text-primary" />
-                </a>
-              )}
-            </div>
-          </div>
-        );
-      })}
-    </div>
   );
 }
