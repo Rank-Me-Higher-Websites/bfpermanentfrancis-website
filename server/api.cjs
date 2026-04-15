@@ -206,18 +206,15 @@ async function checkConflicts(date, time, excludeBookingId) {
   const slotStart = timeToMinutes(parsed.h, parsed.m);
   const slotEnd = slotStart + 120;
 
-  const { rows: bookingRows } = await pool.query(
-    `SELECT id, preferred_time, full_name FROM bookings 
-     WHERE preferred_date = $1 AND status NOT IN ('cancelled') AND deleted_at IS NULL AND id != $2`,
-    [date, excludeBookingId || ""]
-  );
-  for (const b of bookingRows) {
-    const bt = parseTime(b.preferred_time);
-    if (!bt) continue;
-    const bStart = timeToMinutes(bt.h, bt.m);
-    const bEnd = bStart + 120;
-    if (slotStart < bEnd && slotEnd > bStart) {
-      return { conflict: true, reason: `Conflicts with ${b.full_name}'s booking at ${b.preferred_time}` };
+  const events = await fetchTeamupEvents(date, date);
+  for (const e of events) {
+    const start = new Date(e.start_dt);
+    const end = new Date(e.end_dt);
+    const eStart = timeToMinutes(start.getHours(), start.getMinutes());
+    const eEnd = timeToMinutes(end.getHours(), end.getMinutes());
+    if (slotStart < eEnd && slotEnd > eStart) {
+      const title = (e.title || "").trim();
+      return { conflict: true, reason: `Conflicts with existing booking: ${title}` };
     }
   }
 
@@ -268,11 +265,12 @@ app.get("/api/availability", async (req, res) => {
     if (bs && be) busyRanges.push({ startMin: timeToMinutes(bs.h, bs.m), endMin: timeToMinutes(be.h, be.m) });
   });
 
+  const APPOINTMENT_DURATION = 120;
   const availableSlots = allSlots.filter((slot) => {
     const parsed = parseTime(slot);
     if (!parsed) return false;
     const slotMin = timeToMinutes(parsed.h, parsed.m);
-    const slotEndMin = slotMin + 30;
+    const slotEndMin = slotMin + APPOINTMENT_DURATION;
     return !busyRanges.some((b) => slotMin < b.endMin && slotEndMin > b.startMin);
   });
 
