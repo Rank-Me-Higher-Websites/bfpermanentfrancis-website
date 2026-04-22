@@ -16,7 +16,7 @@ const SERVICES = [
   { id: "spmu-eyeliner", name: "SPMU Eyeliner", price: "$350+", numericPrice: 350, duration: "Up to 1.5 hrs" },
   { id: "spmu-lips", name: "SPMU Lips / Lip Blushing", price: "$450+", numericPrice: 450, duration: "Up to 2 hrs" },
   { id: "browxenna", name: "BrowXenna Powder", price: "$40", numericPrice: 40, duration: "20 min" },
-  { id: "correction", name: "Correction", price: "$75", numericPrice: 75, duration: "Up to 40 min" },
+  { id: "correction", name: "Correction (within 2 months of first procedure)", price: "$75", numericPrice: 75, duration: "Up to 40 min" },
 ];
 
 const CLOSED_DAYS = [0, 1];
