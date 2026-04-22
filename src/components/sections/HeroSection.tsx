@@ -10,6 +10,7 @@ const SERVICES = [
   { id: "spmu-eyeliner", name: "SPMU Eyeliner", price: "$350+" },
   { id: "spmu-lips", name: "SPMU Lips / Lip Blushing", price: "$450+" },
   { id: "browxenna", name: "BrowXenna Powder", price: "$40" },
+  { id: "correction", name: "Correction (within 2 months)", price: "$75" },
 ];
 
 const BADGES = [
