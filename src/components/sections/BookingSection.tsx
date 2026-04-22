@@ -22,10 +22,11 @@ import {
 import { toast } from "sonner";
 
 const SERVICES = [
-  "Permanent Lips",
-  "Eyebrow Micropigmentation",
-  "Eyeliner Enhancement",
-  "BrowXenna",
+  "SPMU Brows",
+  "SPMU Lips / Lip Blushing",
+  "SPMU Eyeliner",
+  "BrowXenna Powder",
+  "Correction (within 2 months of first procedure)",
 ];
 
 const TIME_SLOTS = [
