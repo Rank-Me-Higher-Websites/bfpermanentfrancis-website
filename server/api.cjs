@@ -298,11 +298,16 @@ app.get("/api/availability", async (req, res) => {
   });
 
   const APPOINTMENT_DURATION = getServiceDuration(service);
+  const closingMin = timeToMinutes(
+    parseInt(schedule.end.split(":")[0]),
+    parseInt(schedule.end.split(":")[1])
+  );
   const availableSlots = allSlots.filter((slot) => {
     const parsed = parseTime(slot);
     if (!parsed) return false;
     const slotMin = timeToMinutes(parsed.h, parsed.m);
     const slotEndMin = slotMin + APPOINTMENT_DURATION;
+    if (slotEndMin > closingMin) return false;
     return !busyRanges.some((b) => slotMin < b.endMin && slotEndMin > b.startMin);
   });
 
@@ -313,6 +318,21 @@ app.post("/api/bookings", async (req, res) => {
   const b = req.body;
   if (!b.full_name || !b.phone || !b.email || !b.service_type || !b.preferred_date || !b.preferred_time) {
     return res.status(400).json({ error: "Missing required fields" });
+  }
+
+  const dateObj = new Date(b.preferred_date + "T12:00:00");
+  const dow = dateObj.getDay();
+  const sched = AVAILABILITY[dow];
+  if (!sched) return res.status(400).json({ error: "We are closed on this day. Please pick another date." });
+
+  const parsedTime = parseTime(b.preferred_time);
+  if (!parsedTime) return res.status(400).json({ error: "Invalid time format" });
+  const startMin = timeToMinutes(parsedTime.h, parsedTime.m);
+  const endMin = startMin + getServiceDuration(b.service_type);
+  const openMin = timeToMinutes(parseInt(sched.start.split(":")[0]), parseInt(sched.start.split(":")[1]));
+  const closeMin = timeToMinutes(parseInt(sched.end.split(":")[0]), parseInt(sched.end.split(":")[1]));
+  if (startMin < openMin || endMin > closeMin) {
+    return res.status(400).json({ error: "Selected time is outside business hours." });
   }
 
   const conflict = await checkConflicts(b.preferred_date, b.preferred_time, null, b.service_type);
