@@ -301,7 +301,7 @@ export default function Admin() {
                   <Input type="text" value={editForm.preferred_time} onChange={(e) => setEditForm({ ...editForm, preferred_time: e.target.value })} placeholder="e.g. 10:00 AM" className="text-sm h-9" />
                 </div>
                 <select value={editForm.service_type} onChange={(e) => setEditForm({ ...editForm, service_type: e.target.value })} className="w-full border rounded-lg px-3 py-2 text-sm bg-white">
-                  <option>SPMU Brows</option><option>SPMU Eyeliner</option><option>SPMU Lips</option><option>BrowXenna Powder</option>
+                  <option>SPMU Brows</option><option>SPMU Eyeliner</option><option>SPMU Lips / Lip Blushing</option><option>BrowXenna Powder</option><option>Correction</option>
                 </select>
                 <textarea value={editForm.admin_notes} onChange={(e) => setEditForm({ ...editForm, admin_notes: e.target.value })} placeholder="Admin notes..." className="w-full border rounded-lg px-3 py-2 text-sm resize-none h-16 bg-white" />
                 <div className="flex gap-2">

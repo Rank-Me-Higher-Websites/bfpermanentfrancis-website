@@ -138,13 +138,45 @@ async function fetchTeamupEvents(startDate, endDate) {
   } catch (err) { console.error("Teamup fetch error:", err.message); return []; }
 }
 
+const SERVICE_DURATIONS = {
+  "SPMU Brows": 120,
+  "SPMU Lips / Lip Blushing": 120,
+  "SPMU Lips": 120,
+  "SPMU Eyeliner": 90,
+  "BrowXenna Powder": 20,
+  "BrowXenna": 20,
+  "Correction": 40,
+};
+
+function getServiceDuration(serviceType) {
+  if (!serviceType) return 120;
+  const parts = String(serviceType).split(",").map((s) => s.trim()).filter(Boolean);
+  let total = 0;
+  for (const p of parts) {
+    let matched = 0;
+    for (const [name, dur] of Object.entries(SERVICE_DURATIONS)) {
+      if (p === name || p.startsWith(name + " ") || p.includes(name)) {
+        if (dur > matched) matched = dur;
+      }
+    }
+    total += matched || 120;
+  }
+  return total || 120;
+}
+
+function addMinutes(h, m, addMin) {
+  const total = h * 60 + m + addMin;
+  return { h: Math.floor(total / 60), m: total % 60 };
+}
+
 async function createTeamupEvent(booking) {
   try {
     const time = parseTime(booking.preferred_time);
     if (!time) return null;
+    const dur = getServiceDuration(booking.service_type);
+    const end = addMinutes(time.h, time.m, dur);
     const startDt = `${booking.preferred_date}T${String(time.h).padStart(2, "0")}:${String(time.m).padStart(2, "0")}:00`;
-    const endH = time.h + 2;
-    const endDt = `${booking.preferred_date}T${String(endH).padStart(2, "0")}:${String(time.m).padStart(2, "0")}:00`;
+    const endDt = `${booking.preferred_date}T${String(end.h).padStart(2, "0")}:${String(end.m).padStart(2, "0")}:00`;
     const eventData = {
       subcalendar_ids: [SUBCALENDAR_ID],
       title: `${booking.service_type} - ${booking.full_name}`,
@@ -200,11 +232,11 @@ async function deleteTeamupEvent(eventId) {
   } catch (err) { console.error("Teamup delete error:", err.message); return false; }
 }
 
-async function checkConflicts(date, time, excludeBookingId) {
+async function checkConflicts(date, time, excludeBookingId, serviceType) {
   const parsed = parseTime(time);
   if (!parsed) return { conflict: false };
   const slotStart = timeToMinutes(parsed.h, parsed.m);
-  const slotEnd = slotStart + 120;
+  const slotEnd = slotStart + getServiceDuration(serviceType);
 
   const events = await fetchTeamupEvents(date, date);
   for (const e of events) {
@@ -236,7 +268,7 @@ async function checkConflicts(date, time, excludeBookingId) {
 }
 
 app.get("/api/availability", async (req, res) => {
-  const { date } = req.query;
+  const { date, service } = req.query;
   if (!date) return res.status(400).json({ error: "date parameter required" });
 
   const d = new Date(date + "T12:00:00");
@@ -265,7 +297,7 @@ app.get("/api/availability", async (req, res) => {
     if (bs && be) busyRanges.push({ startMin: timeToMinutes(bs.h, bs.m), endMin: timeToMinutes(be.h, be.m) });
   });
 
-  const APPOINTMENT_DURATION = 120;
+  const APPOINTMENT_DURATION = getServiceDuration(service);
   const availableSlots = allSlots.filter((slot) => {
     const parsed = parseTime(slot);
     if (!parsed) return false;
@@ -283,7 +315,7 @@ app.post("/api/bookings", async (req, res) => {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
-  const conflict = await checkConflicts(b.preferred_date, b.preferred_time);
+  const conflict = await checkConflicts(b.preferred_date, b.preferred_time, null, b.service_type);
   if (conflict.conflict) return res.status(409).json({ error: conflict.reason });
 
   const id = b.id || crypto.randomUUID();
@@ -296,13 +328,16 @@ app.post("/api/bookings", async (req, res) => {
     [id, teamupId, b.full_name, b.phone, b.email, b.service_type, b.preferred_date, b.preferred_time, b.notes || ""]
   );
 
-  const SERVICE_DETAILS = {
-    "SPMU Brows": { duration: 120, price: "$400+" },
-    "SPMU Eyeliner": { duration: 90, price: "$350+" },
-    "SPMU Lips": { duration: 120, price: "$450+" },
-    "BrowXenna Powder": { duration: 60, price: "$40" },
+  const PRICES = {
+    "SPMU Brows": "$400+",
+    "SPMU Lips / Lip Blushing": "$450+",
+    "SPMU Lips": "$450+",
+    "SPMU Eyeliner": "$350+",
+    "BrowXenna Powder": "$40",
+    "BrowXenna": "$40",
+    "Correction": "$75",
   };
-  const svcInfo = SERVICE_DETAILS[b.service_type] || { duration: 120, price: "TBD" };
+  const svcInfo = { duration: getServiceDuration(b.service_type), price: PRICES[b.service_type] || "TBD" };
 
   try {
     await fetch(N8N_WEBHOOK_URL, {
@@ -430,7 +465,7 @@ app.patch("/api/bookings/:id", async (req, res) => {
     const newTime = preferred_time || booking.preferred_time;
 
     if (preferred_date || preferred_time) {
-      const conflict = await checkConflicts(newDate, newTime, id);
+      const conflict = await checkConflicts(newDate, newTime, id, service_type || booking.service_type);
       if (conflict.conflict) return res.status(409).json({ error: conflict.reason });
     }
 
@@ -450,10 +485,11 @@ app.patch("/api/bookings/:id", async (req, res) => {
     if (booking.teamup_event_id && (preferred_date || preferred_time || service_type)) {
       const time = parseTime(newTime);
       if (time) {
-        const startDt = `${newDate}T${String(time.h).padStart(2, "0")}:${String(time.m).padStart(2, "0")}:00`;
-        const endH = time.h + 2;
-        const endDt = `${newDate}T${String(endH).padStart(2, "0")}:${String(time.m).padStart(2, "0")}:00`;
         const svc = service_type || booking.service_type;
+        const dur = getServiceDuration(svc);
+        const end = addMinutes(time.h, time.m, dur);
+        const startDt = `${newDate}T${String(time.h).padStart(2, "0")}:${String(time.m).padStart(2, "0")}:00`;
+        const endDt = `${newDate}T${String(end.h).padStart(2, "0")}:${String(end.m).padStart(2, "0")}:00`;
         await updateTeamupEvent(booking.teamup_event_id, {
           subcalendar_ids: [SUBCALENDAR_ID],
           title: `${svc} - ${booking.full_name}`,

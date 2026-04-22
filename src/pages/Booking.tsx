@@ -12,10 +12,11 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 
 const SERVICES = [
-  { id: "spmu-brows", name: "SPMU Brows", price: "$400+", numericPrice: 400, duration: "2-3 hrs" },
-  { id: "spmu-eyeliner", name: "SPMU Eyeliner", price: "$350+", numericPrice: 350, duration: "1.5-2 hrs" },
-  { id: "spmu-lips", name: "SPMU Lips / Lip Blushing", price: "$450+", numericPrice: 450, duration: "2-3 hrs" },
-  { id: "browxenna", name: "BrowXenna Powder", price: "$40", numericPrice: 40, duration: "1 hr" },
+  { id: "spmu-brows", name: "SPMU Brows", price: "$400+", numericPrice: 400, duration: "Up to 2 hrs" },
+  { id: "spmu-eyeliner", name: "SPMU Eyeliner", price: "$350+", numericPrice: 350, duration: "Up to 1.5 hrs" },
+  { id: "spmu-lips", name: "SPMU Lips / Lip Blushing", price: "$450+", numericPrice: 450, duration: "Up to 2 hrs" },
+  { id: "browxenna", name: "BrowXenna Powder", price: "$40", numericPrice: 40, duration: "20 min" },
+  { id: "correction", name: "Correction", price: "$75", numericPrice: 75, duration: "Up to 40 min" },
 ];
 
 const CLOSED_DAYS = [0, 1];
@@ -47,9 +48,10 @@ export default function Booking() {
       return;
     }
     const dateStr = format(selectedDate, "yyyy-MM-dd");
+    const svcNames = SERVICES.filter((s) => selectedServices.includes(s.id)).map((s) => s.name).join(", ");
     setLoadingSlots(true);
     setSelectedTime(null);
-    fetch(`/api/availability?date=${dateStr}`)
+    fetch(`/api/availability?date=${dateStr}&service=${encodeURIComponent(svcNames)}`)
       .then((r) => r.json())
       .then((data) => {
         setAvailableSlots(data.slots || []);
@@ -58,7 +60,7 @@ export default function Booking() {
         setAvailableSlots([]);
       })
       .finally(() => setLoadingSlots(false));
-  }, [selectedDate]);
+  }, [selectedDate, selectedServices]);
 
   const services = SERVICES.filter((s) => selectedServices.includes(s.id));
 
