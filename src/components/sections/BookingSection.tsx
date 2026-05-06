@@ -66,6 +66,18 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
     existing.push(booking);
     localStorage.setItem("bookings", JSON.stringify(existing));
 
+    fetch("/api/leads", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: booking.full_name,
+        phone: booking.phone,
+        email: booking.email,
+        message: `Service: ${booking.service_type} | Date: ${booking.preferred_date} ${booking.preferred_time}${booking.notes ? " | Notes: " + booking.notes : ""}`,
+        source: "website-booking-section",
+      }),
+    }).catch(() => {});
+
     setTimeout(() => {
       toast.success("Booking request submitted! We'll confirm your appointment soon.");
       setIsSubmitting(false);

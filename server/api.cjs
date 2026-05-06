@@ -1,3 +1,14 @@
+try {
+  const fs = require("fs");
+  const path = require("path");
+  const envPath = path.join(__dirname, "..", ".env");
+  if (fs.existsSync(envPath)) {
+    fs.readFileSync(envPath, "utf8").split("\n").forEach((line) => {
+      const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/i);
+      if (m && !process.env[m[1]]) process.env[m[1]] = m[2].replace(/^["']|["']$/g, "");
+    });
+  }
+} catch {}
 const express = require("express");
 const { Pool } = require("pg");
 const app = express();
@@ -596,6 +607,57 @@ app.post("/api/sync-teamup", async (req, res) => {
   } catch (err) {
     console.error("Sync error:", err.message);
     res.status(500).json({ error: "Sync failed" });
+  }
+});
+
+const LEADS_ADMIN_TOKEN = process.env.LEADS_ADMIN_TOKEN || require("crypto").randomBytes(32).toString("hex");
+if (!process.env.LEADS_ADMIN_TOKEN) {
+  console.warn("[leads] LEADS_ADMIN_TOKEN not set in env. Generated ephemeral token:", LEADS_ADMIN_TOKEN);
+}
+const LEAD_SOURCES = new Set([
+  "website-hero-popup",
+  "website-booking-page",
+  "website-booking-section",
+  "website-contact-form",
+]);
+
+app.post("/api/leads", async (req, res) => {
+  try {
+    const b = req.body || {};
+    const trim = (v, max) => (typeof v === "string" ? v.trim().slice(0, max) : "");
+    const name = trim(b.name, 200);
+    const phone = trim(b.phone, 50);
+    const email = trim(b.email, 200);
+    const vehicle = trim(b.vehicle, 200);
+    const message = trim(b.message, 2000);
+    const rawSource = trim(b.source, 100);
+    const source = LEAD_SOURCES.has(rawSource) ? rawSource : "unknown";
+
+    if (!name || !phone || !message) {
+      return res.status(400).json({ error: "name, phone, and message are required" });
+    }
+
+    await pool.query(
+      `INSERT INTO leads (name, phone, email, vehicle, message, source) VALUES ($1, $2, $3, $4, $5, $6)`,
+      [name, phone, email, vehicle, message, source]
+    );
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Lead insert error:", err.message);
+    res.status(500).json({ error: "Failed to save lead" });
+  }
+});
+
+app.get("/api/leads", async (req, res) => {
+  const auth = req.headers.authorization || "";
+  const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
+  if (token !== LEADS_ADMIN_TOKEN) return res.status(401).json({ error: "Unauthorized" });
+  try {
+    const { rows } = await pool.query(`SELECT * FROM leads ORDER BY created_at DESC`);
+    res.json({ leads: rows });
+  } catch (err) {
+    console.error("Lead fetch error:", err.message);
+    res.status(500).json({ error: "Failed to fetch leads" });
   }
 });
 

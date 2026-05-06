@@ -97,13 +97,28 @@ export default function Booking() {
       notes: formData.notes,
     };
 
+    const leadPayload = {
+      name: booking.full_name,
+      phone: booking.phone,
+      email: booking.email,
+      message: `Service: ${booking.service_type} | Date: ${booking.preferred_date} ${booking.preferred_time}${booking.notes ? " | Notes: " + booking.notes : ""}`,
+      source: "website-booking-page",
+    };
+
     try {
-      const res = await fetch("/api/bookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(booking),
-      });
-      const data = await res.json();
+      const [bookingRes] = await Promise.all([
+        fetch("/api/bookings", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(booking),
+        }),
+        fetch("/api/leads", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(leadPayload),
+        }).catch(() => {}),
+      ]);
+      const data = await bookingRes.json();
 
       const stored = JSON.parse(localStorage.getItem("bookings") || "[]");
       stored.push({ ...booking, status: "new", created_at: new Date().toISOString(), teamup_event_id: data.teamup_event_id });
