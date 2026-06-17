@@ -14,7 +14,7 @@ const { Pool } = require("pg");
 const app = express();
 const PORT = process.env.API_PORT || 3001;
 
-const N8N_WEBHOOK_URL = "https://cdlagency.app.n8n.cloud/webhook/69f5a44d-7dac-4c50-a80c-104d08d76307";
+const N8N_WEBHOOK_URL = "https://n8n.andriusdigital.com/webhook/69f5a44d-7dac-4c50-a80c-104d08d76307";
 const TEAMUP_CALENDAR_KEY = process.env.TEAMUP_API_KEY || "ks20db078d08133796";
 const TEAMUP_TOKEN = process.env.TEAMUP_TOKEN || "";
 const TEAMUP_BASE = `https://api.teamup.com/${TEAMUP_CALENDAR_KEY}`;
