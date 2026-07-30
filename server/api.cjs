@@ -15,8 +15,14 @@ const app = express();
 const PORT = process.env.API_PORT || 3001;
 
 const N8N_WEBHOOK_URL = "https://n8n.andriusdigital.com/webhook/69f5a44d-7dac-4c50-a80c-104d08d76307";
-const TEAMUP_CALENDAR_KEY = process.env.TEAMUP_API_KEY || "ks20db078d08133796";
+// No hardcoded fallback. The literal that used to sit here shipped inside this
+// file, which was publicly downloadable, so it must be treated as compromised.
+// Supply TEAMUP_API_KEY through the environment instead.
+const TEAMUP_CALENDAR_KEY = process.env.TEAMUP_API_KEY || "";
 const TEAMUP_TOKEN = process.env.TEAMUP_TOKEN || "";
+if (!TEAMUP_CALENDAR_KEY) {
+  console.warn("TEAMUP_API_KEY is not set — calendar sync and availability are disabled.");
+}
 const TEAMUP_BASE = `https://api.teamup.com/${TEAMUP_CALENDAR_KEY}`;
 const SUBCALENDAR_ID = 14609252;
 
@@ -137,6 +143,7 @@ async function ensureSynced() {
 setTimeout(() => syncFromTeamup(), 3000);
 
 async function fetchTeamupEvents(startDate, endDate) {
+  if (!TEAMUP_CALENDAR_KEY) return [];
   try {
     const end = endDate || startDate;
     const url = `${TEAMUP_BASE}/events?startDate=${startDate}&endDate=${end}&subcalendarId[]=${SUBCALENDAR_ID}`;
