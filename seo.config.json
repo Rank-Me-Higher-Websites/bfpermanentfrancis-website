@@ -1,0 +1,93 @@
+{
+  "site": "bfpermanentfrancis-website",
+  "domain": "bfpermanentfrancis.com",
+  "distDir": "dist",
+  "publicDir": "public",
+  "siteName": "BF Permanent Francis",
+  "ogImage": "/og-image.png",
+  "disallow": ["/admin", "/api/"],
+  "replacements": [],
+  "routes": [
+    {
+      "path": "/",
+      "title": "BF Permanent Francis | Permanent Makeup Chicago - Eyebrows, Lips, Eyeliner",
+      "description": "Expert permanent makeup services by a certified Long-Time-Liner trainer. Eyebrow micropigmentation, lip enhancement and eyeliner in Lemont, IL near Chicago.",
+      "changefreq": "weekly",
+      "priority": 1.0,
+      "jsonLd": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BeautySalon",
+          "name": "BF Permanent Francis",
+          "url": "https://bfpermanentfrancis.com/",
+          "image": "https://bfpermanentfrancis.com/og-image.png",
+          "telephone": "+1-708-737-2333",
+          "email": "francisbirute@yahoo.com",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "La Passion Beauty Salon",
+            "streetAddress": "12420 Archer Ave Unit C",
+            "addressLocality": "Lemont",
+            "addressRegion": "IL",
+            "postalCode": "60439",
+            "addressCountry": "US"
+          },
+          "openingHours": "Mo-Su by appointment",
+          "sameAs": [
+            "https://www.facebook.com/share/1AdAYWJBYw/",
+            "https://www.instagram.com/b.f_permanent"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/about",
+      "title": "About Birute Francis | Certified Permanent Makeup Artist Chicago",
+      "description": "Meet Birute Francis, a certified Long-Time-Liner Regional Trainer with extensive training in permanent makeup. Expert microblading and micropigmentation.",
+      "changefreq": "monthly",
+      "priority": 0.8
+    },
+    {
+      "path": "/treatments",
+      "title": "Permanent Makeup Treatments Chicago | Lips, Eyebrows, Eyeliner",
+      "description": "Expert permanent makeup treatments near Chicago. Lip micropigmentation, eyebrow microblading and eyeliner enhancement. Long-Time-Liner certified. Book today.",
+      "changefreq": "monthly",
+      "priority": 0.9
+    },
+    {
+      "path": "/products",
+      "title": "Long-Time-Liner Products | Professional PMU Equipment Chicago",
+      "description": "High-quality Long-Time-Liner permanent makeup products. Professional PMU devices, pigments and pre-drawing pencils for micropigmentation work.",
+      "changefreq": "monthly",
+      "priority": 0.6
+    },
+    {
+      "path": "/training",
+      "title": "Permanent Makeup Training Chicago | PMU Certification Courses",
+      "description": "Professional permanent makeup training courses near Chicago. Become a certified LINERGIST, Eyebrow, Lip or Eyeliner Stylist with Long-Time-Liner training.",
+      "changefreq": "monthly",
+      "priority": 0.8
+    },
+    {
+      "path": "/gallery",
+      "title": "Permanent Makeup Gallery | Before & After Chicago",
+      "description": "View permanent makeup transformations. Before and after photos of eyebrow micropigmentation, lip enhancement and eyeliner work by Birute Francis.",
+      "changefreq": "monthly",
+      "priority": 0.7
+    },
+    {
+      "path": "/contact",
+      "title": "Contact BF Permanent Francis | Book Consultation Chicago",
+      "description": "Contact BF Permanent Francis at La Passion Beauty Salon, 12420 Archer Ave Unit C, Lemont, IL. Call (708) 737-2333 or email francisbirute@yahoo.com.",
+      "changefreq": "monthly",
+      "priority": 0.8
+    },
+    {
+      "path": "/booking",
+      "title": "Book an Appointment | BF Permanent Francis",
+      "description": "Book your permanent makeup appointment with Birute Francis, certified SPMU artist, at La Passion Beauty Salon in Lemont, IL. Appointments only.",
+      "changefreq": "monthly",
+      "priority": 0.9
+    }
+  ]
+}
