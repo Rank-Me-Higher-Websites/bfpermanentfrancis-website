@@ -22,7 +22,7 @@ import {
 import { toast } from "sonner";
 import serviceLips from "@/assets/service-lips-new.jpg";
 import serviceEyebrows from "@/assets/service-eyebrows.jpg";
-import serviceEyeliner from "@/IMAGE 2026-01-22 19:24:05.jpg";
+import serviceEyeliner from "@/IMAGE 2026-01-22 19-24-05.jpg";
 
 const BOOKING_SERVICES = [
   "Permanent Lips",

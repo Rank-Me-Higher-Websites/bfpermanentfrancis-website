@@ -3,7 +3,7 @@ import { Phone, Mail, CalendarCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { PageHero } from "@/components/sections/PageHero";
-import heroImage from "@/IMAGE 2026-01-22 19:24:08.jpg";
+import heroImage from "@/IMAGE 2026-01-22 19-24-08.jpg";
 
 const Contact = () => {
   return (
