@@ -1,0 +1,33 @@
+# Caddy site block for bfpermanentfrancis.com
+#
+# THE IMPORTANT PART IS THE /api/* HANDLE.
+#
+# Without it Caddy answers /api/* straight from the static files, which does not
+# look like an outage: GET /api/availability returns the SPA shell as 200
+# text/html, so the front end parses HTML as JSON, fails, and renders
+# "No available times for this date" on every single day. POST /api/bookings
+# returns 405 from file_server. The site loads perfectly and takes no bookings.
+#
+# Adjust the root path to wherever the repo is checked out on the VPS.
+
+bfpermanentfrancis.com, www.bfpermanentfrancis.com {
+	encode zstd gzip
+
+	# Must come before the static handler — first matching handle wins.
+	handle /api/* {
+		reverse_proxy 127.0.0.1:5000
+	}
+
+	handle {
+		root * /opt/sites/bfpermanentfrancis-website/dist
+
+		# seo-postbuild writes dist/<route>/index.html per route; fall back to the
+		# SPA shell for anything it did not pre-render.
+		try_files {path} {path}/index.html /index.html
+		file_server
+	}
+
+	log {
+		output file /var/log/caddy/bfpermanentfrancis.log
+	}
+}

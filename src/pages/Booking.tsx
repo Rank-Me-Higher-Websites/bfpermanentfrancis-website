@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
+import { CONTACT_FALLBACK, readJson, submitLead, type LeadPayload } from "@/lib/leads";
 import { format } from "date-fns";
 
 const SERVICES = [
@@ -38,8 +39,10 @@ export default function Booking() {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [availableSlots, setAvailableSlots] = useState<string[]>([]);
   const [loadingSlots, setLoadingSlots] = useState(false);
+  const [slotsError, setSlotsError] = useState<string | null>(null);
   const [formData, setFormData] = useState({ fullName: "", phone: "", email: "", notes: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,15 +54,35 @@ export default function Booking() {
     const svcNames = SERVICES.filter((s) => selectedServices.includes(s.id)).map((s) => s.name).join(", ");
     setLoadingSlots(true);
     setSelectedTime(null);
+    setSlotsError(null);
+
+    // Clicking through dates quickly can land an older response last, which
+    // would show one day's slots under another day's heading.
+    let current = true;
     fetch(`/api/availability?date=${dateStr}&service=${encodeURIComponent(svcNames)}`)
-      .then((r) => r.json())
-      .then((data) => {
-        setAvailableSlots(data.slots || []);
+      .then(async (r) => {
+        const data = await readJson(r);
+        // A backend that isn't reachable must not look like a fully booked day.
+        if (!r.ok || !Array.isArray(data?.slots)) {
+          throw new Error(`Availability lookup failed (${r.status})`);
+        }
+        return data.slots as string[];
+      })
+      .then((slots) => {
+        if (current) setAvailableSlots(slots);
       })
       .catch(() => {
+        if (!current) return;
         setAvailableSlots([]);
+        setSlotsError(`We couldn't load available times just now. ${CONTACT_FALLBACK}`);
       })
-      .finally(() => setLoadingSlots(false));
+      .finally(() => {
+        if (current) setLoadingSlots(false);
+      });
+
+    return () => {
+      current = false;
+    };
   }, [selectedDate, selectedServices]);
 
   const services = SERVICES.filter((s) => selectedServices.includes(s.id));
@@ -86,6 +109,7 @@ export default function Booking() {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
+    setSubmitError(null);
     const booking = {
       id: crypto.randomUUID(),
       full_name: formData.fullName,
@@ -97,7 +121,7 @@ export default function Booking() {
       notes: formData.notes,
     };
 
-    const leadPayload = {
+    const leadPayload: LeadPayload = {
       name: booking.full_name,
       phone: booking.phone,
       email: booking.email,
@@ -106,31 +130,28 @@ export default function Booking() {
     };
 
     try {
-      const [bookingRes] = await Promise.all([
-        fetch("/api/bookings", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(booking),
-        }),
-        fetch("/api/leads", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(leadPayload),
-        }).catch(() => {}),
-      ]);
-      const data = await bookingRes.json();
+      const res = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(booking),
+      });
+      const data = await readJson(res);
+      if (!res.ok || !data?.success) {
+        // 409 carries the real reason (slot taken, outside hours) — prefer it.
+        throw new Error((data?.error as string) || `We couldn't save your booking (${res.status}).`);
+      }
 
-      const stored = JSON.parse(localStorage.getItem("bookings") || "[]");
-      stored.push({ ...booking, status: "new", created_at: new Date().toISOString(), teamup_event_id: data.teamup_event_id });
-      localStorage.setItem("bookings", JSON.stringify(stored));
-    } catch {
-      const stored = JSON.parse(localStorage.getItem("bookings") || "[]");
-      stored.push({ ...booking, status: "new", created_at: new Date().toISOString() });
-      localStorage.setItem("bookings", JSON.stringify(stored));
+      // Best-effort: the booking row is the record of truth, so a lead-log
+      // failure must not turn a saved appointment into an error for the client.
+      submitLead(leadPayload).catch(() => {});
+      setStep(5);
+    } catch (err) {
+      setSubmitError(
+        `${err instanceof Error ? err.message : "Something went wrong."} ${CONTACT_FALLBACK}`
+      );
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setIsSubmitting(false);
-    setStep(5);
   };
 
   return (
@@ -272,13 +293,26 @@ export default function Booking() {
                     </div>
                   )}
 
-                  {selectedDate && !loadingSlots && availableSlots.length === 0 && (
+                  {selectedDate && !loadingSlots && slotsError && (
+                    <div
+                      role="alert"
+                      data-testid="slots-error"
+                      className="rounded-xl border border-amber-300 bg-amber-50 px-4 py-4 text-center"
+                    >
+                      <p className="text-sm text-amber-900">{slotsError}</p>
+                      <a href="tel:+17087372333" className="mt-2 inline-block text-sm font-semibold text-amber-900 underline">
+                        Call (708) 737-2333
+                      </a>
+                    </div>
+                  )}
+
+                  {selectedDate && !loadingSlots && !slotsError && availableSlots.length === 0 && (
                     <div className="text-center py-6">
                       <p className="text-sm text-gray-500">No available times for this date. Please choose another day.</p>
                     </div>
                   )}
 
-                  {selectedDate && !loadingSlots && availableSlots.length > 0 && (
+                  {selectedDate && !loadingSlots && !slotsError && availableSlots.length > 0 && (
                     <div>
                       <p className="text-sm font-medium text-gray-700 mb-3">
                         Available times for {format(selectedDate, "EEEE, MMMM d, yyyy")}
@@ -405,6 +439,19 @@ export default function Booking() {
                       {formData.notes && <div><span className="text-gray-500">Notes:</span> <span className="font-medium text-gray-900">{formData.notes}</span></div>}
                     </div>
                   </div>
+
+                  {submitError && (
+                    <div
+                      role="alert"
+                      data-testid="submit-error"
+                      className="mt-5 rounded-xl border border-red-300 bg-red-50 px-4 py-4"
+                    >
+                      <p className="text-sm text-red-800">{submitError}</p>
+                      <a href="tel:+17087372333" className="mt-2 inline-block text-sm font-semibold text-red-800 underline">
+                        Call (708) 737-2333
+                      </a>
+                    </div>
+                  )}
                 </div>
               )}
 

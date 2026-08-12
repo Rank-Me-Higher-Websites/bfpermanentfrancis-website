@@ -625,6 +625,7 @@ const LEAD_SOURCES = new Set([
   "website-hero-popup",
   "website-booking-page",
   "website-booking-section",
+  "website-services-popup",
   "website-contact-form",
 ]);
 

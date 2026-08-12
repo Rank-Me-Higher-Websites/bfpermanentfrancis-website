@@ -13,8 +13,10 @@ Premium permanent makeup business website for Birute Francis (Chicago). Static f
 - **Dev command**: `node server/api.cjs & vite` — runs API server alongside Vite dev server with proxy
 
 ## Teamup Calendar Integration
-- **API Key**: Stored as `TEAMUP_API_KEY` env var
-- **Calendar URL**: `https://api.teamup.com/ks20db078d08133796`
+- **API Key**: Stored as `TEAMUP_API_KEY` env var — never in the repo. The key
+  that used to be written out here was published in a public repo and must be
+  treated as compromised; rotate it in Teamup rather than reusing it.
+- **Calendar URL**: `https://api.teamup.com/$TEAMUP_API_KEY`
 - **Subcalendar ID**: 14609252 (Birute Francis)
 - **Availability**: Tue-Sat 10:00 AM – 5:00 PM, Sun & Mon off
 - **Endpoints**:
@@ -89,7 +91,8 @@ Premium permanent makeup business website for Birute Francis (Chicago). Static f
 - BrowXenna Powder ($40)
 
 ## Build & Deploy
-- **Dev**: `npm run dev` (Vite dev server)
-- **Build**: `vite build && cp server/index.cjs dist/index.cjs`
-- **Prod entry**: `dist/index.cjs` (Express serving static files)
-- **`.replit` run command**: `node dist/index.cjs`
+- **Dev**: `npm run dev` (Vite dev server + API on 3001)
+- **Build**: `npm run build` (`vite build` + SEO post-build)
+- **Prod entry**: `node server/index.cjs` (Express serving `dist/` + the API)
+- See **[DEPLOY.md](DEPLOY.md)** for the VPS setup. Caddy must proxy `/api/*` to
+  the Node process; serving `dist/` alone silently disables all bookings.

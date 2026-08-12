@@ -20,6 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
+import { CONTACT_FALLBACK, submitLead } from "@/lib/leads";
 import serviceLips from "@/assets/service-lips-new.jpg";
 import serviceEyebrows from "@/assets/service-eyebrows.jpg";
 import serviceEyeliner from "@/IMAGE 2026-01-22 19-24-05.jpg";
@@ -69,34 +70,40 @@ export function ServicesSection() {
   const [date, setDate] = useState<Date>();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
     const booking = {
-      id: crypto.randomUUID(),
       full_name: formData.get("fullName") as string,
       phone: formData.get("phone") as string,
       email: formData.get("email") as string,
       service_type: formData.get("service") as string,
       preferred_date: date ? format(date, "yyyy-MM-dd") : "",
       preferred_time: formData.get("time") as string,
-      notes: "",
-      status: "new" as const,
-      created_at: new Date().toISOString(),
     };
 
-    const existing = JSON.parse(localStorage.getItem("bookings") || "[]");
-    existing.push(booking);
-    localStorage.setItem("bookings", JSON.stringify(existing));
-
-    setTimeout(() => {
+    try {
+      // This form used to write to localStorage only — the enquiry never left
+      // the visitor's browser. Send it to the API like every other form.
+      await submitLead({
+        name: booking.full_name,
+        phone: booking.phone,
+        email: booking.email,
+        message: `Service: ${booking.service_type} | Date: ${booking.preferred_date} ${booking.preferred_time}`,
+        source: "website-services-popup",
+      });
       toast.success("Booking request submitted! We'll confirm your appointment soon.");
-      setIsSubmitting(false);
+      form.reset();
       setShowBooking(false);
       setDate(undefined);
-    }, 800);
+    } catch {
+      toast.error(`We couldn't submit your request. ${CONTACT_FALLBACK}`, { duration: 10000 });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

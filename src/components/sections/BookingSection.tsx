@@ -20,6 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
+import { CONTACT_FALLBACK, submitLead } from "@/lib/leads";
 
 const SERVICES = [
   "SPMU Brows",
@@ -43,13 +44,13 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
   const [date, setDate] = useState<Date>();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
     const booking = {
-      id: crypto.randomUUID(),
       full_name: formData.get("fullName") as string,
       phone: formData.get("phone") as string,
       email: formData.get("email") as string,
@@ -57,33 +58,25 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
       preferred_date: date ? format(date, "yyyy-MM-dd") : "",
       preferred_time: formData.get("time") as string,
       notes: formData.get("notes") as string,
-      status: "new" as const,
-      created_at: new Date().toISOString(),
     };
 
-    // Store in localStorage for now — replace with your Replit DB later
-    const existing = JSON.parse(localStorage.getItem("bookings") || "[]");
-    existing.push(booking);
-    localStorage.setItem("bookings", JSON.stringify(existing));
-
-    fetch("/api/leads", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+    try {
+      await submitLead({
         name: booking.full_name,
         phone: booking.phone,
         email: booking.email,
         message: `Service: ${booking.service_type} | Date: ${booking.preferred_date} ${booking.preferred_time}${booking.notes ? " | Notes: " + booking.notes : ""}`,
-        source: "website-booking-section",
-      }),
-    }).catch(() => {});
-
-    setTimeout(() => {
+        source: variant === "hero" ? "website-hero-popup" : "website-booking-section",
+      });
       toast.success("Booking request submitted! We'll confirm your appointment soon.");
-      setIsSubmitting(false);
-      (e.target as HTMLFormElement).reset();
+      form.reset();
       setDate(undefined);
-    }, 800);
+    } catch {
+      // Never claim success we can't back up — the request is lost otherwise.
+      toast.error(`We couldn't submit your request. ${CONTACT_FALLBACK}`, { duration: 10000 });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (variant === "hero") {

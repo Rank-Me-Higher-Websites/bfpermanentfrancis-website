@@ -1,0 +1,26 @@
+[Unit]
+Description=BF Permanent Francis booking API
+Documentation=https://github.com/Rank-Me-Higher-Websites/bfpermanentfrancis-website
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/sites/bfpermanentfrancis-website
+# server/index.cjs mounts the API and also serves dist/ on port 5000.
+# Caddy only forwards /api/* to it, but running the full entry point means a
+# direct hit on :5000 still works when you are debugging on the box.
+ExecStart=/usr/bin/node server/index.cjs
+EnvironmentFile=/opt/sites/bfpermanentfrancis-website/.env
+Environment=NODE_ENV=production
+Environment=PORT=5000
+Restart=always
+RestartSec=5
+User=www-data
+Group=www-data
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=bfpf-api
+
+[Install]
+WantedBy=multi-user.target
