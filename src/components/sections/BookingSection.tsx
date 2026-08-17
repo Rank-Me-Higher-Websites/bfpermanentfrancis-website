@@ -150,7 +150,7 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
               </SelectTrigger>
               <SelectContent>
                 {TIME_SLOTS.map((t) => (
-                  <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>
+                  <SelectItem key={t.value} value={t.label}>{t.label}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -263,7 +263,7 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
                 </SelectTrigger>
                 <SelectContent>
                   {TIME_SLOTS.map((t) => (
-                    <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>
+                    <SelectItem key={t.value} value={t.label}>{t.label}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -384,7 +384,7 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
                   </SelectTrigger>
                   <SelectContent>
                     {TIME_SLOTS.map((t) => (
-                      <SelectItem key={t.value} value={t.value}>
+                      <SelectItem key={t.value} value={t.label}>
                         <span className="flex items-center gap-2">
                           <Clock className="h-3.5 w-3.5" />
                           {t.label}
