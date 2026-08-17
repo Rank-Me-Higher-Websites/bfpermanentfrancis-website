@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
-import { CONTACT_FALLBACK, readJson, submitLead, type LeadPayload } from "@/lib/leads";
+import { CONTACT_FALLBACK, fetchAvailability, submitBooking } from "@/lib/booking";
 import { format } from "date-fns";
 
 const SERVICES = [
@@ -40,6 +40,7 @@ export default function Booking() {
   const [availableSlots, setAvailableSlots] = useState<string[]>([]);
   const [loadingSlots, setLoadingSlots] = useState(false);
   const [slotsError, setSlotsError] = useState<string | null>(null);
+  const [slotsProvisional, setSlotsProvisional] = useState(false);
   const [formData, setFormData] = useState({ fullName: "", phone: "", email: "", notes: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -59,17 +60,11 @@ export default function Booking() {
     // Clicking through dates quickly can land an older response last, which
     // would show one day's slots under another day's heading.
     let current = true;
-    fetch(`/api/availability?date=${dateStr}&service=${encodeURIComponent(svcNames)}`)
-      .then(async (r) => {
-        const data = await readJson(r);
-        // A backend that isn't reachable must not look like a fully booked day.
-        if (!r.ok || !Array.isArray(data?.slots)) {
-          throw new Error(`Availability lookup failed (${r.status})`);
-        }
-        return data.slots as string[];
-      })
-      .then((slots) => {
-        if (current) setAvailableSlots(slots);
+    fetchAvailability(dateStr, svcNames)
+      .then(({ slots, provisional }) => {
+        if (!current) return;
+        setAvailableSlots(slots);
+        setSlotsProvisional(provisional);
       })
       .catch(() => {
         if (!current) return;
@@ -110,40 +105,16 @@ export default function Booking() {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     setSubmitError(null);
-    const booking = {
-      id: crypto.randomUUID(),
-      full_name: formData.fullName,
-      phone: formData.phone,
-      email: formData.email,
-      service_type: serviceNames,
-      preferred_date: selectedDate ? format(selectedDate, "yyyy-MM-dd") : "",
-      preferred_time: selectedTime || "",
-      notes: formData.notes,
-    };
-
-    const leadPayload: LeadPayload = {
-      name: booking.full_name,
-      phone: booking.phone,
-      email: booking.email,
-      message: `Service: ${booking.service_type} | Date: ${booking.preferred_date} ${booking.preferred_time}${booking.notes ? " | Notes: " + booking.notes : ""}`,
-      source: "website-booking-page",
-    };
-
     try {
-      const res = await fetch("/api/bookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(booking),
+      await submitBooking({
+        full_name: formData.fullName,
+        phone: formData.phone,
+        email: formData.email,
+        service_type: serviceNames,
+        preferred_date: selectedDate ? format(selectedDate, "yyyy-MM-dd") : "",
+        preferred_time: selectedTime || "",
+        notes: formData.notes,
       });
-      const data = await readJson(res);
-      if (!res.ok || !data?.success) {
-        // 409 carries the real reason (slot taken, outside hours) — prefer it.
-        throw new Error((data?.error as string) || `We couldn't save your booking (${res.status}).`);
-      }
-
-      // Best-effort: the booking row is the record of truth, so a lead-log
-      // failure must not turn a saved appointment into an error for the client.
-      submitLead(leadPayload).catch(() => {});
       setStep(5);
     } catch (err) {
       setSubmitError(
@@ -314,9 +285,14 @@ export default function Booking() {
 
                   {selectedDate && !loadingSlots && !slotsError && availableSlots.length > 0 && (
                     <div>
-                      <p className="text-sm font-medium text-gray-700 mb-3">
+                      <p className="text-sm font-medium text-gray-700 mb-1">
                         Available times for {format(selectedDate, "EEEE, MMMM d, yyyy")}
                       </p>
+                      {slotsProvisional && (
+                        <p className="text-xs text-gray-500 mb-3" data-testid="slots-provisional">
+                          These are our opening times — we'll confirm your exact slot by text or email.
+                        </p>
+                      )}
                       <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
                         {availableSlots.map((t) => (
                           <button

@@ -20,7 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
-import { CONTACT_FALLBACK, submitLead } from "@/lib/leads";
+import { CONTACT_FALLBACK, submitBooking } from "@/lib/booking";
 
 const SERVICES = [
   "SPMU Brows",
@@ -61,12 +61,11 @@ export function BookingSection({ variant = "full" }: BookingSectionProps) {
     };
 
     try {
-      await submitLead({
-        name: booking.full_name,
-        phone: booking.phone,
-        email: booking.email,
-        message: `Service: ${booking.service_type} | Date: ${booking.preferred_date} ${booking.preferred_time}${booking.notes ? " | Notes: " + booking.notes : ""}`,
-        source: variant === "hero" ? "website-hero-popup" : "website-booking-section",
+      await submitBooking({
+        ...booking,
+        notes: [booking.notes, `via ${variant === "hero" ? "hero popup" : "booking section"}`]
+          .filter(Boolean)
+          .join(" | "),
       });
       toast.success("Booking request submitted! We'll confirm your appointment soon.");
       form.reset();
